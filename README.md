@@ -1,5 +1,4 @@
 # Aegon technical design library
-============================================
 
 The library will host the HTML CSS & JS resources required for cXstudio and 
 third parties to implement in projects.

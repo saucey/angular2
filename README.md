@@ -29,3 +29,7 @@ going to support the follow list of browsers and devices:
 * Install all requirements described at "Prepare project environment".
 * Running **bower install & npm install** to install the required dependencies. 
   If this fails, try running the commands separately and check errors.
+* Clone submodules in one shot: git submodule init && git submodule update.
+
+*NOTES:  submodules are about dependencies with other repos. Remember to read
+online how  GIT submodules work. Or just ask when at cXstudio's office*

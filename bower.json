@@ -1,0 +1,23 @@
+{
+  "name": "aegon-technical-design-library",
+  "version": "0.0.0",
+  "authors": [
+    "Rocco R. <rocco.russo@hcl.com>"
+  ],
+  "description": "The library will host the HTML CSS & JS resources required for cXstudio and third parties to implement in projects.",
+  "keywords": [
+    "sass",
+    "scss",
+    "design-library",
+    "ui-elements"
+  ],
+  "license": "no license",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

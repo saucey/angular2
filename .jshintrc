@@ -1,0 +1,24 @@
+{
+  "globals": {
+    "module": true,
+    "define": true,
+    "requirejs": true,
+    "require": true,
+    "Backbone": true,
+    "_": true,
+    "jQuery": true
+  },
+  "browser": true,
+  "bitwise": true,
+  "curly": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": true,
+  "newcap": true,
+  "noempty": true,
+  "nonew": true,
+  "trailing": true,
+  "undef": true
+}

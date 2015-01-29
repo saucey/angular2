@@ -16,7 +16,13 @@
     "cXstudio",
     "design-library",
     "hcl",
-    "ui-elements"
+    "ui-elements",
+    "layout",
+    "grid",
+    "sass",
+    "responsive",
+    "rwd",
+    "semantic"
   ],
   "author": "Rocco R. <rocco.russo@hcl.com>",
   "license": "no license",

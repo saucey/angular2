@@ -5,12 +5,6 @@
     "Rocco R. <rocco.russo@hcl.com>"
   ],
   "description": "The library will host the HTML CSS & JS resources required for cXstudio and third parties to implement in projects.",
-  "keywords": [
-    "sass",
-    "scss",
-    "design-library",
-    "ui-elements"
-  ],
   "license": "no license",
   "private": true,
   "ignore": [
@@ -19,5 +13,8 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "susy": "~2.2.2"
+  }
 }

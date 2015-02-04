@@ -1,9 +1,12 @@
 {
-  "name": "fabricator",
-  "version": "0.7.0",
-  "description": "Fabricator is a tool for creating modular website toolkits",
-  "homepage": "http://resource.github.io/fabricator/",
+  "name": "aegon-technical-design-library",
+  "version": "0.0.0",
+  "description": "The library will host the HTML CSS & JS resources required for cXstudio and third parties to implement in projects.",
   "main": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:cxstudio/aegon-technical-design-library.git"
+  },
   "scripts": {
     "gulp": "gulp",
     "prestart": "npm install",
@@ -15,15 +18,22 @@
     "framework",
     "scaffold",
     "patterns",
-    "library"
+    "library",
+    "sass",
+    "scss",
+    "cXstudio",
+    "design-library",
+    "hcl",
+    "ui-elements",
+    "layout",
+    "grid",
+    "sass",
+    "responsive",
+    "rwd",
+    "semantic"
   ],
-  "author": "Luke Askew",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/resource/fabricator/blob/master/LICENSE.md"
-    }
-  ],
+  "author": "Rocco R. <rocco.russo@hcl.com>",
+  "license": "no license",
   "repository": {
     "type": "git",
     "url": "https://github.com/resource/fabricator.git"

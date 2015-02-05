@@ -38,7 +38,7 @@ var config = {
     },
     styles: {
       fabricator: './src/fabricator/styles/fabricator.scss',
-      library: './src/toolkit/assets/sass-library/aegon-library.scss',
+      library: './libs/aegon-sass-library/aegon-library.scss',
       toolkit: './src/toolkit/assets/styles/toolkit.scss'
     },
     images: 'src/toolkit/assets/images/**/*',

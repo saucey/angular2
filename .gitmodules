@@ -1,4 +1,4 @@
 [submodule "src/toolkit/assets/sass-library"]
-	path = src/toolkit/assets/sass-library
+	path = lib/aegon-sass-library
 	url = git@bitbucket.org:cxstudio/aegon-sass-library.git
 	branch = fabricator

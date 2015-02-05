@@ -1,3 +1,0 @@
-[submodule "assets/sass"]
-	path = src/toolkit/assets/sass-library/
-	url = git@bitbucket.org:cxstudio/aegon-sass-library.git

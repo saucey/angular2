@@ -1,0 +1,26 @@
+{
+  "name": "aegon-sass-library",
+  "version": "0.0.1",
+  "authors": [
+    "Rocco R. <rocco.russo@hcl.com>"
+  ],
+  "description": "The library will host the SASS library required for cXstudio Drupal projects and Design Technical Library.",
+  "keywords": [
+    "cxstudio",
+    "css",
+    "sass"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "drupal-normalize-css": "latest",
+    "compass-mixins": "~1.0.2"
+  }
+}

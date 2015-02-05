@@ -1,0 +1,43 @@
+
+//
+// Variables
+// --------------------------------------------------
+
+
+
+// Some ideas:
+// https://github.com/twbs/bootstrap-sass/blob/master/templates/project/_bootstrap-variables.sass
+
+//variable definitions
+
+// COLORS, following fabrique's scheme '
+// BLUE hues
+$black: #1d1d1b; //actually, this is a very dark blue, so that is why it is here
+$dark_blue: #00304c;
+$blue: #3395d3;
+$light_blue: #66b0de;
+$sky: #8cd1e6;
+// ORANGES
+$orange: #f9a600;
+// GREYS
+$white: #ffffff;
+$grey: #edebe5;
+// GREENS
+$green: #49af57;
+// REDS
+$red: #ca4642;
+// YELLOWS
+$yellow: #ffea53;
+
+$font_fallback: Arial,Verdana,sans-serif;
+$font_light: 'sslight', $font_fallback;
+$font_normal: 'ssregular', $font_fallback;
+$font_bold: 'ssbold', $font_fallback;
+$font_icons: 'aegon_icons', $font_fallback;
+// SIZES
+$small: 14px;
+$medium: 18px;
+$large: 22px;
+$x-large: 25px;
+$xx-large: 40px;
+$xxx-large: 46px;

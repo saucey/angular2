@@ -33,10 +33,12 @@ var config = {
         './src/fabricator/scripts/prism.js',
         './src/fabricator/scripts/fabricator.js'
       ],
+      vendors: './src/toolkit/assets/scripts/vendors.js',
       toolkit: './src/toolkit/assets/scripts/toolkit.js'
     },
     styles: {
       fabricator: './src/fabricator/styles/fabricator.scss',
+      library: './src/toolkit/assets/sass-library/aegon-library.scss',
       toolkit: './src/toolkit/assets/styles/toolkit.scss'
     },
     images: 'src/toolkit/assets/images/**/*',
@@ -58,7 +60,9 @@ gulp.task('clean', function (cb) {
 });
 
 
-// styles
+/**
+ * Styles
+ */
 gulp.task('styles:fabricator', function () {
   return gulp.src(config.src.styles.fabricator)
     .pipe(plumber())
@@ -72,19 +76,37 @@ gulp.task('styles:fabricator', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
+gulp.task('styles:library', function () {
+  return gulp.src(config.src.styles.library)
+    .pipe(plumber())
+    .pipe(sass({
+      errLogToConsole: true
+    }))
+    .pipe(prefix({
+      browsers: ['last 2 version', 'ie 9'],
+      cascade: false
+    }))
+    .pipe(gulpif(!config.dev, csso()))
+    .pipe(gulp.dest(config.dest + '/toolkit/styles'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
+});
+
 gulp.task('styles:toolkit', function () {
   return gulp.src(config.src.styles.toolkit)
     .pipe(plumber())
     .pipe(sass({
       errLogToConsole: true
     }))
-    .pipe(prefix('last 1 version'))
+    .pipe(prefix({
+      browsers: ['last 2 version', 'ie 9'],
+      cascade: false
+    }))
     .pipe(gulpif(!config.dev, csso()))
     .pipe(gulp.dest(config.dest + '/toolkit/styles'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-gulp.task('styles', ['styles:fabricator', 'styles:toolkit']);
+gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit']);
 
 
 // scripts
@@ -169,7 +191,6 @@ gulp.task('assemble', ['collate'], function () {
   gulp.start('assemble:fabricator', 'assemble:templates');
 });
 
-
 // server
 gulp.task('browser-sync', function () {
   browserSync({
@@ -180,7 +201,6 @@ gulp.task('browser-sync', function () {
   });
 });
 
-
 // watch
 gulp.task('watch', ['browser-sync'], function () {
   gulp.watch('src/toolkit/{components,structures,templates,documentation,views}/**/*.{html,md}', ['assemble', browserSync.reload]);
@@ -190,7 +210,6 @@ gulp.task('watch', ['browser-sync'], function () {
   gulp.watch('src/toolkit/assets/scripts/**/*.js', ['scripts:toolkit', browserSync.reload]);
   gulp.watch(config.src.images, ['images', browserSync.reload]);
 });
-
 
 // default build task
 gulp.task('default', ['clean'], function () {
@@ -209,5 +228,4 @@ gulp.task('default', ['clean'], function () {
       gulp.start('watch');
     }
   });
-
 });

@@ -1,0 +1,49 @@
+
+//
+// Variables
+// --------------------------------------------------
+
+/* Need refactor */
+
+button {
+  background-color: $blue;
+  color: $white;
+  font-size: $medium;
+  border-radius: 3px;
+  padding: 10px;
+  border: 0;
+  &.arrow {
+    &:after {
+      padding: 11px;
+      margin-right: -10px;
+      font-family: $font_icons;
+      content: ">";
+      background-color: $light_blue;
+    }
+  }
+  &.white {
+    background-color: $white;
+    color: $blue;
+    &:before {
+      padding: 11px;
+      margin-left: -10px;
+      font-family: $font_icons;
+      content: ">";
+      background-color: $white;
+      color: $blue;
+    }
+  }
+}
+
+.frame {
+  position: relative;
+  min-width: 220px;
+  min-height: 100px;
+  padding: 15px;
+  border: 2px solid $grey;
+  border-radius: 3px;
+}
+
+.bubble {
+  @include bubble(10px, 2px, $quadrant: 3, $bottom: 20px, $border-color: $grey, $background-color: $white);
+}

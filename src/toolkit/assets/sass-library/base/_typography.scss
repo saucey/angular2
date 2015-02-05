@@ -1,0 +1,79 @@
+
+//
+// Typography
+// --------------------------------------------------
+
+/* Need refactor */
+
+h1 {
+  font-family: $font_light;
+  font-size: $xxx-large;
+  color: $blue;
+}
+.subtext {
+  font-family: $font_light;
+  font-size: $x-large;
+  color: $blue;
+}
+.subheader {
+  font-family: $font_normal;
+  font-size: $large;
+}
+h2 {
+  font-family: $font_light;
+  font-size: $xx-large;
+  color: $blue;
+  margin: 5px 0 20px 0;
+}
+h3 {
+  font-family: $font_normal;
+  font-size: $large;
+}
+h4 {
+  font-family: $font_normal;
+  font-size: $medium;
+}
+ul {
+  padding-left: 0px;
+  padding-right: 0px;
+  li {
+    list-style: none;
+    font-family: $font_light;
+    font-size: $medium;
+    &:before {
+      display: block;
+      position: relative;
+      max-width: 0;
+      max-height: 0;
+      top: -3px;
+      color: $blue;
+      font-size: $x-large;
+    }
+    $li_left: 20px;
+    &.bullet {
+      margin-left: $li_left;
+      &:before {
+        font-family: $font_icons;
+        left: -$li_left;
+        content: '\2022';    
+      }
+    }
+    &.check {
+      margin-left: $li_left;
+      &:before {
+        font-family: $font_icons;
+        left: -$li_left;
+        content: "v";
+      }
+    }
+    &.arrow {
+      margin-left: $li_left;
+      color: $blue;
+      &:before {
+        font-family: $font_icons;
+        left: -$li_left;
+        content: ">";
+      }
+    }
+  }
+}

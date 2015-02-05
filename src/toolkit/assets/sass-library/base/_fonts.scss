@@ -1,0 +1,48 @@
+
+//
+// Fonts
+// --------------------------------------------------
+
+@font-face {
+  font-family:'sslight'; //it would be great if we could use just one font name for all different font weights, but, alas, all browsers have a very different take on that
+  src: url('../assets/fonts/senticosansdt-light-webfont.eot');
+  src: url('../assets/fonts/senticosansdt-light-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../assets/fonts/senticosansdt-light-webfont.woff') format('woff'),
+       url('../assets/fonts/senticosansdt-light-webfont.ttf') format('truetype'),
+       url('../assets/fonts/senticosansdt-light-webfont.svg#senticosansdtlight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family:'ssregular';
+  src: url('../assets/fonts/senticosansdt-regular-webfont.eot');
+  src: url('../assets/fonts/senticosansdt-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../assets/fonts/senticosansdt-regular-webfont.woff') format('woff'),
+       url('../assets/fonts/senticosansdt-regular-webfont.ttf') format('truetype'),
+       url('../assets/fonts/senticosansdt-regular-webfont.svg#senticosansdtregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family:'ssbold';
+  src: url('../assets/fonts/senticosansdtcond-bold-webfont.eot');
+  src: url('../assets/fonts/senticosansdtcond-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../assets/fonts/senticosansdtcond-bold-webfont.woff') format('woff'),
+       url('../assets/fonts/senticosansdtcond-bold-webfont.ttf') format('truetype'),
+       url('../assets/fonts/senticosansdtcond-bold-webfont.svg#senticosansdtcondbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// @font-face {
+//   font-family: 'aegon_icons';
+//   src: url('../assets/fonts/senticosansdt-regular-webfont.eot');
+//   src: url('../assets/fonts/senticosansdt-regular-webfont.eot?#iefix') format('embedded-opentype'),
+//        url('../assets/fonts/senticosansdt-regular-webfont.woff') format('woff'),
+//        url('../assets/fonts/senticosansdt-regular-webfont.ttf') format('truetype'),
+//        url('../assets/fonts/senticosansdt-regular-webfont.svg#senticosansdtregular') format('svg');
+//   font-weight: normal;
+//   font-style: normal;
+// }

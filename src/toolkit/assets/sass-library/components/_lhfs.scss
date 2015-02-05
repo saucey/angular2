@@ -1,0 +1,80 @@
+// 
+// Reason to don't use id selectors instead of class selectors
+// http://csswizardry.com/2011/09/when-using-ids-can-be-a-pain-in-the-class/
+// http://screwlewse.com/2010/07/dont-use-id-selectors-in-css/
+// http://oli.jp/2011/ids/
+// 
+
+/* Need refactor */
+
+// STYLES THAT ARE PARTICULAR only to parts of the site
+#dux1, #dux2 {
+  #topmenu {
+    .username {
+      color: $green;
+    }
+  }
+  
+  #userwidget {
+    width: 320px;
+    .username {
+      color: $black;
+    }
+    .lastlogin {
+      color: $green;
+      font-size: $small;
+    }
+  }
+}
+
+
+
+#lhfs {
+  .tip {
+    background-color: $sky;
+    padding: 20px 15px;
+    border-radius: inherit; //get border-radius from enclosing frame
+    display: none;
+    &.visible {
+      display: block;
+    }
+    .intro {
+      color: $white;
+    }
+  }
+  &>ul {
+    margin: 30px 0;
+    width: 100%;
+    li.payment {
+      &.data {
+        ul {
+          display:block;
+        }
+        .description {
+          display: none;
+        }
+      }
+
+      span.title, span.police-number {
+        font-family: $font_bold;  //font-weight bold does not work for this font family >:(;
+      }
+      ul {
+        margin: 30px 0 10px 0;
+        padding: 1px 0;
+        display: none; //together with the .data class for li.payment toggles on and off the visibility of the data elements
+        width: 100%;
+        &.visible {
+          display: block;
+        }
+        li {
+          //display: inline-block;
+          float: left;
+          width: 50%;
+          &:last-of-type {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

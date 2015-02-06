@@ -33,7 +33,7 @@ var config = {
         './src/fabricator/scripts/prism.js',
         './src/fabricator/scripts/fabricator.js'
       ],
-      vendors: './src/toolkit/assets/scripts/vendors.js',
+      vendors: './src/toolkit/assets/scripts/vendors/**/*.js',
       toolkit: './src/toolkit/assets/scripts/toolkit.js'
     },
     styles: {
@@ -109,13 +109,23 @@ gulp.task('styles:toolkit', function () {
 gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit']);
 
 
-// scripts
+/**
+ * scripts
+ */
 gulp.task('scripts:fabricator', function () {
   return gulp.src(config.src.scripts.fabricator)
     .pipe(plumber())
     .pipe(concat('f.js'))
     .pipe(gulpif(!config.dev, uglify()))
     .pipe(gulp.dest(config.dest + '/fabricator/scripts'));
+});
+
+gulp.task('scripts:vendors', function () {
+  return gulp.src(config.src.scripts.vendors)
+    .pipe(plumber())
+    .pipe(concat('vendors.js'))
+    .pipe(gulpif(!config.dev, streamify(uglify())))
+    .pipe(gulp.dest(config.dest + '/toolkit/scripts'));
 });
 
 gulp.task('scripts:toolkit', function () {
@@ -126,7 +136,7 @@ gulp.task('scripts:toolkit', function () {
     .pipe(gulp.dest(config.dest + '/toolkit/scripts'));
 });
 
-gulp.task('scripts', ['scripts:fabricator', 'scripts:toolkit']);
+gulp.task('scripts', ['scripts:fabricator', 'scripts:vendors', 'scripts:toolkit']);
 
 
 // images

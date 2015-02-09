@@ -1,0 +1,40 @@
+// colors
+
+// `$theme--dark`: (boolean) to toggle "dark" or "light" theme
+$theme--dark: false;
+
+$color--dark: rgb(30,30,30);
+$color--medium: rgb(160,160,160);
+$color--light: rgb(242,242,242);
+$color--accent: rgb(100,178,67);
+
+$color--menu-background: if($theme--dark, lighten($color--dark, 4%), rgb(255,255,255));
+$color--menu-heading-text: if($theme--dark, $color--medium, darken($color--medium, 10%));
+$color--menu-heading-border: if($theme--dark, $color--dark, darken($color--light, 4%));
+$color--menu-item-hover: if($theme--dark, $color--light, $color--dark);
+$color--menu-item-text: if($theme--dark, $color--light, $color--dark);
+
+
+// menu
+$menu-width: 14rem;
+
+
+// mixins
+@mixin clearfix {
+	&:after {
+		clear: both;
+	}
+	&:before,
+	&:after {
+		display: table;
+		content: "";
+	}
+}
+
+@mixin transition {
+	transition: all 350ms cubic-bezier(0.86, 0, 0.07, 1) 0s;
+}
+
+@mixin borderBox {
+	box-sizing: border-box;
+}

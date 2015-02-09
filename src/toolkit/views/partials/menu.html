@@ -33,6 +33,16 @@
 			</ul>
 		</li>
 		<li>
+			<a href="widgets.html" class="f-menu__heading">Widgets</a>
+			<ul>
+				{{#each widgets}}
+					<li>
+						<a href="widgets.html#{{id}}">{{name}}</a>
+					</li>
+				{{/each}}
+			</ul>
+		</li>
+		<li>
 			<a href="structures.html" class="f-menu__heading">Structures</a>
 			<ul>
 				{{#each structures}}

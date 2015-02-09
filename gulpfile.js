@@ -30,21 +30,22 @@ var config = {
   src: {
     scripts: {
       fabricator: [
-        './src/fabricator/scripts/prism.js',
-        './src/fabricator/scripts/fabricator.js'
+        './lib/fabricator/scripts/prism.js',
+        './lib/fabricator/scripts/fabricator.js'
       ],
-      vendors: './src/toolkit/assets/scripts/vendors/**/*.js',
-      toolkit: './src/toolkit/assets/scripts/toolkit.js'
+      vendors: './src/assets/scripts/vendors/**/*.js',
+      toolkit: './src/assets/scripts/toolkit.js'
     },
     styles: {
-      fabricator: './src/fabricator/styles/fabricator.scss',
+      fabricator: './lib/fabricator/styles/fabricator.scss',
       library: './lib/aegon-sass-library/aegon-library.scss',
-      toolkit: './src/toolkit/assets/styles/toolkit.scss'
+      toolkit: './src/assets/styles/toolkit.scss'
     },
-    images: 'src/toolkit/assets/images/**/*',
-    views: './src/toolkit/views/*.html',
+    images: 'src/assets/images/**/*',
+    views: './src/views/*.html',
     materials: [
       'components',
+      'widgets',
       'structures',
       'templates',
       'documentation'
@@ -87,7 +88,7 @@ gulp.task('styles:library', function () {
       cascade: false
     }))
     .pipe(gulpif(!config.dev, csso()))
-    .pipe(gulp.dest(config.dest + '/toolkit/styles'))
+    .pipe(gulp.dest(config.dest + '/styles'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
@@ -102,7 +103,7 @@ gulp.task('styles:toolkit', function () {
       cascade: false
     }))
     .pipe(gulpif(!config.dev, csso()))
-    .pipe(gulp.dest(config.dest + '/toolkit/styles'))
+    .pipe(gulp.dest(config.dest + '/styles'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
@@ -125,7 +126,7 @@ gulp.task('scripts:vendors', function () {
     .pipe(plumber())
     .pipe(concat('vendors.js'))
     .pipe(gulpif(!config.dev, streamify(uglify())))
-    .pipe(gulp.dest(config.dest + '/toolkit/scripts'));
+    .pipe(gulp.dest(config.dest + '/scripts'));
 });
 
 gulp.task('scripts:toolkit', function () {
@@ -133,7 +134,7 @@ gulp.task('scripts:toolkit', function () {
     .pipe(plumber())
     .pipe(source('toolkit.js'))
     .pipe(gulpif(!config.dev, streamify(uglify())))
-    .pipe(gulp.dest(config.dest + '/toolkit/scripts'));
+    .pipe(gulp.dest(config.dest + '/scripts'));
 });
 
 gulp.task('scripts', ['scripts:fabricator', 'scripts:vendors', 'scripts:toolkit']);
@@ -143,7 +144,7 @@ gulp.task('scripts', ['scripts:fabricator', 'scripts:vendors', 'scripts:toolkit'
 gulp.task('images', ['favicon'], function () {
   return gulp.src(config.src.images)
     .pipe(imagemin())
-    .pipe(gulp.dest(config.dest + '/toolkit/images'));
+    .pipe(gulp.dest(config.dest + '/images'));
 });
 
 gulp.task('favicon', function () {
@@ -189,7 +190,7 @@ gulp.task('assemble:templates', function () {
     data: config.dest + '/fabricator/data/data.json',
     template: true
   };
-  return gulp.src('./src/toolkit/templates/*.html')
+  return gulp.src('./src/templates/*.html')
     .pipe(compile(opts))
     .pipe(rename({
       prefix: 'template-'
@@ -213,11 +214,11 @@ gulp.task('browser-sync', function () {
 
 // watch
 gulp.task('watch', ['browser-sync'], function () {
-  gulp.watch('src/toolkit/{components,structures,templates,documentation,views}/**/*.{html,md}', ['assemble', browserSync.reload]);
-  gulp.watch('src/fabricator/styles/**/*.scss', ['styles:fabricator']);
-  gulp.watch('src/toolkit/assets/styles/**/*.scss', ['styles:toolkit']);
-  gulp.watch('src/fabricator/scripts/**/*.js', ['scripts:fabricator', browserSync.reload]);
-  gulp.watch('src/toolkit/assets/scripts/**/*.js', ['scripts:toolkit', browserSync.reload]);
+  gulp.watch('src/{components,widgets,structures,templates,documentation,views}/**/*.{html,md}', ['assemble', browserSync.reload]);
+  gulp.watch('lib/fabricator/styles/**/*.scss', ['styles:fabricator']);
+  gulp.watch('src/assets/styles/**/*.scss', ['styles:toolkit']);
+  gulp.watch('lib/fabricator/scripts/**/*.js', ['scripts:fabricator', browserSync.reload]);
+  gulp.watch('src/assets/scripts/**/*.js', ['scripts:toolkit', browserSync.reload]);
   gulp.watch(config.src.images, ['images', browserSync.reload]);
 });
 

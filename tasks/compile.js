@@ -22,11 +22,11 @@ var data;
  */
 var registerPartials = function () {
 
-	var partials = fs.readdirSync('src/toolkit/views/partials'),
+	var partials = fs.readdirSync('src/views/partials'),
 		html;
 
 	for (var i = partials.length - 1; i >= 0; i--) {
-		html = fs.readFileSync('src/toolkit/views/partials/' + partials[i], 'utf-8');
+		html = fs.readFileSync('src/views/partials/' + partials[i], 'utf-8');
 		Handlebars.registerPartial(partials[i].replace(/.html/, ''), html);
 	}
 

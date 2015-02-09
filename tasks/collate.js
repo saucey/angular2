@@ -93,7 +93,7 @@ var parse = function (dir) {
 	}
 
 	// get directory contents
-	var raw = fs.readdirSync('src/toolkit/' + dir).filter(junk.not);
+	var raw = fs.readdirSync('src/' + dir).filter(junk.not);
 
 	// create an array of file names
 	var fileNames = raw.map(function (e, i) {
@@ -115,7 +115,7 @@ var parse = function (dir) {
 
 		try {
 			// compile templates
-			var content = fs.readFileSync('src/toolkit/' + dir + '/' + items[i] + '.html', 'utf8').replace(/(\s*(\r?\n|\r))+$/, '');
+			var content = fs.readFileSync('src/' + dir + '/' + items[i] + '.html', 'utf8').replace(/(\s*(\r?\n|\r))+$/, '');
 			var template = Handlebars.compile(content);
 			item.content = beautifyHtml(template(), beautifyOptions);
 			// register the helper
@@ -123,7 +123,7 @@ var parse = function (dir) {
 		} catch (e) {}
 
 		try {
-			var notes = fs.readFileSync('src/toolkit/' + dir + '/' + items[i] + '.md', 'utf8');
+			var notes = fs.readFileSync('src/' + dir + '/' + items[i] + '.md', 'utf8');
 			item.notes = markdown(notes);
 		} catch (e) {}
 

@@ -38,8 +38,9 @@ var config = {
     },
     styles: {
       fabricator: './lib/fabricator/styles/fabricator.scss',
+      toolkit: './src/assets/styles/toolkit.scss',
       library: './lib/aegon-sass-library/aegon-library.scss',
-      toolkit: './src/assets/styles/toolkit.scss'
+      libpath: './lib/aegon-sass-library'
     },
     images: 'src/assets/images/**/*',
     views: './src/views/*.html',
@@ -216,6 +217,7 @@ gulp.task('browser-sync', function () {
 gulp.task('watch', ['browser-sync'], function () {
   gulp.watch('src/{components,widgets,structures,templates,documentation,views}/**/*.{html,md}', ['assemble', browserSync.reload]);
   gulp.watch('lib/fabricator/styles/**/*.scss', ['styles:fabricator']);
+  gulp.watch(config.src.styles.libpath + '/**/*.scss', ['styles:library']);
   gulp.watch('src/assets/styles/**/*.scss', ['styles:toolkit']);
   gulp.watch('lib/fabricator/scripts/**/*.js', ['scripts:fabricator', browserSync.reload]);
   gulp.watch('src/assets/scripts/**/*.js', ['scripts:toolkit', browserSync.reload]);

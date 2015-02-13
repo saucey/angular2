@@ -1,7 +1,6 @@
 'use strict';
 
 // modules
-var browserify = require('browserify');
 var browserSync = require('browser-sync');
 var collate = require('./tasks/collate');
 var compile = require('./tasks/compile');
@@ -34,7 +33,10 @@ var config = {
         './lib/fabricator/scripts/fabricator.js'
       ],
       vendors: './src/assets/scripts/vendors/**/*.js',
-      toolkit: './src/assets/scripts/toolkit.js'
+      toolkit: [
+        '!./src/assets/scripts/vendors/**/*.js',
+        './src/assets/scripts/**/*.js',
+      ]
     },
     styles: {
       fabricator: './lib/fabricator/styles/fabricator.scss',
@@ -131,9 +133,9 @@ gulp.task('scripts:vendors', function () {
 });
 
 gulp.task('scripts:toolkit', function () {
-  return browserify(config.src.scripts.toolkit).bundle()
+  return gulp.src(config.src.scripts.toolkit)
     .pipe(plumber())
-    .pipe(source('toolkit.js'))
+    .pipe(concat('toolkit.js'))
     .pipe(gulpif(!config.dev, streamify(uglify())))
     .pipe(gulp.dest(config.dest + '/scripts'));
 });

@@ -4,4 +4,4 @@
 
 'use strict';
 
-var stocazzo = {};
+var example_toolkit_var = {};

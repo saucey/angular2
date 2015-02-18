@@ -5,13 +5,15 @@
   "main": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/resource/fabricator.git"
+    "url": "https://bitbucket.org/cxstudio/aegon-technical-design-library.git"
   },
   "scripts": {
-    "gulp": "gulp",
-    "prestart": "npm install",
+    "deps": "npm install && bower install",
+    "subs": "git submodule init && git submodule update",
+    "setup": "npm run deps && npm run subs",
+    "update": "git pull && npm run subs",
     "build": "npm install && gulp",
-    "start": "gulp --dev"
+    "serve": "gulp --dev"
   },
   "keywords": [
     "toolkit",

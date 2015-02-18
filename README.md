@@ -21,14 +21,13 @@ going to support the follow list of browsers and devices:
     * With the project we have also an hidden file .editorconfig for editor standards.
 
 
-## Summary of set up development environment
+## Summary of set up dev environment
 
 ### Prepare project environment
 
-* [Install Node.js and npm (Node Package Manager)](http://nodejs.org/download/)
-* [Install Sass](http://sass-lang.com/install)
-* [Install Bower](http://bower.io/)
-* [Install Grunt](http://gruntjs.com/getting-started)
+* [Install Node.js and npm (Node Package Manager)](http://nodejs.org/download/) With this tool, we are going to install also the Node Package Manager (npm) that we use in the next step.
+* [Install Bower](http://bower.io/) After install Node.js above, just type on command line: **npm install -g bower** (probably you have to use **sudo** command, for linux/machintosh machines)
+* [Install Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md) After install Node.js above, just type on command line: **npm install -g gulp**
 
 
 ### First step after git clone
@@ -40,10 +39,3 @@ going to support the follow list of browsers and devices:
 
 *NOTES:  submodules are about dependencies with other repos. Remember to read
 online how  GIT submodules work. Or just ask when at cXstudio's office*
-
-
-### Progress
-
-* Tasks: watch, sass and autoprefixer for SASS styles and SASS libraries are done;
-* Initial **grunt serve** task for dev environment partially done;
-* 

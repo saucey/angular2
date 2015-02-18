@@ -9,8 +9,8 @@ third parties to implement in projects.
 As documented in Confluence wiki regarding themes and browsers supported, we are
 going to support the follow list of browsers and devices:
 
-* Internet Explorer (Desktop): 9.0, 10.0, 11.0
-* TODO
+* Internet Explorer (Desktop): 9.0, 10.0, 11.0;
+* TODO: add more browsers from Confluence;
 
 
 ## Guidelines and Coding standards

@@ -1,14 +1,18 @@
 # Aegon technical design library
 
-The library will host the HTML CSS & JS resources required for cXstudio and third parties to implement in projects.
+The library will host the HTML, CSS and JavaScript resources required for cXstudio and third parties to implement in projects.
+The library tool is composed of advanced components that permit to have a complete front-end development stack.
 
 
-### Technical notes and considerations
+### Technical notes
 
-As documented in Confluence wiki regarding themes and browsers supported, we are going to support the follow list of browsers and devices:
+* As documented in Confluence wiki regarding themes and browsers supported, we are going to support the list of browsers and devices mentioned in [Browser and devices policy for Aegon websites](http://swfactory.intra.aegon.nl:8090/display/WebDevelopment/Browser+and+devices+policy+for+Aegon+websites) of Confluence
 
-* Internet Explorer (Desktop): 9.0, 10.0, 11.0;
-* TODO: add more browsers from Confluence;
+
+### Architecture of the project
+
+We are using Gulp that is an utility wrote in Node.js. Gulp is a build system automating tasks: minification and copying of all JavaScript files, static images, capable of watching files to automatically rerun the task when a file is changed and much more.
+TODO
 
 
 ### Guidelines and Coding standards
@@ -17,12 +21,7 @@ As documented in Confluence wiki regarding themes and browsers supported, we are
   Main rules that we need to follow are described below:
 	* Indentation with 2 spaces and no tab allowed.
     * With the project we have also an hidden file .editorconfig for editor standards.
-
-
-### Architecture of the project
-
-TODO...
-
+* This README file is wrote with Markdown syntax. If you are not familiar, please [visit the tutorial page of Atlassian](https://bitbucket.org/tutorials/markdowndemo).
 
 
 ## Summary of setup dev environment

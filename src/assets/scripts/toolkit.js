@@ -2,6 +2,11 @@
  * Toolkit JavaScript
  */
 
-'use strict';
+(function() {
+  'use strict';
 
-var example_toolkit_var = {};
+  var example_toolkit_var = {};
+
+  return example_toolkit_var;
+
+}).call(this);

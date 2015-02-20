@@ -17,12 +17,13 @@ TODO
 
 ### Guidelines and Coding standards
 
-* Since our main platform is Drupal, we follow the code standards of community: [https://www.drupal.org/coding-standards](https://www.drupal.org/coding-standards).
+* Since our main platform is Drupal, we follow the code standards of community: [https://www.drupal.org/coding-standards](https://www.drupal.org/coding-standards);
   Main rules that we need to follow are described below:
-	* Indentation with 2 spaces and no tab allowed.
-    * With the project we have also an hidden file .editorconfig for editor standards.
-* This README file is wrote with Markdown syntax. If you are not familiar, please [visit the tutorial page of Atlassian](https://bitbucket.org/tutorials/markdowndemo).
-
+	* Indentation with 2 spaces and no tab allowed;
+    * With the project we have also an hidden file .editorconfig for editor standards;
+* This README file is wrote with Markdown syntax. If you are not familiar, please [visit the tutorial page of Atlassian](https://bitbucket.org/tutorials/markdowndemo);
+* Code into JavaScript files need to be encapsulated. Best way is showed in **src/assets/scripts/toolkit.js**;
+* For folders **src/components** and **src/widgets** there is the markdown support for documentation of single html document. Is enough create an .md extra files with the same name of the html file to have the documentation/comments support inside the out tool.
 
 ## Summary of setup dev environment
 
@@ -39,7 +40,7 @@ Follow the steps below to setup your local stack environment.
 
 ### Step 2 (Optional) - Prepare your machine
 
-Before the **Step 3** below, remember to setup your global user locally. Please follow [this tutorial to work with Bitbucket](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config) and also [set up SSH for Git](https://confluence.atlassian.com/display/BITBUCKET/Set+up+SSH+for+Git) for personal Bitbucket's area.
+Before the **Step 3** below, remember to setup your global Git user locally. Please follow [this tutorial to work with Bitbucket](https://www.atlassian.com/git/tutorials/setting-up-a-repository/git-config) and also [set up SSH for Git](https://confluence.atlassian.com/display/BITBUCKET/Set+up+SSH+for+Git) for personal Bitbucket's area.
 
 
 ### Step 3 - Clone repository on your local machine
@@ -54,6 +55,7 @@ git clone git@bitbucket.org:cxstudio/aegon-technical-design-library.git
 ### Step 4 - Commands after git clone
 
 Run first setup script from command line as below:
+todo: enter directory
 
 ```
 npm run setup

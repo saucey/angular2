@@ -1,3 +1,9 @@
 [submodule "lib/aegon-sass-library"]
 	path = lib/aegon-sass-library
 	url = git@bitbucket.org:cxstudio/aegon-sass-library.git
+[submodule "lib/aegon-assets-library"]
+	path = lib/aegon-assets-library
+	url = git@bitbucket.org:cxstudio/aegon-assets-library.git
+[submodule "lib/aegon-scripts-library"]
+	path = lib/aegon-scripts-library
+	url = git@bitbucket.org:cxstudio/aegon-scripts-library.git

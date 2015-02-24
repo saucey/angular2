@@ -1,7 +1,6 @@
 'use strict';
 
 // modules
-// var browserify = require('browserify');
 var browserSync = require('browser-sync');
 var collate = require('./tasks/collate');
 var compile = require('./tasks/compile');
@@ -12,6 +11,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var gulpif = require('gulp-if');
 var imagemin = require('gulp-imagemin');
+var order = require('gulp-order');
 var plumber = require('gulp-plumber');
 var prefix = require('gulp-autoprefixer');
 var Q = require('q');
@@ -28,26 +28,21 @@ var uglify = require('gulp-uglify');
 var config = {
   dev: gutil.env.dev,
   src: {
+    libAssetsPath: './lib/aegon-assets-library',
+    libSassPath: './lib/aegon-sass-library',
+    libScriptsPath: './lib/aegon-scripts-library',
     scripts: {
       fabricator: [
         './lib/fabricator/scripts/prism.js',
         './lib/fabricator/scripts/fabricator.js'
       ],
-      vendors: './src/assets/scripts/vendors/**/*.js',
-      toolkit: [
-        '!./src/assets/scripts/vendors/**/*.js',
-        './src/assets/scripts/**/*.js',
-      ],
-      libScriptsPath: './lib/aegon-scripts-library'
+      toolkit: './src/assets/scripts/**/*.js'
     },
     styles: {
       fabricator: './lib/fabricator/styles/fabricator.scss',
-      toolkit: './src/assets/styles/toolkit.scss',
-      libSass: './lib/aegon-sass-library/aegon-library.scss',
-      libSassPath: './lib/aegon-sass-library'
+      toolkit: './src/assets/styles/toolkit.scss'
     },
     images: 'src/assets/images/**/*',
-    libAssetsPath: './lib/aegon-assets-library',
     views: './src/views/*.html',
     materials: [
       'components',
@@ -61,7 +56,7 @@ var config = {
 };
 
 
-// clean
+// Clean
 gulp.task('clean', function (cb) {
   del([config.dest], cb);
 });
@@ -98,7 +93,7 @@ gulp.task('scripts:fabricator', function () {
  */
 
 gulp.task('styles:library', function () {
-  return gulp.src(config.src.styles.libSass)
+  return gulp.src(config.src.libSassPath + '/*.scss')
     .pipe(plumber())
     .pipe(sass({
       errLogToConsole: true
@@ -113,21 +108,35 @@ gulp.task('styles:library', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-// gulp.task('scripts:library', function () {
-//   return gulp.src(config.src.scripts.libSass)
-//     .pipe(plumber())
-//     .pipe(sass({
-//       errLogToConsole: true
-//       // , includePaths: config.src.styles.libAssetsPath
-//     }))
-//     .pipe(prefix({
-//       browsers: ['last 2 version', 'ie 9'],
-//       cascade: false
-//     }))
-//     .pipe(gulpif(!config.dev, csso()))
-//     .pipe(gulp.dest(config.dest + '/scripts'))
-//     .pipe(gulpif(config.dev, reload({stream:true})));
-// });
+gulp.task('scripts:library', function () {
+  
+  // Internet Explorer stuff
+  gulp.src([
+      config.src.libScriptsPath + '/vendor/ie/**/*.js'
+    ])
+    .pipe(plumber())
+    .pipe(concat('ie-aegon-library.js'))
+    .pipe(gulpif(!config.dev, streamify(uglify())))
+    .pipe(gulp.dest(config.dest + '/scripts'));
+
+  // Main scripts
+  return gulp.src([
+      config.src.libScriptsPath + '/**/*.js',
+      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js'
+    ])
+    .pipe(plumber())
+    .pipe(order([
+      'vendor/from_misc/jquery.js',
+      'vendor/from_misc/jquery.once.js',
+      'vendor/from_misc/drupal.js',
+      'vendor/from_misc/**/*.js',
+      'vendor/from_modules/**/*.js',
+      'vendor/from_themes/**/*.js'
+    ], { base: config.src.libScriptsPath }))
+    .pipe(concat('aegon-library.js'))
+    .pipe(gulpif(!config.dev, streamify(uglify())))
+    .pipe(gulp.dest(config.dest + '/scripts'));
+});
 
 
 /**
@@ -152,15 +161,10 @@ gulp.task('styles:toolkit', function () {
 gulp.task('scripts:toolkit', function () {
   return gulp.src(config.src.scripts.toolkit)
     .pipe(plumber())
+    .pipe(order([
+      'vendor/**/*.js'
+    ], { base: config.src.scripts.toolkit }))
     .pipe(concat('toolkit.js'))
-    .pipe(gulpif(!config.dev, streamify(uglify())))
-    .pipe(gulp.dest(config.dest + '/scripts'));
-});
-
-gulp.task('scripts:vendors', function () {
-  return gulp.src(config.src.scripts.vendors)
-    .pipe(plumber())
-    .pipe(concat('vendors.js'))
     .pipe(gulpif(!config.dev, streamify(uglify())))
     .pipe(gulp.dest(config.dest + '/scripts'));
 });
@@ -172,7 +176,7 @@ gulp.task('scripts:vendors', function () {
 
 gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit']);
 
-gulp.task('scripts', ['scripts:fabricator', 'scripts:vendors', 'scripts:toolkit']);
+gulp.task('scripts', ['scripts:fabricator', 'scripts:library', 'scripts:toolkit']);
 
 
 /**
@@ -254,7 +258,6 @@ gulp.task('browser-sync', function () {
       baseDir: config.dest,
       routes: {
         "/assets": config.src.libAssetsPath
-        // , "/scripts": config.src.scripts.libScriptsPath
       }
     },
     // Tunnel the BrowserSync server through a random Public URL
@@ -270,9 +273,10 @@ gulp.task('browser-sync', function () {
 gulp.task('watch', ['browser-sync'], function () {
   gulp.watch('src/{components,widgets,structures,templates,documentation,views}/**/*.{html,md}', ['assemble', browserSync.reload]);
   gulp.watch('lib/fabricator/styles/**/*.scss', ['styles:fabricator']);
-  gulp.watch(config.src.styles.libSassPath + '/**/*.scss', ['styles:library']);
+  gulp.watch(config.src.libSassPath + '/**/*.scss', ['styles:library']);
   gulp.watch('src/assets/styles/**/*.scss', ['styles:toolkit']);
   gulp.watch('lib/fabricator/scripts/**/*.js', ['scripts:fabricator', browserSync.reload]);
+  gulp.watch(config.src.libScriptsPath + '/**/*.js', ['scripts:library', browserSync.reload]);
   gulp.watch('src/assets/scripts/**/*.js', ['scripts:toolkit', browserSync.reload]);
   gulp.watch(config.src.images, ['images', browserSync.reload]);
 });
@@ -295,12 +299,3 @@ gulp.task('default', ['clean'], function () {
     }
   });
 });
-
-
-
-
-// gulp.task('br', function () {
-//   var b = browserify();
-//   b.add('./src/assets/scripts/toolkit.js');
-//   b.bundle().pipe(process.stdout);
-// });

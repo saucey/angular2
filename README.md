@@ -4,15 +4,23 @@ The library will host the HTML, CSS and JavaScript resources required for cXstud
 The library tool is composed of advanced components that permit to have a complete front-end development stack.
 
 
-### Technical notes
-
-* As documented in Confluence wiki regarding themes and browsers supported, we are going to support the list of browsers and devices mentioned in [Browser and devices policy for Aegon websites](http://swfactory.intra.aegon.nl:8090/display/WebDevelopment/Browser+and+devices+policy+for+Aegon+websites) of Confluence
-
-
 ### Architecture of the project
 
 We are using Gulp that is an utility wrote in Node.js. Gulp is a build system automating tasks: minification and copying of all JavaScript files, static images, capable of watching files to automatically rerun the task when a file is changed and much more.
-TODO
+Beside Gulp we are customising a new utility called Fabricator, that permit to keep track and develop new elements inside our UI libraries repository adding on each elements the technical notes, HTML, CSS and JavaScript code.
+
+This **Aegon technical design library** repository contains configuration files to build the development environment and static website ready to be deployed in only one shot from command line.
+It has additionals GIT submodules that will be setup extra libraries under ./lib folders, to mantain an assets, scripts and SASS extra projects shared with other main Drupal projects and third party tools/websites.
+Extra components repository are listed below:
+
+* Assets repo: [https://bitbucket.org/cxstudio/aegon-assets-library](https://bitbucket.org/cxstudio/aegon-assets-library)
+* Styles repo: [https://bitbucket.org/cxstudio/aegon-sass-library](https://bitbucket.org/cxstudio/aegon-sass-library)
+* Scripts repo: [https://bitbucket.org/cxstudio/aegon-scripts-library](https://bitbucket.org/cxstudio/aegon-scripts-library)
+
+
+### Technical notes
+
+* As documented in Confluence wiki regarding themes and browsers supported, we are going to support the list of browsers and devices mentioned in [Browser and devices policy for Aegon websites](http://swfactory.intra.aegon.nl:8090/display/WebDevelopment/Browser+and+devices+policy+for+Aegon+websites) of Confluence
 
 
 ### Guidelines and Coding standards
@@ -24,6 +32,7 @@ TODO
 * This README file is wrote with Markdown syntax. If you are not familiar, please [visit the tutorial page of Atlassian](https://bitbucket.org/tutorials/markdowndemo);
 * Code into JavaScript files need to be encapsulated. Best way is showed in **src/assets/scripts/toolkit.js**;
 * For folders **src/components** and **src/widgets** there is the markdown support for documentation of single html document. Is enough create an .md extra files with the same name of the html file to have the documentation/comments support inside the out tool.
+
 
 ## Summary of setup dev environment
 

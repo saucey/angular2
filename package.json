@@ -1,6 +1,6 @@
 {
   "name": "aegon-technical-design-library",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "The library will host the HTML CSS & JS resources required for cXstudio and third parties to implement in projects.",
   "main": "README.md",
   "repository": {

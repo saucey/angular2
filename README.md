@@ -60,10 +60,10 @@ git clone git@bitbucket.org:cxstudio/aegon-technical-design-library.git
 ### Step 4 - Commands after git clone
 
 Run first setup script from command line as below:
-todo: enter directory
 
 ```
-npm run setup
+$ cd aegon-technical-design-library
+$ npm run setup
 ```
 
 *Below at **Other command line** there are explanation of single steps (in case some of them fails, try running the commands separately and check errors.).*
@@ -75,24 +75,24 @@ npm run setup
 Start the application in development mode:
 
 ```
-npm run serve
+$ npm run serve
 ```
 
 Or simply:
 ```
-gulp --dev
+$ gulp --dev
 ```
 
 To install the required project's dependencies:
 
 ```
-npm run deps
+$ npm run deps
 ```
 
 Clone submodules in one shot:
 
 ```
-npm run subs
+$ npm run subs
 ```
 
 *NOTE: submodules are about dependencies as extra repositories. Remember to read online how  GIT submodules work. Or just ask when at cXstudio's office*
@@ -100,17 +100,17 @@ npm run subs
 Command below is to update the main Git repository and the submodules connected:
 
 ```
-npm run update
+$ npm run update
 ```
 
 Build the project making ready for deploy:
 
 ```
-npm run build
+$ npm run build
 ```
 
 TODO: Create the deploy's task in Gulpfile
 
 ```
-npm run deploy
+$ npm run deploy
 ```

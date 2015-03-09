@@ -97,13 +97,21 @@ $ npm run subs
 
 *NOTE: submodules are about dependencies as extra repositories. Remember to read online how  GIT submodules work. Or just ask when at cXstudio's office*
 
-Command below is to update the main Git repository and the submodules connected:
+Command below is to update the main Git repository and the submodules connected at latest HEAD revision of main repo:
 
 ```
 $ npm run update
 ```
 
-Build the project making ready for deploy:
+Command below is similar to **npm run update**, but forcing to pull latest file from submobules repository detaching from HEAD revision of this main repository:
+
+```
+$ npm run pull
+```
+
+**IMPORTANT:** After this command, optionally, you need to update the HEAD revision of current repository.
+
+Build the project making it ready for deploy:
 
 ```
 $ npm run build

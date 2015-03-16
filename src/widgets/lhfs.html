@@ -1,4 +1,4 @@
-    <div id="lhfs_widget" class="lhfs_widget">
+    <div id="lhfs_widget" class="lhfs_widget container_12">
       <h3>Betaalgegevens</h2>
       <div class="tip">
         <div class="intro">Tip: Here comes a title phrase summarizing the text</div>
@@ -11,15 +11,15 @@
       </div>
       <!--end error iteration-->
 
-      <ul class="payments">
+      <ul class="payments row-fluid">
         <!--if iterations are taking place, iterate over the elements between this comment-->
-        <li class="payment data">
+        <li class="payment data span12">
           <div class="title">Product title comes here</span>&nbsp;<span class="police-number">police number</div>
           <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.payment element.</div>
           <div class="details">
-            <ul class="horizontal type">
-              <li class="label">Payment type label:</li>
-              <li class="value">
+            <ul class="horizontal type row-fluid">
+              <li class="label span6">Payment type label:</li>
+              <li class="value span6">
                 <span>payment type value</span>
                 <select name="paymentTypeValue">
                   <option>payment type option 1</option>
@@ -28,9 +28,9 @@
                 </select>
               </li>
             </ul>
-            <ul class="horizontal interval">
-              <li class="label">Payment interval label:</li>
-              <li class="value">
+            <ul class="horizontal interval row-fluid">
+              <li class="label span6">Payment interval label:</li>
+              <li class="value span6">
                 <span>payment interval value</span>
                 <select name="paymentIntervalType" class="half">
                   <option>payment interval option 1</option>
@@ -40,9 +40,9 @@
                 <input class="half" name="paymentIntervalValue"/>
               </li>
             </ul>
-            <ul class="horizontal account">
-              <li class="label">Account number label:</li>
-              <li class="value">
+            <ul class="horizontal account row-fluid">
+              <li class="label span6">Account number label:</li>
+              <li class="value span6">
                 <span>account number value</span>
                 <input name="accountNumberValue"/>
               </li>
@@ -65,17 +65,4 @@
 
     <script src="js/com/jquery-1.9.1.js" type="text/javascript"></script>
     <script type="text/javascript">
-      function edit(show) {
-        jQuery('.details').toggleClass('edit', show);
-        jQuery('.actions').toggleClass('edit', show);
-      }
-
-      jQuery("button").focus(function () {this.blur()})  //avoid the blue (on mac) frame around a button when it is clicked
-
-      jQuery("#lhfs_widget .tip").removeClass("visible");
-      jQuery("#lhfs_widget .tip").addClass("visible");
-      jQuery("#lhfs_widget li.payment").removeClass("data");
-      jQuery("#lhfs_widget li.payment").addClass("data");
-      jQuery("#lhfs_widget li.payment ul.horizontal").removeClass("visible");
-      jQuery("#lhfs_widget li.payment ul.horizontal").addClass("visible");
    </script>

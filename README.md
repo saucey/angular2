@@ -72,7 +72,7 @@ $ npm run setup
 ## Other command line
 
 
-Start the application in development mode ( e.g. compile scss, js code check):
+Start the application in development mode (e.g. compile scss, js code check):
 
 ```
 $ npm run serve

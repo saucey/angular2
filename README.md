@@ -122,3 +122,12 @@ TODO: Create the deploy's task in Gulpfile
 ```
 $ npm run deploy
 ```
+
+
+## Common problems
+
+* In case of network issues with git:// protocol, please try to enable the https:// protocol using the command below:
+
+```
+git config --global url."https://".insteadOf git://
+```

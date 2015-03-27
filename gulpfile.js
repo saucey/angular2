@@ -147,7 +147,8 @@ gulp.task('scripts:library', function () {
       'vendor/drupal_misc/jquery.once.js',
       'vendor/drupal_misc/drupal.js',
       'vendor/drupal_misc/**/*.js',
-      'vendor/drupal_modules/**/*.js'
+      'vendor/drupal_modules/**/*.js',
+      'vendor/**/*.js',
     ], { base: config.src.libScriptsPath }))
     .pipe(concat('aegon-library.js'))
     .pipe(gulpif(!config.dev, streamify(uglify())))

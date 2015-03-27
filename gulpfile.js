@@ -375,3 +375,36 @@ gulp.task('default', ['clean'], function () {
     }
   });
 });
+
+/**
+ * Deploy task
+ */
+gulp.task('deploy', function () {
+
+  // Retrieve private data
+  var pvt = require('../private.json');
+
+  // Function to transfer single folder
+  var filesTransfer = function (path) {
+
+    return gulp.src(path + '/**/*')
+      .pipe($.sftp({
+        host: pvt.deploy.host,
+        user: pvt.deploy.user,
+        pass: pvt.deploy.pass,
+        remotePath: pvt.deploy.path + path.substr(1)
+      }));
+  };
+
+  // Array of paths need to be trasferred
+  var paths = [
+    config.dest    
+  ];
+
+  // Iterate each paths in filesTransfer()
+  paths.forEach(function (path) {
+
+    // Run action file transfer
+    filesTransfer(path);
+  });
+});

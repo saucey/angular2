@@ -160,7 +160,7 @@ gulp.task('assets:library:fonts', function () {
 
   // Fonts
   return gulp.src(config.src.libAssetsPath + '/fonts/**/*')
-    .pipe(gulp.dest(config.dest + '/assets/fonts'))
+    .pipe(gulp.dest(config.dest + '/fonts'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
@@ -169,7 +169,7 @@ gulp.task('assets:library:images', function () {
   // Images
   return gulp.src(config.src.libAssetsPath + '/images/**/*')
     .pipe(imagemin())
-    .pipe(gulp.dest(config.dest + '/assets/images'))
+    .pipe(gulp.dest(config.dest + '/images'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 

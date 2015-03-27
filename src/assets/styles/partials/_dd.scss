@@ -1,172 +1,280 @@
-/************** Skin 1 *********************/
+//colors
+$white: #fff;
+$concrete: #f2f2f2;
+$color_pale_slate_approx: #c3c3c3;
+$black: #000;
+$color_malibu_approx: #66ccff;
+
+//fonts
+$font_0: Arial;
+$font_1: Helvetica;
+$font_2: sans-serif;
+$font_3: Georgia;
+$font_4: Times New Roman;
+$font_5: Times;
+$font_6: serif;
+
+//urls
+$url_0: url(dd_arrow.gif);
+$url_1: url(../images/msDropDown.gif);
+$url_2: url(../images/icon-arrow.gif);
+$url_3: url(../icons/sprite.gif);
+
+//@extend-elements
+//original selectors
+//.dd .ddChild a.sprite, .dd .ddChild a.sprite:visited
+%extend_1 {
+	background-image: $url_3;
+	background-repeat: no-repeat;
+	padding-left: 24px;
+}
+
+
 .dd {
-	/*display:inline-block !important;*/
-	text-align:left;
-	background-color:#fff;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	float:left;
+	text-align: left;
+	background-color: $white;
+	font-family: $font_0, $font_1, $font_2;
+	font-size: 12px;
+	float: left;
+	.ddTitle {
+		background: $concrete;
+		border: 1px solid $color_pale_slate_approx;
+		padding: 3px;
+		text-indent: 0;
+		cursor: default;
+		overflow: hidden;
+		height: 16px;
+		span {
+			&.arrow {
+				background: $url_0 no-repeat 0 0;
+				float: right;
+				display: inline-block;
+				width: 16px;
+				height: 16px;
+				cursor: pointer;
+			}
+			&.ddTitleText {
+				text-indent: 1px;
+				overflow: hidden;
+				line-height: 16px;
+				img {
+					text-align: left;
+					padding: 0 2px 0 0;
+				}
+			}
+		}
+		img.selected {
+			padding: 0 3px 0 0;
+			vertical-align: top;
+		}
+	}
+	.ddChild {
+		position: absolute;
+		border: 1px solid $color_pale_slate_approx;
+		border-top: none;
+		display: none;
+		margin: 0;
+		width: auto;
+		overflow: auto;
+		overflow-x: hidden !important;
+		background-color: $white;
+		a {
+			display: block;
+			padding: 2px 0 2px 3px;
+			text-decoration: none;
+			color: $black;
+			overflow: hidden;
+			white-space: nowrap;
+			cursor: pointer;
+			&:hover {
+				background-color: $color_malibu_approx;
+			}
+			img {
+				border: 0;
+				padding: 0 2px 0 0;
+				vertical-align: middle;
+			}
+			&.selected {
+				background-color: $color_malibu_approx;
+			}
+			&.sprite {
+				@extend %extend_1;
+				&:visited {
+					@extend %extend_1;
+				}
+			}
+			&.calendar {
+				background-position: 0 -404px;
+				&:visited {
+					background-position: 0 -404px;
+				}
+			}
+			&.shoppingcart {
+				background-position: 0 -330px;
+				&:visited {
+					background-position: 0 -330px;
+				}
+			}
+			&.cd {
+				background-position: 0 -439px;
+				&:visited {
+					background-position: 0 -439px;
+				}
+			}
+			&.email {
+				background-position: 0 -256px;
+				&:visited {
+					background-position: 0 -256px;
+				}
+			}
+			&.faq {
+				background-position: 0 -183px;
+				&:visited {
+					background-position: 0 -183px;
+				}
+			}
+			&.games {
+				background-position: 0 -365px;
+				&:visited {
+					background-position: 0 -365px;
+				}
+			}
+			&.music {
+				background-position: 0 -146px;
+				&:visited {
+					background-position: 0 -146px;
+				}
+			}
+			&.phone {
+				background-position: 0 -109px;
+				&:visited {
+					background-position: 0 -109px;
+				}
+			}
+			&.graph {
+				background-position: 0 -73px;
+				&:visited {
+					background-position: 0 -73px;
+				}
+			}
+			&.secured {
+				background-position: 0 -37px;
+				&:visited {
+					background-position: 0 -37px;
+				}
+			}
+			&.video {
+				background-position: 0 0;
+				&:visited {
+					background-position: 0 0;
+				}
+			}
+		}
+		.opta a {
+			padding-left: 10px;
+			&:visited {
+				padding-left: 10px;
+			}
+		}
+	}
+	.borderTop {
+		border-top: 1px solid $color_pale_slate_approx !important;
+	}
+	.noBorderTop {
+		border-top: none 0 !important;
+	}
 }
-.dd .ddTitle {
-	background:#f2f2f2;
-	border:1px solid #c3c3c3;
-	padding:3px;
-	text-indent:0;
-	cursor:default;
-	overflow:hidden;
-	height:16px;
+.hidden {
+	display: none;
 }
-.dd .ddTitle span.arrow {
-	background:url(dd_arrow.gif) no-repeat 0 0; float:right; display:inline-block;width:16px; height:16px; cursor:pointer; 
-}
-
-.dd .ddTitle span.ddTitleText {text-indent:1px; overflow:hidden; line-height:16px;}
-.dd .ddTitle span.ddTitleText img{text-align:left; padding:0 2px 0 0}
-.dd .ddTitle img.selected {
-	padding:0 3px 0 0;
-	vertical-align:top;
-}
-.dd .ddChild {
-	position:absolute;
-	border:1px solid #c3c3c3;
-	border-top:none;
-	display:none;
-	margin:0;
-	width:auto;
-	overflow:auto;
-	overflow-x:hidden !important;
-	background-color:#ffffff;
-}
-.dd .ddChild .opta a, .dd .ddChild .opta a:visited {padding-left:10px}
-.dd .ddChild a {
-	display:block;
-	padding:2px 0 2px 3px;
-	text-decoration:none;
-	color:#000;
-	overflow:hidden;
-	white-space:nowrap;
-	cursor:pointer;
-}
-.dd .ddChild a:hover {
-	background-color:#66CCFF;
-}
-.dd .ddChild a img {
-	border:0;
-	padding:0 2px 0 0;
-	vertical-align:middle;
-}
-.dd .ddChild a.selected {
-	background-color:#66CCFF;
-	
-}
-.hidden {display:none;}
-
-.dd .borderTop{border-top:1px solid #c3c3c3 !important;}
-.dd .noBorderTop{border-top:none 0  !important}
-
-/************** Skin 2 *********************/
 .dd2 {
-	/*display:inline-block !important;*/
-	text-align:left;
-	background-color:#fff;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	float:left;
+	text-align: left;
+	background-color: $white;
+	font-family: $font_0, $font_1, $font_2;
+	font-size: 12px;
+	float: left;
+	.ddTitle {
+		background: transparent $url_1 no-repeat;
+		padding: 0 3px;
+		text-indent: 0;
+		cursor: default;
+		overflow: hidden;
+		height: 36px;
+		span {
+			&.arrow {
+				background: transparent $url_2 no-repeat 0 0;
+				float: right;
+				display: inline-block;
+				width: 27px;
+				height: 27px;
+				cursor: pointer;
+				top: 5px;
+				position: relative;
+				right: 2px;
+			}
+			&.ddTitleText {
+				text-indent: 1px;
+				overflow: hidden;
+				line-height: 33px;
+				font-family: $font_3, $font_4, $font_5, $font_6;
+				font-size: 16px;
+				font-weight: bold;
+				color: $white;
+				_position: relative;
+				_top: 4px;
+				img {
+					text-align: left;
+					padding: 0 2px 0 0;
+				}
+			}
+		}
+		img.selected {
+			padding: 0 2px 0 0;
+			vertical-align: top;
+		}
+	}
+	.ddChild {
+		position: absolute;
+		border: 1px solid $color_pale_slate_approx;
+		border-top: none;
+		display: none;
+		margin: 0;
+		width: auto;
+		overflow: auto;
+		overflow-x: hidden !important;
+		background-color: $white;
+		font-size: 14px;
+		a {
+			display: block;
+			padding: 3px 0 3px 3px;
+			text-decoration: none;
+			color: $black;
+			overflow: hidden;
+			white-space: nowrap;
+			cursor: pointer;
+			&:hover {
+				background-color: $color_malibu_approx;
+			}
+			img {
+				border: 0;
+				padding: 0 2px 0 0;
+				vertical-align: middle;
+			}
+			&.selected {
+				background-color: $color_malibu_approx;
+			}
+		}
+		.opta a {
+			padding-left: 10px;
+			&:visited {
+				padding-left: 10px;
+			}
+		}
+	}
+	.borderTop {
+		border-top: 1px solid $color_pale_slate_approx !important;
+	}
+	.noBorderTop {
+		border-top: none 0 !important;
+	}
 }
-.dd2 .ddTitle {
-	background:transparent url(../images/msDropDown.gif) no-repeat;
-	padding:0 3px;
-	text-indent:0;
-	cursor:default;
-	overflow:hidden;
-	height:36px;
-}
-.dd2 .ddTitle span.arrow {
-	background:transparent url(../images/icon-arrow.gif) no-repeat 0 0; float:right; display:inline-block;width:27px; height:27px; cursor:pointer; top:5px; position:relative; right:2px;
-}
-
-.dd2 .ddTitle span.ddTitleText {text-indent:1px; overflow:hidden; line-height:33px; font-family:Georgia, "Times New Roman", Times, serif; font-size:16px; font-weight:bold; color:#fff; _position:relative; _top:4px}
-.dd2 .ddTitle span.ddTitleText img{text-align:left; padding:0 2px 0 0;}
-.dd2 .ddTitle img.selected {
-	padding:0 2px 0 0;
-	vertical-align:top;
-}
-.dd2 .ddChild {
-	position:absolute;
-	border:1px solid #c3c3c3;
-	border-top:none;
-	display:none;
-	margin:0;
-	width:auto;
-	overflow:auto;
-	overflow-x:hidden !important;
-	background-color:#ffffff;
-	font-size:14px;
-}
-.dd2 .ddChild .opta a, .dd2 .ddChild .opta a:visited {padding-left:10px}
-.dd2 .ddChild a {
-	display:block;
-	padding:3px 0 3px 3px;
-	text-decoration:none;
-	color:#000;
-	overflow:hidden;
-	white-space:nowrap;
-	cursor:pointer;
-}
-.dd2 .ddChild a:hover {
-	background-color:#66CCFF;
-}
-.dd2 .ddChild a img {
-	border:0;
-	padding:0 2px 0 0;
-	vertical-align:middle;
-}
-.dd2 .ddChild a.selected {
-	background-color:#66CCFF;	
-}
-
-.dd2 .borderTop{border-top:1px solid #c3c3c3  !important;}
-.dd2 .noBorderTop{border-top:none 0  !important}
-
-/************* use sprite *****************/
-.dd .ddChild a.sprite, .dd .ddChild a.sprite:visited {
-	background-image:url(../icons/sprite.gif);
-	background-repeat:no-repeat;
-	padding-left:24px;
-}
-
-.dd .ddChild a.calendar, .dd .ddChild a.calendar:visited {
-	background-position:0 -404px;
-}
-.dd .ddChild a.shoppingcart, .dd .ddChild a.shoppingcart:visited {
-	background-position:0 -330px;
-}
-.dd .ddChild a.cd, .dd .ddChild a.cd:visited {
-	background-position:0 -439px;
-}
-.dd .ddChild a.email, .dd .ddChild a.email:visited {
-	background-position:0 -256px;
-}
-.dd .ddChild a.faq, .dd .ddChild a.faq:visited {
-	background-position:0 -183px;
-}
-.dd .ddChild a.games,
-.dd .ddChild a.games:visited {
-	background-position:0 -365px;
-}
-.dd .ddChild a.music, .dd .ddChild a.music:visited {
-	background-position:0 -146px;
-}
-.dd .ddChild a.phone, .dd .ddChild a.phone:visited {
-	background-position:0 -109px;
-}
-.dd .ddChild a.graph, .dd .ddChild a.graph:visited {
-	background-position:0 -73px;
-}
-.dd .ddChild a.secured, .dd .ddChild a.secured:visited {
-	background-position:0 -37px;
-}
-.dd .ddChild a.video, .dd .ddChild a.video:visited {
-	background-position:0 0;
-}
-/*******************************/

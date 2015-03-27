@@ -117,10 +117,26 @@ Build the project making it ready for deploy:
 $ npm run build
 ```
 
-TODO: Create the deploy's task in Gulpfile
+Optional: is also possible to deploy the entire ./dist folder with builded files and .inc/.php files of Drupal theme:
 
 ```
 $ npm run deploy
+or
+$ gulp deploy
+```
+
+**IMPORTANT NOTE:** before use deploy command, you need to create a **./private.json** in your root project folder with the content below:
+
+```
+{
+  "deploy": {
+    "host": "10.120.32.22",
+    "port": "22",
+    "path": "/var/www/aegon-technical-design-library",
+    "user": "linux user for SSH",
+    "pass": "*****"
+  } 
+}
 ```
 
 

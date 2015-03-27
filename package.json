@@ -71,6 +71,7 @@
     "vinyl-map": "~1.0.1",
     "gulp-order": "~1.1.1",
     "gulp-header": "~1.2.2",
-    "gulp-watch": "~4.2.0"
+    "gulp-watch": "~4.2.0",
+    "gulp-sftp": "~0.1.4"
   }
 }

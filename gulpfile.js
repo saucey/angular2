@@ -24,6 +24,7 @@ var
   runSequence = require('run-sequence'),
   sass = require('gulp-sass'),
   streamify = require('gulp-streamify'),
+  sftp = require('gulp-sftp'),
   uglify = require('gulp-uglify'),
   watch = require('gulp-watch');
 
@@ -382,23 +383,23 @@ gulp.task('default', ['clean'], function () {
 gulp.task('deploy', function () {
 
   // Retrieve private data
-  var pvt = require('../private.json');
+  var pvt = require('./private.json');
 
   // Function to transfer single folder
   var filesTransfer = function (path) {
 
     return gulp.src(path + '/**/*')
-      .pipe($.sftp({
+      .pipe(sftp({
         host: pvt.deploy.host,
         user: pvt.deploy.user,
         pass: pvt.deploy.pass,
-        remotePath: pvt.deploy.path + path.substr(1)
+        remotePath: pvt.deploy.path
       }));
   };
 
   // Array of paths need to be trasferred
   var paths = [
-    config.dest    
+    config.dest
   ];
 
   // Iterate each paths in filesTransfer()

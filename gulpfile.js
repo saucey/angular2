@@ -39,7 +39,6 @@ var config = {
     libAssetsPath: './lib/aegon-assets-library',
     libSassPath: './lib/aegon-sass-library',
     libScriptsPath: './lib/aegon-scripts-library',
-    libBowerPath: './lib/bower_components',
     scripts: {
       fabricator: [
         './lib/fabricator/scripts/prism.js',
@@ -86,6 +85,7 @@ gulp.task('styles:fabricator', function () {
     .pipe(plumber())
     .pipe(sass({
       errLogToConsole: true,
+      includePaths: ['./lib'],
       outputStyle: gulpif(!config.dev, 'compressed')
     }))
     .pipe(autoprefixer('last 1 version'))
@@ -113,7 +113,7 @@ gulp.task('styles:library', function () {
     .pipe(plumber())
     .pipe(sass({
       errLogToConsole: true,
-      includePaths: config.src.libBowerPath,
+      includePaths: ['./lib'],
       outputStyle: gulpif(!config.dev, 'compressed')
     }))
     .pipe(autoprefixer({
@@ -186,6 +186,7 @@ gulp.task('styles:toolkit', function () {
     .pipe(plumber())
     .pipe(sass({
       errLogToConsole: true,
+      includePaths: ['./lib'],
       outputStyle: gulpif(!config.dev, 'compressed')
     }))
     .pipe(autoprefixer({

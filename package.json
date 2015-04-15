@@ -12,7 +12,7 @@
   "scripts": {
     "deps": "npm install && bower install",
     "subsetup": "git submodule foreach 'echo \">> npm and bower install: Done\" `npm install && bower install`'",
-    "subs": "git submodule init && git submodule update && npm run subsetup",
+    "subs": "git submodule init && git submodule update --remote --merge && npm run subsetup",
     "setup": "npm run deps && npm run subs",
     "update": "git pull && npm run subs",
     "build": "npm install && gulp",

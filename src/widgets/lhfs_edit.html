@@ -1,106 +1,90 @@
-  <div id="lhfs_widget" class="lhfs_widget container_12">
-    <form name="lhfs_form">
-      <h3>Betaalgegevens</h2>
+  <section id="lhfs_widget" class="lhfs_widget container_12">
+    <div id="" class=""><!--faceless widget container with unique id, used for ajax loading-->
+      <form name="lhfs_form">
+        <h3>Betaalgegevens</h3>
 
-      <a name="feedback_anchor"></a>
-      <!--for various error messages, iterate over the .error-Div; adding the "visible" class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating-->
-      <div class="error visible">
-        <div class="header">error header of some sort</div>
-        <!--button class="button bottom right blue arrow">detail link</button-->
-        some generic error message as a placeholder for real error messages, to be filled in and activated by the back end
-        <!--button class="button blue arrow">detail link</button-->
-      </div>
-      <!--end error iteration-->
+        <a name="feedback_anchor"></a>
+        <!--for various error messages, iterate over the .error-Div; adding the "visible" class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating-->
+        <div class="error visible">
+          <div class="header">error header of some sort</div>
+          <!--button class="button bottom right blue arrow">detail link</button-->
+          some generic error message as a placeholder for real error messages, to be filled in and activated by the back end
+          <!--button class="button blue arrow">detail link</button-->
+        </div>
+        <!--end error iteration-->
 
-      <ul class="payments row-fluid">
-        <!--if iterations are taking place, iterate over the elements between this comment-->
-        <li class="payment data span12">
-          <div class="title">Product title comes here</span>&nbsp;<span class="police-number">police number</div>
-          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.payment element.</div>
-          <div class="details edit">
+        <ul class="products row-fluid">
+          <!--if iterations are taking place, iterate over the elements between this comment-->
+          <li class="product data span12">
+          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
+            <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
+            <div class="details edit">
 
-            <ul class="horizontal error">
-              <li class="span6">&nbsp;</li>
-              <li class="span6">error message visible</li>
-            </ul>
-            <ul class="horizontal type row-fluid">
-              <li class="label span6"><span class="middle-enforcer"></span>Payment type label</li>
-              <li class="value span6">
-                <span class="middle-enforcer"></span>
-                <span class="help"></span>
-                <select name="paymentTypeValue" class="">
-                  <option>payment type option 1</option>
-                  <option>payment type option 2</option>
-                  <option>payment type option 3</option>
-                </select>
-              </li>
-            </ul>
+              <ul class="xhorizontal type row-fluid">
+                <li class="label required span6"><span class="middle-enforcer"></span>Payment type label</li>
+                <li class="value span6">
+                  <span class="middle-enforcer"></span>
+                  <span class="help"></span>
+                  <select name="paymentTypeValue" class="" required>
+                    <option value="">empty option</option>
+                    <option>payment type option 1</option>
+                    <option>payment type option 2</option>
+                    <option>payment type option 3</option>
+                  </select>
+                  <span class="errorText">some error message visible</span>
+                </li>
+              </ul>
 
-            <ul class="horizontal error">
-              <li class="span6">&nbsp;</li>
-              <li class="span6">error message visible</li>
-            </ul>
-            <ul class="horizontal interval row-fluid">
-              <li class="label span6"><span class="middle-enforcer"></span>Payment interval label</li>
-              <li class="value sxpan6">
-                <span class="help"></span>
-                <!--select name="paymentIntervalType" class="half">
-                  <option>payment interval option 1</option>
-                  <option>payment interval option 2</option>
-                  <option>payment interval option 3</option>
-                </select>
-                <input class="half" name="paymentIntervalValue" pattern="\d+"/-->
-                <span class="middle-enforcer"></span>payment interval value
-              </li>
-            </ul>
+              <ul class="horizontal interval row-fluid">
+                <li class="label span6"><span class="middle-enforcer"></span>Payment interval label</li>
+                <li class="value sxpan6">
+                  <span class="help"></span>
+                  <span class="middle-enforcer"></span>payment interval value
+                </li>
+              </ul>
 
-            <ul class="horizontal error">
-              <li class="label span6">&nbsp;</li>
-              <li class="value span6">error message visible</li>
-            </ul>
-            <ul class="horizontal account row-fluid">
-              <li class="label span6">
-                <span class="middle-enforcer"></span>Account number label
-              </li>
-              <li class="value sxpan6">
-                <span class="help"></span>
-                <input type="text" name="accountNumberValue" id="accountNumberValue" pattern="\d*" required/>
-                <span class="errorText">some error message visible</span>
-              </li>
-            </ul>
+              <ul class="horizontal account row-fluid">
+                <li class="label required span6">
+                  <span class="middle-enforcer"></span>Account number label
+                </li>
+                <li class="value sxpan6">
+                  <span class="help"></span>
+                  <input type="text" name="accountNumberValue" id="accountNumberValue" pattern="\d*" required/>
+                  <span class="errorText">some error message visible</span>
+                </li>
+              </ul>
 
-            <ul class="horizontal error">
-              <li class="label span6">&nbsp;</li>
-              <li class="span6">error message visible</li>
-            </ul>
-            <ul class="horizontal incasso row-fluid">
-              <li class="label span6">
-                <span class="middle-enforcer"></span>&nbsp;
-              </li>
-              <li class="value sxpan6">
-                <span class="middle-enforcer"></span>
-                <span class="help"></span>
-                <label class="checkbox">
-                  <input type="checkbox" name="colCheckInput" value="lorem"/>
-                  <span class="checkbox"></span>Payment incasso text
-                </label>
-              </li>
-            </ul>
+              <ul class="horizontal incasso row-fluid">
+                <li class="label span6">
+                  <span class="middle-enforcer"></span>&nbsp;
+                </li>
+                <li class="value sxpan6">
+                  <span class="middle-enforcer"></span>
+                  <span class="help"></span>
+                  <label class="checkbox required">
+                    <input type="checkbox" name="colCheckInput" value="lorem" required/>
+                    <span class="checkbox"></span>Payment incasso text
+                    <span class="errorText">some error message visible</span>
+                  </label>
+                </li>
+              </ul>
 
-          </div>
-        </li>
-        <!--end iteration comment-->
+            </div>
+          </li>
+          <!--end iteration comment-->
+        </ul>
 
 
-
-      <ul class="actions edit">
-        <li class="view span6">
-          &nbsp;
-        </li>
-        <li class="edit span6">
-          <button class="arrow">save button text</button>
-          <button class="white">cancel button text</button>
-        </li>
-      </ul>
-    </form>
-  </div>
+        <ul class="actions edit">
+          <li class="view span6">
+            &nbsp;
+          </li>
+          <li class="edit span6">
+            <button class="arrow" type="button">save button text</button>
+            <button class="white cancel" type="button">cancel button text</button>
+            <div class="disabler"></div>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </section>

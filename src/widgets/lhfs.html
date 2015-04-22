@@ -1,4 +1,4 @@
-      <div id="lhfs_widget" class="lhfs_widget container_12">
+    <div id="lhfs_widget" class="lhfs_widget container_12">
       <h3>Betaalgegevens</h2>
       <div class="tip">
         <div class="intro">Tip: Here comes a title phrase summarizing the text</div>
@@ -6,11 +6,12 @@
       </div>
 
       <a name="feedback_anchor"></a>
+      <!--div class="lightbox"></div-->
       <div class="success visible">
-        <div class="header">success header of some sort</div>
+        <h2>success header of some sort</h2>
         <!--button class="button bottom right blue arrow">detail link</button-->
-        some generic success message as a placeholder for real success messages, to be filled in and activated by the back end
-        <!--button class="button blue arrow">detail link</button-->
+        some generic success message as a placeholder for real success messages, to be filled in and activated by the back end<br/><br/>
+        <button class="button arrow">confirmation text</button>
       </div>
 
       <!--for various error messages, iterate over the .error-Div; adding the "visible" class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating-->
@@ -22,11 +23,11 @@
       </div>
       <!--end error iteration-->
 
-      <ul class="payments row-fluid">
-        <!--if iterations are taking place, iterate over the elements between this comment-->
-        <li class="payment data span12">
+      <ul class="products row-fluid">
+        <!--if iterations are taking place, iterate over the products between this comment-->
+        <li class="product data span12">
           <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
-          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.payment element.</div>
+          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
           <div class="details">
             <ul class="horizontal type row-fluid">
               <li class="label span6">Payment type label</li>
@@ -38,82 +39,21 @@
             <ul class="horizontal interval row-fluid">
               <li class="label span6">Payment interval label</li>
               <li class="value span6">
-                <span class="help"></span>
+                <span style="" class="help" title="some more or less helpful text"></span>
                 <span class="content">payment interval value</span>
               </li>
             </ul>
             <ul class="horizontal account row-fluid">
               <li class="label span6">Account number label</li>
               <li class="value span6">
-                <span class="help"></span>
+                <span class="help" title="test text for the help bubble for account number plus a few more choice words so we get more than one line"></span>
                 <span class="content">account number value</span>
               </li>
              </ul>
           </div>
         </li>
 
-<!--********************-->
-
-        <li class="payment data span12">
-          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
-          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.payment element.</div>
-          <div class="details">
-            <ul class="horizontal type row-fluid">
-              <li class="label span6">Payment type label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">payment type value</span>
-              </li>
-            </ul>
-            <ul class="horizontal interval row-fluid">
-              <li class="label span6">Payment interval label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">payment interval value</span>
-              </li>
-            </ul>
-            <ul class="horizontal account row-fluid">
-              <li class="label span6">Account number label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">account number value</span>
-              </li>
-             </ul>
-          </div>
-        </li>
-
-<!--*******************-->
-
-        <li class="payment data span12">
-          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
-          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.payment element.</div>
-          <div class="details">
-            <ul class="horizontal type row-fluid">
-              <li class="label span6">Payment type label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">payment type value</span>
-              </li>
-            </ul>
-            <ul class="horizontal interval row-fluid">
-              <li class="label span6">Payment interval label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">payment interval value</span>
-              </li>
-            </ul>
-            <ul class="horizontal account row-fluid">
-              <li class="label span6">Account number label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">account number value</span>
-              </li>
-             </ul>
-          </div>
-        </li>
-
-
-        <!--end iteration comment-->
+        <!--end product iteration comment-->
       </ul>
 
       <ul class="actions">

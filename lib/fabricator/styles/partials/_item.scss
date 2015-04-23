@@ -9,6 +9,7 @@
 }
 
 .f-item-heading-group {
+	font-family: sans-serif;
 	@include clearfix;
 	margin-bottom: 0.5em;
 	padding: 0.5em 0;
@@ -41,6 +42,10 @@
 		margin-left: 0.2em;
 		cursor: pointer;
 	}
+}
+
+.f-item-preview {
+	overflow: hidden;
 }
 
 .f-item-hidden {

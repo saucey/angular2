@@ -7,8 +7,8 @@
 var
   autoprefixer = require('gulp-autoprefixer'),
   browserSync = require('browser-sync'),
-  collate = require('./tasks/collate'),
-  compile = require('./tasks/compile'),
+  collate = require('./lib/fabricator/tasks/collate'),
+  compile = require('./lib/fabricator/tasks/compile'),
   concat = require('gulp-concat'),
   del = require('del'),
   gulp = require('gulp'),

@@ -44,10 +44,6 @@
 	}
 }
 
-.f-item-preview {
-	overflow: hidden;
-}
-
 .f-item-hidden {
 	display: none;
 }
@@ -58,4 +54,14 @@
 	p {
 		line-height: 1.875;
 	}
+}
+
+
+// 
+// Only for Aegon design library visual tool (don't take care for other context)
+// 
+
+#user .f-item-preview,
+#user-old-version .f-item-preview {
+ overflow: hidden;
 }

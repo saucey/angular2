@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "The library will host the HTML CSS & JS resources required for cXstudio and third parties to implement in projects.",
   "main": "README.md",
-  "author": "cXstudio | HCL Tech",
+  "author": "Rocco R. <rocco.russo@hcl.com>",
   "license": "no license",
   "repository": {
     "type": "git",
@@ -39,8 +39,6 @@
     "semantic"
   ],
   "homepage": "https://www.aegon.nl",
-  "author": "Rocco R. <rocco.russo@hcl.com>",
-  "license": "no license",
   "engines": {
     "node": ">=0.10.0"
   },
@@ -72,6 +70,7 @@
     "through2": "^0.6.3",
     "vinyl-map": "~1.0.1",
     "gulp-order": "~1.1.1",
-    "gulp-header": "~1.2.2"
+    "gulp-header": "~1.2.2",
+    "gulp-watch": "~4.2.0"
   }
 }

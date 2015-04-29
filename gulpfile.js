@@ -24,7 +24,8 @@ var
   runSequence = require('run-sequence'),
   sass = require('gulp-sass'),
   streamify = require('gulp-streamify'),
-  uglify = require('gulp-uglify');
+  uglify = require('gulp-uglify'),
+  watch = require('gulp-watch');
 
 
 /**
@@ -97,7 +98,8 @@ gulp.task('scripts:fabricator', function () {
     .pipe(plumber())
     .pipe(concat('f.js'))
     .pipe(gulpif(!config.dev, uglify()))
-    .pipe(gulp.dest(config.dest + '/fabricator'));
+    .pipe(gulp.dest(config.dest + '/fabricator'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 
@@ -149,14 +151,16 @@ gulp.task('scripts:library', function () {
     .pipe(concat('aegon-library.js'))
     .pipe(gulpif(!config.dev, streamify(uglify())))
     .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
-    .pipe(gulp.dest(config.dest + '/scripts'));
+    .pipe(gulp.dest(config.dest + '/scripts'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('assets:library:fonts', function () {
 
   // Fonts
   return gulp.src(config.src.libAssetsPath + '/fonts/**/*')
-    .pipe(gulp.dest(config.dest + '/assets/fonts'));
+    .pipe(gulp.dest(config.dest + '/assets/fonts'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('assets:library:images', function () {
@@ -164,7 +168,8 @@ gulp.task('assets:library:images', function () {
   // Images
   return gulp.src(config.src.libAssetsPath + '/images/**/*')
     .pipe(imagemin())
-    .pipe(gulp.dest(config.dest + '/assets/images'));
+    .pipe(gulp.dest(config.dest + '/assets/images'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
@@ -197,13 +202,15 @@ gulp.task('scripts:toolkit', function () {
     ], { base: config.src.scripts.toolkit }))
     .pipe(concat('toolkit.js'))
     .pipe(gulpif(!config.dev, streamify(uglify())))
-    .pipe(gulp.dest(config.dest + '/scripts'));
+    .pipe(gulp.dest(config.dest + '/scripts'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('images', ['favicon'], function () {
   return gulp.src(config.src.images)
     .pipe(imagemin())
-    .pipe(gulp.dest(config.dest + '/images'));
+    .pipe(gulp.dest(config.dest + '/images'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('favicon', function () {
@@ -235,7 +242,8 @@ gulp.task('assemble:fabricator', function () {
 
   return gulp.src(config.src.views)
     .pipe(compile(opts))
-    .pipe(gulp.dest(config.dest));
+    .pipe(gulp.dest(config.dest))
+    .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('assemble:templates', function () {
@@ -248,7 +256,8 @@ gulp.task('assemble:templates', function () {
     .pipe(rename({
       autoprefixer: 'template-'
     }))
-    .pipe(gulp.dest(config.dest));
+    .pipe(gulp.dest(config.dest))
+    .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('assemble', ['collate'], function () {
@@ -304,46 +313,47 @@ gulp.task('browser-sync', function () {
 
 // Watch
 gulp.task('watch', ['browser-sync'], function () {
-  gulp.watch(
-    'src/{components,widgets,structures,templates,documentation,views}' +
-    '/**/*.{html,md}',
-    ['assemble', browserSync.reload]);
 
-  gulp.watch(
-    'lib/fabricator/styles/**/*.scss',
-    ['styles:fabricator']);
+  watch('src/{components,widgets,structures,templates,documentation,views}' +
+    '/**/*.{html,md}', function () {
+    gulp.start('assemble');
+  });
 
-  gulp.watch(
-    config.src.libSassPath + '/**/*.scss',
-    ['styles:library']);
+  watch('lib/fabricator/styles/**/*.scss', function () {
+    gulp.start('styles:fabricator');
+  });
 
-  gulp.watch(
-    'src/assets/styles/**/*.scss',
-    ['styles:toolkit']);
+  watch(config.src.libSassPath + '/**/*.scss', function () {
+    gulp.start('styles:library');
+  });
 
-  gulp.watch(
-    'lib/fabricator/scripts/**/*.js',
-    ['scripts:fabricator', browserSync.reload]);
+  watch('src/assets/styles/**/*.scss', function () {
+    gulp.start('styles:toolkit');
+  });
 
-  gulp.watch(
-    config.src.libScriptsPath + '/**/*.js',
-    ['scripts:library', browserSync.reload]);
+  watch('lib/fabricator/scripts/**/*.js', function () {
+    gulp.start('scripts:fabricator');
+  });
 
-  gulp.watch(
-    'src/assets/scripts/**/*.js',
-    ['scripts:toolkit', browserSync.reload]);
+  watch(config.src.libScriptsPath + '/**/*.js', function () {
+    gulp.start('scripts:library');
+  });
 
-  gulp.watch(
-    config.src.images,
-    ['images', browserSync.reload]);
+  watch('src/assets/scripts/**/*.js', function () {
+    gulp.start('scripts:toolkit');
+  });
 
-  gulp.watch(
-    config.src.libAssetsPath + '/fonts/**',
-    ['assets:library:fonts', browserSync.reload]);
+  watch(config.src.images, function () {
+    gulp.start('images');
+  });
 
-  gulp.watch(
-    config.src.libAssetsPath + '/images/**',
-    ['assets:library:images', browserSync.reload]);
+  watch(config.src.libAssetsPath + '/fonts/**', function () {
+    gulp.start('assets:library:fonts');
+  });
+
+  watch(config.src.libAssetsPath + '/images/**', function () {
+    gulp.start('assets:library:images');
+  });
 });
 
 // Default build task

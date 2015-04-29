@@ -110,6 +110,11 @@ gulp.task('scripts:fabricator', function () {
  */
 
 gulp.task('styles:library', function () {
+
+  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs 
+  // dependencies mentioned in main toolkit.scss are skipped from watch task.
+  gulp.start('styles:toolkit');
+
   return gulp.src(config.src.libSassPath + '/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())

@@ -117,6 +117,9 @@
 						<a href="widgets.html#lhfs_edit">Lhfs Edit</a>
 					</li>
 					<li>
+						<a href="widgets.html#lhfs_payments">Lhfs Payments</a>
+					</li>
+					<li>
 						<a href="widgets.html#lhfs_view_demo">Lhfs View Demo</a>
 					</li>
 					<li>
@@ -193,8 +196,10 @@
 				<div class="f-item-preview">
 					<div class="breadcrumb">
     <ul>
-        <li class="first"><a href="/zakelijk">Zakelijk</a></li>
-        <li><a href="/zakelijk/pensioen">Pensioen</a></li>
+        <li class="first"><a href="/zakelijk">Zakelijk</a>
+        </li>
+        <li><a href="/zakelijk/pensioen">Pensioen</a>
+        </li>
         <li>Aanvullend pensioen opbouwen voor uw werknemers</li>
     </ul>
 </div>
@@ -203,8 +208,10 @@
 				<div class="f-item-code f-item-hidden" data-f-toggle="code">
 					<pre><code class="language-markup">&lt;div class=&quot;breadcrumb&quot;&gt;
     &lt;ul&gt;
-        &lt;li class=&quot;first&quot;&gt;&lt;a href=&quot;/zakelijk&quot;&gt;Zakelijk&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&quot;/zakelijk/pensioen&quot;&gt;Pensioen&lt;/a&gt;&lt;/li&gt;
+        &lt;li class=&quot;first&quot;&gt;&lt;a href=&quot;/zakelijk&quot;&gt;Zakelijk&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;/zakelijk/pensioen&quot;&gt;Pensioen&lt;/a&gt;
+        &lt;/li&gt;
         &lt;li&gt;Aanvullend pensioen opbouwen voor uw werknemers&lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
@@ -263,13 +270,17 @@
 <button class="button arrow">Submit</button>
 <button class="button blue arrow">Submit</button>
 <button class="button white">Submit</button>
+<button class="button white arrow">Submit</button>
+<button class="button red arrow">Submit</button>
 				</div>
 
 				<div class="f-item-code f-item-hidden" data-f-toggle="code">
 					<pre><code class="language-markup">&lt;button class=&quot;button&quot;&gt;Submit&lt;/button&gt;
 &lt;button class=&quot;button arrow&quot;&gt;Submit&lt;/button&gt;
 &lt;button class=&quot;button blue arrow&quot;&gt;Submit&lt;/button&gt;
-&lt;button class=&quot;button white&quot;&gt;Submit&lt;/button&gt;</code></pre>
+&lt;button class=&quot;button white&quot;&gt;Submit&lt;/button&gt;
+&lt;button class=&quot;button white arrow&quot;&gt;Submit&lt;/button&gt;
+&lt;button class=&quot;button red arrow&quot;&gt;Submit&lt;/button&gt;</code></pre>
 				</div>
 
 			</div>
@@ -424,25 +435,17 @@
 				
 
 				<div class="f-item-preview">
-					<input type="radio" name="group-name" id="radio1" />
-<label for="radio1">Radio 1</label>
-
-<input type="radio" name="group-name" id="radio2" />
-<label for="radio2">Radio 2</label>
-
-<input type="radio" name="group-name" id="radio3" />
-<label for="radio3">Radio 3</label>
+					<label class="radio">
+    <input type="radio" name="radio1" value="value1" />
+    <span class="radio"></span>Radio 1
+</label>
 				</div>
 
 				<div class="f-item-code f-item-hidden" data-f-toggle="code">
-					<pre><code class="language-markup">&lt;input type=&quot;radio&quot; name=&quot;group-name&quot; id=&quot;radio1&quot; /&gt;
-&lt;label for=&quot;radio1&quot;&gt;Radio 1&lt;/label&gt;
-
-&lt;input type=&quot;radio&quot; name=&quot;group-name&quot; id=&quot;radio2&quot; /&gt;
-&lt;label for=&quot;radio2&quot;&gt;Radio 2&lt;/label&gt;
-
-&lt;input type=&quot;radio&quot; name=&quot;group-name&quot; id=&quot;radio3&quot; /&gt;
-&lt;label for=&quot;radio3&quot;&gt;Radio 3&lt;/label&gt;</code></pre>
+					<pre><code class="language-markup">&lt;label class=&quot;radio&quot;&gt;
+    &lt;input type=&quot;radio&quot; name=&quot;radio1&quot; value=&quot;value1&quot; /&gt;
+    &lt;span class=&quot;radio&quot;&gt;&lt;/span&gt;Radio 1
+&lt;/label&gt;</code></pre>
 				</div>
 
 			</div>
@@ -466,22 +469,54 @@
 
 				<div class="f-item-preview">
 					<select name="" id="">
-    <option value="">Option 1</option>
-    <option value="">Option 2</option>
-    <option value="">Option 3</option>
-    <option value="">Option 4</option>
-    <option value="">Option 5</option>
+    <option value="">empty option</option>
+    <option>Option 2</option>
+    <option>Option 3</option>
+    <option>Option 4</option>
+    <option>Option 5</option>
 </select>
+
+<br/>
+<br/>
+<br/>
+
+<select name="" id="" required>
+    <option value="">empty option</option>
+    <option>Option 2</option>
+    <option>Option 3</option>
+    <option>Option 4</option>
+    <option>Option 5</option>
+</select>
+<span class="errorText">some error message visible</span>
+
+<br/>
+<br/>
 				</div>
 
 				<div class="f-item-code f-item-hidden" data-f-toggle="code">
 					<pre><code class="language-markup">&lt;select name=&quot;&quot; id=&quot;&quot;&gt;
-    &lt;option value=&quot;&quot;&gt;Option 1&lt;/option&gt;
-    &lt;option value=&quot;&quot;&gt;Option 2&lt;/option&gt;
-    &lt;option value=&quot;&quot;&gt;Option 3&lt;/option&gt;
-    &lt;option value=&quot;&quot;&gt;Option 4&lt;/option&gt;
-    &lt;option value=&quot;&quot;&gt;Option 5&lt;/option&gt;
-&lt;/select&gt;</code></pre>
+    &lt;option value=&quot;&quot;&gt;empty option&lt;/option&gt;
+    &lt;option&gt;Option 2&lt;/option&gt;
+    &lt;option&gt;Option 3&lt;/option&gt;
+    &lt;option&gt;Option 4&lt;/option&gt;
+    &lt;option&gt;Option 5&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;br/&gt;
+
+&lt;select name=&quot;&quot; id=&quot;&quot; required&gt;
+    &lt;option value=&quot;&quot;&gt;empty option&lt;/option&gt;
+    &lt;option&gt;Option 2&lt;/option&gt;
+    &lt;option&gt;Option 3&lt;/option&gt;
+    &lt;option&gt;Option 4&lt;/option&gt;
+    &lt;option&gt;Option 5&lt;/option&gt;
+&lt;/select&gt;
+&lt;span class=&quot;errorText&quot;&gt;some error message visible&lt;/span&gt;
+
+&lt;br/&gt;
+&lt;br/&gt;</code></pre>
 				</div>
 
 			</div>

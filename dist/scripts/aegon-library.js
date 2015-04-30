@@ -16506,7 +16506,7 @@ $.fn.msDropdown = $.fn.msDropDown; //make a copy
   Drupal.behaviors.select = {
     attach: function () {
         $("select").msDropDown();
-console.log("initializing msDD");
+//console.log("initializing msDD");
         //$(".lhfs_widget select").msDropDown();
 
         //transfer classes from select to root object of msDropDown (conserve .half, for example)

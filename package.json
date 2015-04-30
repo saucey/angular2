@@ -12,7 +12,7 @@
   "scripts": {
     "deps": "npm install && bower install",
     "subsetup": "git submodule foreach 'echo \">> npm and bower install: Done\" `npm install && bower install`'",
-    "subs": "git submodule init && git submodule update && npm run subsetup",
+    "subs": "git submodule update --init --recursive && npm run subsetup",
     "setup": "npm run deps && npm run subs",
     "update": "git pull && npm run subs",
     "build": "npm install && gulp",
@@ -51,14 +51,19 @@
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.0.0",
     "gulp-concat": "~2.4.3",
+    "gulp-header": "~1.2.2",
     "gulp-if": "~1.2.2",
     "gulp-imagemin": "^2.0.0",
+    "gulp-order": "~1.1.1",
     "gulp-plumber": "^0.6.5",
     "gulp-rename": "~1.2.0",
     "gulp-sass": "^1.1.0",
+    "gulp-sftp": "~0.1.4",
+    "gulp-sourcemaps": "^1.5.2",
     "gulp-streamify": "0.0.5",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^2.2.20",
+    "gulp-watch": "~4.2.0",
     "handlebars": "^2.0.0",
     "js-beautify": "^1.5.4",
     "junk": "^1.0.0",
@@ -68,9 +73,6 @@
     "q": "^1.1.2",
     "run-sequence": "^1.0.1",
     "through2": "^0.6.3",
-    "vinyl-map": "~1.0.1",
-    "gulp-order": "~1.1.1",
-    "gulp-header": "~1.2.2",
-    "gulp-watch": "~4.2.0"
+    "vinyl-map": "~1.0.1"
   }
 }

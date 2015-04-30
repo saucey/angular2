@@ -7,8 +7,8 @@
 var
   autoprefixer = require('gulp-autoprefixer'),
   browserSync = require('browser-sync'),
-  collate = require('./tasks/collate'),
-  compile = require('./tasks/compile'),
+  collate = require('./lib/fabricator/tasks/collate'),
+  compile = require('./lib/fabricator/tasks/compile'),
   concat = require('gulp-concat'),
   del = require('del'),
   gulp = require('gulp'),
@@ -24,6 +24,8 @@ var
   runSequence = require('run-sequence'),
   sass = require('gulp-sass'),
   streamify = require('gulp-streamify'),
+  sftp = require('gulp-sftp'),
+  sourcemaps = require('gulp-sourcemaps'),
   uglify = require('gulp-uglify'),
   watch = require('gulp-watch');
 
@@ -38,7 +40,6 @@ var config = {
     libAssetsPath: './lib/aegon-assets-library',
     libSassPath: './lib/aegon-sass-library',
     libScriptsPath: './lib/aegon-scripts-library',
-    libBowerPath: './lib/bower_components',
     scripts: {
       fabricator: [
         './lib/fabricator/scripts/prism.js',
@@ -85,6 +86,7 @@ gulp.task('styles:fabricator', function () {
     .pipe(plumber())
     .pipe(sass({
       errLogToConsole: true,
+      includePaths: ['./lib'],
       outputStyle: gulpif(!config.dev, 'compressed')
     }))
     .pipe(autoprefixer('last 1 version'))
@@ -108,17 +110,24 @@ gulp.task('scripts:fabricator', function () {
  */
 
 gulp.task('styles:library', function () {
+
+  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs 
+  // dependencies mentioned in main toolkit.scss are skipped from watch task.
+  gulp.start('styles:toolkit');
+
   return gulp.src(config.src.libSassPath + '/*.scss')
     .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(sass({
       errLogToConsole: true,
-      includePaths: config.src.libBowerPath,
+      includePaths: ['./lib'],
       outputStyle: gulpif(!config.dev, 'compressed')
     }))
     .pipe(autoprefixer({
       browsers: ['last 2 version', 'ie 9'],
       cascade: false
     }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.dest + '/styles'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
@@ -146,7 +155,8 @@ gulp.task('scripts:library', function () {
       'vendor/drupal_misc/jquery.once.js',
       'vendor/drupal_misc/drupal.js',
       'vendor/drupal_misc/**/*.js',
-      'vendor/drupal_modules/**/*.js'
+      'vendor/drupal_modules/**/*.js',
+      'vendor/**/*.js',
     ], { base: config.src.libScriptsPath }))
     .pipe(concat('aegon-library.js'))
     .pipe(gulpif(!config.dev, streamify(uglify())))
@@ -159,7 +169,7 @@ gulp.task('assets:library:fonts', function () {
 
   // Fonts
   return gulp.src(config.src.libAssetsPath + '/fonts/**/*')
-    .pipe(gulp.dest(config.dest + '/assets/fonts'))
+    .pipe(gulp.dest(config.dest + '/fonts'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
@@ -168,7 +178,7 @@ gulp.task('assets:library:images', function () {
   // Images
   return gulp.src(config.src.libAssetsPath + '/images/**/*')
     .pipe(imagemin())
-    .pipe(gulp.dest(config.dest + '/assets/images'))
+    .pipe(gulp.dest(config.dest + '/images'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
@@ -182,14 +192,17 @@ gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
 gulp.task('styles:toolkit', function () {
   return gulp.src(config.src.styles.toolkit)
     .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(sass({
       errLogToConsole: true,
+      includePaths: ['./lib'],
       outputStyle: gulpif(!config.dev, 'compressed')
     }))
     .pipe(autoprefixer({
       browsers: ['last 2 version', 'ie 9'],
       cascade: false
     }))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.dest + '/styles'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
@@ -373,5 +386,38 @@ gulp.task('default', ['clean'], function () {
     if (config.dev) {
       gulp.start('watch');
     }
+  });
+});
+
+/**
+ * Deploy task
+ */
+gulp.task('deploy', function () {
+
+  // Retrieve private data
+  var pvt = require('./private.json');
+
+  // Function to transfer single folder
+  var filesTransfer = function (path) {
+
+    return gulp.src(path + '/**/*')
+      .pipe(sftp({
+        host: pvt.deploy.host,
+        user: pvt.deploy.user,
+        pass: pvt.deploy.pass,
+        remotePath: pvt.deploy.path
+      }));
+  };
+
+  // Array of paths need to be trasferred
+  var paths = [
+    config.dest
+  ];
+
+  // Iterate each paths in filesTransfer()
+  paths.forEach(function (path) {
+
+    // Run action file transfer
+    filesTransfer(path);
   });
 });

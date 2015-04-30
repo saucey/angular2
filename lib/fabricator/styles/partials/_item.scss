@@ -9,6 +9,7 @@
 }
 
 .f-item-heading-group {
+	font-family: sans-serif;
 	@include clearfix;
 	margin-bottom: 0.5em;
 	padding: 0.5em 0;
@@ -53,4 +54,21 @@
 	p {
 		line-height: 1.875;
 	}
+}
+
+
+// 
+// Only for Aegon design library visual tool (don't take care for other context)
+// 
+
+
+/**
+ * Only for Aegon-technical-design-library
+ */
+
+#user-detail .f-item-preview,
+#breadcrumb .f-item-preview,
+#user .f-item-preview,
+#user-old-version .f-item-preview {
+ overflow: hidden;
 }

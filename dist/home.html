@@ -34,17 +34,6 @@
         <label for="text-input">Text input</label>
         <input type="text" id="text-input">
     </div>
-
-    <button class="button helper-class">Submit</button>
-    <button class="button arrow">Submit</button>
-    <button class="button blue arrow">Submit</button>
-    <button class="button white">Submit</button>
-    <button class="button white arrow">Submit</button>
-    <button class="button red arrow">Submit</button>
-
-    <!-- Responsive approach -->
-    <button class="button responsive-approach arrow">Responsive approach</button>
-    <a class="button responsive-approach arrow">Responsive approach</a>
 </div>
 
 <!-- /End Home template -->
@@ -63,6 +52,23 @@
   <!-- toolkit scripts -->
   <script src="scripts/toolkit.js"></script>
   <!-- /toolkit scripts -->
+
+  <!-- Drupal fake object -->
+  <script>
+    jQuery.extend(Drupal.settings, {
+      "basePath": "\/",
+      "pathPrefix": "",
+      "pathToTheme": "",
+      "ajaxPageState": {
+        "theme": "aegon_theme",
+        "theme_token": "JL2OhJveh8bIGphnf9XaI4XVICQOTDjxMqZfAQzvyKI",
+        "jquery_version": "1.7"
+      },
+      "websphere": {
+        "hostname": "https:\/\/www.aegon.loc\/webapps"
+      }
+    });
+  </script>
 
 </body>
 </html>

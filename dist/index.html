@@ -85,6 +85,9 @@
 						<a href="components.html#list-unordered">List Unordered</a>
 					</li>
 					<li>
+						<a href="components.html#messages">Messages</a>
+					</li>
+					<li>
 						<a href="components.html#paragraph">Paragraph</a>
 					</li>
 					<li>
@@ -92,6 +95,9 @@
 					</li>
 					<li>
 						<a href="components.html#select">Select</a>
+					</li>
+					<li>
+						<a href="components.html#submessages">Submessages</a>
 					</li>
 					<li>
 						<a href="components.html#table">Table</a>
@@ -129,16 +135,19 @@
 						<a href="widgets.html#my_personal_details">My Personal Details</a>
 					</li>
 					<li>
-						<a href="widgets.html#user-detail">User Detail</a>
+						<a href="widgets.html#user">User</a>
 					</li>
 					<li>
-						<a href="widgets.html#user">User</a>
+						<a href="widgets.html#user_detail">User Detail</a>
 					</li>
 			</ul>
 		</li>
 		<li>
 			<a href="structures.html" class="f-menu__heading">Structures</a>
 			<ul>
+					<li>
+						<a href="structures.html#drupal-header">Drupal Header</a>
+					</li>
 					<li>
 						<a href="structures.html#form">Form</a>
 					</li>
@@ -251,6 +260,23 @@
   <!-- toolkit scripts -->
   <script src="scripts/toolkit.js"></script>
   <!-- /toolkit scripts -->
+
+  <!-- Drupal fake object -->
+  <script>
+    jQuery.extend(Drupal.settings, {
+      "basePath": "\/",
+      "pathPrefix": "",
+      "pathToTheme": "",
+      "ajaxPageState": {
+        "theme": "aegon_theme",
+        "theme_token": "JL2OhJveh8bIGphnf9XaI4XVICQOTDjxMqZfAQzvyKI",
+        "jquery_version": "1.7"
+      },
+      "websphere": {
+        "hostname": "https:\/\/www.aegon.loc\/webapps"
+      }
+    });
+  </script>
 
 </body>
 </html>

@@ -85,6 +85,9 @@
 						<a href="components.html#list-unordered">List Unordered</a>
 					</li>
 					<li>
+						<a href="components.html#messages">Messages</a>
+					</li>
+					<li>
 						<a href="components.html#paragraph">Paragraph</a>
 					</li>
 					<li>
@@ -92,6 +95,9 @@
 					</li>
 					<li>
 						<a href="components.html#select">Select</a>
+					</li>
+					<li>
+						<a href="components.html#submessages">Submessages</a>
 					</li>
 					<li>
 						<a href="components.html#table">Table</a>
@@ -129,16 +135,19 @@
 						<a href="widgets.html#my_personal_details">My Personal Details</a>
 					</li>
 					<li>
-						<a href="widgets.html#user-detail">User Detail</a>
+						<a href="widgets.html#user">User</a>
 					</li>
 					<li>
-						<a href="widgets.html#user">User</a>
+						<a href="widgets.html#user_detail">User Detail</a>
 					</li>
 			</ul>
 		</li>
 		<li>
 			<a href="structures.html" class="f-menu__heading">Structures</a>
 			<ul>
+					<li>
+						<a href="structures.html#drupal-header">Drupal Header</a>
+					</li>
 					<li>
 						<a href="structures.html#form">Form</a>
 					</li>
@@ -225,7 +234,11 @@
 				<div class="f-item-heading-group" data-f-toggle="details">
 					<a href="#button-login" class="f-item-heading">Button Login</a>
 					<div class="f-item-toggles">
-						
+						<span class="f-toggle f-icon" data-f-toggle-control="notes" title="toggle notes">
+							<svg>
+								<use xlink:href="#f-icon-notes" />
+							</svg>
+						</span>
 						<span class="f-toggle f-icon" data-f-toggle-control="code" title="toggle code">
 							<svg>
 								<use xlink:href="#f-icon-code" />
@@ -234,16 +247,17 @@
 					</div>
 				</div>
 
-				
+				<div class="f-item-notes" data-f-toggle="notes">
+					<p>Work also with tag Anchor: <a href="#" class="login-link">Log in</a></p>
+
+				</div>
 
 				<div class="f-item-preview">
 					<button class="login-link">Log in</button>
-<a href="#" class="login-link">Log in</a>
 				</div>
 
 				<div class="f-item-code f-item-hidden" data-f-toggle="code">
-					<pre><code class="language-markup">&lt;button class=&quot;login-link&quot;&gt;Log in&lt;/button&gt;
-&lt;a href=&quot;#&quot; class=&quot;login-link&quot;&gt;Log in&lt;/a&gt;</code></pre>
+					<pre><code class="language-markup">&lt;button class=&quot;login-link&quot;&gt;Log in&lt;/button&gt;</code></pre>
 				</div>
 
 			</div>
@@ -413,6 +427,89 @@
 			</div>
 
 
+			<div class="f-item-group" id="messages">
+
+				<div class="f-item-heading-group" data-f-toggle="details">
+					<a href="#messages" class="f-item-heading">Messages</a>
+					<div class="f-item-toggles">
+						
+						<span class="f-toggle f-icon" data-f-toggle-control="code" title="toggle code">
+							<svg>
+								<use xlink:href="#f-icon-code" />
+							</svg>
+						</span>
+					</div>
+				</div>
+
+				
+
+				<div class="f-item-preview">
+					<div class="messages messages--warning visible">
+    <span class="icon"></span>
+    <div class="header">
+        Veilig bankieren - Phishing mails.
+    </div>
+    <div class="content">
+        Er is een probleem opgetreden tijdens het laden van de pagina (Fout BS107.2 - T). Onze excuses voor het ongemak. Heeft u een vraag, neemt u dan contact op met onze afdeling Klantenservice: 088 - 344 1234.
+    </div>
+</div>
+
+<div class="messages messages--status visible">
+    <span class="icon"></span>
+    <div class="header">
+        Veilig bankieren - Phishing mails.
+    </div>
+    <div class="content">
+        Er is een probleem opgetreden tijdens het laden van de pagina (Fout BS107.2 - T). Onze excuses voor het ongemak. Heeft u een vraag, neemt u dan contact op met onze afdeling Klantenservice: 088 - 344 1234.
+    </div>
+</div>
+
+<div class="messages messages--error visible">
+    <span class="icon"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span>
+    <div class="header">
+        Veilig bankieren - Phishing mails.
+    </div>
+    <div class="content">
+        Er is een probleem opgetreden tijdens het laden van de pagina (Fout BS107.2 - T). Onze excuses voor het ongemak. Heeft u een vraag, neemt u dan contact op met onze afdeling Klantenservice: 088 - 344 1234.
+    </div>
+</div>
+				</div>
+
+				<div class="f-item-code f-item-hidden" data-f-toggle="code">
+					<pre><code class="language-markup">&lt;div class=&quot;messages messages--warning visible&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;&lt;/span&gt;
+    &lt;div class=&quot;header&quot;&gt;
+        Veilig bankieren - Phishing mails.
+    &lt;/div&gt;
+    &lt;div class=&quot;content&quot;&gt;
+        Er is een probleem opgetreden tijdens het laden van de pagina (Fout BS107.2 - T). Onze excuses voor het ongemak. Heeft u een vraag, neemt u dan contact op met onze afdeling Klantenservice: 088 - 344 1234.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;messages messages--status visible&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;&lt;/span&gt;
+    &lt;div class=&quot;header&quot;&gt;
+        Veilig bankieren - Phishing mails.
+    &lt;/div&gt;
+    &lt;div class=&quot;content&quot;&gt;
+        Er is een probleem opgetreden tijdens het laden van de pagina (Fout BS107.2 - T). Onze excuses voor het ongemak. Heeft u een vraag, neemt u dan contact op met onze afdeling Klantenservice: 088 - 344 1234.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;messages messages--error visible&quot;&gt;
+    &lt;span class=&quot;icon&quot;&gt;&lt;span class=&quot;path1&quot;&gt;&lt;/span&gt;&lt;span class=&quot;path2&quot;&gt;&lt;/span&gt;&lt;span class=&quot;path3&quot;&gt;&lt;/span&gt;&lt;/span&gt;
+    &lt;div class=&quot;header&quot;&gt;
+        Veilig bankieren - Phishing mails.
+    &lt;/div&gt;
+    &lt;div class=&quot;content&quot;&gt;
+        Er is een probleem opgetreden tijdens het laden van de pagina (Fout BS107.2 - T). Onze excuses voor het ongemak. Heeft u een vraag, neemt u dan contact op met onze afdeling Klantenservice: 088 - 344 1234.
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+				</div>
+
+			</div>
+
+
 			<div class="f-item-group" id="paragraph">
 
 				<div class="f-item-heading-group" data-f-toggle="details">
@@ -549,6 +646,53 @@
 
 &lt;br/&gt;
 &lt;br/&gt;</code></pre>
+				</div>
+
+			</div>
+
+
+			<div class="f-item-group" id="submessages">
+
+				<div class="f-item-heading-group" data-f-toggle="details">
+					<a href="#submessages" class="f-item-heading">Submessages</a>
+					<div class="f-item-toggles">
+						
+						<span class="f-toggle f-icon" data-f-toggle-control="code" title="toggle code">
+							<svg>
+								<use xlink:href="#f-icon-code" />
+							</svg>
+						</span>
+					</div>
+				</div>
+
+				
+
+				<div class="f-item-preview">
+					<span class="submessages submessages--status">
+  This is an additional submessage text with status style.
+</span>
+
+<span class="submessages submessages--error">
+  This is an additional submessage text with error style.
+</span>
+
+<span class="submessages submessages--warning">
+  This is an additional submessage text with warning style.
+</span>
+				</div>
+
+				<div class="f-item-code f-item-hidden" data-f-toggle="code">
+					<pre><code class="language-markup">&lt;span class=&quot;submessages submessages--status&quot;&gt;
+  This is an additional submessage text with status style.
+&lt;/span&gt;
+
+&lt;span class=&quot;submessages submessages--error&quot;&gt;
+  This is an additional submessage text with error style.
+&lt;/span&gt;
+
+&lt;span class=&quot;submessages submessages--warning&quot;&gt;
+  This is an additional submessage text with warning style.
+&lt;/span&gt;</code></pre>
 				</div>
 
 			</div>
@@ -730,6 +874,23 @@
   <!-- toolkit scripts -->
   <script src="scripts/toolkit.js"></script>
   <!-- /toolkit scripts -->
+
+  <!-- Drupal fake object -->
+  <script>
+    jQuery.extend(Drupal.settings, {
+      "basePath": "\/",
+      "pathPrefix": "",
+      "pathToTheme": "",
+      "ajaxPageState": {
+        "theme": "aegon_theme",
+        "theme_token": "JL2OhJveh8bIGphnf9XaI4XVICQOTDjxMqZfAQzvyKI",
+        "jquery_version": "1.7"
+      },
+      "websphere": {
+        "hostname": "https:\/\/www.aegon.loc\/webapps"
+      }
+    });
+  </script>
 
 </body>
 </html>

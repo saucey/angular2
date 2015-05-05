@@ -51,6 +51,7 @@ var config = {
       fabricator: './lib/fabricator/styles/fabricator.scss',
       toolkit: './src/assets/styles/toolkit.scss'
     },
+    data: './src/data/**/*',
     images: 'src/assets/images/**/*',
     views: './src/views/*.html',
     materials: [
@@ -231,6 +232,11 @@ gulp.task('favicon', function () {
     .pipe(gulp.dest(config.dest));
 });
 
+gulp.task('data', function () {
+  return gulp.src(config.src.data)
+    .pipe(gulp.dest(config.dest + '/data'));
+});
+
 
 /**
  * Concurrent tasks
@@ -240,7 +246,7 @@ gulp.task('assets', ['assets:library']);
 
 gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit']);
 
-gulp.task('scripts', ['scripts:fabricator', 'scripts:library', 'scripts:toolkit']);
+gulp.task('scripts', ['scripts:fabricator', 'scripts:library', 'scripts:toolkit', 'data']);
 
 
 /**
@@ -356,6 +362,10 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.start('scripts:toolkit');
   });
 
+  watch(config.src.data, function () {
+    gulp.start('data');
+  });
+
   watch(config.src.images, function () {
     gulp.start('images');
   });
@@ -364,8 +374,8 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.start('assets:library:fonts');
   });
 
-  watch(config.src.libAssetsPath + '/images/**', function () {
-    gulp.start('assets:library:images');
+  watch(config.src.libAssetsPath + '/fonts/**', function () {
+    gulp.start('assets:library:fonts');
   });
 });
 

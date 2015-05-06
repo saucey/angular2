@@ -311,10 +311,15 @@ body {
 /**
  * Only for Aegon-technical-design-library
  */
-#drupal-header .f-item-preview, #breadcrumb .f-item-preview, #user .f-item-preview, #user-old-version .f-item-preview {
+#breadcrumb .f-item-preview, #user .f-item-preview, #user-old-version .f-item-preview {
   overflow: hidden; }
 
+#drupal-header-user-detail-widget header.header {
+  margin-left: -1em;
+  margin-right: -1em; }
+
 #user_detail {
+  overflow: hidden;
   min-height: 300px; }
 
 #user_detail .f-item-preview {

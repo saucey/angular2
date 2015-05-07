@@ -51,7 +51,7 @@ var config = {
       fabricator: './lib/fabricator/styles/fabricator.scss',
       toolkit: './src/assets/styles/toolkit.scss'
     },
-    data: './src/data/**/*',
+    data: './src/file/**/*',
     images: 'src/assets/images/**/*',
     views: './src/views/*.html',
     materials: [
@@ -234,7 +234,7 @@ gulp.task('favicon', function () {
 
 gulp.task('data', function () {
   return gulp.src(config.src.data)
-    .pipe(gulp.dest(config.dest + '/data'));
+    .pipe(gulp.dest(config.dest + '/file'));
 });
 
 

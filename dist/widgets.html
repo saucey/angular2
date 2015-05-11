@@ -123,6 +123,9 @@
 						<a href="widgets.html#lhfs_edit">Lhfs Edit</a>
 					</li>
 					<li>
+						<a href="widgets.html#lhfs_edit_demo">Lhfs Edit Demo</a>
+					</li>
+					<li>
 						<a href="widgets.html#lhfs_payments">Lhfs Payments</a>
 					</li>
 					<li>
@@ -727,6 +730,221 @@
 
             <ul class="products row-fluid">
                 <!--if iterations are taking place, iterate over the elements between this comment-->
+                <li class="product span12">
+                    <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span>
+                    </div>
+                    <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
+                    <div class="details edit">
+
+                        <ul class="xhorizontal type row-fluid">
+                            <li class="label required span6">
+                                <span class="middle-enforcer"></span>Payment type label
+                            </li>
+                            <li class="value span6">
+                                <span class="middle-enforcer"></span>
+                                <span class="help"></span>
+                                <select name="paymentTypeValue" class="" required>
+                                    <option value="">empty option</option>
+                                    <option>payment type option 1</option>
+                                    <option>payment type option 2</option>
+                                    <option>payment type option 3</option>
+                                </select>
+                                <span class="errorText">some error message visible</span>
+                            </li>
+                        </ul>
+
+                        <ul class="horizontal interval row-fluid">
+                            <li class="label span6"><span class="middle-enforcer"></span>Payment interval label</li>
+                            <li class="value sxpan6">
+                                <span class="help"></span>
+                                <span class="middle-enforcer"></span>payment interval value
+                            </li>
+                        </ul>
+
+                        <ul class="horizontal account row-fluid">
+                            <li class="label required span6">
+                                <span class="middle-enforcer"></span>Account number label
+                            </li>
+                            <li class="value sxpan6">
+                                <span class="help"></span>
+                                <input type="text" name="accountNumberValue" id="accountNumberValue" pattern="\d*" required/>
+                                <span class="errorText">some error message visible</span>
+                            </li>
+                        </ul>
+
+                        <ul class="horizontal incasso row-fluid">
+                            <li class="label span6">
+                                <span class="middle-enforcer"></span>&nbsp;
+                            </li>
+                            <li class="value sxpan6">
+                                <span class="middle-enforcer"></span>
+                                <span class="help"></span>
+                                <label class="checkbox required">
+                                    <input type="checkbox" name="colCheckInput" value="lorem" required/>
+                                    <span class="checkbox"></span>
+                                    <span class="label">Payment incasso text</span>
+                                    <span class="errorText">some error message visible</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+                <!--end iteration comment-->
+            </ul>
+
+
+            <ul class="actions edit">
+                <li class="view span6">
+                    &nbsp;
+                </li>
+                <li class="edit span6">
+                    <button class="arrow" type="button">save button text</button>
+                    <button class="white cancel" type="button">cancel button text</button>
+                    <div class="disabler"></div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</section>
+				</div>
+
+				<div class="f-item-code f-item-hidden" data-f-toggle="code">
+					<pre><code class="language-markup">&lt;section id=&quot;lhfs_widget&quot; class=&quot;lhfs_widget container_12&quot;&gt;
+    &lt;div id=&quot;&quot; class=&quot;&quot;&gt;
+        &lt;!--faceless widget container with unique id, used for ajax loading--&gt;
+        &lt;form name=&quot;lhfs_form&quot;&gt;
+            &lt;h3&gt;Betaalgegevens&lt;/h3&gt;
+
+            &lt;a name=&quot;feedback_anchor&quot;&gt;&lt;/a&gt;
+            &lt;!--for various error messages, iterate over the .error-Div; adding the &quot;visible&quot; class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating--&gt;
+            &lt;div class=&quot;error visible&quot;&gt;
+                &lt;div class=&quot;header&quot;&gt;error header of some sort&lt;/div&gt;
+                &lt;!--button class=&quot;button bottom right blue arrow&quot;&gt;detail link&lt;/button--&gt;
+                some generic error message as a placeholder for real error messages, to be filled in and activated by the back end
+                &lt;!--button class=&quot;button blue arrow&quot;&gt;detail link&lt;/button--&gt;
+            &lt;/div&gt;
+            &lt;!--end error iteration--&gt;
+
+            &lt;ul class=&quot;products row-fluid&quot;&gt;
+                &lt;!--if iterations are taking place, iterate over the elements between this comment--&gt;
+                &lt;li class=&quot;product span12&quot;&gt;
+                    &lt;div class=&quot;title&quot;&gt;Product title comes here&amp;nbsp;&lt;span class=&quot;police-number&quot;&gt;police number&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.product element.&lt;/div&gt;
+                    &lt;div class=&quot;details edit&quot;&gt;
+
+                        &lt;ul class=&quot;xhorizontal type row-fluid&quot;&gt;
+                            &lt;li class=&quot;label required span6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;Payment type label
+                            &lt;/li&gt;
+                            &lt;li class=&quot;value span6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                                &lt;select name=&quot;paymentTypeValue&quot; class=&quot;&quot; required&gt;
+                                    &lt;option value=&quot;&quot;&gt;empty option&lt;/option&gt;
+                                    &lt;option&gt;payment type option 1&lt;/option&gt;
+                                    &lt;option&gt;payment type option 2&lt;/option&gt;
+                                    &lt;option&gt;payment type option 3&lt;/option&gt;
+                                &lt;/select&gt;
+                                &lt;span class=&quot;errorText&quot;&gt;some error message visible&lt;/span&gt;
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;ul class=&quot;horizontal interval row-fluid&quot;&gt;
+                            &lt;li class=&quot;label span6&quot;&gt;&lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;Payment interval label&lt;/li&gt;
+                            &lt;li class=&quot;value sxpan6&quot;&gt;
+                                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;payment interval value
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;ul class=&quot;horizontal account row-fluid&quot;&gt;
+                            &lt;li class=&quot;label required span6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;Account number label
+                            &lt;/li&gt;
+                            &lt;li class=&quot;value sxpan6&quot;&gt;
+                                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                                &lt;input type=&quot;text&quot; name=&quot;accountNumberValue&quot; id=&quot;accountNumberValue&quot; pattern=&quot;\d*&quot; required/&gt;
+                                &lt;span class=&quot;errorText&quot;&gt;some error message visible&lt;/span&gt;
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;ul class=&quot;horizontal incasso row-fluid&quot;&gt;
+                            &lt;li class=&quot;label span6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;&amp;nbsp;
+                            &lt;/li&gt;
+                            &lt;li class=&quot;value sxpan6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                                &lt;label class=&quot;checkbox required&quot;&gt;
+                                    &lt;input type=&quot;checkbox&quot; name=&quot;colCheckInput&quot; value=&quot;lorem&quot; required/&gt;
+                                    &lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;
+                                    &lt;span class=&quot;label&quot;&gt;Payment incasso text&lt;/span&gt;
+                                    &lt;span class=&quot;errorText&quot;&gt;some error message visible&lt;/span&gt;
+                                &lt;/label&gt;
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+
+                    &lt;/div&gt;
+                &lt;/li&gt;
+                &lt;!--end iteration comment--&gt;
+            &lt;/ul&gt;
+
+
+            &lt;ul class=&quot;actions edit&quot;&gt;
+                &lt;li class=&quot;view span6&quot;&gt;
+                    &amp;nbsp;
+                &lt;/li&gt;
+                &lt;li class=&quot;edit span6&quot;&gt;
+                    &lt;button class=&quot;arrow&quot; type=&quot;button&quot;&gt;save button text&lt;/button&gt;
+                    &lt;button class=&quot;white cancel&quot; type=&quot;button&quot;&gt;cancel button text&lt;/button&gt;
+                    &lt;div class=&quot;disabler&quot;&gt;&lt;/div&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+				</div>
+
+			</div>
+
+
+			<div class="f-item-group" id="lhfs_edit_demo">
+
+				<div class="f-item-heading-group" data-f-toggle="details">
+					<a href="#lhfs_edit_demo" class="f-item-heading">Lhfs Edit Demo</a>
+					<div class="f-item-toggles">
+						
+						<span class="f-toggle f-icon" data-f-toggle-control="code" title="toggle code">
+							<svg>
+								<use xlink:href="#f-icon-code" />
+							</svg>
+						</span>
+					</div>
+				</div>
+
+				
+
+				<div class="f-item-preview">
+					<section id="lhfs_widget" class="lhfs_widget container_12">
+    <div id="" class="">
+        <!--faceless widget container with unique id, used for ajax loading-->
+        <form name="lhfs_form">
+            <h3>Betaalgegevens</h3>
+
+            <a name="feedback_anchor"></a>
+            <!--for various error messages, iterate over the .error-Div; adding the "visible" class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating-->
+            <div class="error visible">
+                <div class="header">error header of some sort</div>
+                <!--button class="button bottom right blue arrow">detail link</button-->
+                some generic error message as a placeholder for real error messages, to be filled in and activated by the back end
+                <!--button class="button blue arrow">detail link</button-->
+            </div>
+            <!--end error iteration-->
+
+            <ul class="products row-fluid">
+                <!--if iterations are taking place, iterate over the elements between this comment-->
                 <li class="product data span12">
                     <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span>
                     </div>
@@ -780,6 +998,67 @@
                                     <input type="checkbox" name="colCheckInput" value="lorem" required/>
                                     <span class="checkbox"></span>
                                     <span class="label">Payment incasso text</span>
+                                    <span class="errorText">some error message visible</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                    </div>
+                </li>
+
+                <li class="product data span12">
+                    <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span>
+                    </div>
+                    <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
+                    <div class="details edit">
+
+                        <ul class="xhorizontal type row-fluid">
+                            <li class="label required span6">
+                                <span class="middle-enforcer"></span>Payment type label
+                            </li>
+                            <li class="value span6">
+                                <span class="middle-enforcer"></span>
+                                <span class="help"></span>
+                                <select name="paymentTypeValue" class="" required>
+                                    <option value="">empty option</option>
+                                    <option>payment type option 1</option>
+                                    <option>payment type option 2</option>
+                                    <option>payment type option 3</option>
+                                </select>
+                                <span class="errorText">some error message visible</span>
+                            </li>
+                        </ul>
+
+                        <ul class="horizontal interval row-fluid">
+                            <li class="label span6"><span class="middle-enforcer"></span>Payment interval label</li>
+                            <li class="value sxpan6">
+                                <span class="help"></span>
+                                <span class="middle-enforcer"></span>payment interval value
+                            </li>
+                        </ul>
+
+                        <ul class="horizontal account row-fluid">
+                            <li class="label required span6">
+                                <span class="middle-enforcer"></span>Account number label
+                            </li>
+                            <li class="value sxpan6">
+                                <span class="help"></span>
+                                <input type="text" name="accountNumberValue" id="accountNumberValue" pattern="\d*" required/>
+                                <span class="errorText">some error message visible</span>
+                            </li>
+                        </ul>
+
+                        <ul class="horizontal incasso row-fluid">
+                            <li class="label span6">
+                                <span class="middle-enforcer"></span>&nbsp;
+                            </li>
+                            <li class="value sxpan6">
+                                <span class="middle-enforcer"></span>
+                                <span class="help"></span>
+                                <label class="checkbox required">
+                                    <input type="checkbox" name="colCheckInput" value="lorem" required/>
+                                    <span class="checkbox"></span>
+                                    <span class="label">Payment incasso text breaks if it is over one line</span>
                                     <span class="errorText">some error message visible</span>
                                 </label>
                             </li>
@@ -878,6 +1157,67 @@
                                     &lt;input type=&quot;checkbox&quot; name=&quot;colCheckInput&quot; value=&quot;lorem&quot; required/&gt;
                                     &lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;
                                     &lt;span class=&quot;label&quot;&gt;Payment incasso text&lt;/span&gt;
+                                    &lt;span class=&quot;errorText&quot;&gt;some error message visible&lt;/span&gt;
+                                &lt;/label&gt;
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+
+                    &lt;/div&gt;
+                &lt;/li&gt;
+
+                &lt;li class=&quot;product data span12&quot;&gt;
+                    &lt;div class=&quot;title&quot;&gt;Product title comes here&amp;nbsp;&lt;span class=&quot;police-number&quot;&gt;police number&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.product element.&lt;/div&gt;
+                    &lt;div class=&quot;details edit&quot;&gt;
+
+                        &lt;ul class=&quot;xhorizontal type row-fluid&quot;&gt;
+                            &lt;li class=&quot;label required span6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;Payment type label
+                            &lt;/li&gt;
+                            &lt;li class=&quot;value span6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                                &lt;select name=&quot;paymentTypeValue&quot; class=&quot;&quot; required&gt;
+                                    &lt;option value=&quot;&quot;&gt;empty option&lt;/option&gt;
+                                    &lt;option&gt;payment type option 1&lt;/option&gt;
+                                    &lt;option&gt;payment type option 2&lt;/option&gt;
+                                    &lt;option&gt;payment type option 3&lt;/option&gt;
+                                &lt;/select&gt;
+                                &lt;span class=&quot;errorText&quot;&gt;some error message visible&lt;/span&gt;
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;ul class=&quot;horizontal interval row-fluid&quot;&gt;
+                            &lt;li class=&quot;label span6&quot;&gt;&lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;Payment interval label&lt;/li&gt;
+                            &lt;li class=&quot;value sxpan6&quot;&gt;
+                                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;payment interval value
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;ul class=&quot;horizontal account row-fluid&quot;&gt;
+                            &lt;li class=&quot;label required span6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;Account number label
+                            &lt;/li&gt;
+                            &lt;li class=&quot;value sxpan6&quot;&gt;
+                                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                                &lt;input type=&quot;text&quot; name=&quot;accountNumberValue&quot; id=&quot;accountNumberValue&quot; pattern=&quot;\d*&quot; required/&gt;
+                                &lt;span class=&quot;errorText&quot;&gt;some error message visible&lt;/span&gt;
+                            &lt;/li&gt;
+                        &lt;/ul&gt;
+
+                        &lt;ul class=&quot;horizontal incasso row-fluid&quot;&gt;
+                            &lt;li class=&quot;label span6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;&amp;nbsp;
+                            &lt;/li&gt;
+                            &lt;li class=&quot;value sxpan6&quot;&gt;
+                                &lt;span class=&quot;middle-enforcer&quot;&gt;&lt;/span&gt;
+                                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                                &lt;label class=&quot;checkbox required&quot;&gt;
+                                    &lt;input type=&quot;checkbox&quot; name=&quot;colCheckInput&quot; value=&quot;lorem&quot; required/&gt;
+                                    &lt;span class=&quot;checkbox&quot;&gt;&lt;/span&gt;
+                                    &lt;span class=&quot;label&quot;&gt;Payment incasso text breaks if it is over one line&lt;/span&gt;
                                     &lt;span class=&quot;errorText&quot;&gt;some error message visible&lt;/span&gt;
                                 &lt;/label&gt;
                             &lt;/li&gt;
@@ -1141,11 +1481,12 @@
       </div>
 
       <a name="feedback_anchor"></a>
+      <!--div class="lightbox"></div-->
       <div class="success visible">
-        <div class="header">success header of some sort</div>
+        <h2>success header of some sort</h2>
         <!--button class="button bottom right blue arrow">detail link</button-->
-        some generic success message as a placeholder for real success messages, to be filled in and activated by the back end
-        <!--button class="button blue arrow">detail link</button-->
+        some generic success message as a placeholder for real success messages, to be filled in and activated by the back end<br/><br/>
+        <button class="button arrow">confirmation text</button>
       </div>
 
       <!--for various error messages, iterate over the .error-Div; adding the "visible" class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating-->
@@ -1157,11 +1498,11 @@
       </div>
       <!--end error iteration-->
 
-      <ul class="payments row-fluid">
-        <!--if iterations are taking place, iterate over the elements between this comment-->
-        <li class="payment data span12">
+      <ul class="products row-fluid">
+        <!--if iterations are taking place, iterate over the products between this comment-->
+        <li class="product data span12">
           <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
-          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.payment element.</div>
+          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
           <div class="details">
             <ul class="horizontal type row-fluid">
               <li class="label span6">Payment type label</li>
@@ -1173,25 +1514,23 @@
             <ul class="horizontal interval row-fluid">
               <li class="label span6">Payment interval label</li>
               <li class="value span6">
-                <span class="help"></span>
+                <span style="" class="help" title="some more or less helpful text"></span>
                 <span class="content">payment interval value</span>
               </li>
             </ul>
             <ul class="horizontal account row-fluid">
               <li class="label span6">Account number label</li>
               <li class="value span6">
-                <span class="help"></span>
+                <span class="help" title="test text for the help bubble for account number plus a few more choice words so we get more than one line"></span>
                 <span class="content">account number value</span>
               </li>
              </ul>
           </div>
         </li>
 
-<!--********************-->
-
-        <li class="payment span12">
+        <li class="product data span12">
           <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
-          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.payment element.</div>
+          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
           <div class="details">
             <ul class="horizontal type row-fluid">
               <li class="label span6">Payment type label</li>
@@ -1203,52 +1542,20 @@
             <ul class="horizontal interval row-fluid">
               <li class="label span6">Payment interval label</li>
               <li class="value span6">
-                <span class="help"></span>
+                <span style="" class="help" title="some more or less helpful text"></span>
                 <span class="content">payment interval value</span>
               </li>
             </ul>
             <ul class="horizontal account row-fluid">
               <li class="label span6">Account number label</li>
               <li class="value span6">
-                <span class="help"></span>
+                <span class="help" title="test text for the help bubble for account number plus a few more choice words so we get more than one line"></span>
                 <span class="content">account number value</span>
               </li>
              </ul>
           </div>
         </li>
-
-<!--*******************-->
-
-        <li class="payment data span12">
-          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
-          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.payment element.</div>
-          <div class="details">
-            <ul class="horizontal type row-fluid">
-              <li class="label span6">Payment type label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">payment type value</span>
-              </li>
-            </ul>
-            <ul class="horizontal interval row-fluid">
-              <li class="label span6">Payment interval label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">payment interval value</span>
-              </li>
-            </ul>
-            <ul class="horizontal account row-fluid">
-              <li class="label span6">Account number label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">account number value</span>
-              </li>
-             </ul>
-          </div>
-        </li>
-
-
-        <!--end iteration comment-->
+        <!--end product iteration comment-->
       </ul>
 
       <ul class="actions">
@@ -1271,11 +1578,12 @@
       &lt;/div&gt;
 
       &lt;a name=&quot;feedback_anchor&quot;&gt;&lt;/a&gt;
+      &lt;!--div class=&quot;lightbox&quot;&gt;&lt;/div--&gt;
       &lt;div class=&quot;success visible&quot;&gt;
-        &lt;div class=&quot;header&quot;&gt;success header of some sort&lt;/div&gt;
+        &lt;h2&gt;success header of some sort&lt;/h2&gt;
         &lt;!--button class=&quot;button bottom right blue arrow&quot;&gt;detail link&lt;/button--&gt;
-        some generic success message as a placeholder for real success messages, to be filled in and activated by the back end
-        &lt;!--button class=&quot;button blue arrow&quot;&gt;detail link&lt;/button--&gt;
+        some generic success message as a placeholder for real success messages, to be filled in and activated by the back end&lt;br/&gt;&lt;br/&gt;
+        &lt;button class=&quot;button arrow&quot;&gt;confirmation text&lt;/button&gt;
       &lt;/div&gt;
 
       &lt;!--for various error messages, iterate over the .error-Div; adding the &quot;visible&quot; class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating--&gt;
@@ -1287,11 +1595,11 @@
       &lt;/div&gt;
       &lt;!--end error iteration--&gt;
 
-      &lt;ul class=&quot;payments row-fluid&quot;&gt;
-        &lt;!--if iterations are taking place, iterate over the elements between this comment--&gt;
-        &lt;li class=&quot;payment data span12&quot;&gt;
+      &lt;ul class=&quot;products row-fluid&quot;&gt;
+        &lt;!--if iterations are taking place, iterate over the products between this comment--&gt;
+        &lt;li class=&quot;product data span12&quot;&gt;
           &lt;div class=&quot;title&quot;&gt;Product title comes here&amp;nbsp;&lt;span class=&quot;police-number&quot;&gt;police number&lt;/span&gt;&lt;/div&gt;
-          &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.payment element.&lt;/div&gt;
+          &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.product element.&lt;/div&gt;
           &lt;div class=&quot;details&quot;&gt;
             &lt;ul class=&quot;horizontal type row-fluid&quot;&gt;
               &lt;li class=&quot;label span6&quot;&gt;Payment type label&lt;/li&gt;
@@ -1303,25 +1611,23 @@
             &lt;ul class=&quot;horizontal interval row-fluid&quot;&gt;
               &lt;li class=&quot;label span6&quot;&gt;Payment interval label&lt;/li&gt;
               &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                &lt;span style=&quot;&quot; class=&quot;help&quot; title=&quot;some more or less helpful text&quot;&gt;&lt;/span&gt;
                 &lt;span class=&quot;content&quot;&gt;payment interval value&lt;/span&gt;
               &lt;/li&gt;
             &lt;/ul&gt;
             &lt;ul class=&quot;horizontal account row-fluid&quot;&gt;
               &lt;li class=&quot;label span6&quot;&gt;Account number label&lt;/li&gt;
               &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;help&quot; title=&quot;test text for the help bubble for account number plus a few more choice words so we get more than one line&quot;&gt;&lt;/span&gt;
                 &lt;span class=&quot;content&quot;&gt;account number value&lt;/span&gt;
               &lt;/li&gt;
              &lt;/ul&gt;
           &lt;/div&gt;
         &lt;/li&gt;
 
-&lt;!--********************--&gt;
-
-        &lt;li class=&quot;payment span12&quot;&gt;
+        &lt;li class=&quot;product data span12&quot;&gt;
           &lt;div class=&quot;title&quot;&gt;Product title comes here&amp;nbsp;&lt;span class=&quot;police-number&quot;&gt;police number&lt;/span&gt;&lt;/div&gt;
-          &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.payment element.&lt;/div&gt;
+          &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.product element.&lt;/div&gt;
           &lt;div class=&quot;details&quot;&gt;
             &lt;ul class=&quot;horizontal type row-fluid&quot;&gt;
               &lt;li class=&quot;label span6&quot;&gt;Payment type label&lt;/li&gt;
@@ -1333,52 +1639,20 @@
             &lt;ul class=&quot;horizontal interval row-fluid&quot;&gt;
               &lt;li class=&quot;label span6&quot;&gt;Payment interval label&lt;/li&gt;
               &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                &lt;span style=&quot;&quot; class=&quot;help&quot; title=&quot;some more or less helpful text&quot;&gt;&lt;/span&gt;
                 &lt;span class=&quot;content&quot;&gt;payment interval value&lt;/span&gt;
               &lt;/li&gt;
             &lt;/ul&gt;
             &lt;ul class=&quot;horizontal account row-fluid&quot;&gt;
               &lt;li class=&quot;label span6&quot;&gt;Account number label&lt;/li&gt;
               &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                &lt;span class=&quot;help&quot; title=&quot;test text for the help bubble for account number plus a few more choice words so we get more than one line&quot;&gt;&lt;/span&gt;
                 &lt;span class=&quot;content&quot;&gt;account number value&lt;/span&gt;
               &lt;/li&gt;
              &lt;/ul&gt;
           &lt;/div&gt;
         &lt;/li&gt;
-
-&lt;!--*******************--&gt;
-
-        &lt;li class=&quot;payment data span12&quot;&gt;
-          &lt;div class=&quot;title&quot;&gt;Product title comes here&amp;nbsp;&lt;span class=&quot;police-number&quot;&gt;police number&lt;/span&gt;&lt;/div&gt;
-          &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.payment element.&lt;/div&gt;
-          &lt;div class=&quot;details&quot;&gt;
-            &lt;ul class=&quot;horizontal type row-fluid&quot;&gt;
-              &lt;li class=&quot;label span6&quot;&gt;Payment type label&lt;/li&gt;
-              &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
-                &lt;span class=&quot;content&quot;&gt;payment type value&lt;/span&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-            &lt;ul class=&quot;horizontal interval row-fluid&quot;&gt;
-              &lt;li class=&quot;label span6&quot;&gt;Payment interval label&lt;/li&gt;
-              &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
-                &lt;span class=&quot;content&quot;&gt;payment interval value&lt;/span&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-            &lt;ul class=&quot;horizontal account row-fluid&quot;&gt;
-              &lt;li class=&quot;label span6&quot;&gt;Account number label&lt;/li&gt;
-              &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
-                &lt;span class=&quot;content&quot;&gt;account number value&lt;/span&gt;
-              &lt;/li&gt;
-             &lt;/ul&gt;
-          &lt;/div&gt;
-        &lt;/li&gt;
-
-
-        &lt;!--end iteration comment--&gt;
+        &lt;!--end product iteration comment--&gt;
       &lt;/ul&gt;
 
       &lt;ul class=&quot;actions&quot;&gt;

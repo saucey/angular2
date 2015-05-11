@@ -15,7 +15,7 @@
 
         <ul class="products row-fluid">
           <!--if iterations are taking place, iterate over the elements between this comment-->
-          <li class="product span12">
+          <li class="product data span12">
           <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
             <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
             <div class="details edit">
@@ -67,6 +67,66 @@
                     <input type="checkbox" name="colCheckInput" value="lorem" required/>
                     <span class="checkbox"></span>
                     <span class="label">Payment incasso text</span>
+                    <span class="errorText">some error message visible</span>
+                  </label>
+                </li>
+              </ul>
+
+            </div>
+          </li>
+
+          <li class="product data span12">
+          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
+            <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
+            <div class="details edit">
+
+              <ul class="xhorizontal type row-fluid">
+                <li class="label required span6">
+                  <span class="middle-enforcer"></span>Payment type label
+                </li>
+                <li class="value span6">
+                  <span class="middle-enforcer"></span>
+                  <span class="help"></span>
+                  <select name="paymentTypeValue" class="" required>
+                    <option value="">empty option</option>
+                    <option>payment type option 1</option>
+                    <option>payment type option 2</option>
+                    <option>payment type option 3</option>
+                  </select>
+                  <span class="errorText">some error message visible</span>
+                </li>
+              </ul>
+
+              <ul class="horizontal interval row-fluid">
+                <li class="label span6"><span class="middle-enforcer"></span>Payment interval label</li>
+                <li class="value sxpan6">
+                  <span class="help"></span>
+                  <span class="middle-enforcer"></span>payment interval value
+                </li>
+              </ul>
+
+              <ul class="horizontal account row-fluid">
+                <li class="label required span6">
+                  <span class="middle-enforcer"></span>Account number label
+                </li>
+                <li class="value sxpan6">
+                  <span class="help"></span>
+                  <input type="text" name="accountNumberValue" id="accountNumberValue" pattern="\d*" required/>
+                  <span class="errorText">some error message visible</span>
+                </li>
+              </ul>
+
+              <ul class="horizontal incasso row-fluid">
+                <li class="label span6">
+                  <span class="middle-enforcer"></span>&nbsp;
+                </li>
+                <li class="value sxpan6">
+                  <span class="middle-enforcer"></span>
+                  <span class="help"></span>
+                  <label class="checkbox required">
+                    <input type="checkbox" name="colCheckInput" value="lorem" required/>
+                    <span class="checkbox"></span>
+                    <span class="label">Payment incasso text breaks if it is over one line</span>
                     <span class="errorText">some error message visible</span>
                   </label>
                 </li>

@@ -13965,6 +13965,121 @@ Drupal.theme.prototype.verticalTab = function (settings) {
 
 })(jQuery);
 
+/*!
+ * jQuery Cookie Plugin v1.4.1
+ * https://github.com/carhartl/jquery-cookie
+ *
+ * Copyright 2006, 2014 Klaus Hartl
+ * Released under the MIT license
+ */
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD (Register as an anonymous module)
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS
+    module.exports = factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function ($) {
+
+  var pluses = /\+/g;
+
+  function encode(s) {
+    return config.raw ? s : encodeURIComponent(s);
+  }
+
+  function decode(s) {
+    return config.raw ? s : decodeURIComponent(s);
+  }
+
+  function stringifyCookieValue(value) {
+    return encode(config.json ? JSON.stringify(value) : String(value));
+  }
+
+  function parseCookieValue(s) {
+    if (s.indexOf('"') === 0) {
+      // This is a quoted cookie as according to RFC2068, unescape...
+      s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+    }
+
+    try {
+      // Replace server-side written pluses with spaces.
+      // If we can't decode the cookie, ignore it, it's unusable.
+      // If we can't parse the cookie, ignore it, it's unusable.
+      s = decodeURIComponent(s.replace(pluses, ' '));
+      return config.json ? JSON.parse(s) : s;
+    } catch(e) {}
+  }
+
+  function read(s, converter) {
+    var value = config.raw ? s : parseCookieValue(s);
+    return $.isFunction(converter) ? converter(value) : value;
+  }
+
+  var config = $.cookie = function (key, value, options) {
+
+    // Write
+
+    if (arguments.length > 1 && !$.isFunction(value)) {
+      options = $.extend({}, config.defaults, options);
+
+      if (typeof options.expires === 'number') {
+        var days = options.expires, t = options.expires = new Date();
+        t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
+      }
+
+      return (document.cookie = [
+        encode(key), '=', stringifyCookieValue(value),
+        options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+        options.path    ? '; path=' + options.path : '',
+        options.domain  ? '; domain=' + options.domain : '',
+        options.secure  ? '; secure' : ''
+      ].join(''));
+    }
+
+    // Read
+
+    var result = key ? undefined : {},
+      // To prevent the for loop in the first place assign an empty array
+      // in case there are no cookies at all. Also prevents odd result when
+      // calling $.cookie().
+      cookies = document.cookie ? document.cookie.split('; ') : [],
+      i = 0,
+      l = cookies.length;
+
+    for (; i < l; i++) {
+      var parts = cookies[i].split('='),
+        name = decode(parts.shift()),
+        cookie = parts.join('=');
+
+      if (key === name) {
+        // If second argument (value) is a function it's a converter...
+        result = read(cookie, value);
+        break;
+      }
+
+      // Prevent storing a cookie that we couldn't decode.
+      if (!key && (cookie = read(cookie)) !== undefined) {
+        result[name] = cookie;
+      }
+    }
+
+    return result;
+  };
+
+  config.defaults = {};
+
+  $.removeCookie = function (key, options) {
+    // Must not alter options, thus extending a fresh object...
+    $.cookie(key, '', $.extend({}, options, { expires: -1 }));
+    return !$.cookie(key);
+  };
+
+}));
+
 // MSDropDown - jquery.dd.js
 // author: Marghoob Suleman - Search me on google
 // Date: 12th Aug, 2009, {18 Dec, 2010 (2.36)}, {date: 02 July, 2011}
@@ -15892,6 +16007,438 @@ Drupal.theme.prototype.verticalTab = function (settings) {
 
 }(window.jQuery);
 
+/* Modernizr 2.8.3 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-fontface-backgroundsize-borderradius-boxshadow-opacity-rgba-textshadow-cssanimations-csscolumns-generatedcontent-cssgradients-cssreflections-csstransforms-csstransforms3d-csstransitions-touch-cssclasses-addtest-prefixed-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes
+ */
+;
+
+
+
+window.Modernizr = (function( window, document, undefined ) {
+
+    var version = '2.8.3',
+
+    Modernizr = {},
+
+    enableClasses = true,
+
+    docElement = document.documentElement,
+
+    mod = 'modernizr',
+    modElem = document.createElement(mod),
+    mStyle = modElem.style,
+
+    inputElem  ,
+
+    smile = ':)',
+
+    toString = {}.toString,
+
+    prefixes = ' -webkit- -moz- -o- -ms- '.split(' '),
+
+
+
+    omPrefixes = 'Webkit Moz O ms',
+
+    cssomPrefixes = omPrefixes.split(' '),
+
+    domPrefixes = omPrefixes.toLowerCase().split(' '),
+
+
+    tests = {},
+    inputs = {},
+    attrs = {},
+
+    classes = [],
+
+    slice = classes.slice,
+
+    featureName, 
+
+
+    injectElementWithStyles = function( rule, callback, nodes, testnames ) {
+
+      var style, ret, node, docOverflow,
+          div = document.createElement('div'),
+                body = document.body,
+                fakeBody = body || document.createElement('body');
+
+      if ( parseInt(nodes, 10) ) {
+                      while ( nodes-- ) {
+              node = document.createElement('div');
+              node.id = testnames ? testnames[nodes] : mod + (nodes + 1);
+              div.appendChild(node);
+          }
+      }
+
+                style = ['&#173;','<style id="s', mod, '">', rule, '</style>'].join('');
+      div.id = mod;
+          (body ? div : fakeBody).innerHTML += style;
+      fakeBody.appendChild(div);
+      if ( !body ) {
+                fakeBody.style.background = '';
+                fakeBody.style.overflow = 'hidden';
+          docOverflow = docElement.style.overflow;
+          docElement.style.overflow = 'hidden';
+          docElement.appendChild(fakeBody);
+      }
+
+      ret = callback(div, rule);
+        if ( !body ) {
+          fakeBody.parentNode.removeChild(fakeBody);
+          docElement.style.overflow = docOverflow;
+      } else {
+          div.parentNode.removeChild(div);
+      }
+
+      return !!ret;
+
+    },
+
+
+
+    isEventSupported = (function() {
+
+      var TAGNAMES = {
+        'select': 'input', 'change': 'input',
+        'submit': 'form', 'reset': 'form',
+        'error': 'img', 'load': 'img', 'abort': 'img'
+      };
+
+      function isEventSupported( eventName, element ) {
+
+        element = element || document.createElement(TAGNAMES[eventName] || 'div');
+        eventName = 'on' + eventName;
+
+            var isSupported = eventName in element;
+
+        if ( !isSupported ) {
+                if ( !element.setAttribute ) {
+            element = document.createElement('div');
+          }
+          if ( element.setAttribute && element.removeAttribute ) {
+            element.setAttribute(eventName, '');
+            isSupported = is(element[eventName], 'function');
+
+                    if ( !is(element[eventName], 'undefined') ) {
+              element[eventName] = undefined;
+            }
+            element.removeAttribute(eventName);
+          }
+        }
+
+        element = null;
+        return isSupported;
+      }
+      return isEventSupported;
+    })(),
+
+
+    _hasOwnProperty = ({}).hasOwnProperty, hasOwnProp;
+
+    if ( !is(_hasOwnProperty, 'undefined') && !is(_hasOwnProperty.call, 'undefined') ) {
+      hasOwnProp = function (object, property) {
+        return _hasOwnProperty.call(object, property);
+      };
+    }
+    else {
+      hasOwnProp = function (object, property) { 
+        return ((property in object) && is(object.constructor.prototype[property], 'undefined'));
+      };
+    }
+
+
+    if (!Function.prototype.bind) {
+      Function.prototype.bind = function bind(that) {
+
+        var target = this;
+
+        if (typeof target != "function") {
+            throw new TypeError();
+        }
+
+        var args = slice.call(arguments, 1),
+            bound = function () {
+
+            if (this instanceof bound) {
+
+              var F = function(){};
+              F.prototype = target.prototype;
+              var self = new F();
+
+              var result = target.apply(
+                  self,
+                  args.concat(slice.call(arguments))
+              );
+              if (Object(result) === result) {
+                  return result;
+              }
+              return self;
+
+            } else {
+
+              return target.apply(
+                  that,
+                  args.concat(slice.call(arguments))
+              );
+
+            }
+
+        };
+
+        return bound;
+      };
+    }
+
+    function setCss( str ) {
+        mStyle.cssText = str;
+    }
+
+    function setCssAll( str1, str2 ) {
+        return setCss(prefixes.join(str1 + ';') + ( str2 || '' ));
+    }
+
+    function is( obj, type ) {
+        return typeof obj === type;
+    }
+
+    function contains( str, substr ) {
+        return !!~('' + str).indexOf(substr);
+    }
+
+    function testProps( props, prefixed ) {
+        for ( var i in props ) {
+            var prop = props[i];
+            if ( !contains(prop, "-") && mStyle[prop] !== undefined ) {
+                return prefixed == 'pfx' ? prop : true;
+            }
+        }
+        return false;
+    }
+
+    function testDOMProps( props, obj, elem ) {
+        for ( var i in props ) {
+            var item = obj[props[i]];
+            if ( item !== undefined) {
+
+                            if (elem === false) return props[i];
+
+                            if (is(item, 'function')){
+                                return item.bind(elem || obj);
+                }
+
+                            return item;
+            }
+        }
+        return false;
+    }
+
+    function testPropsAll( prop, prefixed, elem ) {
+
+        var ucProp  = prop.charAt(0).toUpperCase() + prop.slice(1),
+            props   = (prop + ' ' + cssomPrefixes.join(ucProp + ' ') + ucProp).split(' ');
+
+            if(is(prefixed, "string") || is(prefixed, "undefined")) {
+          return testProps(props, prefixed);
+
+            } else {
+          props = (prop + ' ' + (domPrefixes).join(ucProp + ' ') + ucProp).split(' ');
+          return testDOMProps(props, prefixed, elem);
+        }
+    }    tests['touch'] = function() {
+        var bool;
+
+        if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+          bool = true;
+        } else {
+          injectElementWithStyles(['@media (',prefixes.join('touch-enabled),('),mod,')','{#modernizr{top:9px;position:absolute}}'].join(''), function( node ) {
+            bool = node.offsetTop === 9;
+          });
+        }
+
+        return bool;
+    };    tests['rgba'] = function() {
+        setCss('background-color:rgba(150,255,150,.5)');
+
+        return contains(mStyle.backgroundColor, 'rgba');
+    };
+
+    tests['backgroundsize'] = function() {
+        return testPropsAll('backgroundSize');
+    };    tests['borderradius'] = function() {
+        return testPropsAll('borderRadius');
+    };
+
+    tests['boxshadow'] = function() {
+        return testPropsAll('boxShadow');
+    };
+
+    tests['textshadow'] = function() {
+        return document.createElement('div').style.textShadow === '';
+    };
+
+
+    tests['opacity'] = function() {
+                setCssAll('opacity:.55');
+
+                    return (/^0.55$/).test(mStyle.opacity);
+    };
+
+
+    tests['cssanimations'] = function() {
+        return testPropsAll('animationName');
+    };
+
+
+    tests['csscolumns'] = function() {
+        return testPropsAll('columnCount');
+    };
+
+
+    tests['cssgradients'] = function() {
+        var str1 = 'background-image:',
+            str2 = 'gradient(linear,left top,right bottom,from(#9f9),to(white));',
+            str3 = 'linear-gradient(left top,#9f9, white);';
+
+        setCss(
+                       (str1 + '-webkit- '.split(' ').join(str2 + str1) +
+                       prefixes.join(str3 + str1)).slice(0, -str1.length)
+        );
+
+        return contains(mStyle.backgroundImage, 'gradient');
+    };
+
+
+    tests['cssreflections'] = function() {
+        return testPropsAll('boxReflect');
+    };
+
+
+    tests['csstransforms'] = function() {
+        return !!testPropsAll('transform');
+    };
+
+
+    tests['csstransforms3d'] = function() {
+
+        var ret = !!testPropsAll('perspective');
+
+                        if ( ret && 'webkitPerspective' in docElement.style ) {
+
+                      injectElementWithStyles('@media (transform-3d),(-webkit-transform-3d){#modernizr{left:9px;position:absolute;height:3px;}}', function( node, rule ) {
+            ret = node.offsetLeft === 9 && node.offsetHeight === 3;
+          });
+        }
+        return ret;
+    };
+
+
+    tests['csstransitions'] = function() {
+        return testPropsAll('transition');
+    };
+
+
+
+    tests['fontface'] = function() {
+        var bool;
+
+        injectElementWithStyles('@font-face {font-family:"font";src:url("https://")}', function( node, rule ) {
+          var style = document.getElementById('smodernizr'),
+              sheet = style.sheet || style.styleSheet,
+              cssText = sheet ? (sheet.cssRules && sheet.cssRules[0] ? sheet.cssRules[0].cssText : sheet.cssText || '') : '';
+
+          bool = /src/i.test(cssText) && cssText.indexOf(rule.split(' ')[0]) === 0;
+        });
+
+        return bool;
+    };
+
+    tests['generatedcontent'] = function() {
+        var bool;
+
+        injectElementWithStyles(['#',mod,'{font:0/0 a}#',mod,':after{content:"',smile,'";visibility:hidden;font:3px/1 a}'].join(''), function( node ) {
+          bool = node.offsetHeight >= 3;
+        });
+
+        return bool;
+    };
+    for ( var feature in tests ) {
+        if ( hasOwnProp(tests, feature) ) {
+                                    featureName  = feature.toLowerCase();
+            Modernizr[featureName] = tests[feature]();
+
+            classes.push((Modernizr[featureName] ? '' : 'no-') + featureName);
+        }
+    }
+
+
+
+     Modernizr.addTest = function ( feature, test ) {
+       if ( typeof feature == 'object' ) {
+         for ( var key in feature ) {
+           if ( hasOwnProp( feature, key ) ) {
+             Modernizr.addTest( key, feature[ key ] );
+           }
+         }
+       } else {
+
+         feature = feature.toLowerCase();
+
+         if ( Modernizr[feature] !== undefined ) {
+                                              return Modernizr;
+         }
+
+         test = typeof test == 'function' ? test() : test;
+
+         if (typeof enableClasses !== "undefined" && enableClasses) {
+           docElement.className += ' ' + (test ? '' : 'no-') + feature;
+         }
+         Modernizr[feature] = test;
+
+       }
+
+       return Modernizr; 
+     };
+
+
+    setCss('');
+    modElem = inputElem = null;
+
+
+    Modernizr._version      = version;
+
+    Modernizr._prefixes     = prefixes;
+    Modernizr._domPrefixes  = domPrefixes;
+    Modernizr._cssomPrefixes  = cssomPrefixes;
+
+
+    Modernizr.hasEvent      = isEventSupported;
+
+    Modernizr.testProp      = function(prop){
+        return testProps([prop]);
+    };
+
+    Modernizr.testAllProps  = testPropsAll;
+
+
+    Modernizr.testStyles    = injectElementWithStyles;
+    Modernizr.prefixed      = function(prop, obj, elem){
+      if(!obj) {
+        return testPropsAll(prop, 'pfx');
+      } else {
+            return testPropsAll(prop, obj, elem);
+      }
+    };
+
+
+    docElement.className = docElement.className.replace(/(^|\s)no-js(\s|$)/, '$1$2') +
+
+                                                    (enableClasses ? ' js ' + classes.join(' ') : '');
+
+    return Modernizr;
+
+})(this, this.document);
+;
 /**
  * Example JavaScript component
  */
@@ -16715,19 +17262,43 @@ console.log("text-input init");
 /*jshint multistr: true */
 /**
  * User details script
+ * Dependencies: 
+ * - vendors/jquery.cookie.js (Cookie jQuery handlers)
+ * - modernizr.custom.js (Proper cross-browser style)
  */
 
 (function(doc, win) {
 
   'use strict';
 
-  // Register vars for local scope
+  /**
+   * Register global variables for local scope
+   */
   var $ = win.jQuery,
       Drupal = win.Drupal;
 
+  /**
+   * User widget's configuration
+   */
+
+  // This is the template of user_detail_widget wrapper taken from Aegon 
+  // Technical Design Libraryand converted in JavaScript string.
   var template = '<div id="user_detail_widget" class="user_detail_widget">\n<div class="inplace">\n<button class="btn-login-loggedin">Ingelogd</button>\n<div class="dropdown">\n<div class="highlight mobile">\n<div class="text">\n<p class="welcome">\n<strong>Welcome <span class="user_detail_widget_name">username</span>.</strong> Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n<p class="action">\n<a href="#" class="button arrow responsive-approach">Uitloggen</a>\n<a href="#" class="button white responsive-approach myaegon">Mijn Overzicht</a>\n</p>\n</div>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n</div>\n<div class="highlight desktop">\n<div class="text">\n<p class="welcome">Welcome <span class="user_detail_widget_name">username</span>.</p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n</div>';
 
-  // Add new item to public Drupal object
+  // User widget JSON endpoint (hostname is declared in 
+  // Drupal.settings.onlineAegonNl.hostname object's item).
+  var realEndpoint = '/services/US_RestGatewayWeb/rest/requestResponse/BS_PARTIJ_03/retrieve';
+
+  // ID string where the user widget will be appended
+  var appendUserWidgetTo = '#shw-user-details';
+
+  // MijnAegon cookie's name
+  var mijnAegonCookieLoggedInName = 'mijn_last_login';
+
+  /**
+   * User widget's Drupal script.
+   * Add new item to public Drupal object
+   */
   Drupal.behaviors.userDetailWidget = {
 
     attach: function (context, settings) {
@@ -16738,70 +17309,130 @@ console.log("text-input init");
 
     setup: function (settings) {
 
-      // Set url API
-      // this.apiUrl = settings.basePath + settings.pathToTheme +
-      //   '/includes/fake-widgets.php?id=';
-      this.apiUrl = '/data/widgets/user_detail.json';
+      // Set url API for local and real environments
+      if (settings.onlineAegonNl.hostname === 'local') {
+        this.apiUrl = '/file/example/user_detail_bs.json';
+      } else {
+        this.apiUrl = settings.onlineAegonNl.hostname + realEndpoint;
+      }
 
       this.getData();
     },
 
-    getDataType: function () {
-
-      var apiUrlOrig = this.apiUrl.split('/').splice(2, 1).join('/'),
-          // Check if is a relative address without protocol http/https
-          localDomain = this.apiUrl.indexOf('://') === -1,
-          // Check if current apiUrl is the same domain of current address
-          sameDomain = doc.location.host.indexOf(apiUrlOrig) !== -1;
-
-      return (sameDomain || localDomain) ? 'json' : 'jsonp';
-    },
-
     getData: function () {
 
-      var that = this;
+      // Local variables
+      var that = this,
+          dataType = this.getDataType(),
+          jsonpPayload,
+          retreiveBSPartij,
+          checkSanityOfJson;
 
-      $.ajax({
-        url: this.apiUrl,
-        dataType: this.getDataType(),
-        success: function(data){
-
-          // Activate the widget
-          that.initialize(data);
+      // Payload for JSONP
+      jsonpPayload = {
+        'retrieveRequest': {
+          'AILHEADER': {
+            'CLIENTID': 'MobileKlantenApp',
+            'CORRELATIONID': '##UAT##'
+          }
         }
+      };
+
+      checkSanityOfJson = function (jsonObject) {
+
+        // Check for retrieveResponse in the passed object
+        if ('retrieveResponse' in jsonObject) {
+          return true;
+        }
+
+        // Return false by default
+        return false;
+      };
+
+      // AJAX Success function
+      retreiveBSPartij = function (jsonData) {
+
+        // Local variables
+        var isString, parsedJson, data, isLogged;
+
+        // Check is jsonData is string that need to be parsed
+        isString = typeof parsedJson === 'string';
+
+        // Parse the JSON if needed
+        parsedJson = isString ? $.parseJSON(jsonData) : jsonData;
+
+        // Check if container and output of JSON is properly setup
+        if (!checkSanityOfJson(parsedJson)) { return; }
+
+        // Boolean to declare and check is user is logged in
+        isLogged = (parsedJson.retrieveResponse.PROCES.STATUS === '00000');
+        
+        // Data ready to be passed to initialize() below
+        data = {
+
+          // Set flag for user logged in
+          'loggedIn': isLogged && 1 || 0,
+
+          // Get user's name from json object
+          'userName': parsedJson.retrieveResponse.PARTIJ._AE_PERSOON._AE_SAMNAAM,
+
+          // Get last login time from cookie or from now()
+          'lastAccess': $.cookie('mijn_last_login') || $.now()
+        };
+
+        // Activate the widget
+        that.initialize(data);
+      };
+
+      // Load AJAX request
+      $.ajax({
+        timeout: 10000,
+        type: (dataType === 'jsonp' ? 'POST' : 'GET'),
+        url: this.apiUrl,
+        data: (dataType === 'jsonp' ? jsonpPayload : null),
+        dataType: dataType,
+        success: retreiveBSPartij,
+        error: this.clearCookie()
       });
     },
 
     initialize: function (data) {
 
-      // Append the template
-      $(template).appendTo('#shw-user-details');
-
       // Check if is logged and go ahead
-      if (data.logged_in) {
+      if (data.loggedIn === 1) {
 
-        // Cache the div
-        this.widget = $('#user_detail_widget');
+        var domWidget = this.parseWidget(data);
 
-        this.parseWidget(data);
+        // Append the template and cache it
+        this.widget = $(domWidget).appendTo(appendUserWidgetTo);
+
+        // Load events
         this.events();
       }
     },
 
     parseWidget: function (data) {
 
+      // Convert template in jQuery DOM
+      var $template = $(template);
+
+      // Convert lastAcess in formatted date
+      var dateFormatted = this.formatDatetime(data.lastAccess);
+
       // Parse data
-      $('span.user_detail_widget_name').text(data.username);
-      $('span.user_detail_widget_last_access').text(data.last_access);
+      $template.find('span.user_detail_widget_name').text(data.userName);
+      $template.find('span.user_detail_widget_last_access').text(dateFormatted);
 
       // Show/hide logged's items
       $('body').addClass('widget-logged-in');
+
+      return $template;
     },
 
     events: function (switchOff) {
 
-      var that = this,
-          btnLoggedIn = this.widget.find('button.btn-login-loggedin');
+      // Cache the button in local variable
+      var btnLoggedIn = this.widget.find('button.btn-login-loggedin');
 
       // Local functions
       var Fn = {
@@ -16840,8 +17471,6 @@ console.log("text-input init");
       // Action for Click on login button
       var loginButtonClick = function() {
 
-        // console.log(Fn.isMobile(), Fn.mobileTapPresent());
-
         // Toggle only if is not already present and mobile
         if (Fn.isMobile() && !Fn.mobileTapPresent()) {
           $('body').toggleClass("mobile-tap");
@@ -16850,6 +17479,15 @@ console.log("text-input init");
         }
 
         $(this).toggleClass("tap");
+      };
+
+      // Action on click of section.content to handle properly .tap on 
+      // buttonlink and class mobile-tap on body in case is on mobile view
+      var sectionContentClick = function() {
+        if ($('body').hasClass('mobile-tap')) {
+          $('body').removeClass('mobile-tap');
+          btnLoggedIn.addClass('tap');
+        }
       };
 
       // Switch all OFF
@@ -16872,6 +17510,10 @@ console.log("text-input init");
       // Click on button login toggle class .tap on itself
       btnLoggedIn.on('click', loginButtonClick);
 
+      // Bind click on section.content to remove the dark overlay related to
+      // body.mobile-tap and run the logic 
+      $('section.content').on('click', sectionContentClick);
+
       // In the end of animation of .highlight div, add class .processed to 
       // widget's container to hide itself
       this.widget.find('.highlight').one('webkitAnimationEnd oanimationend \
@@ -16880,7 +17522,53 @@ console.log("text-input init");
       });
     },
 
+    formatDatetime: function (date) {
+
+      // Local variables
+      var dateFormatted, day, month, year, hours, minutes;
+      
+      // Istantiate Date object
+      var dateIstance = new Date(date);
+
+      // Extraxt single date elements
+      day = dateIstance.getDate();
+      month = dateIstance.getMonth();
+      year = dateIstance.getFullYear();
+      hours = dateIstance.getHours();
+      minutes = dateIstance.getMinutes();
+
+      // Generate right format in Dutch
+      dateFormatted = day+'-'+month+'-'+year+' om '+hours+':'+minutes+' uur';
+
+      return dateFormatted;
+    },
+
+    getDataType: function () {
+
+      var apiUrlOrig = this.apiUrl.split('/').splice(2, 1).join('/'),
+
+          // Check if is a relative address without protocol http/https
+          localDomain = this.apiUrl.indexOf('://') === -1,
+
+          // Check if current apiUrl is the same domain of current address
+          sameDomain = doc.location.host.indexOf(apiUrlOrig) !== -1;
+
+      return (sameDomain || localDomain) ? 'json' : 'jsonp';
+    },
+
+    clearCookie: function () {
+
+      // Remove mijn_last_login's cookie
+      $.removeCookie(mijnAegonCookieLoggedInName);
+    },
+
     deinitialize: function () {
+
+      // Remove classes to hide logged's items
+      $('body').removeClass('widget-logged-in mobile-tap');
+
+      // Remove mijn_last_login's cookie
+      this.clearCookie();
 
       // Switch off all events
       this.events(true);

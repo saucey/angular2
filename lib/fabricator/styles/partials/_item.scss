@@ -61,12 +61,6 @@
 // Only for Aegon design library visual tool (don't take care for other context)
 // 
 
-
-/**
- * Only for Aegon-technical-design-library
- */
-
-// #drupal-header-user-detail-widget .f-item-preview,
 #breadcrumb .f-item-preview,
 #user .f-item-preview,
 #user-old-version .f-item-preview {
@@ -77,6 +71,7 @@
   overflow: hidden;
   min-height: 300px;
 }
+
 #user_detail .f-item-preview {
   position: relative;
   // overflow: hidden;
@@ -84,5 +79,17 @@
 
   .user_detail_widget {
     padding: 23px 30px 23px 0;
+  }
+}
+
+// #drupal-header-user-detail-widget .f-item-preview {
+//   background-color: #111;
+// }
+
+#drupal-sidebar-aegon-menu .f-item-preview {
+  margin: 0 -1em !important;
+
+  p {
+    padding: 0 2em;
   }
 }

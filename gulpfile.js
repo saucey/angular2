@@ -273,7 +273,7 @@ gulp.task('assemble:templates', function () {
   return gulp.src('./src/templates/*.html')
     .pipe(compile(opts))
     .pipe(rename({
-      autoprefixer: 'template-'
+      prefix: 'template-'
     }))
     .pipe(gulp.dest(config.dest))
     .pipe(gulpif(config.dev, reload({stream:true})));

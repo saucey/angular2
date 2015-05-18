@@ -1,7 +1,7 @@
 {
   "retrieveResponse": {
     "AILHEADER": {
-      "CLIENTID": "MobileKlantenApp",
+      "CLIENTID": "MijnAegonUserWidget",
       "CORRELATIONID": "##UAT##"
     },
     "PROCES": {

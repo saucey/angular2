@@ -308,9 +308,6 @@ body {
   .f-item-notes p {
     line-height: 1.875; }
 
-/**
- * Only for Aegon-technical-design-library
- */
 #breadcrumb .f-item-preview, #user .f-item-preview, #user-old-version .f-item-preview {
   overflow: hidden; }
 

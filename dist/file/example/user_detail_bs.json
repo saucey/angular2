@@ -6,7 +6,7 @@
     },
     "PROCES": {
       "STATUST": "Success",
-      "STATUS": "00000",
+      "STATUS": "77",
       "VOLGNUM": "1"
     },
     "PARTIJ": {
@@ -79,8 +79,8 @@
       "_AE_WIJZDAT": "2013-05-24",
       "TELNUM": "9812114792",
       "_AE_PERSOON": {
-        "VOORL": "E.K.K.",
-        "_AE_SAMNAAM": "E.K.K. v.d. Liet",
+        "VOORL": "Abraham",
+        "_AE_SAMNAAM": "Abraham van Helsing",
         "GEBDAT": "1969-04-14",
         "BSNR": "110207865",
         "_AE_PARTIJ_WN": {

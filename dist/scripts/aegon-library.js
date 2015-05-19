@@ -15922,7 +15922,12 @@ function dd(element, settings) {
 			value = byvalue;
 		};
 		//update title and current
+//trying to fix a problem that arises when ids contain rare characters, such as .:[] ; however, this is not the only point at which this causes problems, so find out the others before fully implementing it
+//titleid = titleid.replace( /(:|\.|\[|\]|,)/g, "\\$1" );
+//console.log("titleid: " + titleid);
+//jquery Selector needs . and : escaped, document.getElementById doesn't (and that's what getElement() is using)
 		$("#" + titleid).find("." + css.label).html(value.text);
+//console.dir($("#" + titleid).find("." + css.label));
 		getElement(titleid).className = css.ddTitleText + " " + value.className;
 		//update desction
 		if (value.description != "") {
@@ -17630,110 +17635,158 @@ console.log("text-input init");
   };
 })(jQuery);
 
-(function($) {
+(function(Drupal, $) {
 
   'use strict';
 
   /**
    * JS code for Aegon Menu
-   * @type {Object}
+   * Dependencies: $.browser
    */
   Drupal.behaviors.aegonMenu = {
 
-    attach: function() {
+    /**
+     * Istructions for Menu Global.
+     * (Desktop and other devices, apart mobile with screen below < 640 pixels)
+     */
+    menuDesktop: function (menu) {
 
-      $("div.mobile-level3").each(function() {
-        $("nav").append(this);
+      // Click on backdrop or a#close
+      menu.find('.nav-backdrop').add('a.close').on('click', function () {
+        $('body').removeClass('pushmenu-to-right');
+        menu.removeClass('open');
+        menu.find('.level-2-item').removeClass('item-open');
       });
+
+      // Push menu instructions
+      menu.find("#showLeftPush").click(function () {
+
+        $('body').toggleClass('pushmenu-to-right');
+
+        if (menu.hasClass('open') && !$('body').hasClass('pushmenu-to-right')) {
+
+          menu.removeClass('open');
+
+        } else {
+
+          menu.addClass('open');
+        }
+
+        menu.find('.level-2-item').removeClass('item-open');
+      });
+
+      // Clicks on .level-2-item
+      menu.find('.level-2-item').on('click', function (e) {
+
+        var isSubmenu = $(e.target).is('ul') || $(e.target).is('li');
+
+        // Stop propagation if not .close
+        if ($(e.target).hasClass('close') || isSubmenu) { return; }
+
+        $('body').removeClass('pushmenu-to-right');
+
+        if ($(this).hasClass('item-open')) {
+
+          // Remove class .open to hide backdrop
+          menu.removeClass('open');
+
+        } else {
+
+          // Add class .open to show backdrop
+          menu.addClass('open');
+        }
+
+        // Remove all .item-open apart this
+        menu.find('.level-2-item').not(this).removeClass('item-open');
+
+        // Toggle .item-open only for this
+        $(this).toggleClass('item-open');
+
+        // Fix for Safari on Mac with wrong position fixed support
+        if ($.browser.safari === true) {
+          var layoutHeaderHeight = $('header.header').height();
+          var newTop = $(this).position().top + layoutHeaderHeight;
+          $(this).children("ul").css("top", -newTop + "px");
+        }
+      });
+
+      return this;
+    },
+
+    /**
+     * Istructions for Menu Mobile.
+     * (All screens below < 640 pixels)
+     */
+    menuMobile: function (menu) {
 
       // Mobile navigation
-      $("#openmenu").click(function() {
-        if ($(this).attr("id") === "openmenu") {
-          $("#st-container").addClass("ss-panel-open");
-          $(".container").addClass("ss-container-open");
-          $(".mobile-level1").addClass("mm-opened").addClass("mm-subopened");
-          $(".mobile-level2").addClass("mm-opened");
-          $(".mobile").addClass("tapmenu-open");
-          $(".ui-panel-dismiss").addClass("ui-panel-dismiss-open");
-          $(this).attr('id', 'closemenu');
-        } else if ($(this).attr("id") === "closemenu") {
-          $("#st-container").removeClass("ss-panel-open");
-          $(".container").removeClass("ss-container-open");
-          $(".mobile").removeClass("tapmenu-open");
-          $(".ui-panel-dismiss").removeClass("ui-panel-dismiss-open");
-          $(this).attr('id', 'openmenu');
-        }
-      });
+      $('#openmenu').on('click', function() {
 
-      $(".mob-2-item a").click(function() {
-        var Third = $(this).attr("id");
-        if ($(".mobile-level3").hasClass(Third)) {
-          $(this).closest(".cbp-spmenu").addClass("mm-subopened");
-          $(".mobile-level3." + Third).addClass("mm-opened");
-        }
-      });
+        $('body').toggleClass('pushmenu-to-right');
 
-      // Back
-      $(".mm-back").click(function() {
-        $(this).closest(".cbp-spmenu").removeClass("mm-opened");
-        if ($(this).closest(".cbp-spmenu").hasClass("mobile-level3")) {
-          $(".mobile-level2").removeClass("mm-subopened");
-        } else if ($(this).closest(".cbp-spmenu").hasClass("mobile-level2")) {
-          $(".mobile-level2").addClass("level2-push-right");
-          $(".mobile-level1").removeClass("mm-subopened").addClass("mm-opened");
+        if (menu.hasClass('open') && !$('body').hasClass('pushmenu-to-right')) {
+
+          menu.removeClass('open');
+          $('body').removeClass('mobile-tap');
+
         } else {
-          $(".mobile-level1").addClass("mm-subopened");
-          $(".mobile-level2").removeClass("level2-push-right").addClass("mm-opened");
+
+          menu.addClass('open');
+          $('body').addClass('mobile-tap');
         }
       });
 
-      // Terug
-      $(".terug").click(function() {
-        $(this).closest(".cbp-spmenu").addClass("mm-subopened");
-        $(".mobile-level2").addClass("mm-opened");
-      });
+      // All clicks on #scroll div
+      $('#scroll').on('mousedown touchmove', function (e) {
 
-      $(".ui-panel-dismiss").click(function() {
-        $("#st-container").removeClass("ss-panel-open");
-        $(".container").removeClass("ss-container-open");
-        $(".mobile").removeClass("tapmenu-open");
-        $(".mobile-level2").removeClass("level2-push-right");
-        $(".ui-panel-dismiss").removeClass("ui-panel-dismiss-open");
-        $("#closemenu").attr('id', 'openmenu');
-      });
+        if (e.target.id === 'openmenu') { return; }
 
-      //Touch move to close
-      $(".ui-panel-dismiss").bind("touchmove", this.touchMoveHandler);
+        if ($('body').hasClass('pushmenu-to-right')) {
 
-      //Swipe Left to Close
-      $(".mobile-menu").bind("swipeleft", this.swipLeftHandler);
-
-      $(".home-tab-menu").bind("click", function() {
-        if ($("nav.homepage-menu #mobile-level2").length < 1) {
-          $("nav.homepage-menu #mobile-level1").removeClass("mm-subopened");
+          $('body').removeClass('pushmenu-to-right mobile-tap');
         }
       });
+
+      // Menu back links
+      menu.find('.mm-back').on('click', function() {
+
+        if ($(this).hasClass('menu')) {
+          menu.find('nav').addClass('slide-to-left').removeClass('slide-to-right');
+          return;
+        }
+
+        menu.find('nav').removeClass('slide-to-left slide-to-right');
+      });
+
+      // Links in mobile-level2
+      menu.find('.mobile-level2 a[class*="menu-"]').on('click', function (e) {
+
+        var targetLevel3 = e.target.className.split(' ')[0];
+
+        menu.find('nav').addClass('slide-to-right');
+
+        menu.find('.mobile-level3.'+targetLevel3).addClass('show')
+          .siblings('.mobile-level3').removeClass('show')
+      });
+
+      return this;
     },
 
-    touchMoveHandler: function () {
-      $("#st-container").removeClass("ss-panel-open");
-      $(".container").removeClass("ss-container-open");
-      $(".mobile").removeClass("tapmenu-open");
-      $(".mobile-level2").removeClass("level2-push-right");
-      $(".ui-panel-dismiss").removeClass("ui-panel-dismiss-open");
-      $("#closemenu").attr('id', 'openmenu');
-    },
+    /**
+     * Drupal's attach method
+     */
+    attach: function() {
 
-    swipLeftHandler: function () {
-      $("#st-container").removeClass("ss-panel-open");
-      $(".container").removeClass("ss-container-open");
-      $(".mobile").removeClass("tapmenu-open");
-      $(".mobile-level2").removeClass("level2-push-right");
-      $(".ui-panel-dismiss").removeClass("ui-panel-dismiss-open");
-      $("#closemenu").attr('id', 'openmenu');
+      // Register DOMs of aside menus
+      var menuDesktopDOM = $('aside.desktop'),
+          menuMobileDOM = $('aside.mobile');
+
+      // Run all instructions for different breakpoints
+      this.menuDesktop(menuDesktopDOM).menuMobile(menuMobileDOM);
     }
   };
-}(jQuery));
+
+}(this.Drupal, this.jQuery));
 (function ($) {
 
   'use strict';
@@ -18350,29 +18403,21 @@ console.log("text-input init");
  * - modernizr.custom.js (Proper cross-browser style)
  */
 
-(function(doc, win) {
+(function(doc, win, $, Drupal) {
 
   'use strict';
-
-  /**
-   * Register global variables for local scope
-   */
-  var $ = win.jQuery,
-      Drupal = win.Drupal;
 
   /**
    * User widget's configuration
    */
 
-  // services => mijnservices
-
   // This is the template of user_detail_widget wrapper taken from Aegon 
-  // Technical Design Libraryand converted in JavaScript string.
+  // Technical Design Library and converted in JavaScript string.
   var template = '<div id="user_detail_widget" class="user_detail_widget">\n<div class="inplace">\n<button class="btn-login-loggedin">Ingelogd</button>\n<div class="dropdown">\n<div class="highlight mobile">\n<div class="text">\n<p class="welcome">\n<strong>Welcome <span class="user_detail_widget_name">username</span>.</strong> Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n<p class="action">\n<a href="#" class="button arrow responsive-approach">Uitloggen</a>\n<a href="#" class="button white responsive-approach myaegon">Mijn Overzicht</a>\n</p>\n</div>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n</div>\n<div class="highlight desktop">\n<div class="text">\n<p class="welcome">Welcome <span class="user_detail_widget_name">username</span>.</p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n</div>';
 
   // User widget JSON endpoint (hostname is declared in 
   // Drupal.settings.onlineAegonNl.hostname object's item).
-  var realEndpoint = '/services/US_RestGatewayWeb/rest/requestResponse/BS_PARTIJ_03/retrieve';
+  var realEndpoint = '/mijnservices/US_RestGatewayWeb/rest/requestResponse/BS_PARTIJ_03/retrieve';
 
   // ID string where the user widget will be appended
   var appendUserWidgetTo = '#shw-user-details';
@@ -18398,7 +18443,8 @@ console.log("text-input init");
       if (settings.onlineAegonNl.hostname === 'local') {
         this.apiUrl = '/file/example/user_detail_bs.json';
       } else {
-        this.apiUrl = settings.onlineAegonNl.hostname + realEndpoint;
+        // this.apiUrl = settings.onlineAegonNl.hostname + realEndpoint;
+        this.apiUrl = realEndpoint;
       }
 
       this.getData();
@@ -18435,22 +18481,22 @@ console.log("text-input init");
       };
 
       // AJAX Success function
-      retreiveBSPartij = function (jsonData) {
+      retreiveBSPartij = function (json) {
 
         // Local variables
-        var isString, parsedJson, data, isLogged;
+        var isString, parseJSON, data, isLogged;
 
-        // Check is jsonData is string that need to be parsed
-        isString = typeof parsedJson === 'string';
+        // Check is json is string that need to be parsed
+        isString = typeof json === 'string';
 
         // Parse the JSON if needed
-        parsedJson = isString ? $.parseJSON(jsonData) : jsonData;
+        parseJSON = isString ? $.parseJSON(json) : json;
 
         // Check if container and output of JSON is properly setup
-        if (!checkSanityOfJson(parsedJson)) { return; }
+        if (!checkSanityOfJson(parseJSON)) { return; }
 
         // Boolean to declare and check is user is logged in
-        isLogged = (parsedJson.retrieveResponse.PROCES.STATUS === '00000');
+        isLogged = (parseJSON.retrieveResponse.PROCES.STATUS === '00000');
         
         // Data ready to be passed to initialize() below
         data = {
@@ -18459,7 +18505,7 @@ console.log("text-input init");
           'loggedIn': isLogged && 1 || 0,
 
           // Get user's name from json object
-          'userName': parsedJson.retrieveResponse.PARTIJ._AE_PERSOON._AE_SAMNAAM,
+          'userName': parseJSON.retrieveResponse.PARTIJ._AE_PERSOON._AE_SAMNAAM,
 
           // Get last login time from cookie or from now()
           'lastAccess': $.cookie('mijn_last_login') || $.now()
@@ -18516,6 +18562,9 @@ console.log("text-input init");
       $template.find('span.user_detail_widget_name').text(data.userName);
       $template.find('span.user_detail_widget_last_access').text(dateFormatted);
 
+      // Launch also the function to append the user name in menu
+      this.shwUserDetailsInmenu(data.userName);
+
       // Show/hide logged's items
       $('body').addClass('widget-logged-in');
 
@@ -18532,6 +18581,23 @@ console.log("text-input init");
 
       // Finally run the callback
       if (typeof callback === 'function') { callback($template); }
+    },
+
+    shwUserDetailsInmenu: function (name) {
+
+      // Create DOM for the link
+      var linkDesktop = $('<a />', {'class': 'menu-user-link'});
+      var linkMobile = $('<a />', {'class': 'menu-user-link-white'});
+
+      // Set the text with user's name passed
+      linkDesktop.text(name).attr('href', '#');
+      linkMobile.text(name).attr('href', '#');
+
+      // Append the DOM for the link just created and remove old login link
+      $('li[data-id="shw-user-details-inmenu"]').append(linkDesktop)
+        .find('.login-link-inv').remove();
+      $('li[data-id="shw-mob-user-details-inmenu"]').append(linkMobile)
+        .find('.login-link-inv').remove();
     },
 
     events: function (switchOff) {
@@ -18684,7 +18750,7 @@ console.log("text-input init");
     }
   };
 
-})(this.document, this);
+})(this.document, this, this.jQuery, this.Drupal);
 
 /**
  * User details script

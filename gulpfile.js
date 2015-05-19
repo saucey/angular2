@@ -40,6 +40,7 @@ var config = {
     libAssetsPath: './lib/aegon-assets-library',
     libSassPath: './lib/aegon-sass-library',
     libScriptsPath: './lib/aegon-scripts-library',
+    libStaticStyles: './lib/drupalcore-omega-static-styles',
     scripts: {
       fabricator: [
         './lib/fabricator/scripts/prism.js',
@@ -208,6 +209,13 @@ gulp.task('styles:toolkit', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
+gulp.task('styles:drupalcore-omega-static-styles', function () {
+  return gulp.src(config.src.libStaticStyles + '/**/*.css')
+    .pipe(plumber())
+    .pipe(concat('drupalcore-omega-static-styles.css'))
+    .pipe(gulp.dest(config.dest + '/styles'));
+});
+
 gulp.task('scripts:toolkit', function () {
   return gulp.src(config.src.scripts.toolkit)
     .pipe(plumber())
@@ -244,7 +252,7 @@ gulp.task('data', function () {
 
 gulp.task('assets', ['assets:library']);
 
-gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit']);
+gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
 
 gulp.task('scripts', ['scripts:fabricator', 'scripts:library', 'scripts:toolkit', 'data']);
 

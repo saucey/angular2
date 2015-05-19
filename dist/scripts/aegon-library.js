@@ -15922,7 +15922,12 @@ function dd(element, settings) {
 			value = byvalue;
 		};
 		//update title and current
+//trying to fix a problem that arises when ids contain rare characters, such as .:[] ; however, this is not the only point at which this causes problems, so find out the others before fully implementing it
+//titleid = titleid.replace( /(:|\.|\[|\]|,)/g, "\\$1" );
+//console.log("titleid: " + titleid);
+//jquery Selector needs . and : escaped, document.getElementById doesn't (and that's what getElement() is using)
 		$("#" + titleid).find("." + css.label).html(value.text);
+//console.dir($("#" + titleid).find("." + css.label));
 		getElement(titleid).className = css.ddTitleText + " " + value.className;
 		//update desction
 		if (value.description != "") {

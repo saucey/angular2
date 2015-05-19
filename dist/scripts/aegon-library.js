@@ -17621,7 +17621,7 @@ console.log("checkbox init");
   Drupal.behaviors["text-input"] = {
     attach: function () {
     	var visited = function () {  //this is to implement a different error behaviour between when the form is loaded and once an element has been visited
-console.log("text-input init");
+        // console.log("text-input init");
     		if ($(this).is(".dd")) {
     			$(this).find("select").addClass("visited");
     		}
@@ -17768,6 +17768,14 @@ console.log("text-input init");
         menu.find('.mobile-level3.'+targetLevel3).addClass('show')
           .siblings('.mobile-level3').removeClass('show')
       });
+
+      // Exception in case there is only one mobile-level.
+      // Slide the nav menu to left
+      var mobileLevel2sCount = menu.find('.mobile-level2').length;
+
+      if (mobileLevel2sCount < 1) {
+        menu.find('nav').addClass('slide-to-left');
+      }
 
       return this;
     },

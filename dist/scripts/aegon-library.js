@@ -17766,7 +17766,7 @@ console.log("checkbox init");
         menu.find('nav').addClass('slide-to-right');
 
         menu.find('.mobile-level3.'+targetLevel3).addClass('show')
-          .siblings('.mobile-level3').removeClass('show')
+          .siblings('.mobile-level3').removeClass('show');
       });
 
       // Exception in case there is only one mobile-level.
@@ -18462,13 +18462,13 @@ console.log("checkbox init");
 
       // Local variables
       var that = this,
-          dataType = this.getDataType(),
-          jsonpPayload,
+          // dataType = this.getDataType(),
+          jsonPayload,
           retreiveBSPartij,
           checkSanityOfJson;
 
       // Payload for JSONP
-      jsonpPayload = {
+      jsonPayload = {
         'retrieveRequest': {
           'AILHEADER': {
             'CLIENTID': 'MijnAegonUserWidget',
@@ -18526,10 +18526,11 @@ console.log("checkbox init");
       // Load AJAX request
       $.ajax({
         timeout: 10000,
-        type: (dataType === 'jsonp' ? 'POST' : 'GET'),
+        // type: (dataType === 'jsonp' ? 'POST' : 'GET'),
+        type: 'GET',
         url: this.apiUrl,
-        data: (dataType === 'jsonp' ? jsonpPayload : null),
-        dataType: dataType,
+        data: jsonPayload,
+        dataType: 'json',
         success: retreiveBSPartij,
         error: this.clearCookie()
       });

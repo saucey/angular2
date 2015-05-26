@@ -119,7 +119,7 @@ gulp.task('styles:library', function () {
 
   return gulp.src(config.src.libSassPath + '/*.scss')
     .pipe(plumber())
-    .pipe(sourcemaps.init())
+    .pipe(gulpif(config.dev, sourcemaps.init()))
     .pipe(sass({
       errLogToConsole: true,
       includePaths: ['./lib'],
@@ -129,7 +129,7 @@ gulp.task('styles:library', function () {
       browsers: ['last 2 version', 'ie 9'],
       cascade: false
     }))
-    .pipe(sourcemaps.write())
+    .pipe(gulpif(config.dev, sourcemaps.write()))
     .pipe(gulp.dest(config.dest + '/styles'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
@@ -194,7 +194,7 @@ gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
 gulp.task('styles:toolkit', function () {
   return gulp.src(config.src.styles.toolkit)
     .pipe(plumber())
-    .pipe(sourcemaps.init())
+    .pipe(gulpif(config.dev, sourcemaps.init()))
     .pipe(sass({
       errLogToConsole: true,
       includePaths: ['./lib'],
@@ -204,7 +204,7 @@ gulp.task('styles:toolkit', function () {
       browsers: ['last 2 version', 'ie 9'],
       cascade: false
     }))
-    .pipe(sourcemaps.write())
+    .pipe(gulpif(config.dev, sourcemaps.write()))
     .pipe(gulp.dest(config.dest + '/styles'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });

@@ -310,15 +310,14 @@ body {
   .f-item-notes p {
     line-height: 1.875; }
 
-#breadcrumb .f-item-preview, #user .f-item-preview, #user-old-version .f-item-preview {
+#breadcrumb .f-item-preview, #user .f-item-preview {
   overflow: hidden; }
 
 #user_detail {
-  overflow: hidden;
-  min-height: 300px; }
-
-#user_detail .f-item-preview {
-  position: relative;
-  min-height: 90px; }
-  #user_detail .f-item-preview .user_detail_widget {
-    padding: 23px 30px 23px 0; }
+  overflow: hidden; }
+  #user_detail .f-item-preview {
+    position: relative;
+    overflow: hidden;
+    min-height: 400px; }
+    #user_detail .f-item-preview .user_detail_widget {
+      padding: 23px 30px 23px 0; }

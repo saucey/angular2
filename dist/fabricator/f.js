@@ -647,7 +647,9 @@ fabricator.setActiveItem = function () {
 		for (var i = fabricator.dom.menuItems.length - 1; i >= 0; i--) {
 
 			// remove active class from items
-			fabricator.dom.menuItems[i].classList.remove('f-active');
+			if (typeof fabricator.dom.menuItems[i].classList !== 'undefined') {
+				fabricator.dom.menuItems[i].classList.remove('f-active');
+			}
 
 			// get item href
 			href = fabricator.dom.menuItems[i].getAttribute('href');
@@ -688,7 +690,9 @@ fabricator.setActiveItem = function () {
 		index = (items.indexOf(id) > -1) ? items.indexOf(id) : 0;
 
 		// set the matched item as active
-		fabricator.dom.menuItems[index].classList.add('f-active');
+		if (typeof fabricator.dom.menuItems[index].classList !== 'undefined') {
+			fabricator.dom.menuItems[index].classList.add('f-active');
+		}
 
 	};
 
@@ -757,18 +761,22 @@ fabricator.allItemsToggles = function () {
 			_items = items[type];
 
 		for (var i = 0; i < _items.length; i++) {
-			if (value) {
-				_items[i].classList.remove('f-item-hidden');
-			} else {
-				_items[i].classList.add('f-item-hidden');
+			if (typeof _items[i].classList !== 'undefined') {
+				if (value) {
+					_items[i].classList.remove('f-item-hidden');
+				} else {
+					_items[i].classList.add('f-item-hidden');
+				}	
 			}
 		}
 
 		// toggle styles
-		if (value) {
-			button.classList.add('f-active');
-		} else {
-			button.classList.remove('f-active');
+		if (typeof button.classList !== 'undefined') {
+			if (value) {
+				button.classList.add('f-active');
+			} else {
+				button.classList.remove('f-active');
+			}	
 		}
 
 		// update options

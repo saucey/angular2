@@ -17527,6 +17527,75 @@ window.Modernizr = (function( window, document, undefined ) {
 
 })(this, this.document);
 ;
+/*
+ * Pointer Events Polyfill: Adds support for the style attribute "pointer-events: none" to browsers without this feature (namely, IE).
+ * (c) 2013, Kent Mewhort, licensed under BSD. See LICENSE.txt for details.
+ * Website: https://github.com/kmewhort/pointer_events_polyfill
+ */
+
+// constructor
+function PointerEventsPolyfill(options){
+    // set defaults
+    this.options = {
+        selector: '*',
+        mouseEvents: ['click','dblclick','mousedown','mouseup'],
+        usePolyfillIf: function(){
+            if(navigator.appName == 'Microsoft Internet Explorer')
+            {
+                var agent = navigator.userAgent;
+                if (agent.match(/MSIE ([0-9]{1,}[\.0-9]{0,})/) != null){
+                    var version = parseFloat( RegExp.$1 );
+                    if(version < 11)
+                      return true;
+                }
+            }
+            return false;
+        }
+    };
+    if(options){
+        var obj = this;
+        $.each(options, function(k,v){
+          obj.options[k] = v;
+        });
+    }
+
+    if(this.options.usePolyfillIf())
+      this.register_mouse_events();
+}
+
+// singleton initializer
+PointerEventsPolyfill.initialize = function(options){
+    if(PointerEventsPolyfill.singleton == null)
+      PointerEventsPolyfill.singleton = new PointerEventsPolyfill(options);
+    return PointerEventsPolyfill.singleton;
+};
+
+// handle mouse events w/ support for pointer-events: none
+PointerEventsPolyfill.prototype.register_mouse_events = function(){
+    // register on all elements (and all future elements) matching the selector
+    $(document).on(this.options.mouseEvents.join(" "), this.options.selector, function(e){
+       if($(this).css('pointer-events') == 'none'){
+             // peak at the element below
+             var origDisplayAttribute = $(this).css('display');
+             $(this).css('display','none');
+
+             var underneathElem = document.elementFromPoint(e.clientX, e.clientY);
+
+            if(origDisplayAttribute)
+                $(this)
+                    .css('display', origDisplayAttribute);
+            else
+                $(this).css('display','');
+
+             // fire the mouse event on the element below
+            e.target = underneathElem;
+            $(underneathElem).trigger(e);
+
+            return false;
+        }
+        return true;
+    });
+};
 /**
  * Example JavaScript component
  */
@@ -17727,12 +17796,10 @@ console.log("checkbox init");
         if (menu.hasClass('open') && !$('body').hasClass('pushmenu-to-right')) {
 
           menu.removeClass('open');
-          $('body').removeClass('mobile-tap');
 
         } else {
 
           menu.addClass('open');
-          $('body').addClass('mobile-tap');
         }
       });
 
@@ -17743,7 +17810,7 @@ console.log("checkbox init");
 
         if ($('body').hasClass('pushmenu-to-right')) {
 
-          $('body').removeClass('pushmenu-to-right mobile-tap');
+          $('body').removeClass('pushmenu-to-right');
         }
       });
 
@@ -17761,12 +17828,24 @@ console.log("checkbox init");
       // Links in mobile-level2
       menu.find('.mobile-level2 a[class*="menu-"]').on('click', function (e) {
 
-        var targetLevel3 = e.target.className.split(' ')[0];
+        // Local scope vars
+        var targetLevel3Class, level3;
 
-        menu.find('nav').addClass('slide-to-right');
+        targetLevel3Class = e.target.className.split(' ')[0];
 
-        menu.find('.mobile-level3.'+targetLevel3).addClass('show')
-          .siblings('.mobile-level3').removeClass('show');
+        level3 = menu.find('.mobile-level3.' + targetLevel3Class);
+
+        // If the related level3 is present do stuff and block the normal 
+        // behaviour of the link
+        if (level3.length > 0) {
+
+          menu.find('nav').addClass('slide-to-right');
+
+          level3.addClass('show').siblings('.mobile-level3')
+            .removeClass('show');
+
+          e.preventDefault();
+        }
       });
 
       // Exception in case there is only one mobile-level.
@@ -18312,10 +18391,21 @@ console.log("checkbox init");
    * @type {Object}
    */
   Drupal.behaviors.uiElements = {
+
     attach: function () {
 
       // Run all UI helper functions
-      this.backTop();
+      this.globals()
+        .backTop()
+        .pointerEventsPolyfillInit();
+    },
+
+    globals: function () {
+
+      // Copy jQuery to $ as item of window public object
+      win.$ = $;
+
+      return this;
     },
 
     backTop: function () {
@@ -18347,6 +18437,16 @@ console.log("checkbox init");
           $('#back-top a').hide();
         }, 4e3));
       });
+
+      return this;
+    },
+
+    pointerEventsPolyfillInit: function () {
+
+      // Initialize polyfill for "pointer-events: none"
+      PointerEventsPolyfill.initialize();
+
+      return this;
     }
   };
   
@@ -18405,6 +18505,58 @@ console.log("checkbox init");
 
 /*jshint multistr: true */
 /**
+ * Mijn Documenten widget script
+ * Dependencies: null
+ */
+(function(doc, win, $, Drupal) {
+
+  'use strict';
+
+  /**
+   * MyDocuments's Drupal script.
+   * Add new item to public Drupal object
+   */
+  Drupal.behaviors.myDocumentsWidget = {
+
+    attach: function () {
+
+      $('.my_documents_widget article h2').on('click', function () {
+        $(this).parent('article').toggleClass('open')
+          .siblings().removeClass('open');
+      });
+    }
+  };
+
+})(this.document, this, this.jQuery, this.Drupal);
+
+/*jshint multistr: true */
+/**
+ * Mijn Gegevens widget script
+ * Dependencies: null
+ */
+(function(doc, win, $, Drupal) {
+
+  'use strict';
+
+  /**
+   * MyPersonalDetails's Drupal script.
+   * Add new item to public Drupal object
+   */
+  Drupal.behaviors.MyPersonalDetailsWidget = {
+
+    attach: function () {
+
+      $('.my_personal_details article h2').on('click', function () {
+        $(this).parent('article').toggleClass('open')
+          .siblings().removeClass('open');
+      });
+    }
+  };
+
+})(this.document, this, this.jQuery, this.Drupal);
+
+/*jshint multistr: true */
+/**
  * User details script
  * Dependencies: 
  * - vendors/jquery.cookie.js (Cookie jQuery handlers)
@@ -18416,12 +18568,23 @@ console.log("checkbox init");
   'use strict';
 
   /**
+   * Register or retrieve the public container for our shw widgets.
+   * Purpose of this window global object is for register some public functions.
+   * Need to be initialized on top of each widgets.
+   */
+  win.shwGlobal = win.shwGlobal || {};
+
+  /**
    * User widget's configuration
    */
 
+  // Path links handled by the script below for templating
+  var logoutPathLink = 'pkmslogout?filename=WSBLogout.html';
+  var mijnaegonPathLink = 'mijnaegon/';
+
   // This is the template of user_detail_widget wrapper taken from Aegon 
   // Technical Design Library and converted in JavaScript string.
-  var template = '<div id="user_detail_widget" class="user_detail_widget">\n<div class="inplace">\n<button class="btn-login-loggedin">Ingelogd</button>\n<div class="dropdown">\n<div class="highlight mobile">\n<div class="text">\n<p class="welcome">\n<strong>Welcome <span class="user_detail_widget_name">username</span>.</strong> Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n<p class="action">\n<a href="#" class="button arrow responsive-approach">Uitloggen</a>\n<a href="#" class="button white responsive-approach myaegon">Mijn Overzicht</a>\n</p>\n</div>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n</div>\n<div class="highlight desktop">\n<div class="text">\n<p class="welcome">Welcome <span class="user_detail_widget_name">username</span>.</p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n</div>';
+  var template = '<div id="user_detail_widget" class="user_detail_widget">\n<div class="inplace">\n<button class="btn-login-loggedin">Ingelogd</button>\n<div class="dropdown">\n<div class="highlight mobile">\n<div class="text">\n<p class="welcome">\n<strong>Welcome <span class="user_detail_widget_name">username</span>.</strong> <span class="last_access_wrapper">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></span></p>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n<p class="action">\n<a href="#" class="user_detail_widget_logout_link button arrow responsive-approach">Uitloggen</a>\n<a href="#" class="user_detail_widget_mijnaegon_link button white responsive-approach myaegon">Mijn Overzicht</a>\n</p>\n</div>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n</div>\n<div class="highlight desktop">\n<div class="text">\n<p class="welcome">Welcome <span class="user_detail_widget_name">username</span>.</p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n</div>';
 
   // User widget JSON endpoint (hostname is declared in 
   // Drupal.settings.onlineAegonNl.hostname object's item).
@@ -18443,18 +18606,42 @@ console.log("checkbox init");
 
       // setup
       this.setup(settings);
+
+      // Register a public method for deinitialize
+      win.shwGlobal.logout = (function() {
+        this.deinitialize();
+      }).bind(this);
     },
 
     setup: function (settings) {
+
+      // Check if current website is not local or DEV environemnt
+      var notLocalOrDev = (
+        settings.onlineAegonNl.hostname !== 'local' &&
+        win.location.hostname.search('www.dev.') !== -1
+      );
+
+      // Try to avoid multiple requests to the backend environment, if the
+      // browser never ever had a logged session. Implement the block only for 
+      // Testing, UAT and Production environments.
+      if (notLocalOrDev) {
+        if (!this.getCookie()) {
+          return;
+        }
+      }
 
       // Set url API for local and real environments
       if (settings.onlineAegonNl.hostname === 'local') {
         this.apiUrl = '/file/example/user_detail_bs.json';
       } else {
-        // this.apiUrl = settings.onlineAegonNl.hostname + realEndpoint;
         this.apiUrl = realEndpoint;
       }
 
+      // Update path links
+      logoutPathLink = settings.basePath + logoutPathLink;
+      mijnaegonPathLink = settings.basePath + mijnaegonPathLink;
+
+      // Start retrieving data
       this.getData();
     },
 
@@ -18515,8 +18702,8 @@ console.log("checkbox init");
           // Get user's name from json object
           'userName': parseJSON.retrieveResponse.PARTIJ._AE_PERSOON._AE_SAMNAAM,
 
-          // Get last login time from cookie or from now()
-          'lastAccess': $.cookie('mijn_last_login') || $.now()
+          // Get last login time from cookie or give false
+          'lastAccess': that.getCookie()
         };
 
         // Activate the widget
@@ -18532,7 +18719,7 @@ console.log("checkbox init");
         data: jsonPayload,
         dataType: 'json',
         success: retreiveBSPartij,
-        error: this.clearCookie()
+        error: this.clearCookie
       });
     },
 
@@ -18561,28 +18748,55 @@ console.log("checkbox init");
 
     parseWidget: function (data, callback) {
 
+      // Vars for local scope
+      var $template, dateFormatted;
+
       // Convert template in jQuery DOM
-      var $template = $(template);
+      $template = $(template);
 
-      // Convert lastAcess in formatted date
-      var dateFormatted = this.formatDatetime(data.lastAccess);
-
-      // Parse data
+      // Templating data
       $template.find('span.user_detail_widget_name').text(data.userName);
-      $template.find('span.user_detail_widget_last_access').text(dateFormatted);
+      $template.find('a.user_detail_widget_logout_link').attr(
+        'href', logoutPathLink);
+      $template.find('a.user_detail_widget_mijnaegon_link').attr(
+        'href', mijnaegonPathLink);
 
+      // Exception in case data.lastAccess is empty
+      if (data.lastAccess === false) {
+
+        // Remove span.last_access_wrapper and mobile p.log
+        $template.find('span.last_access_wrapper').remove();
+        $template.find('p.log').remove();
+
+      } else {
+
+        // Convert lastAcess in formatted date
+        dateFormatted = this.formatDatetime(data.lastAccess);
+
+        // Parse date time
+        $template.find('span.user_detail_widget_last_access').text(dateFormatted);
+      }
+      
       // Launch also the function to append the user name in menu
       this.shwUserDetailsInmenu(data.userName);
 
       // Show/hide logged's items
-      $('body').addClass('widget-logged-in');
+      $('body').addClass('shw-widgets-logged-in');
 
       // Cross-browser imlementation to provide workaround for no CSS animation
       if ($('html').hasClass('no-cssanimations')) {
 
+        $template.find('.btn-login-loggedin').addClass('ieChangeColors');
+
         // For desktop
         $template.find('.highlight.desktop').delay(3000)
-          .animate({'margin-top': '-500px', 'bottom': '500px'}, 1000);
+          .animate({'margin-top': '-500px', 'bottom': '500px'},
+            250,
+            'linear',
+            function () {
+              $template.find('.btn-login-loggedin').removeClass('ieChangeColors');
+            }
+          );
 
         // For mobile
         $template.find('.highlight.mobile').delay(3000).slideUp(500);
@@ -18596,11 +18810,11 @@ console.log("checkbox init");
 
       // Create DOM for the link
       var linkDesktop = $('<a />', {'class': 'menu-user-link'});
-      var linkMobile = $('<a />', {'class': 'menu-user-link-white'});
+      var linkMobile = $('<a />', {'class': 'menu-user-link'});
 
       // Set the text with user's name passed
-      linkDesktop.text(name).attr('href', '#');
-      linkMobile.text(name).attr('href', '#');
+      linkDesktop.text(name).attr('href', mijnaegonPathLink);
+      linkMobile.text(name).attr('href', mijnaegonPathLink);
 
       // Append the DOM for the link just created and remove old login link
       $('li[data-id="shw-user-details-inmenu"]').append(linkDesktop)
@@ -18610,6 +18824,9 @@ console.log("checkbox init");
     },
 
     events: function (switchOff) {
+
+      // Stop execution if this.widget is empty
+      if(typeof this.widget === 'undefined') { return; }
 
       // Cache the button in local variable
       var btnLoggedIn = this.widget.find('button.btn-login-loggedin');
@@ -18710,16 +18927,22 @@ console.log("checkbox init");
 
       // Local variables
       var dateFormatted, day, month, year, hours, minutes;
-      
-      // Istantiate Date object
-      var dateIstance = new Date(date);
+
+      // Convert hyphens with spaces
+      if (date.search('-') !== -1) { date = date.replace(/-/g, ' '); }
+
+      // Add UTC in the end, in case is not available in the string passed
+      if (date.search('UTC') === -1) { date = date + ' UTC'; }
+
+      // Convert in Date object from string
+      date = new Date(date);
 
       // Extraxt single date elements
-      day = dateIstance.getDate();
-      month = dateIstance.getMonth();
-      year = dateIstance.getFullYear();
-      hours = dateIstance.getHours();
-      minutes = dateIstance.getMinutes();
+      day = date.getDate();
+      month = date.getMonth();
+      year = date.getFullYear();
+      hours = date.getHours();
+      minutes = date.getMinutes();
 
       // Generate right format in Dutch
       dateFormatted = day+'-'+month+'-'+year+' om '+hours+':'+minutes+' uur';
@@ -18740,16 +18963,25 @@ console.log("checkbox init");
       return (sameDomain || localDomain) ? 'json' : 'jsonp';
     },
 
-    clearCookie: function () {
+    getCookie: function () {
 
-      // Remove mijn_last_login's cookie
+      // Return cookie value or FALSE
+      return $.cookie(mijnAegonCookieLoggedInName) || false;
+    },
+
+    clearCookie: function (response) {
+
+      // Remove mijn_last_login's cookie as first
       $.removeCookie(mijnAegonCookieLoggedInName);
+
+      // Then throw an error in console
+      if (response) { throw response.responseText; }
     },
 
     deinitialize: function () {
 
       // Remove classes to hide logged's items
-      $('body').removeClass('widget-logged-in mobile-tap');
+      $('body').removeClass('shw-widgets-logged-in mobile-tap');
 
       // Remove mijn_last_login's cookie
       this.clearCookie();
@@ -18760,79 +18992,3 @@ console.log("checkbox init");
   };
 
 })(this.document, this, this.jQuery, this.Drupal);
-
-/**
- * User details script
- */
-
-(function($, doc) {
-
-  'use strict';
-
-  // Add new item to public Drupal object
-  Drupal.behaviors.userWidget = {
-
-    attach: function (context, settings) {
-
-      // TEMP: stop everything in case we aren't under vps-rhino-1 or localhost
-      // if (doc.domain === '10.120.32.22') { return; }
-      // if (doc.domain.search('rhino.aegon.nl') === -1) { return; }
-      // if (doc.domain.search('localhost') === -1) { return; }
-
-      // Setup
-      // this.setup(settings);
-      
-      // Simulation TEMP
-      this.simulation();
-    },
-
-    setup: function (settings) {
-
-      // Setp url API
-      this.apiUrl = settings.basePath + settings.pathToTheme +
-        '/includes/fake-widgets.php?id=';
-    },
-
-    showLogged: function () {
-
-      // $("#shw-user-details").load(this.apiUrl + 'user');
-      // $("#shw-contract-overview").load(this.apiUrl + 'contract_overview');
-      // $('#shw-user-details').html('<div id="user_widget" class="user_widget">
-      //     <div id="user_widget_topmenu" class="topmenu">
-      //       <div class="username">Michiel van der Most Spijk</div>
-      //     </div>
-
-      //     <div id="user_widget_dropdown" class="frame bubbleTopRight">
-      //       <div class="username">user name</div>
-      //       <div class="email">usermail@somesite.com</div>
-      //       <div class="lastlogin">Uw vorige bezoek was op 08-01-2015 om 14:11 uur</div>
-      //       <button class="arrow">Mijn overzicht</button>
-      //       <button class="white">uitloggen</button>
-      //     </div>
-      //   </div>');
-    },
-
-    simulation: function () {
-
-      var that = this;
-
-      that.showLogged();
-
-      // if (location.pathname.indexOf('mijnaegon') === -1) {
-      //   return;
-      // }
-
-      // setTimeout(function () {
-
-      //   if (window.confirm('Do you want simulate session logged?')) { 
-
-      //     setTimeout(function () {
-      //       that.showLogged();
-      //     }, 1000);
-      //   }
-
-      // }, 2000);
-    }
-  };
-
-})(jQuery, this.document);

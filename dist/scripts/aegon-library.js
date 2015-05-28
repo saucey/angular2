@@ -17771,12 +17771,14 @@ console.log("checkbox init");
         // Toggle .item-open only for this
         $(this).toggleClass('item-open');
 
-        // Fix for Safari on Mac with wrong position fixed support
-        if ($.browser.safari === true) {
-          var layoutHeaderHeight = $('header.header').height();
-          var newTop = $(this).position().top + layoutHeaderHeight;
-          $(this).children("ul").css("top", -newTop + "px");
-        }
+        // Position fixed is not used anymore. But to be sure, I leave this
+        // source code here.
+        // Fix for Safari on Mac with wrong position fixed support.
+        // if ($.browser.safari === true) {
+        //   var layoutHeaderHeight = $('header.header').height();
+        //   var newTop = $(this).position().top + layoutHeaderHeight;
+        //   $(this).children("ul").css("top", -newTop + "px");
+        // }
       });
 
       return this;
@@ -18584,7 +18586,7 @@ console.log("checkbox init");
 
   // This is the template of user_detail_widget wrapper taken from Aegon 
   // Technical Design Library and converted in JavaScript string.
-  var template = '<div id="user_detail_widget" class="user_detail_widget">\n<div class="inplace">\n<button class="btn-login-loggedin">Ingelogd</button>\n<div class="dropdown">\n<div class="highlight mobile">\n<div class="text">\n<p class="welcome">\n<strong>Welcome <span class="user_detail_widget_name">username</span>.</strong> <span class="last_access_wrapper">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></span></p>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n<p class="action">\n<a href="#" class="user_detail_widget_logout_link button arrow responsive-approach">Uitloggen</a>\n<a href="#" class="user_detail_widget_mijnaegon_link button white responsive-approach myaegon">Mijn Overzicht</a>\n</p>\n</div>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n</div>\n<div class="highlight desktop">\n<div class="text">\n<p class="welcome">Welcome <span class="user_detail_widget_name">username</span>.</p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n</div>';
+  var template = '<div id="user_detail_widget" class="user_detail_widget">\n<div class="inplace">\n<button class="btn-login-loggedin">Ingelogd</button>\n<div class="dropdown">\n<div class="highlight mobile">\n<div class="text">\n<p class="welcome">\n<strong>Welcome <span class="user_detail_widget_name">username</span>.</strong> <span class="last_access_wrapper">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></span></p>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n<p class="action">\n<a href="#" class="user_detail_widget_logout_link button arrow">Uitloggen</a>\n<a href="#" class="user_detail_widget_mijnaegon_link button white myaegon">Mijn Overzicht</a>\n</p>\n</div>\n</div>\n</div>\n<div class="text">\n<p class="name"><span class="user_detail_widget_name">username</span></p>\n</div>\n<div class="highlight desktop">\n<div class="text">\n<p class="welcome">Welcome <span class="user_detail_widget_name">username</span>.</p>\n<p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span></p>\n</div>\n</div>\n</div>';
 
   // User widget JSON endpoint (hostname is declared in 
   // Drupal.settings.onlineAegonNl.hostname object's item).
@@ -18939,7 +18941,7 @@ console.log("checkbox init");
 
       // Extraxt single date elements
       day = date.getDate();
-      month = date.getMonth();
+      month = date.getMonth() + 1;
       year = date.getFullYear();
       hours = date.getHours();
       minutes = date.getMinutes();

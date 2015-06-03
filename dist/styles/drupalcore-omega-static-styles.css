@@ -716,7 +716,6 @@ html.js .js-hide {
 }
 
 
-
 /**
  * @file
  * Styles for menus and navigation markup.
@@ -832,7 +831,6 @@ ul.secondary a {
 ul.secondary a.active {
   border-bottom: 4px solid #999;
 }
-
 
 /**
  * @file
@@ -1072,7 +1070,6 @@ th.checkbox {
 .progress .filled {
   background: #0072b9 url(../../misc/progress.gif);
 }
-
 
 #permissions td.module {
   font-weight: bold;

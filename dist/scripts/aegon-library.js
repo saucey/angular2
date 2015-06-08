@@ -18775,7 +18775,7 @@ console.log("checkbox init");
 
         // Convert lastAcess in formatted date
         dateFormatted = this.formatDatetime(data.lastAccess);
-console.log("date ");
+        console.log("date ");
         // Parse date time
         $template.find('span.user_detail_widget_last_access')
           .text(dateFormatted);
@@ -19024,6 +19024,10 @@ console.log("date ");
 
       // Remove mijn_last_login's cookie
       this.clearCookie();
+      
+      // remove the cookie that determines if the green bar is shown
+      console.log("logout");
+      $.removeCookie("hasBeenShown");
 
       // Switch off all events
       this.events(true);

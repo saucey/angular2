@@ -18810,12 +18810,12 @@ console.log("date ");
       if ( $.cookie("hasBeenShown") ) {
         $template.find(".highlight").addClass("has-been-shown");
       }
+      // Compare datetime with mijnaegon last login and add .processed class
+      if (this.expiredTimeFromLogin() || $.cookie("hasBeenShown")) { $template.addClass('processed'); }
+
       // cookie to make sure that the next time this template is shown,
       // the welcome animation is off
       $.cookie("hasBeenShown", "1");
-
-      // Compare datetime with mijnaegon last login and add .processed class
-      if (this.expiredTimeFromLogin()) { $template.addClass('processed'); }
 
       // Finally run the callback to append all our shw-DOM in the proper 
       // shw place

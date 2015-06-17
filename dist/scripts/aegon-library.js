@@ -18478,6 +18478,11 @@ console.log("checkbox init");
         //$($("#lhfs_widget li.product ul.horizontal")[0]).addClass("visible");
         $("#lhfs_widget li.product ul.horizontal.error").removeClass("visible");
 
+        $(".success")
+          .appendTo("body") //move .success to the body, so that it can be centered and fixed to the screen
+          .css("top", (($(window).height() - $(".success").height()) / 2) + "px");  //center .success vertically
+
+
         $(".help").mouseover(function () {
           if (this.title) {
             //alert(this.title);

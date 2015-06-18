@@ -18468,19 +18468,16 @@ console.log("checkbox init");
 
       // Check if div#lhfs_widget exist
       if ($('.lhfs_widget').length > 0) {
-        //$("#lhfs_widget .tip").removeClass("visible");
         $("#lhfs_widget .tip").addClass("visible");
-        //$("#lhfs_widget li.product").removeClass("data");
-        //$("#lhfs_widget li.product").addClass("data");
-        $("#lhfs_widget li.product .description").show(); //show this as part of a maximum display, usually it's an either/or with the product data
         $("#lhfs_widget li.product ul.horizontal").removeClass("visible");
         $("#lhfs_widget li.product ul.horizontal").addClass("visible");
-        //$($("#lhfs_widget li.product ul.horizontal")[0]).addClass("visible");
         $("#lhfs_widget li.product ul.horizontal.error").removeClass("visible");
 
         $(".success")
           .appendTo("body") //move .success to the body, so that it can be centered and fixed to the screen
           .css("top", (($(window).height() - $(".success").height()) / 2) + "px");  //center .success vertically
+        $(".lightbox")
+          .appendTo("body"); //move .lightbox to the body & after .success so that the visible style for .success still applies
 
 
         $(".help").mouseover(function () {

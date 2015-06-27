@@ -140,6 +140,47 @@ $ gulp deploy
 ```
 
 
+### Additional Widgets information
+
+When the userDetail widget run and user is logged in, automatically a class .shw-widgets-logged-in will be assigned to the body tag.
+In this way will be easy to hide/show certains elements on our page via simple CSS.
+Example is present in **./lib/aegon-sass-library/widgets/_extra_features.scss**.
+
+**JavaScript way**: additionally, we have also public functions loaded by userDetails widgets that permit to control if an user is logged in.
+Example: the code below return true/false for current user logged status.
+```
+window.shwGlobal.userLoggedin()
+```
+
+With this userLoggedin(), it's easy to create additional scripts that check the widgets session if logged or not. Just remember to call those methods below after DOMready.
+Example:
+
+```
+if (window.shwGlobal.userLoggedin()) {
+  // Do whatever you want if user logged in
+}
+
+// Or:
+if (!window.shwGlobal.userLoggedin()) {
+  // Do whatever you want if user logged out
+}
+```
+
+Assitionally: each time the page is loaded and user is logged in or logged out, we can bind those events.
+Example below:
+
+```
+$(window).on('shwUserLoggedIn', function() {
+  // Do whatever you want here
+});
+
+$(window).on('shwUserLogout', function() {
+  // Do whatever you want here
+});
+```
+
+For other functionality, like **window.shwGlobal.getRelNumByType()**, check the JS file **./lib/aegon-scripts-library/widgets/userDetail.js** and look at methods in the bottom.
+
 ## Common problems
 
 * In case of network issues with git:// protocol, please try to enable the https:// protocol using the command below:

@@ -17,7 +17,7 @@
     "update": "git pull && npm run subs",
     "build": "npm install && gulp",
     "serve": "gulp --dev",
-    "pull": "git pull && git submodule foreach 'echo \">> force git pull in submodules: Done\" `git pull`'"
+    "pull": "git pull && git submodule foreach 'echo \">> force git pull in submodules: Done\" `git checkout master && git pull`'"
   },
   "keywords": [
     "toolkit",

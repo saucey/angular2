@@ -17604,10 +17604,10 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
   'use strict';
 
   // Add new item to public Drupal object
-  Drupal.behaviors["checkbox"] = {
+  Drupal.behaviors.checkbox = {
     attach: function () {
     	var visited = function () {  //this is to implement a different error behaviour between when the form is loaded and once an element has been visited
-console.log("checkbox init");
+        console.log("checkbox init");
         $(this).addClass("visited");
       };
       $("span.checkbox").focus(visited);
@@ -17652,29 +17652,29 @@ console.log("checkbox init");
   // Add new item to public Drupal object
   Drupal.behaviors.select = {
     attach: function () {
-        $("select").msDropDown();
-//console.log("initializing msDD");
-        //$(".lhfs_widget select").msDropDown();
+      $("select").msDropDown();
+      //console.log("initializing msDD");
+      //$(".lhfs_widget select").msDropDown();
 
-        //transfer classes from select to root object of msDropDown (conserve .half, for example)
-        $(".ddOutOfVision > select").each(function() {
-          $(this).parent().next().addClass(this.className);
-        });
+      //transfer classes from select to root object of msDropDown (conserve .half, for example)
+      $(".ddOutOfVision > select").each(function() {
+        $(this).parent().next().addClass(this.className);
+      });
 
-        //put all selects treat by msDropDown into the .dd container, and out of the .ddOutOfVision containter, so that frontend error marking has a chance (so far, tests show this does not affect the functionality of the dd)
-        var $select = $(".ddOutOfVision select").detach();
-        var $dd = $(".dd");
-        //move select into the .dd container
-        $select.each(function (i, element) {
-          this.style.display = "none";
-          $($dd[i].firstChild).before(this);
-        });
-        //move the selects' errorText to the end of the .dd container
-        var $ETs = $(".dd + .errorText");
-        $ETs.each(function () {
-          var $dd = $(this).prev();
-          $dd.find("select").after(this);
-        });
+      //put all selects treat by msDropDown into the .dd container, and out of the .ddOutOfVision containter, so that frontend error marking has a chance (so far, tests show this does not affect the functionality of the dd)
+      var $select = $(".ddOutOfVision select").detach();
+      var $dd = $(".dd");
+      //move select into the .dd container
+      $select.each(function (i) {
+        this.style.display = "none";
+        $($dd[i].firstChild).before(this);
+      });
+      //move the selects' errorText to the end of the .dd container
+      var $ETs = $(".dd + .errorText");
+      $ETs.each(function () {
+        var $dd = $(this).prev();
+        $dd.find("select").after(this);
+      });
     }
   };
 })(jQuery);
@@ -17702,6 +17702,32 @@ console.log("checkbox init");
       $("input, select, textarea, div.dd, span.checkbox").click(visited); //strictly speaking, this line with only the checkbox selector should be put into checkbox.js as well, but accompanied by all the previous lines this seems to be an awful lot of baggage just to maintain the appearance of modularity
     }
   };
+})(jQuery);
+
+/**
+ * Aegon Faq script
+ */
+
+// Closure with jQuery support
+(function($) {
+  'use strict';
+
+  // Add new item to public Drupal object
+  Drupal.behaviors.aegonFaq = {
+    attach: function () {
+
+      // Little refactor for deprecated use of $('selector').click
+      $(".faq .title").on('click', function (evt) {
+        evt.stopPropagation();
+        var radio = $("input[name=show]", this.parentNode)[0];
+        if (radio.checked) {
+          radio.checked = false;
+          return false; //prevents, together with .stopPropagation, bubbling, which could keep the radio button checked, instead of having it set to false here
+        }
+      });
+    }
+  };
+
 })(jQuery);
 
 (function(Drupal, $) {
@@ -18384,6 +18410,7 @@ console.log("checkbox init");
   };
 
 })(jQuery, Drupal, this, this.document);
+/* global PointerEventsPolyfill:false */
 (function ($, win) {
 
   'use strict';
@@ -18453,34 +18480,6 @@ console.log("checkbox init");
   };
   
 })(jQuery, this);
-
-/**
- * LHFS script
- */
-
-// Closure with jQuery support
-(function($) {
-  'use strict';
-
-  // Add new item to public Drupal object
-  Drupal.behaviors.faq = {
-    attach: function () {
-
-      // Check if div#lhfs_widget exist
-      if ($('.faq').length > 0) {
-        $(".faq .title").click(function (event) {
-          event.stopPropagation();
-          var radio = $("input[name=show]", this.parentNode)[0];
-          if (radio.checked) {
-            radio.checked = false;
-            return false; //prevents, together with .stopPropagation, bubbling, which could keep the radio button checked, instead of having it set to false here
-          }
-        });
-      }
-    }
-  };
-
-})(jQuery);
 
 /**
  * LHFS script
@@ -18593,6 +18592,12 @@ console.log("checkbox init");
  * Dependencies: 
  * - vendors/jquery.cookie.js (Cookie jQuery handlers)
  * - modernizr.custom.js (Proper cross-browser style)
+ *
+ * Events trigger on window object: shwUserLogout, shwUserLoggedIn.
+ * Usage:
+ * $(window).on('shwUserLoggedIn', function() {
+ *   // Do whatever you want here
+ * });
  */
 
 (function(doc, win, $, Drupal) {
@@ -18638,13 +18643,29 @@ console.log("checkbox init");
    */
   Drupal.behaviors.userDetailWidget = {
 
+    // Initial container for data object
+    shwData: null,
+
+    // Initial container for entire raw json object
+    shwRawData: null,
+
     attach: function (context, settings) {
       // Run before real initialization
       this.setup(settings);
 
       // Register a public method for deinitialize
-      win.shwGlobal.logout = (function() {
-        this.deinitialize();
+      win.shwGlobal.userLogout = (function(onlyLocal) {
+        return this.deinitialize(onlyLocal);
+      }).bind(this);
+
+      // Register a public method for loggedin
+      win.shwGlobal.userLoggedIn = (function() {
+        return this.userLoggedIn();
+      }).bind(this);
+
+      // Register a public method for getRelNumByType
+      win.shwGlobal.getRelNumByType = (function(type) {
+        return this.getRelNumByType(type);
       }).bind(this);
     },
 
@@ -18684,7 +18705,6 @@ console.log("checkbox init");
 
       // Local variables
       var that = this,
-          // dataType = this.getDataType(),
           jsonPayload,
           retreiveBSPartij,
           checkSanityOfJson;
@@ -18721,11 +18741,21 @@ console.log("checkbox init");
 
         // Parse the JSON if needed
         parseJSON = isString ? $.parseJSON(json) : json;
+
         // Check if container and output of JSON is properly setup
-        if (!checkSanityOfJson(parseJSON)) { return; }
+        if (!checkSanityOfJson(parseJSON)) {
+
+          return;
+
+        } else {
+
+          // Register raw json data if OK
+          that.shwRawData = parseJSON.retrieveResponse;
+        }
 
         // Boolean to declare and check is user is logged in
         isLogged = (parseJSON.retrieveResponse.PROCES.STATUS === '00000');
+
         // Data ready to be passed to initialize() below
         data = {
 
@@ -18745,7 +18775,6 @@ console.log("checkbox init");
       // Load AJAX request
       $.ajax({
         timeout: 10000,
-        // type: (dataType === 'jsonp' ? 'POST' : 'GET'),
         type: 'GET',
         url: this.apiUrl,
         data: jsonPayload,
@@ -18759,6 +18788,9 @@ console.log("checkbox init");
 
       // Local variables
       var that = this;
+
+      // Update the global shwData
+      this.shwData = data;
 
       // Callback to prevent appendTo before correct end of parseWidget()
       var callback = function (domWidget) {
@@ -18806,6 +18838,9 @@ console.log("checkbox init");
       
       // Launch also the function to append the user name in menu
       this.shwUserDetailsInmenu(data.userName);
+
+      // Trigger an event
+      $(win).trigger('shwUserLoggedIn');
 
       // Show/hide logged's items
       $('body').addClass('shw-widgets-logged-in');
@@ -19012,19 +19047,6 @@ console.log("checkbox init");
       return dateFormatted;
     },
 
-    getDataType: function () {
-
-      var apiUrlOrig = this.apiUrl.split('/').splice(2, 1).join('/'),
-
-          // Check if is a relative address without protocol http/https
-          localDomain = this.apiUrl.indexOf('://') === -1,
-
-          // Check if current apiUrl is the same domain of current address
-          sameDomain = doc.location.host.indexOf(apiUrlOrig) !== -1;
-
-      return (sameDomain || localDomain) ? 'json' : 'jsonp';
-    },
-
     getCookie: function () {
 
       // Return cookie value or FALSE
@@ -19040,7 +19062,12 @@ console.log("checkbox init");
       if (response) { throw response.responseText; }
     },
 
-    deinitialize: function () {
+    /**
+     * Method to logout an user 
+     * @param  {boolean} onlyLocal  Pass true if you want destroy only local session
+     * @return {boolean} wrapper for this.userLoggedIn()
+     */
+    deinitialize: function (onlyLocal) {
 
       // Remove classes to hide logged's items
       $('body').removeClass('shw-widgets-logged-in mobile-tap');
@@ -19053,6 +19080,67 @@ console.log("checkbox init");
 
       // Switch off all events
       this.events(true);
+
+      // Set loggedIn to false
+      this.shwData.loggedIn = false;
+
+      // Trigger an event
+      $(win).trigger('shwUserLogout');
+
+      // Logout also remotely
+      if (!onlyLocal) { location.href = logoutPathLink; }
+
+      // Return current status
+      return this.userLoggedIn();
+    },
+
+    /**
+     * Check if the user is loggen in or not
+     * @return {boolean} true or false if user is logged or not
+     */
+    userLoggedIn: function () {
+
+      // Return loggedIn value or false if not existent
+      return this.shwData.loggedIn || false;
+    },
+
+    /**
+     * This method permit to retrieve all elements associated with
+     * _AE_RELNUM_TYPE present in json data, retrieved from remote API.
+     * 
+     * @param  {string} type   Pass a string af filter parameter
+     * @return {string|array}  Return a numeric string or array collection
+     */
+    getRelNumByType: function (type) {
+
+      // Force to uppercase
+      type = type.toUpperCase();
+
+      // Return null if no _AE_PARTIJ_IDENTIFICATIE
+      if (this.shwRawData && this.shwRawData.PARTIJ &&
+        !this.shwRawData.PARTIJ._AE_PARTIJ_IDENTIFICATIE) { return null; }
+
+      // Create a local variable with identificatie array
+      var arrIdentifications = this.shwRawData.PARTIJ._AE_PARTIJ_IDENTIFICATIE;
+
+      // If no type param, return the whole array
+      if (!type) { return arrIdentifications; }
+
+      // Filter the array based on type param passed
+      var arrFiltered = arrIdentifications.filter(function(obj){
+        return obj._AE_RELNUM_TYPE === type ? true : false;
+      });
+
+      // Create empty values array
+      var values = [];
+
+      // Populate values array with all values present in the filtered array
+      arrFiltered.forEach(function(value){
+        values.push(value.RELNUM);
+      });
+
+      // Return single value or multiple values as array
+      return values.length <= 1 ? values[0] : values;
     }
   };
 

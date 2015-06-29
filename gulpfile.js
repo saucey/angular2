@@ -135,16 +135,6 @@ gulp.task('styles:library', function () {
 });
 
 gulp.task('scripts:library', function () {
-  
-  // Internet Explorer stuff
-  gulp.src([
-      config.src.libScriptsPath + '/vendor/ie/**/*.js'
-    ])
-    .pipe(plumber())
-    .pipe(concat('ie-aegon-library.js'))
-    .pipe(gulpif(!config.dev, streamify(uglify())))
-    .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
-    .pipe(gulp.dest(config.dest + '/scripts'));
 
   // Main scripts
   return gulp.src([

@@ -1,13 +1,13 @@
   <section id="personal_details_widget" class="personal_details_widget container_12">
     <div id="" class=""><!--faceless widget container with unique id, used for ajax loading-->
-      <form name="lhfs_form">
+      <form name="personal_details_form">
       <h3>Naam en contact gegevens</h3>
 
         <ul class="row-fluid">
 
           <!--if iterations are taking place, iterate over the elements between this comment-->
           
-          <li class="product span12">
+          <li class="details span12">
             <div class="description">This is an optional description that gives the opportunity for an introduction. Just delete if not required.</div>
             <div class="details edit container_12">
 
@@ -61,7 +61,7 @@
                       <li class="label required span4">Postcode</li>
                       <li class="value span8">
                         <span class="help"></span>
-                        <input type="text" name="ra_zip" id="ra_zip" pattern="\w*" placeholder="Postcode"required/>
+                        <input type="text" name="ra_NL_zip" id="ra_NL_zip" pattern="^\d+$" placeholder="Postcode"required/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
@@ -69,31 +69,31 @@
                       <li class="label required span4">Huisnummer</li>
                       <li class="value span8">
                         <span class="help"></span>
-                        <input type="text" name="ra_number" id="ra_number" pattern="\d*" placeholder="Huisnummer" required/>
+                        <input type="text" name="ra_NL_number" id="ra_NL_number" pattern="\d*" placeholder="Huisnummer" required/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
-                    <ul class="horizontal ra_addition row-fluid">
+                    <ul class="horizontal addition row-fluid">
                       <li class="label required span4">Huisnummertoevoeging</li>
                       <li class="value span8">
                         <span class="help"></span>
-                        <input type="text" name="ra_addition" id="ra_addition" pattern="\w*" required placeholder="Huisnummertoevoeging"/>
+                        <input type="text" name="ra_NL_addition" id="ra_NL_addition" pattern="\w*" required placeholder="Huisnummertoevoeging"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
-                    <ul class="horizontal ra_street row-fluid">
+                    <ul class="horizontal street row-fluid">
                       <li class="label required span4">Straat</li>
                       <li class="value span8">
                         <span class="help"></span>
-                        <input type="text" name="ra_street" id="ra_street" pattern="\w*" required placeholder="Straat"/>
+                        <input type="text" name="ra_NL_street" id="ra_NL_street" pattern="\w*" required placeholder="Straat"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
-                    <ul class="horizontal ra_city row-fluid">
+                    <ul class="horizontal city row-fluid">
                       <li class="label required span4">Plaats</li>
                       <li class="value span8">
                         <span class="help"></span>
-                        <input type="text" name="ra_city" id="ra_city" pattern="\w*" required placeholder="Plaats"/>
+                        <input type="text" name="ra_NL_city" id="ra_NL_city" pattern="\w*" required placeholder="Plaats"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
@@ -101,7 +101,47 @@
 
                   <!--residential address world-->
                   <div class="world">
-                    WORLD!!
+
+                    <ul class="horizontal zip row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ra_world_field1" id="ra_world_field1" pattern="\w*" required placeholder=""/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal number row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ra_world_field2" id="ra_world_field2" pattern="\d*" placeholder="" required/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal addition row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ra_world_field3" id="ra_world_field3" pattern="\w*" required placeholder=""/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal street row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ra_world_field4" id="ra_world_field4" pattern="\w*" required placeholder=""/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal city row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ra_world_field5" id="ra_world_field5" pattern="\w*" required placeholder=""/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
                   </div><!--/residential address world-->
 
                 </div><!--/residential-->
@@ -109,61 +149,111 @@
                 <!--correspondential address-->
                 <div class="correspondential">
 
-                  <ul class="horizontal ca_dutch_address row-fluid">
-                    <li class="label required span4">Correspontieadres in NL</li>
+                  <ul class="horizontal ca_NL row-fluid">
+                    <li class="label required span4">Correspondentie adres in NL</li>
                     <li class="value span8">
                       <span class="help" title="some more or less helpful text"></span>
                       <label class="radio">
-                        <input type="radio" name="ca_dutch_address" value="1" />
+                        <input type="radio" name="ca_NL" value="1"/>
                         <span class="radio"></span>Ja
                       </label>
                       <label class="radio">
-                        <input type="radio" name="ca_dutch_address" value="0" />
+                        <input type="radio" name="ca_NL" value="0"/>
                         <span class="radio"></span>Nee
                       </label>                
                     </li>
                   </ul>
-                  <ul class="horizontal ca_zip row-fluid">
-                    <li class="label required span4">Postcode</li>
-                    <li class="value span8">
-                      <span class="help"></span>
-                      <input type="text" name="ca_zip" id="ca_zip" pattern="\w*" placeholder="Postcode"required/>
-                      <span class="errorText">some error message visible</span>
-                    </li>
-                  </ul>
-                  <ul class="horizontal ca_number row-fluid">
-                    <li class="label required span4">Huisnummer</li>
-                    <li class="value span8">
-                      <span class="help"></span>
-                      <input type="text" name="ca_number" id="ca_number" pattern="\d*" placeholder="Huisnummer" required/>
-                      <span class="errorText">some error message visible</span>
-                    </li>
-                  </ul>
-                  <ul class="horizontal ca_addition row-fluid">
-                    <li class="label required span4">Huisnummertoevoeging</li>
-                    <li class="value span8">
-                      <span class="help"></span>
-                      <input type="text" name="ca_addition" id="ca_addition" pattern="\w*" required placeholder="Huisnummertoevoeging"/>
-                      <span class="errorText">some error message visible</span>
-                    </li>
-                  </ul>
-                  <ul class="horizontal ca_street row-fluid">
-                    <li class="label required span4">Straat</li>
-                    <li class="value span8">
-                      <span class="help"></span>
-                      <input type="text" name="ca_street" id="ca_street" pattern="\w*" required placeholder="Straat"/>
-                      <span class="errorText">some error message visible</span>
-                    </li>
-                  </ul>
-                  <ul class="horizontal ca_city row-fluid">
-                    <li class="label required span4">Plaats</li>
-                    <li class="value span8">
-                      <span class="help"></span>
-                      <input type="text" name="ca_city" id="ca_city" pattern="\w*" required placeholder="Plaats"/>
-                      <span class="errorText">some error message visible</span>
-                    </li>
-                  </ul>
-                </div><!--/correspondential address-->
+
+                  <!--correspondential address NL-->
+                  <div class="NL">
+
+                    <ul class="horizontal zip row-fluid">
+                      <li class="label required span4">Postcode</li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_NL_zip" id="ca_NL_zip" pattern="\w*" placeholder="Postcode"required/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal number row-fluid">
+                      <li class="label required span4">Huisnummer</li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_NL_number" id="ca_NL_number" pattern="\d*" placeholder="Huisnummer" required/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal addition row-fluid">
+                      <li class="label required span4">Huisnummertoevoeging</li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_NL_addition" id="ca_NL_addition" pattern="\w*" required placeholder="Huisnummertoevoeging"/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal street row-fluid">
+                      <li class="label required span4">Straat</li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_NL_street" id="ca_NL_street" pattern="\w*" required placeholder="Straat"/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal city row-fluid">
+                      <li class="label required span4">Plaats</li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_NL_city" id="ca_NL_city" pattern="\w*" required placeholder="Plaats"/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                  </div><!--/correspondential address NL-->
+
+                  <!--correspondential address world-->
+                  <div class="world">
+
+                    <ul class="horizontal zip row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_world_field1" id="ca_world_field1" pattern="\w*" required placeholder=""/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal number row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_world_field2" id="ca_world_field2" pattern="\d*" placeholder="" required/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal addition row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_world_field3" id="ca_world_field3" pattern="\w*" required placeholder=""/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal street row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_world_field4" id="ca_world_field4" pattern="\w*" required placeholder=""/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                    <ul class="horizontal city row-fluid">
+                      <li class="label required span4"></li>
+                      <li class="value span8">
+                        <span class="help"></span>
+                        <input type="text" name="ca_world_field5" id="ca_world_field5" pattern="\w*" required placeholder=""/>
+                        <span class="errorText">some error message visible</span>
+                      </li>
+                    </ul>
+                  </div><!--/correspondential address world-->
+                </div><!--/correspondential-->
 
               </div><!--/address-->
 

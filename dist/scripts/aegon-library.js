@@ -18481,120 +18481,6 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
   
 })(jQuery, this);
 
-/**
- * LHFS script
- */
-
-// Closure with jQuery support
-(function($) {
-  'use strict';
-
-  // Add new item to public Drupal object
-  Drupal.behaviors.lhfs_widget = {
-    attach: function () {
-
-      // Check if div#lhfs_widget exist
-      if ($('.lhfs_widget').length > 0) {
-        $("#lhfs_widget .tip").addClass("visible");
-        $("#lhfs_widget li.product ul.horizontal").removeClass("visible");
-        $("#lhfs_widget li.product ul.horizontal").addClass("visible");
-        $("#lhfs_widget li.product ul.horizontal.error").removeClass("visible");
-
-        $(".success")
-          .appendTo("body") //move .success to the body, so that it can be centered and fixed to the screen
-          .css("top", (($(window).height() - $(".success").height()) / 2) + "px");  //center .success vertically
-        $(".lightbox")
-          .appendTo("body"); //move .lightbox to the body & after .success so that the visible style for .success still applies
-
-
-        $(".help").mouseover(function () {
-          if (this.title) {
-            //alert(this.title);
-            $(".dialog.help").remove();
-            var dialog = document.createElement("DIV");
-            dialog.className = "help dialog";
-            dialog.innerHTML = this.title;
-            this.title = "";
-            $("#lhfs_widget").append(dialog); //this has 2 happen b4 measurements of dialog are taken, otherwise they won't be initialized
-            var offset = $(this).offset();
-            offset.top = offset.top + $(this).height() + 10;
-            offset.left = offset.left - $(dialog).width() / 2 - 18;
-            $(dialog).offset(offset);
-            var that = this;
-            $(document).click(function () {
-              $(dialog).remove();
-              that.title = dialog.innerHTML;
-            });
-          }
-        });
-
-      }
-    }
-  };
-
-})(jQuery);
-
-/*jshint multistr: true */
-/**
- * Mijn Documenten widget script
- * Dependencies: null
- */
-(function(doc, win, $, Drupal) {
-
-  'use strict';
-
-  /**
-   * MyDocuments's Drupal script.
-   * Add new item to public Drupal object
-   */
-  Drupal.behaviors.myDocumentsWidget = {
-
-    attach: function () {
-
-      $('.my_documents_widget article h2').on('click', function () {
-        $(this).parent('article').toggleClass('open')
-          .siblings().removeClass('open');
-      });
-    }
-  };
-
-})(this.document, this, this.jQuery, this.Drupal);
-
-/*jshint multistr: true */
-/**
- * Mijn Gegevens widget script
- * Dependencies: null
- */
-(function(doc, win, $, Drupal) {
-
-  'use strict';
-
-  /**
-   * MyPersonalDetails's Drupal script.
-   * Add new item to public Drupal object
-   */
-  Drupal.behaviors.personalDetailsWidget = {
-
-    attach: function () {
-console.log("attach");
-      $("input[name=ra_NL]").click( function () {
-        var NL = parseInt($(this).val()) > 0;
-        $(".address .residential .NL").toggleClass("visible", NL);
-        $(".address .residential .world").toggleClass("visible", !NL);
-      });
-      $("input[name=ra_NL]").click();
-
-      $("input[name=ca_NL]").click( function () {
-        var NL = parseInt($(this).val()) > 0;
-        $(".address .correspondential .NL").toggleClass("visible", NL);
-        $(".address .correspondential .world").toggleClass("visible", !NL);
-      });
-      $("input[name=ca_NL]").click();
-    }
-  };
-
-})(this.document, this, this.jQuery, this.Drupal);
-
 /*jshint multistr: true */
 /**
  * User details script
@@ -18645,6 +18531,12 @@ console.log("attach");
 
   // Set the seconds to force not showing the green bar animated
   var secondsForProcessedStatus = 15;
+
+  var testSelector = function (selector) {
+    document.querySelector('*');  //checks if querySelector is implemented and raises an error if not
+    try {document.querySelector(selector)} catch (e) {return false}
+    return true;
+  }
 
   /**
    * User widget's Drupal script.
@@ -18907,8 +18799,8 @@ console.log("attach");
     shwUserDetailsInmenu: function (name) {
 
       // Create DOM for the link
-      var linkDesktop = $('<a />', {'class': 'menu-user-link'});
-      var linkMobile = $('<a />', {'class': 'menu-user-link'});
+      var linkDesktop = $('<a />', {'class': 'icon menu-user-link'});
+      var linkMobile = $('<a />', {'class': 'icon menu-user-link'});
 
       // Set the text with user's name passed
       linkDesktop.text(name).attr('href', mijnaegonPathLink);
@@ -19150,6 +19042,120 @@ console.log("attach");
 
       // Return single value or multiple values as array
       return values.length <= 1 ? values[0] : values;
+    }
+  };
+
+})(this.document, this, this.jQuery, this.Drupal);
+
+/**
+ * LHFS script
+ */
+
+// Closure with jQuery support
+(function($) {
+  'use strict';
+
+  // Add new item to public Drupal object
+  Drupal.behaviors.lhfs_widget = {
+    attach: function () {
+
+      // Check if div#lhfs_widget exist
+      if ($('.lhfs_widget').length > 0) {
+        $("#lhfs_widget .tip").addClass("visible");
+        $("#lhfs_widget li.product ul.horizontal").removeClass("visible");
+        $("#lhfs_widget li.product ul.horizontal").addClass("visible");
+        $("#lhfs_widget li.product ul.horizontal.error").removeClass("visible");
+
+        $(".success")
+          .appendTo("body") //move .success to the body, so that it can be centered and fixed to the screen
+          .css("top", (($(window).height() - $(".success").height()) / 2) + "px");  //center .success vertically
+        $(".lightbox")
+          .appendTo("body"); //move .lightbox to the body & after .success so that the visible style for .success still applies
+
+
+        $(".help").mouseover(function () {
+          if (this.title) {
+            //alert(this.title);
+            $(".dialog.help").remove();
+            var dialog = document.createElement("DIV");
+            dialog.className = "help dialog";
+            dialog.innerHTML = this.title;
+            this.title = "";
+            $("#lhfs_widget").append(dialog); //this has 2 happen b4 measurements of dialog are taken, otherwise they won't be initialized
+            var offset = $(this).offset();
+            offset.top = offset.top + $(this).height() + 10;
+            offset.left = offset.left - $(dialog).width() / 2 - 18;
+            $(dialog).offset(offset);
+            var that = this;
+            $(document).click(function () {
+              $(dialog).remove();
+              that.title = dialog.innerHTML;
+            });
+          }
+        });
+
+      }
+    }
+  };
+
+})(jQuery);
+
+/*jshint multistr: true */
+/**
+ * Mijn Documenten widget script
+ * Dependencies: null
+ */
+(function(doc, win, $, Drupal) {
+
+  'use strict';
+
+  /**
+   * MyDocuments's Drupal script.
+   * Add new item to public Drupal object
+   */
+  Drupal.behaviors.myDocumentsWidget = {
+
+    attach: function () {
+
+      $('.my_documents_widget article h2').on('click', function () {
+        $(this).parent('article').toggleClass('open')
+          .siblings().removeClass('open');
+      });
+    }
+  };
+
+})(this.document, this, this.jQuery, this.Drupal);
+
+/*jshint multistr: true */
+/**
+ * Mijn Gegevens widget script
+ * Dependencies: null
+ */
+(function(doc, win, $, Drupal) {
+
+  'use strict';
+
+  /**
+   * MyPersonalDetails's Drupal script.
+   * Add new item to public Drupal object
+   */
+  Drupal.behaviors.personalDetailsWidget = {
+
+    attach: function () {
+console.log("attach");
+      $("input[name=ra_NL]").click( function () {
+        var NL = parseInt($(this).val()) > 0;
+        $(".address .residential .NL").toggleClass("visible", NL);
+        $(".address .residential .world").toggleClass("visible", !NL);
+      });
+      $("input[name=ra_NL]").click();
+
+      $("input[name=ca_NL]").click( function () {
+        var NL = parseInt($(this).val()) > 0;
+        $(".address .correspondential .NL").toggleClass("visible", NL);
+        $(".address .correspondential .world").toggleClass("visible", !NL);
+      });
+      $("input[name=ca_NL]").click();
     }
   };
 

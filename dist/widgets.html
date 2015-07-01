@@ -87,9 +87,6 @@
 						<a href="components.html#button">Button</a>
 					</li>
 					<li>
-						<a href="components.html#button_edit_desktop">Button Edit Desktop</a>
-					</li>
-					<li>
 						<a href="components.html#checkbox">Checkbox</a>
 					</li>
 					<li>
@@ -650,140 +647,142 @@
 
 				<div class="f-item-preview">
 					<div id="lhfs_widget" class="lhfs_widget container_12">
-    <h3>Betaalgegevens</h2>
-      <div class="tip">
+    <h3>Betaalgegevens<button class="edit right transparent"></button></h3>
+    <div class="tip">
         <div class="intro">Tip: Here comes a title phrase summarizing the text</div>
         This is a placeholder text for whatever a content manager chooses to put at this position and it will only be shown if there is at least one product that can be converted to digital payment. <a>And this link goes to where the user can change his payment methods</a>
-      </div>
+    </div>
 
-      <a name="feedback_anchor"></a>
-      <div class="success invisible">
-        <h2>success header of some sort</h2>
-        some generic success message as a placeholder for real success messages, to be filled in and activated by the back end<br/><br/>
+    <a name="feedback_anchor"></a>
+    <div class="success invisible">
+        <h2>success header of some sort</h2> some generic success message as a placeholder for real success messages, to be filled in and activated by the back end
+        <br/>
+        <br/>
         <button class="button arrow">confirmation text</button>
-      </div>
-      <div class="lightbox"></div>
+    </div>
+    <div class="lightbox"></div>
 
-      <!--for various error messages, iterate over the .error-Div; adding the "visible" class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating-->
-      <div class="error visible">
+    <!--for various error messages, iterate over the .error-Div; adding the "visible" class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating-->
+    <div class="error visible">
         <div class="header">error header of some sort</div>
         <!--button class="button bottom right blue arrow">detail link</button-->
         some generic error message as a placeholder for real error messages, to be filled in and activated by the back end
         <!--button class="button blue arrow">detail link</button-->
-      </div>
-      <!--end error iteration-->
+    </div>
+    <!--end error iteration-->
 
-      <ul class="products row-fluid">
+    <ul class="products row-fluid">
         <!--if iterations are taking place, iterate over the products between this comment-->
         <li class="product data span12">
-          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
-          <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
-          <div class="details">
-            <ul class="horizontal type row-fluid">
-              <li class="label span6">Payment type label</li>
-              <li class="value span6">
-                <span class="help"></span>
-                <span class="content">payment type value</span>
-              </li>
-            </ul>
-            <ul class="horizontal interval row-fluid">
-              <li class="label span6">Payment interval label</li>
-              <li class="value span6">
-                <span style="" class="help" title="some more or less helpful text"></span>
-                <span class="content">payment interval value</span>
-              </li>
-            </ul>
-            <ul class="horizontal account row-fluid">
-              <li class="label span6">Account number label</li>
-              <li class="value span6">
-                <span class="help" title="test text for the help bubble for account number plus a few more choice words so we get more than one line"></span>
-                <span class="content">account number value</span>
-              </li>
-             </ul>
-          </div>
+            <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span>
+            </div>
+            <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
+            <div class="details">
+                <ul class="horizontal type row-fluid">
+                    <li class="label span6">Payment type label</li>
+                    <li class="value span6">
+                        <span class="help"></span>
+                        <span class="content">payment type value</span>
+                    </li>
+                </ul>
+                <ul class="horizontal interval row-fluid">
+                    <li class="label span6">Payment interval label</li>
+                    <li class="value span6">
+                        <span style="" class="help" title="some more or less helpful text"></span>
+                        <span class="content">payment interval value</span>
+                    </li>
+                </ul>
+                <ul class="horizontal account row-fluid">
+                    <li class="label span6">Account number label</li>
+                    <li class="value span6">
+                        <span class="help" title="test text for the help bubble for account number plus a few more choice words so we get more than one line"></span>
+                        <span class="content">account number value</span>
+                    </li>
+                </ul>
+            </div>
         </li>
 
         <!--end product iteration comment-->
-      </ul>
-
-      <ul class="actions">
+    </ul>
+    <ul class="actions">
         <li class="view">
-          <button class="arrow">change button text</button>
+            <button class="edit blue arrow"></button>
         </li>
         <li class="edit">
-          &nbsp;
+            &#xA0;
         </li>
-      </ul>
-    </div>
+    </ul>
+</div>
 				</div>
 
 				<div class="f-item-code f-item-hidden" data-f-toggle="code">
 					<pre><code class="language-markup">&lt;div id=&quot;lhfs_widget&quot; class=&quot;lhfs_widget container_12&quot;&gt;
-    &lt;h3&gt;Betaalgegevens&lt;/h2&gt;
-      &lt;div class=&quot;tip&quot;&gt;
+    &lt;h3&gt;Betaalgegevens&lt;button class=&quot;edit right transparent&quot;&gt;&lt;/button&gt;&lt;/h3&gt;
+    &lt;div class=&quot;tip&quot;&gt;
         &lt;div class=&quot;intro&quot;&gt;Tip: Here comes a title phrase summarizing the text&lt;/div&gt;
         This is a placeholder text for whatever a content manager chooses to put at this position and it will only be shown if there is at least one product that can be converted to digital payment. &lt;a&gt;And this link goes to where the user can change his payment methods&lt;/a&gt;
-      &lt;/div&gt;
+    &lt;/div&gt;
 
-      &lt;a name=&quot;feedback_anchor&quot;&gt;&lt;/a&gt;
-      &lt;div class=&quot;success invisible&quot;&gt;
-        &lt;h2&gt;success header of some sort&lt;/h2&gt;
-        some generic success message as a placeholder for real success messages, to be filled in and activated by the back end&lt;br/&gt;&lt;br/&gt;
+    &lt;a name=&quot;feedback_anchor&quot;&gt;&lt;/a&gt;
+    &lt;div class=&quot;success invisible&quot;&gt;
+        &lt;h2&gt;success header of some sort&lt;/h2&gt; some generic success message as a placeholder for real success messages, to be filled in and activated by the back end
+        &lt;br/&gt;
+        &lt;br/&gt;
         &lt;button class=&quot;button arrow&quot;&gt;confirmation text&lt;/button&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;lightbox&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;lightbox&quot;&gt;&lt;/div&gt;
 
-      &lt;!--for various error messages, iterate over the .error-Div; adding the &quot;visible&quot; class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating--&gt;
-      &lt;div class=&quot;error visible&quot;&gt;
+    &lt;!--for various error messages, iterate over the .error-Div; adding the &quot;visible&quot; class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating--&gt;
+    &lt;div class=&quot;error visible&quot;&gt;
         &lt;div class=&quot;header&quot;&gt;error header of some sort&lt;/div&gt;
         &lt;!--button class=&quot;button bottom right blue arrow&quot;&gt;detail link&lt;/button--&gt;
         some generic error message as a placeholder for real error messages, to be filled in and activated by the back end
         &lt;!--button class=&quot;button blue arrow&quot;&gt;detail link&lt;/button--&gt;
-      &lt;/div&gt;
-      &lt;!--end error iteration--&gt;
+    &lt;/div&gt;
+    &lt;!--end error iteration--&gt;
 
-      &lt;ul class=&quot;products row-fluid&quot;&gt;
+    &lt;ul class=&quot;products row-fluid&quot;&gt;
         &lt;!--if iterations are taking place, iterate over the products between this comment--&gt;
         &lt;li class=&quot;product data span12&quot;&gt;
-          &lt;div class=&quot;title&quot;&gt;Product title comes here&amp;nbsp;&lt;span class=&quot;police-number&quot;&gt;police number&lt;/span&gt;&lt;/div&gt;
-          &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.product element.&lt;/div&gt;
-          &lt;div class=&quot;details&quot;&gt;
-            &lt;ul class=&quot;horizontal type row-fluid&quot;&gt;
-              &lt;li class=&quot;label span6&quot;&gt;Payment type label&lt;/li&gt;
-              &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
-                &lt;span class=&quot;content&quot;&gt;payment type value&lt;/span&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-            &lt;ul class=&quot;horizontal interval row-fluid&quot;&gt;
-              &lt;li class=&quot;label span6&quot;&gt;Payment interval label&lt;/li&gt;
-              &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span style=&quot;&quot; class=&quot;help&quot; title=&quot;some more or less helpful text&quot;&gt;&lt;/span&gt;
-                &lt;span class=&quot;content&quot;&gt;payment interval value&lt;/span&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-            &lt;ul class=&quot;horizontal account row-fluid&quot;&gt;
-              &lt;li class=&quot;label span6&quot;&gt;Account number label&lt;/li&gt;
-              &lt;li class=&quot;value span6&quot;&gt;
-                &lt;span class=&quot;help&quot; title=&quot;test text for the help bubble for account number plus a few more choice words so we get more than one line&quot;&gt;&lt;/span&gt;
-                &lt;span class=&quot;content&quot;&gt;account number value&lt;/span&gt;
-              &lt;/li&gt;
-             &lt;/ul&gt;
-          &lt;/div&gt;
+            &lt;div class=&quot;title&quot;&gt;Product title comes here&amp;nbsp;&lt;span class=&quot;police-number&quot;&gt;police number&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;description&quot;&gt;This is a product description that appears instead of the actual product data. To switch it on and off, the &quot;data&quot; class needs to be removed or added from the li.product element.&lt;/div&gt;
+            &lt;div class=&quot;details&quot;&gt;
+                &lt;ul class=&quot;horizontal type row-fluid&quot;&gt;
+                    &lt;li class=&quot;label span6&quot;&gt;Payment type label&lt;/li&gt;
+                    &lt;li class=&quot;value span6&quot;&gt;
+                        &lt;span class=&quot;help&quot;&gt;&lt;/span&gt;
+                        &lt;span class=&quot;content&quot;&gt;payment type value&lt;/span&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;ul class=&quot;horizontal interval row-fluid&quot;&gt;
+                    &lt;li class=&quot;label span6&quot;&gt;Payment interval label&lt;/li&gt;
+                    &lt;li class=&quot;value span6&quot;&gt;
+                        &lt;span style=&quot;&quot; class=&quot;help&quot; title=&quot;some more or less helpful text&quot;&gt;&lt;/span&gt;
+                        &lt;span class=&quot;content&quot;&gt;payment interval value&lt;/span&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+                &lt;ul class=&quot;horizontal account row-fluid&quot;&gt;
+                    &lt;li class=&quot;label span6&quot;&gt;Account number label&lt;/li&gt;
+                    &lt;li class=&quot;value span6&quot;&gt;
+                        &lt;span class=&quot;help&quot; title=&quot;test text for the help bubble for account number plus a few more choice words so we get more than one line&quot;&gt;&lt;/span&gt;
+                        &lt;span class=&quot;content&quot;&gt;account number value&lt;/span&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
         &lt;/li&gt;
 
         &lt;!--end product iteration comment--&gt;
-      &lt;/ul&gt;
-
-      &lt;ul class=&quot;actions&quot;&gt;
+    &lt;/ul&gt;
+    &lt;ul class=&quot;actions&quot;&gt;
         &lt;li class=&quot;view&quot;&gt;
-          &lt;button class=&quot;arrow&quot;&gt;change button text&lt;/button&gt;
+            &lt;button class=&quot;edit blue arrow&quot;&gt;&lt;/button&gt;
         &lt;/li&gt;
         &lt;li class=&quot;edit&quot;&gt;
-          &amp;nbsp;
+            &amp;#xA0;
         &lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/div&gt;</code></pre>
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
 				</div>
 
 			</div>
@@ -2254,14 +2253,7 @@
 				<div class="f-item-preview">
 					<section id="personal_details_widget" class="personal_details_widget container_12">
     <h3>Naam en contact gegevens
-        <ul class="actions">
-    <li class="view">
-        <button class="edit blue arrow"></button>
-    </li>
-    <li class="edit">
-        &#xA0;
-    </li>
-</ul>
+        <button class="edit right transparent"></button>
       </h3>
 
     <ul class="row-fluid">
@@ -2333,7 +2325,7 @@
             <button class="edit blue arrow"></button>
         </li>
         <li class="edit">
-            &nbsp;
+            &#xA0;
         </li>
     </ul>
 </section>
@@ -2342,14 +2334,7 @@
 				<div class="f-item-code f-item-hidden" data-f-toggle="code">
 					<pre><code class="language-markup">&lt;section id=&quot;personal_details_widget&quot; class=&quot;personal_details_widget container_12&quot;&gt;
     &lt;h3&gt;Naam en contact gegevens
-        &lt;ul class=&quot;actions&quot;&gt;
-    &lt;li class=&quot;view&quot;&gt;
-        &lt;button class=&quot;edit blue arrow&quot;&gt;&lt;/button&gt;
-    &lt;/li&gt;
-    &lt;li class=&quot;edit&quot;&gt;
-        &amp;#xA0;
-    &lt;/li&gt;
-&lt;/ul&gt;
+        &lt;button class=&quot;edit right transparent&quot;&gt;&lt;/button&gt;
       &lt;/h3&gt;
 
     &lt;ul class=&quot;row-fluid&quot;&gt;
@@ -2421,7 +2406,7 @@
             &lt;button class=&quot;edit blue arrow&quot;&gt;&lt;/button&gt;
         &lt;/li&gt;
         &lt;li class=&quot;edit&quot;&gt;
-            &amp;nbsp;
+            &amp;#xA0;
         &lt;/li&gt;
     &lt;/ul&gt;
 &lt;/section&gt;</code></pre>

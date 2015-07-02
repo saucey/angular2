@@ -19074,13 +19074,13 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 
 
         $(".help").mouseover(function () {
-          if (this.title) {
+          if (this.title > " ") { //the temporary content has 2B " ", since "" will set display to "none" according to stylesheet definition, 
             //alert(this.title);
             $(".dialog.help").remove();
             var dialog = document.createElement("DIV");
             dialog.className = "help dialog";
             dialog.innerHTML = this.title;
-            this.title = "";
+            this.title = " ";
             $("#lhfs_widget").append(dialog); //this has 2 happen b4 measurements of dialog are taken, otherwise they won't be initialized
             var offset = $(this).offset();
             offset.top = offset.top + $(this).height() + 10;

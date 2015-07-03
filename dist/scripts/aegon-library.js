@@ -18799,8 +18799,8 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
     shwUserDetailsInmenu: function (name) {
 
       // Create DOM for the link
-      var linkDesktop = $('<a />', {'class': 'icon menu-user-link'});
-      var linkMobile = $('<a />', {'class': 'icon menu-user-link'});
+      var linkDesktop = $('<a />', {'class': 'icon-user-link'});
+      var linkMobile = $('<a />', {'class': 'icon-user-link'});
 
       // Set the text with user's name passed
       linkDesktop.text(name).attr('href', mijnaegonPathLink);

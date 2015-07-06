@@ -18672,10 +18672,9 @@ console.log("default user data");
           'lastAccess': that.getCookie()
         };
         // Activate the widget
-console.log("DATA " + data);
         that.initialize(data);
       };
-console.log("URL " + this.apiUrl);
+
       // Load AJAX request
       $.ajax({
         timeout: 10000,

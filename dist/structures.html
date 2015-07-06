@@ -125,6 +125,12 @@
 			<a href="widgets.html" class="f-menu__heading">Widgets</a>
 			<ul>
 					<li>
+						<a href="widgets.html#communication_preferences">Communication Preferences</a>
+					</li>
+					<li>
+						<a href="widgets.html#communication_preferences_edit">Communication Preferences Edit</a>
+					</li>
+					<li>
 						<a href="widgets.html#contract_overview">Contract Overview</a>
 					</li>
 					<li>
@@ -156,9 +162,6 @@
 					</li>
 					<li>
 						<a href="widgets.html#personal_details_edit">Personal Details Edit</a>
-					</li>
-					<li>
-						<a href="widgets.html#user_detail">User Detail</a>
 					</li>
 			</ul>
 		</li>
@@ -1149,7 +1152,7 @@ HTML output is only a working example taken from Drupal. To styling/scripting th
 				
 
 				<div class="f-item-preview">
-					<aside class="desktop">
+					<aside class="desktop" style="position: relative;">
     <nav class="mainmenu">
         <ul class="submenu">
             <li class="home-tap">
@@ -1240,10 +1243,11 @@ HTML output is only a working example taken from Drupal. To styling/scripting th
         </ul>
     </nav>
 </aside>
+</div>
 				</div>
 
 				<div class="f-item-code f-item-hidden" data-f-toggle="code">
-					<pre><code class="language-markup">&lt;aside class=&quot;desktop&quot;&gt;
+					<pre><code class="language-markup">&lt;aside class=&quot;desktop&quot; style=&quot;position: relative;&quot;&gt;
     &lt;nav class=&quot;mainmenu&quot;&gt;
         &lt;ul class=&quot;submenu&quot;&gt;
             &lt;li class=&quot;home-tap&quot;&gt;
@@ -1333,7 +1337,8 @@ HTML output is only a working example taken from Drupal. To styling/scripting th
                 &lt;/li&gt;
         &lt;/ul&gt;
     &lt;/nav&gt;
-&lt;/aside&gt;</code></pre>
+&lt;/aside&gt;
+&lt;/div&gt;</code></pre>
 				</div>
 
 			</div>
@@ -1344,7 +1349,11 @@ HTML output is only a working example taken from Drupal. To styling/scripting th
 				<div class="f-item-heading-group" data-f-toggle="details">
 					<a href="#user_detail" class="f-item-heading">User Detail</a>
 					<div class="f-item-toggles">
-						
+						<span class="f-toggle f-icon" data-f-toggle-control="notes" title="toggle notes">
+							<svg>
+								<use xlink:href="#f-icon-notes" />
+							</svg>
+						</span>
 						<span class="f-toggle f-icon" data-f-toggle-control="code" title="toggle code">
 							<svg>
 								<use xlink:href="#f-icon-code" />
@@ -1353,7 +1362,10 @@ HTML output is only a working example taken from Drupal. To styling/scripting th
 					</div>
 				</div>
 
-				
+				<div class="f-item-notes" data-f-toggle="notes">
+					<p>Please visit &quot;Drupal Header User Detail Widget&quot; page from the left menu for a sample recostruction of Drupal layout with header and working prototype.</p>
+
+				</div>
 
 				<div class="f-item-preview">
 					<!-- Just a wrapper for design library output -->

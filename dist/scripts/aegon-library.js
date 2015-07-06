@@ -18588,8 +18588,10 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
       }
 
       // Set url API for local and real environments
-      if (settings.onlineAegonNl.hostname === 'local') {
-        this.apiUrl = '/file/example/user_detail_bs.json';
+console.log("protocol " + window.location.protocol + "/" + (window.location.protocol === "file:"));
+      if (settings.onlineAegonNl.hostname === 'local' || window.location.protocol === "file:") {
+console.log("default user data");
+        this.apiUrl = 'file/example/user_detail_bs.json';
       } else {
         this.apiUrl = realEndpoint;
       }
@@ -18670,9 +18672,10 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
           'lastAccess': that.getCookie()
         };
         // Activate the widget
+console.log("DATA " + data);
         that.initialize(data);
       };
-
+console.log("URL " + this.apiUrl);
       // Load AJAX request
       $.ajax({
         timeout: 10000,
@@ -19140,6 +19143,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
    * Add new item to public Drupal object
    */
   Drupal.behaviors.personalDetailsWidget = {
+    validation: {  //  this is part of the form validation routine; when it is working correctly, this should be bumped to a general level
+      zip: "^d+\w*$",
+    },
 
     attach: function () {
 console.log("attach");

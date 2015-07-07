@@ -11,6 +11,7 @@ Beside Gulp we are customising a new utility called Fabricator, that permit to k
 
 This **Aegon technical design library** repository contains configuration files to build the development environment and static version of this website tool ready to be deployed in only one shot from command line.
 It has additionals GIT submodules that will be setup extra libraries under ./lib folders, to mantain an assets, scripts and SASS extra projects shared with other main Drupal projects and third party tools/websites.
+
 Extra components repository are listed below:
 
 * Assets repo: [https://bitbucket.org/cxstudio/aegon-assets-library](https://bitbucket.org/cxstudio/aegon-assets-library)

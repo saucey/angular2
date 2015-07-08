@@ -1375,29 +1375,31 @@ HTML output is only a working example taken from Drupal. To styling/scripting th
 
     <div class="inplace">
 
-        <button class="btn-login-loggedin">Ingelogd</button>
+        <label>
+            <input type="checkbox" id="UDW_dd_show" />
+            <span class="btn-login-loggedin">Ingelogd</span>
+            <div class="dropdown">
 
-        <div class="dropdown">
+                <div class="highlight mobile">
+                    <div class="text">
+                        <p class="welcome">
+                            <strong>Welkom <span class="user_detail_widget_name">username</span>.</strong> Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span>
+                        </p>
+                    </div>
+                </div>
 
-            <div class="highlight mobile">
                 <div class="text">
-                    <p class="welcome">
-                        <strong>Welkom <span class="user_detail_widget_name">username</span>.</strong> Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span>
+                    <p class="name"><span class="user_detail_widget_name">username</span>
+                    </p>
+                    <p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span>
+                    </p>
+                    <p class="action">
+                        <a href="#" class="user_detail_widget_logout_link button arrow">Uitloggen</a>
+                        <a href="#" class="user_detail_widget_mijnaegon_link button white myaegon">Mijn Overzicht</a>
                     </p>
                 </div>
             </div>
-
-            <div class="text">
-                <p class="name"><span class="user_detail_widget_name">username</span>
-                </p>
-                <p class="log">Uw vorige bezoek was op <span class="user_detail_widget_last_access">00-00-0000 om 00:00 uur</span>
-                </p>
-                <p class="action">
-                    <a href="#" class="user_detail_widget_logout_link button arrow">Uitloggen</a>
-                    <a href="#" class="user_detail_widget_mijnaegon_link button white myaegon">Mijn Overzicht</a>
-                </p>
-            </div>
-        </div>
+        </label>
     </div>
 
     <div class="text">
@@ -1428,29 +1430,31 @@ HTML output is only a working example taken from Drupal. To styling/scripting th
 
     &lt;div class=&quot;inplace&quot;&gt;
 
-        &lt;button class=&quot;btn-login-loggedin&quot;&gt;Ingelogd&lt;/button&gt;
+        &lt;label&gt;
+            &lt;input type=&quot;checkbox&quot; id=&quot;UDW_dd_show&quot; /&gt;
+            &lt;span class=&quot;btn-login-loggedin&quot;&gt;Ingelogd&lt;/span&gt;
+            &lt;div class=&quot;dropdown&quot;&gt;
 
-        &lt;div class=&quot;dropdown&quot;&gt;
+                &lt;div class=&quot;highlight mobile&quot;&gt;
+                    &lt;div class=&quot;text&quot;&gt;
+                        &lt;p class=&quot;welcome&quot;&gt;
+                            &lt;strong&gt;Welkom &lt;span class=&quot;user_detail_widget_name&quot;&gt;username&lt;/span&gt;.&lt;/strong&gt; Uw vorige bezoek was op &lt;span class=&quot;user_detail_widget_last_access&quot;&gt;00-00-0000 om 00:00 uur&lt;/span&gt;
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
 
-            &lt;div class=&quot;highlight mobile&quot;&gt;
                 &lt;div class=&quot;text&quot;&gt;
-                    &lt;p class=&quot;welcome&quot;&gt;
-                        &lt;strong&gt;Welkom &lt;span class=&quot;user_detail_widget_name&quot;&gt;username&lt;/span&gt;.&lt;/strong&gt; Uw vorige bezoek was op &lt;span class=&quot;user_detail_widget_last_access&quot;&gt;00-00-0000 om 00:00 uur&lt;/span&gt;
+                    &lt;p class=&quot;name&quot;&gt;&lt;span class=&quot;user_detail_widget_name&quot;&gt;username&lt;/span&gt;
+                    &lt;/p&gt;
+                    &lt;p class=&quot;log&quot;&gt;Uw vorige bezoek was op &lt;span class=&quot;user_detail_widget_last_access&quot;&gt;00-00-0000 om 00:00 uur&lt;/span&gt;
+                    &lt;/p&gt;
+                    &lt;p class=&quot;action&quot;&gt;
+                        &lt;a href=&quot;#&quot; class=&quot;user_detail_widget_logout_link button arrow&quot;&gt;Uitloggen&lt;/a&gt;
+                        &lt;a href=&quot;#&quot; class=&quot;user_detail_widget_mijnaegon_link button white myaegon&quot;&gt;Mijn Overzicht&lt;/a&gt;
                     &lt;/p&gt;
                 &lt;/div&gt;
             &lt;/div&gt;
-
-            &lt;div class=&quot;text&quot;&gt;
-                &lt;p class=&quot;name&quot;&gt;&lt;span class=&quot;user_detail_widget_name&quot;&gt;username&lt;/span&gt;
-                &lt;/p&gt;
-                &lt;p class=&quot;log&quot;&gt;Uw vorige bezoek was op &lt;span class=&quot;user_detail_widget_last_access&quot;&gt;00-00-0000 om 00:00 uur&lt;/span&gt;
-                &lt;/p&gt;
-                &lt;p class=&quot;action&quot;&gt;
-                    &lt;a href=&quot;#&quot; class=&quot;user_detail_widget_logout_link button arrow&quot;&gt;Uitloggen&lt;/a&gt;
-                    &lt;a href=&quot;#&quot; class=&quot;user_detail_widget_mijnaegon_link button white myaegon&quot;&gt;Mijn Overzicht&lt;/a&gt;
-                &lt;/p&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
+        &lt;/label&gt;
     &lt;/div&gt;
 
     &lt;div class=&quot;text&quot;&gt;

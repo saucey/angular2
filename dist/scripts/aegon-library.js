@@ -18553,6 +18553,8 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
     attach: function (context, settings) {
       // Run before real initialization
       this.setup(settings);
+//only for development: simulate the cookie that is set by ASSO; the cookie as
+//$.cookie(mijnAegonCookieLoggedInName, "\"11-12-2015 12:34:56\"");
       // Register a public method for deinitialize
       win.shwGlobal.userLogout = (function(onlyLocal) {
         return this.deinitialize(onlyLocal);
@@ -18734,7 +18736,6 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 
         // Convert lastAcess in formatted date
         dateFormatted = this.formatDatetime(data.lastAccess);
-        $template.find(".user_detail_widget_last_access").text(dateFormatted);
       }
       
       // Launch also the function to append the user name in menu
@@ -18784,6 +18785,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
     expiredTimeFromLogin: function () {
 
       var timeCookie = this.getCookie();
+console.log("expired " + timeCookie);
       // Stop execution an return false if no mijnaegon cookie registered
       if (!timeCookie) { return false; }
 
@@ -18791,6 +18793,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
       // adding the .processed class.
       var futureTMS = this.formatDatetime(timeCookie, true) + 
                       (secondsForProcessedStatus * 1000);
+console.log("future " + futureTMS);
       return ($.now() > futureTMS) && true;
     },
 
@@ -18915,17 +18918,16 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 
       // Local variables
       var dateFormatted, day, month, year, hours, minutes;
-      //AESSO writes the cookie value surrounded by double quotes; the following RegEx will take care of that, but it also won't break if that error is corrected
-      if (date) {
-        var dp = date.match(/(\d+)/g);
-        //the expected format of the date string is YYYY-MM-DD HH:MM:SS, indices in dp start with 0
-        //we convert the date to English format, aka MM/DD/YYYY HH:MM:SS
-        //this is drop-dead-ugly, but it does the job
-        date = dp[1] + "/" + dp[2] + "/" + dp[0] + " " + dp[3] + ":" + dp[4] + ":" + dp[5] + " UTC";
-      }
 
-      // Convert string into Date object
+      // Convert hyphens with spaces
+      if (date.search('-') !== -1) { date = date.replace(/-/g, ' '); }
+
+      // Add UTC in the end, in case is not available in the string passed
+      if (date.search('UTC') === -1) { date = date + ' UTC'; }
+
+      // Convert in Date object from string
       date = new Date(date);
+//date = new Date(2016,11,11,12,34,56);
       // Return the timestamp if true is passed as param
       if (timestamp) { return date.getTime(); }
 
@@ -18943,7 +18945,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 
       // Generate right format in Dutch
       dateFormatted = day+'-'+month+'-'+year+' om '+hours+':'+minutes+' uur';
-
+console.log("date formatted " + dateFormatted);
       return dateFormatted;
     },
 
@@ -19144,6 +19146,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
     },
 
     attach: function () {
+console.log("attach");
       $("input[name=ra_NL]").click( function () {
         var NL = parseInt($(this).val()) > 0;
         $(".address .residential .NL").toggleClass("visible", NL);

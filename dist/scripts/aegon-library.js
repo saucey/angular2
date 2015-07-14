@@ -18803,15 +18803,17 @@ $.cookie.raw = cookieRawBak;
         $template.find('.highlight.mobile').delay(3000).slideUp(500);
       }
 
-      if ( $.cookie("hasBeenShown") ) {
+      /*if ( $.cookie("hasBeenShown") ) {
         $template.find(".highlight").addClass("has-been-shown");
-      }
+      }*/
       // Compare datetime with mijnaegon last login and add .processed class
-      if (this.expiredTimeFromLogin() || $.cookie("hasBeenShown")) { $template.addClass('processed'); }
+      //if (this.expiredTimeFromLogin() || $.cookie("hasBeenShown")) { $template.addClass('processed'); }
+console.log("time " + this.expiredTimeFromLogin());
+      if (this.expiredTimeFromLogin()) { $template.addClass('processed'); }
 
       // cookie to make sure that the next time this template is shown,
       // the welcome animation is off
-      $.cookie("hasBeenShown", "1");
+      //$.cookie("hasBeenShown", "1");
 
       // Finally run the callback to append all our shw-DOM in the proper
       // shw place
@@ -18828,6 +18830,8 @@ $.cookie.raw = cookieRawBak;
       // adding the .processed class.
       var futureTMS = this.formatDatetime(timeCookie, true) +
                       (secondsForProcessedStatus * 1000);
+//console.log("future " + futureTMS + "\nnow" + $.now());
+console.log("ts " + (new Date(futureTMS)) + "\nnow" + (new Date($.now())));
       return ($.now() > futureTMS) && true;
     },
 

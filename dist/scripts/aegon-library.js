@@ -17622,7 +17622,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
   Drupal.behaviors.checkbox = {
     attach: function () {
     	var visited = function () {  //this is to implement a different error behaviour between when the form is loaded and once an element has been visited
-        console.log("checkbox init");
+//console.log("checkbox init");
         $(this).addClass("visited");
       };
       $("span.checkbox").focus(visited);
@@ -17656,6 +17656,26 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 //   };
 // 
 // })(jQuery);
+
+/**
+ * Example JavaScript component
+ */
+// Closure with jQuery support
+(function($) {
+  'use strict';
+
+  // Add new item to public Drupal object
+  Drupal.behaviors.radio = {
+    attach: function () {
+    	var visited = function () {  //this is to implement a different error behaviour between when the form is loaded and once an element has been visited
+//console.log("radio init");
+        $(this).addClass("visited");
+      };
+      $("span.radio").focus(visited);
+      $("span.radio").click(visited);
+    }
+  };
+})(jQuery);
 
 /**
  * Example JavaScript component
@@ -18547,6 +18567,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
   // Set the seconds to force not showing the green bar animated
   var secondsForProcessedStatus = 15;
 
+  // Boolean to check if not on local or DEV environemnt
+  var notLocalOrDev = true;
+
   /**
    * User widget's Drupal script.
    * Add new item to public Drupal object
@@ -18587,23 +18610,30 @@ $.cookie.raw = cookieRawBak;
 
     setup: function (settings) {
 
-      // Check if current website is not local or DEV environemnt
+<<<<<<< HEAD
+      // Check if current website is not local or DEV environment
       var notLocalOrDev = (
         settings.onlineAegonNl.hostname !== 'local' &&
         win.location.hostname.search('www.dev.') !== -1
+=======
+      // Check if current website is not local or DEV environemnt
+      notLocalOrDev = (
+        settings.onlineAegonNl.hostname == undefined ||
+        (settings.onlineAegonNl.hostname !== 'local' && win.location.hostname.search('www.dev.') !== -1)
+>>>>>>> 1b9795b4e2a5faeff3807a9b013ad6dbb433c986
       );
 
       // Try to avoid multiple requests to the backend environment, if the
       // browser never ever had a logged session. Implement the block only for
       // Testing, UAT and Production environments.
       if (notLocalOrDev) {
-        if (!this.getCookie()) {
-          return;
+        if (!this.lastLogin()) {
+          //return;
         }
       }
 
       // Set url API for local and real environments
-      if (settings.onlineAegonNl.hostname === 'local') {
+      if (!notLocalOrDev) {
         this.apiUrl = '/file/example/user_detail_bs.json';
       } else {
         this.apiUrl = realEndpoint;
@@ -18682,7 +18712,7 @@ $.cookie.raw = cookieRawBak;
           'userName': parseJSON.retrieveResponse.PARTIJ._AE_PERSOON._AE_SAMNAAM || "n.a.",
 
           // Get last login time from cookie or give false
-          'lastAccess': that.getCookie()
+          'lastAccess': that.lastLogin()
         };
         // Activate the widget
         that.initialize(data);
@@ -18697,7 +18727,7 @@ $.cookie.raw = cookieRawBak;
         data: jsonPayload,
         dataType: 'json',
         success: retreiveBSPartij,
-        error: this.clearCookie
+        error: this.clearLastLogin
       });
     },
 
@@ -18800,7 +18830,7 @@ $.cookie.raw = cookieRawBak;
 
     expiredTimeFromLogin: function () {
 
-      var timeCookie = this.getCookie();
+      var timeCookie = this.lastLogin();
       // Stop execution an return false if no mijnaegon cookie registered
       if (!timeCookie) { return false; }
 
@@ -18963,19 +18993,19 @@ $.cookie.raw = cookieRawBak;
       return dateFormatted;
     },
 
-    getCookie: function () {
+    lastLogin: function () {
 
       // Return cookie value or FALSE
       return $.cookie(mijnAegonCookieLoggedInName) || false;
     },
 
-    clearCookie: function (response) {
+    clearLastLogin: function (response) {
 
       // Remove mijn_last_login's cookie as first
       $.removeCookie(mijnAegonCookieLoggedInName);
 
       // Then throw an error in console
-      if (response) { throw response.responseText; }
+      if (response && !notLocalOrDev) { throw response.responseText; }
     },
 
     /**
@@ -18989,8 +19019,8 @@ $.cookie.raw = cookieRawBak;
       $('body').removeClass('shw-widgets-logged-in mobile-tap');
 
       // Remove mijn_last_login's cookie
-      this.clearCookie();
-
+      this.clearLastLogin();
+      
       // remove the cookie that determines if the green bar is shown
       $.removeCookie("hasBeenShown");
 
@@ -19178,14 +19208,14 @@ $.cookie.raw = cookieRawBak;
         $(".address .residential .NL").toggleClass("visible", NL);
         $(".address .residential .world").toggleClass("visible", !NL);
       });
-      $("input[name=ra_NL]").click();
+      $("input[name=ra_NL]:checked").click();
 
       $("input[name=ca_NL]").click( function () {
         var NL = parseInt($(this).val()) > 0;
         $(".address .correspondential .NL").toggleClass("visible", NL);
         $(".address .correspondential .world").toggleClass("visible", !NL);
       });
-      $("input[name=ca_NL]").click();
+      $("input[name=ca_NL]:checked").click();
     }
   };
 

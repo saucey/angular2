@@ -17622,7 +17622,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
   Drupal.behaviors.checkbox = {
     attach: function () {
     	var visited = function () {  //this is to implement a different error behaviour between when the form is loaded and once an element has been visited
-        console.log("checkbox init");
+//console.log("checkbox init");
         $(this).addClass("visited");
       };
       $("span.checkbox").focus(visited);
@@ -17656,6 +17656,26 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 //   };
 // 
 // })(jQuery);
+
+/**
+ * Example JavaScript component
+ */
+// Closure with jQuery support
+(function($) {
+  'use strict';
+
+  // Add new item to public Drupal object
+  Drupal.behaviors.radio = {
+    attach: function () {
+    	var visited = function () {  //this is to implement a different error behaviour between when the form is loaded and once an element has been visited
+//console.log("radio init");
+        $(this).addClass("visited");
+      };
+      $("span.radio").focus(visited);
+      $("span.radio").click(visited);
+    }
+  };
+})(jQuery);
 
 /**
  * Example JavaScript component
@@ -19181,14 +19201,14 @@ $.cookie.raw = cookieRawBak;
         $(".address .residential .NL").toggleClass("visible", NL);
         $(".address .residential .world").toggleClass("visible", !NL);
       });
-      $("input[name=ra_NL]").click();
+      $("input[name=ra_NL]:checked").click();
 
       $("input[name=ca_NL]").click( function () {
         var NL = parseInt($(this).val()) > 0;
         $(".address .correspondential .NL").toggleClass("visible", NL);
         $(".address .correspondential .world").toggleClass("visible", !NL);
       });
-      $("input[name=ca_NL]").click();
+      $("input[name=ca_NL]:checked").click();
     }
   };
 

@@ -18671,7 +18671,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 
         // Parse the JSON if needed
         parseJSON = isString ? $.parseJSON(json) : json;
-
+        var userObj = parseJSON.retrieveResponse;
         // Check if container and output of JSON is properly setup
         if (!checkSanityOfJson(parseJSON)) {
 
@@ -18680,11 +18680,11 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
         } else {
 
           // Register raw json data if OK
-          that.shwRawData = parseJSON.retrieveResponse;
+          that.shwRawData = userObj;
         }
 
         // Boolean to declare and check is user is logged in
-        isLogged = (parseJSON.retrieveResponse.PROCES.STATUS === '00000');
+        isLogged = (userObj.PROCES.STATUS === '00000');
 
         // Data ready to be passed to initialize() below
         data = {
@@ -18693,7 +18693,11 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
           'loggedIn': isLogged,
 
           // Get user's name from json object
-          'userName': parseJSON.retrieveResponse.PARTIJ._AE_PERSOON._AE_SAMNAAM || "n.a.",
+          'userName': userObj.PARTIJ._AE_PERSOON._AE_SAMNAAM || "n.a.", //this is actually not the username but the fullname, but since it has already available under this name, keep this designation
+          'name': userObj.PARTIJ._AE_PERSOON._AE_SAMNAAM || "n.a.",
+          'firstName': userObj.PARTIJ._AE_PERSOON.VOORL || "",
+          'nameAddition': userObj.PARTIJ._AE_PERSOON.VOORV || "",
+          'lastName': userObj.PARTIJ.ANAAM || "",
 
           // Get last login time from cookie or give false
           'lastAccess': that.lastLogin()

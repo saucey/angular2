@@ -18582,13 +18582,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
     attach: function (context, settings) {
       // Run before real initialization
       this.setup(settings);
-//only for development: simulate the cookie that is set by ASSO; keep this as long as the UDW is not entirely out of the deep water, comment out if required
-/*
-var cookieRawBak = $.cookie.raw;
-$.cookie.raw = true;
-$.cookie(mijnAegonCookieLoggedInName, '"2015-12-11 12:34:56"');
-$.cookie.raw = cookieRawBak;
-*/
+
       // Register a public method for deinitialize
       win.shwGlobal.userLogout = (function(onlyLocal) {
         return this.deinitialize(onlyLocal);
@@ -18618,7 +18612,7 @@ $.cookie.raw = cookieRawBak;
       // Testing, UAT and Production environments.
       if (notLocalOrDev) {
         if (!this.lastLogin()) {
-          //return;
+          return;
         }
       }
 
@@ -18804,13 +18798,8 @@ $.cookie.raw = cookieRawBak;
       }
 
       if ( $.cookie("hasBeenShown") ) {
-        //$template.find(".highlight").addClass("has-been-shown");
         $template.addClass('processed');
       }
-      // Compare datetime with mijnaegon last login and add .processed class
-      //if (this.expiredTimeFromLogin() || $.cookie("hasBeenShown")) { $template.addClass('processed'); }
-console.log("time " + this.expiredTimeFromLogin());
-      //if (this.expiredTimeFromLogin()) { $template.addClass('processed'); }
 
       // cookie to make sure that the next time this template is shown,
       // the welcome animation is off
@@ -18824,15 +18813,13 @@ console.log("time " + this.expiredTimeFromLogin());
     expiredTimeFromLogin: function () {
 
       var timeCookie = this.lastLogin();
-      // Stop execution an return false if no mijnaegon cookie registered
+      // Stop execution and return false if no mijnaegon cookie registered
       if (!timeCookie) { return false; }
 
       // If is not the first time after login, don't show the animation by
       // adding the .processed class.
       var futureTMS = this.formatDatetime(timeCookie, true) +
                       (secondsForProcessedStatus * 1000);
-//  console.log("future " + futureTMS + "\nnow" + $.now());
-console.log("ts " + (new Date(futureTMS)) + "\nnow" + (new Date($.now())));
       return ($.now() > futureTMS) && true;
     },
 
@@ -19191,13 +19178,14 @@ console.log("ts " + (new Date(futureTMS)) + "\nnow" + (new Date($.now())));
     },
 
     attach: function () {
-      $("form[name=personal_details_form]").validVal({
-        validate: {
-          onKeyup: true,
-        },
-        //  configuration goes here
-      });
-
+      if (!testSelector("form:invalid")) {  //if the userAgent does not know the :invalid pseudoclass, we need the validation workaround provided by validVal
+        $("form[name=personal_details_form]").validVal({
+          validate: {
+            onKeyup: true,
+          },
+        });
+      }
+      
       $("input[name=ra_NL]").click( function () {
         var NL = parseInt($(this).val()) > 0;
         $(".address .residential .NL").toggleClass("visible", NL);

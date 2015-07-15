@@ -18804,10 +18804,13 @@ $.cookie.raw = cookieRawBak;
       }
 
       if ( $.cookie("hasBeenShown") ) {
-        $template.find(".highlight").addClass("has-been-shown");
+        //$template.find(".highlight").addClass("has-been-shown");
+        $template.addClass('processed');
       }
       // Compare datetime with mijnaegon last login and add .processed class
-      if (this.expiredTimeFromLogin() || $.cookie("hasBeenShown")) { $template.addClass('processed'); }
+      //if (this.expiredTimeFromLogin() || $.cookie("hasBeenShown")) { $template.addClass('processed'); }
+console.log("time " + this.expiredTimeFromLogin());
+      //if (this.expiredTimeFromLogin()) { $template.addClass('processed'); }
 
       // cookie to make sure that the next time this template is shown,
       // the welcome animation is off
@@ -18828,6 +18831,8 @@ $.cookie.raw = cookieRawBak;
       // adding the .processed class.
       var futureTMS = this.formatDatetime(timeCookie, true) +
                       (secondsForProcessedStatus * 1000);
+//  console.log("future " + futureTMS + "\nnow" + $.now());
+console.log("ts " + (new Date(futureTMS)) + "\nnow" + (new Date($.now())));
       return ($.now() > futureTMS) && true;
     },
 

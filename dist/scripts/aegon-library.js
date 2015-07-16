@@ -17627,7 +17627,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
       };
       $("span.checkbox").focus(visited);
       $("span.checkbox").click(visited);
-    }
+      this.attached = true;
+    },
+    attached: false,
   };
 })(jQuery);
 
@@ -17673,7 +17675,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
       };
       $("span.radio").focus(visited);
       $("span.radio").click(visited);
-    }
+      this.attached = true;  //used to determine if this function has already run
+    },
+    attached: false,
   };
 })(jQuery);
 
@@ -17735,7 +17739,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
         };
       $("input, textarea").focus(visited);
       $("input, select, textarea, div.dd, span.checkbox").click(visited); //strictly speaking, this line with only the checkbox selector should be put into checkbox.js as well, but accompanied by all the previous lines this seems to be an awful lot of baggage just to maintain the appearance of modularity
-    }
+      this.attached = true;
+    },
+    attached: false,
   };
 })(jQuery);
 
@@ -19189,7 +19195,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
           },
         });
       }
-      
+
       $("input[name=ra_NL]").click( function () {
         var NL = parseInt($(this).val()) > 0;
         $(".address .residential .NL").toggleClass("visible", NL);

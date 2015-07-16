@@ -18760,8 +18760,10 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 
       // Templating data
       $template.find('span.user_detail_widget_name').text(data.userName);
-      $template.find('a.user_detail_widget_logout_link').attr(
-        'href', logoutPathLink);
+      var that = this;
+      $template.find('a.user_detail_widget_logout_link').click( function (e) {
+        that.deinitialize();
+      });
       $template.find('a.user_detail_widget_mijnaegon_link').attr(
         'href', mijnaegonPathLink);
       // Exception in case data.lastAccess is empty
@@ -19006,7 +19008,6 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
      * @return {boolean} wrapper for this.userLoggedIn()
      */
     deinitialize: function (onlyLocal) {
-
       // Remove classes to hide logged's items
       $('body').removeClass('shw-widgets-logged-in mobile-tap');
 

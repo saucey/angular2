@@ -18752,6 +18752,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
         // Load events
         this.events();
       }
+      else {
+        $(".login-link").addClass("visible");
+      }
     },
 
     parseWidget: function (data, callback) {

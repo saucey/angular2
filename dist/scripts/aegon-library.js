@@ -17627,7 +17627,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
       };
       $("span.checkbox").focus(visited);
       $("span.checkbox").click(visited);
-    }
+      this.attached = true;
+    },
+    attached: false,
   };
 })(jQuery);
 
@@ -17673,7 +17675,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
       };
       $("span.radio").focus(visited);
       $("span.radio").click(visited);
-    }
+      this.attached = true;  //used to determine if this function has already run
+    },
+    attached: false,
   };
 })(jQuery);
 
@@ -17735,7 +17739,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
         };
       $("input, textarea").focus(visited);
       $("input, select, textarea, div.dd, span.checkbox").click(visited); //strictly speaking, this line with only the checkbox selector should be put into checkbox.js as well, but accompanied by all the previous lines this seems to be an awful lot of baggage just to maintain the appearance of modularity
-    }
+      this.attached = true;
+    },
+    attached: false,
   };
 })(jQuery);
 
@@ -17997,7 +18003,10 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
     attach: function () {
 
       // TEMP: stop everything in case we are under vps-rhino-1 (cx-dev)
-      if (doc.domain === '10.120.32.22') { return; }
+      if (typeof Drupal.settings.eu_cookie_compliance === 'undefined' || 
+        doc.domain === '10.120.32.22') {
+        return;
+      }
 
       // For localhost env, overwrite the module eu_cookie_compliance.domain
       if (doc.domain === 'localhost') {
@@ -18743,6 +18752,9 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
         // Load events
         this.events();
       }
+      else {
+        $(".login-link").addClass("visible");
+      }
     },
 
     parseWidget: function (data, callback) {
@@ -18754,8 +18766,10 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
 
       // Templating data
       $template.find('span.user_detail_widget_name').text(data.userName);
-      $template.find('a.user_detail_widget_logout_link').attr(
-        'href', logoutPathLink);
+      var that = this;
+      $template.find('a.user_detail_widget_logout_link').click( function (e) {
+        that.deinitialize();
+      });
       $template.find('a.user_detail_widget_mijnaegon_link').attr(
         'href', mijnaegonPathLink);
       // Exception in case data.lastAccess is empty
@@ -19000,7 +19014,6 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
      * @return {boolean} wrapper for this.userLoggedIn()
      */
     deinitialize: function (onlyLocal) {
-
       // Remove classes to hide logged's items
       $('body').removeClass('shw-widgets-logged-in mobile-tap');
 
@@ -19189,7 +19202,7 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
           },
         });
       }
-      
+
       $("input[name=ra_NL]").click( function () {
         var NL = parseInt($(this).val()) > 0;
         $(".address .residential .NL").toggleClass("visible", NL);

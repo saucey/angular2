@@ -18003,7 +18003,10 @@ PointerEventsPolyfill.prototype.register_mouse_events = function(){
     attach: function () {
 
       // TEMP: stop everything in case we are under vps-rhino-1 (cx-dev)
-      if (doc.domain === '10.120.32.22') { return; }
+      if (typeof Drupal.settings.eu_cookie_compliance === 'undefined' || 
+        doc.domain === '10.120.32.22') {
+        return;
+      }
 
       // For localhost env, overwrite the module eu_cookie_compliance.domain
       if (doc.domain === 'localhost') {

@@ -1,0 +1,101 @@
+{
+  "retrieveResponse": {
+    "AILHEADER": {
+      "CLIENTID": "MijnAegonUserWidget",
+      "CORRELATIONID": "##UAT##"
+    },
+    "PROCES": {
+      "STATUST": "Success",
+      "STATUS": "00000",
+      "VOLGNUM": "1"
+    },
+    "PARTIJ": {
+      "_AE_EMAIL": {
+        "_AE_OPNDAT": "2013-04-09",
+        "_AE_IDENTIFICATIELEVEL": "3",
+        "MUTDAT": "2013-04-17",
+        "_AE_BRON": "WEBSSO",
+        "EMAIL": "Mu5wtzZFi57@KhYkb.DM"
+      },
+      "MOBIEL": "0620462613",
+      "ANAAM": "Liet",
+      "_AE_ADRES": [
+        {
+          "_AE_ADRES_INT": {
+            "_AE_INTSAAMAD": {}
+          },
+          "VOLGNUM": "9203452",
+          "STRAAT": "Voirt",
+          "ADRSRT": "003",
+          "_AE_NLSAAMAD": "Voirt 20, 5671 HC NUENEN",
+          "_AE_WIJZDAT": "2012-09-20",
+          "PLAATS": "NUENEN",
+          "HUISNR": "20",
+          "PCODE": "5671HC",
+          "_AE_REGDAT": "2009-10-30"
+        },
+        {
+          "_AE_ADRES_INT": {
+            "_AE_INTSAAMAD": {}
+          },
+          "VOLGNUM": "5067220",
+          "STRAAT": "Steffenskamp",
+          "ADRSRT": "001",
+          "_AE_NLSAAMAD": "Steffenskamp 24, 1251 ZT LAREN NH",
+          "_AE_WIJZDAT": "2013-05-24",
+          "PLAATS": "LAREN NH",
+          "HUISNR": "24",
+          "PCODE": "1251ZT",
+          "_AE_REGDAT": "2009-09-14"
+        }
+      ],
+      "_AE_ONDERNEMING": {},
+      "_AE_PARTIJ_IDENTIFICATIE": [
+        {
+          "_AE_RELNUM_TYPE": "KISS",
+          "RELNUM": "70339908"
+        },
+        {
+          "_AE_RELNUM_TYPE": "QIS",
+          "RELNUM": "524930"
+        },
+        {
+          "_AE_RELNUM_TYPE": "KISS",
+          "RELNUM": "789450"
+        },
+        {
+          "_AE_RELNUM_TYPE": "AEGAR",
+          "RELNUM": "19490762"
+        },
+        {
+          "_AE_RELNUM_TYPE": "EUROPORT",
+          "RELNUM": "789450"
+        },
+        {
+          "_AE_RELNUM_TYPE": "AKOS",
+          "RELNUM": "7103661"
+        }
+      ],
+      "_AE_WIJZDAT": "2013-05-24",
+      "TELNUM": "9812114792",
+      "_AE_PERSOON": {
+        "VOORL": "Abraham",
+        "_AE_SAMNAAM": "Abräham van Hélsing",
+        "GEBDAT": "1969-04-14",
+        "BSNR": "110207865",
+        "_AE_PARTIJ_WN": {
+          "_AE_WG_RELNUM": "9494267",
+          "_AE_HUIDIGEWG": "true"
+        },
+        "_AE_IDENTIFICATIE_STATUS": "true",
+        "_AE_NONMAILIND": "false",
+        "BURGST": "N",
+        "NATIONA": "NLD",
+        "VOORV": "v.d.",
+        "GESLACH": "V"
+      },
+      "EMAIL": "Mu5wtzZFi57@KhYkb.DM",
+      "_AE_REGDAT": "2009-09-14"
+    }
+  }
+}

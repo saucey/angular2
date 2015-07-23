@@ -1,13 +1,9 @@
 <section id="communication_preferences" class="communication_preferences container_12">
 
-    <h3>Communicatievoorkeuren {{button-edit-desktop}}</h3>
-  <!-- SECTION Communicatievoorkeuren GROUP -->
-  <!--article>
+  <div id="" class=""><!--faceless widget container with unique id, used for ajax loading-->
+    <form name="personal_details_form">
+    <h3>Communicatievoorkeuren</h3>
 
-
-    <section-->
-
-      <!-- Iterations rows details -->
       <ul class="row-fluid">
         <li class="data span12">
 
@@ -17,7 +13,6 @@
             <ul class="horizontal visible digital row-fluid">
               <li class="label span4">
                 Mijn e-mailadres waar ik communicatie van Aegon op ontvang
-                <span class="icon-questionmark" tooltip="Candy canes candy dragée lollipop pastry toffee tiramisu chocolate bar icing.">&#xe62f;</span>
               </li>
               <li class="value span8">michiel.v@hcl.com</li>
             </ul>
@@ -27,26 +22,30 @@
 
           <div class="details container_12">
             <ul class="horizontal visible digital row-fluid">
-              <li class="label span4">
+              <li class="label span3">
                 Product informatie voorkeur
-                <span class="icon-questionmark" tooltip="Candy canes candy dragée lollipop pastry toffee tiramisu chocolate bar icing.">&#xe62f;</span>
               </li>
-              <li class="xvalue span8">
-                
-                <select name="" id="">
-                  <option value="">empty option</option>
-                  <option selected="selected">Digital</option>
-                  <option>Option 4</option>
-                  <option>Option 5</option>
-                </select>
-
+              <li class="span1">
+                <span class="help" title=""></span>
+              </li>
+              <li class="value span8">
+                <label class="radio">
+                  <input type="radio" checked name="digital" value="1" />
+                  <span class="radio"></span>Ja
+                </label>
+                <label class="radio">
+                  <input type="radio" name="digital" value="0" />
+                  <span class="radio"></span>Nee
+                </label>
               </li>
             </ul>
 
             <ul class="horizontal visible row-fluid">
-              <li class="span4 label">
+              <li class="span3 label">
                 Digitale informatie van Aegon
-                <span class="icon-questionmark" tooltip="Candy canes candy dragée lollipop pastry toffee tiramisu chocolate bar icing.">&#xe62f;</span>
+              </li>
+              <li class="span1">
+                <span class="help" title=""></span>
               </li>
               <li class="value span8">
 
@@ -69,13 +68,9 @@
           </div>
         </li>
 
-        <!-- END Iterations rows details -->
       </ul>
-    {{button-edit-mobile}}
-    <!--/section>
-
-  </article-->
-  <!-- END SECTION Communicatievoorkeuren GROUP -->
-
+      {{button-save}}
+    </form>
+  </div>
 
 </section>

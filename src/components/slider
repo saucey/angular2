@@ -1,0 +1,16 @@
+just a test
+<div class="input-range">
+	<span class="range-legend">
+	<ul>
+		<li>0</li>
+		<li>5</li>
+		<li>10</li>
+	</ul>
+	</span>
+	<span class="ranger">
+		<input type="range" id="range_input" name="range_input" min="0" max="10" value="0" step="" oninput="range_amount.value=range_input.value">
+	</span>
+	<span class="ranger">
+		<input type="text" name="range_amount" id="range_amount" class="range-output" oninput="range_input.value=range_amount.value"></input>
+	</span>
+</div>

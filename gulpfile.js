@@ -16,6 +16,7 @@ var
   gulpif = require('gulp-if'),
   header = require('gulp-header'),
   imagemin = require('gulp-imagemin'),
+  jshint = require('gulp-jshint'),
   order = require('gulp-order'),
   plumber = require('gulp-plumber'),
   Q = require('q'),
@@ -134,7 +135,7 @@ gulp.task('styles:library', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-gulp.task('scripts:library', function () {
+gulp.task('scripts:library', ['jshint:library'], function () {
 
   // Main scripts
   return gulp.src([
@@ -178,6 +179,30 @@ gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
 
 
 /**
+ * Jshint task
+ */
+
+gulp.task('jshint:library', function () {
+  return gulp.src([
+      config.src.libScriptsPath + '/**/*.js',
+      '!' + config.src.libScriptsPath + '/vendor/**/*'
+    ])
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(gulpif(!browserSync.active, jshint.reporter('fail')));
+});
+
+gulp.task('jshint:toolkit', function () {
+  return gulp.src([
+      config.src.scripts.toolkit
+    ])
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(gulpif(!browserSync.active, jshint.reporter('fail')));
+});
+
+
+/**
  * Toolkit tasks
  */
 
@@ -206,7 +231,7 @@ gulp.task('styles:drupalcore-omega-static-styles', function () {
     .pipe(gulp.dest(config.dest + '/styles'));
 });
 
-gulp.task('scripts:toolkit', function () {
+gulp.task('scripts:toolkit', ['jshint:toolkit'], function () {
   return gulp.src(config.src.scripts.toolkit)
     .pipe(plumber())
     .pipe(order([

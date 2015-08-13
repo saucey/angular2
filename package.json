@@ -15,7 +15,7 @@
     "subs": "git submodule update --init --recursive && npm run subsetup",
     "setup": "npm run deps && npm run subs",
     "update": "git pull && npm run subs",
-    "build": "npm install && gulp",
+    "build": "gulp",
     "serve": "gulp --dev",
     "pull": "git pull && git submodule foreach 'echo \">> force git pull in submodules: Done\" `git checkout master && git pull`'"
   },

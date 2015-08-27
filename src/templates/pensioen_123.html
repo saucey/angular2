@@ -1,0 +1,69 @@
+<div class="pensioen123_container">
+  <div class="fullwidth-header"></div>
+  <div class="overlay"></div>
+  <div id="st-container" class="wrapper ui-panel-animate">
+
+    <div class="container">
+
+      <section id="scroll" class="scroll st-content">
+        <div class="st-content-inner">
+
+          <!-- Header layout -->
+          <header class="header clearfix">
+
+            <div class="left tap-menu">
+              <a href="javascript:void(0)" id="" title="AEGON">AEGON menu</a>
+            </div>
+
+            <div class="middle mobile-logo">
+              <a href="/particulier" title="Home" rel="home">Aegon</a>
+            </div>
+
+
+            <div class="right">
+              <a href="https://online.aegon.nl/WSB/sso-box/wayf.html?int_source=/inloggen/" class="login-link" style="display: inline-block !important;">Log in</a>
+            </div>
+
+          </header>
+          <!-- END Header layout -->
+          <!-- Content layout -->
+          <section class="content">
+            <div style="padding: 20px;">
+
+              <!--
+              ADD BELOWtemplate YOUR ELEMENT:
+              With placeholder way  {\{name of your element with underscore}}
+
+              EXAMPLE: {\{my_documents}}
+
+              IMPORTANT: (with no backslash).
+              -->
+
+              {{pensioen123_demo}}
+
+            </div>
+          </section>
+          <!-- END Content layout -->
+
+        </div>
+      </section>
+
+    </div>
+
+    <div class="region region-navigation">
+      <aside class="desktop">
+        <div class="logo clearfix">
+          <a href="/particulier" title="Homepage">Aegon</a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</div>
+
+<style type="text/css">
+  /* Force to don't show style associated to body.mobile-tap */
+  section.content:after {
+    display: none !important;
+  }
+</style>

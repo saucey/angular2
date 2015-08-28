@@ -81,7 +81,7 @@
                         <span class="help" title="some more or less helpful text"></span>
                       </li>
                       <li class="value span8">
-                        <input type="text" name="ra_NL_number" id="ra_NL_number" placeholder="Huisnummer" required data-validate="integer"/>
+                        <input type="text" name="ra_NL_number" id="ra_NL_number" placeholder="Huisnummer" required data-validate-restrained="integer"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
@@ -91,7 +91,7 @@
                         <span class="help" title="some more or less helpful text"></span>
                       </li>
                       <li class="value span8">
-                        <input type="text" name="ra_NL_addition" id="ra_NL_addition" data-validate="example.for['a'].regex['validation']" required placeholder="Huisnummertoevoeging"/>
+                        <input type="text" name="ra_NL_addition" id="ra_NL_addition" data-validate-restrained="['house-nr']" required placeholder="Huisnummertoevoeging"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>

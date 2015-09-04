@@ -1,5 +1,5 @@
   <section id="lhfs_widget" class="lhfs_widget container_12">
-    <div id="" class=""><!--faceless widget container with unique id, used for ajax loading-->
+    <div id="" class=""><!--faceless widget container with unique id, used for Drupal ajax loading-->
       <form name="lhfs_form">
         <h3>Betaalgegevens</h3>
 
@@ -95,7 +95,7 @@
                 </li>
                 <li class="value sxpan6">
                   <span class="help"></span>
-                  <input type="text" name="accountNumberValue" id="accountNumberValue" pattern="\d*" required/>
+                  <input type="text" name="accountNumberValue" id="accountNumberValue" data-validate="iban.nl" required/>
                   <span class="errorText">some error message visible</span>
                 </li>
               </ul>

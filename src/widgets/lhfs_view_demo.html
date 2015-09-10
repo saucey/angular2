@@ -25,7 +25,7 @@
       <ul class="products row-fluid">
         <!--if iterations are taking place, iterate over the products between this comment-->
         <li class="product data span12">
-          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
+          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span>{{button-edit-desktop}}</div>
           <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
           <div class="details">
             <ul class="horizontal type row-fluid">
@@ -53,7 +53,7 @@
         </li>
 
         <li class="product data span12">
-          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
+          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span>{{button-edit-desktop}}</div>
           <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
           <div class="details">
             <ul class="horizontal type row-fluid">
@@ -82,12 +82,5 @@
         <!--end product iteration comment-->
       </ul>
 
-      <ul class="actions">
-        <li class="view">
-          <button class="arrow">change button text</button>
-        </li>
-        <li class="edit">
-          &nbsp;
-        </li>
-      </ul>
+      {{button-edit-mobile}}
     </div>

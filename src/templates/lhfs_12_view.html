@@ -1,0 +1,77 @@
+<div id="st-container" class="wrapper ui-panel-animate">
+
+  <div class="container">
+
+    <section id="scroll" class="scroll st-content">
+      <div class="st-content-inner">
+
+        <!-- Header layout -->
+        <header class="header clearfix">
+
+          <div class="left tap-menu">
+            <a href="javascript:void(0)" id="" title="AEGON">AEGON menu</a>
+          </div>
+
+          <div class="middle mobile-logo">
+            <a href="/particulier" title="Home" rel="home">Aegon</a>
+          </div>
+
+          <div class="region region-header-left">
+            <div class="block block-easy-breadcrumb">
+              <div class="easy-breadcrumb breadcrumb">
+                <ul>
+                  <li class="first"><span itemprop="title"><a href="/particulier" class="easy-breadcrumb_segment easy-breadcrumb_segment-1" itemprop="url">Particulier</a></span></li>
+                  <li class="segment"><span itemprop="title"><a href="/particulier/klantenservice" class="easy-breadcrumb_segment easy-breadcrumb_segment-2" itemprop="url">Service &amp; contact</a></span></li>
+                  <li class="segment"><span itemprop="title" class="easy-breadcrumb_segment easy-breadcrumb_segment-title">Schade melden </span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="right">
+            <a href="https://online.aegon.nl/WSB/sso-box/wayf.html?int_source=/inloggen/" class="login-link" style="display: inline-block !important;">Log in</a>
+          </div>
+
+        </header>
+        <!-- END Header layout -->
+
+        <!-- Content layout -->
+        <section class="content">
+          <div style="margin: 0 7%;">
+
+            <!--
+            ADD BELOWtemplate YOUR ELEMENT:
+            With placeholder way  {\{name of your element with underscore}}
+
+            EXAMPLE: {\{my_documents}}
+
+            IMPORTANT: (with no backslash).
+            -->
+
+            {{lhfs_view_demo}}
+
+          </div>
+        </section>
+        <!-- END Content layout -->
+
+      </div>
+    </section>
+
+  </div>
+
+  <div class="region region-navigation">
+    <aside class="desktop">
+      <div class="logo clearfix">
+        <a href="/particulier" title="Homepage">Aegon</a>
+      </div>
+    </aside>
+  </div>
+
+</div>
+
+<style type="text/css">
+  /* Force to don't show style associated to body.mobile-tap */
+  section.content:after {
+    display: none !important;
+  }
+</style>

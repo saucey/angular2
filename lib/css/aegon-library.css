@@ -1,17 +1,17 @@
 /*
 Error: Base-level rules cannot contain the parent-selector-referencing character '&'.
-        on line 72 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss, in `@content'
+        on line 95 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss, in `@content'
         from line 62 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/vendors/breakpoint-sass/stylesheets/_breakpoint.scss, in `breakpoint'
-        from line 70 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss
+        from line 93 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss
         from line 15 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_all.scss
-        from line 42 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/aegon-library.scss
+        from line 44 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/aegon-library.scss
 
 Backtrace:
-/Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss:72:in `@content'
+/Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss:95:in `@content'
 /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/vendors/breakpoint-sass/stylesheets/_breakpoint.scss:62:in `breakpoint'
-/Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss:70
+/Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss:93
 /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_all.scss:15
-/Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/aegon-library.scss:42
+/Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/aegon-library.scss:44
 /Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/selector/comma_sequence.rb:29:in `resolve_parent_refs'
 /Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/perform.rb:425:in `visit_rule'
 /Applications/CodeKit.app/Contents/Resources/engines/scss/lib/sass/tree/visitors/base.rb:36:in `visit'
@@ -126,4 +126,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Base-level rules cannot contain the parent-selector-referencing character '&'.\A         on line 72 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss, in `@content'\A         from line 62 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/vendors/breakpoint-sass/stylesheets/_breakpoint.scss, in `breakpoint'\A         from line 70 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss\A         from line 15 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_all.scss\A         from line 42 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/aegon-library.scss"; }
+  content: "Error: Base-level rules cannot contain the parent-selector-referencing character '&'.\A         on line 95 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss, in `@content'\A         from line 62 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/vendors/breakpoint-sass/stylesheets/_breakpoint.scss, in `breakpoint'\A         from line 93 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_messages.scss\A         from line 15 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/components/_all.scss\A         from line 44 of /Users/tjerk/Documents/sites/aegon/lib/aegon-sass-library/aegon-library.scss"; }

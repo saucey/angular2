@@ -1,6 +1,6 @@
   <section id="lhfs_widget" class="lhfs_widget container_12">
     <div id="" class=""><!--faceless widget container with unique id, used for Drupal ajax loading-->
-      <form name="lhfs_form">
+      <form name="lhfs_form" id="lhfs">
         <h3>Betaalgegevens</h3>
 
         <a name="feedback_anchor"></a>
@@ -15,49 +15,7 @@
 
         <ul class="products row-fluid">
           <!--if iterations are taking place, iterate over the elements between this comment-->
-          <li class="product data span12">
-          <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
-            <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
-            <div class="details edit container_12">
 
-              <ul class="xhorizontal type row-fluid">
-                <li class="label required span6">
-                  <span class="middle-enforcer"></span>Payment type label
-                </li>
-                <li class="value span6">
-                  <span class="middle-enforcer"></span>
-                  <span class="help"></span>
-                  <select name="paymentTypeValue" xid="thisIsAnIDWithA.Dot" class="" required>
-                    <option value="">empty option</option>
-                    <option>payment type option 1</option>
-                    <option>payment type option 2</option>
-                    <option>payment type option 3</option>
-                  </select>
-                  <span class="errorText">some error message visible</span>
-                </li>
-              </ul>
-
-              <ul class="horizontal interval row-fluid">
-                <li class="label span6"><span class="middle-enforcer"></span>Payment interval label</li>
-                <li class="value sxpan6">
-                  <span class="help"></span>
-                  <span class="middle-enforcer"></span>payment interval value
-                </li>
-              </ul>
-
-              <ul class="horizontal account row-fluid">
-                <li class="label required span6">
-                  <span class="middle-enforcer"></span>Account number label
-                </li>
-                <li class="value sxpan6">
-                  <span class="help"></span>
-                  <input type="text" name="accountNumberValue" id="accountNumberValue" data-validate="iban.auto" required/>
-                  <span class="errorText">some error message visible</span>
-                </li>
-              </ul>
-
-            </div>
-          </li>
 
           <li class="product data span12">
             <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
@@ -73,9 +31,10 @@
                   <span class="help"></span>
                   <select name="paymentTypeValue" class="" required>
                     <option value="">empty option</option>
-                    <option>payment type option 1</option>
-                    <option>payment type option 2</option>
-                    <option>payment type option 3</option>
+                    <option value="p">payment type option 1</option>
+                    <option value="d">payment type option 2</option>
+                    <option value="i">payment type option 3</option>
+                    <option value="f">payment type option 4</option>
                   </select>
                   <span class="errorText">some error message visible</span>
                 </li>
@@ -93,7 +52,7 @@
                 <li class="label required span6">
                   <span class="middle-enforcer"></span>Account number label
                 </li>
-                <li class="value sxpan6">
+                <li id="accountNumberField" class="value sxpan6">
                   <span class="help"></span>
                   <input type="text" name="accountNumberValue" id="accountNumberValue" data-validate="iban.nl" required/>
                   <span class="errorText">some error message visible</span>

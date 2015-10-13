@@ -1,6 +1,6 @@
   <section id="lhfs_widget" class="lhfs_widget container_12">
     <div id="" class=""><!--faceless widget container with unique id, used for Drupal ajax loading-->
-      <form name="lhfs_form" id="lhfs">
+      <form name="modifyBetaalGegevensForm" id="lhfs">
         <h3>Betaalgegevens</h3>
 
         <a name="feedback_anchor"></a>
@@ -30,7 +30,7 @@
                   <span class="middle-enforcer"></span>
                   <span class="help"></span>
                   <select name="paymentTypeValue" class="" required>
-                    <option value="">empty option</option>
+           <!--          <option value="">empty option</option> -->
                     <option value="p">payment type option 1</option>
                     <option value="d">payment type option 2</option>
                     <option value="i">payment type option 3</option>
@@ -54,7 +54,7 @@
                 </li>
                 <li id="accountNumberField" class="value sxpan6">
                   <span class="help"></span>
-                  <input type="text" name="accountNumberValue" id="accountNumberValue" data-validate="iban.nl" required/>
+                  <input type="text" name="accountNumberValue" id="accountNumberValue" value="BLA" data-validate="iban.nl" required/>
                   <span class="errorText">some error message visible</span>
                 </li>
               </ul>
@@ -73,7 +73,7 @@
                   <span class="middle-enforcer"></span>
                   <span class="help"></span>
                   <label class="checkbox required">
-                    <input type="checkbox" name="colCheckInput" value="lorem" required/>
+                    <input type="checkbox" name="colCheckInput" id="colCheckInput" value="lorem" required/>
                     <span class="checkbox"></span>
                     <span class="label">Payment incasso text</span>
                     <span class="errorText">some error message visible</span>

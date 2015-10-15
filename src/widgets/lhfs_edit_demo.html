@@ -23,12 +23,13 @@
             <div class="details edit container_12">
 
               <ul class="xhorizontal type row-fluid">
-                <li class="label required span6">
+                <li class="label required span5">
                   <span class="middle-enforcer"></span>Payment type label
                 </li>
+                <li class="span1"></li>
+                
                 <li class="value span6">
                   <span class="middle-enforcer"></span>
-                  <span class="help"></span>
                   <select name="paymentTypeValue" class="" required>
            <!--          <option value="">empty option</option> -->
                     <option value="p">payment type option 1</option>
@@ -41,19 +42,23 @@
               </ul>
 
               <ul class="horizontal interval row-fluid">
-                <li class="label span6"><span class="middle-enforcer"></span>Payment interval label</li>
+                <li class="label span5"><span class="middle-enforcer"></span>Payment interval label</li>
+                <li class="span1"></li>
                 <li class="value sxpan6">
-                  <span class="help"></span>
                   <span class="middle-enforcer"></span>payment interval value
                 </li>
               </ul>
 
               <ul class="horizontal account row-fluid">
-                <li class="label required span6">
+                <li class="label required span5">
                   <span class="middle-enforcer"></span>Account number label
+                  
                 </li>
+                <li class="span1">
+                  <span class="help" title="some more or less helpful text"></span>
+                </li>
+
                 <li id="accountNumberField" class="value sxpan6">
-                  <span class="help"></span>
                   <input type="text" name="accountNumberValue" id="accountNumberValue" value="BLA" data-validate="iban.nl" required/>
                   <span class="errorText">some error message visible</span>
                 </li>
@@ -71,7 +76,6 @@
                 </li>
                 <li class="value sxpan6">
                   <span class="middle-enforcer"></span>
-                  <span class="help"></span>
                   <label class="checkbox required">
                     <input type="checkbox" name="colCheckInput" id="colCheckInput" value="lorem" required/>
                     <span class="checkbox"></span>

@@ -1,9 +1,0 @@
-[submodule "lib/aegon-sass-library"]
-	path = lib/aegon-sass-library
-	url = ssh://git@swfactory.aegon.com:7999/web/aegon-sass-library.git
-[submodule "lib/aegon-assets-library"]
-	path = lib/aegon-assets-library
-	url = ssh://git@swfactory.aegon.com:7999/web/aegon-assets-library.git
-[submodule "lib/aegon-scripts-library"]
-	path = lib/aegon-scripts-library
-	url = ssh://git@swfactory.aegon.com:7999/web/aegon-scripts-library.git

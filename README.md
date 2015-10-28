@@ -14,9 +14,7 @@ It has additionals GIT submodules that will be setup extra libraries under ./lib
 
 Extra components repository are listed below:
 
-* Assets repo: [https://bitbucket.org/cxstudio/aegon-assets-library](https://bitbucket.org/cxstudio/aegon-assets-library)
-* Styles repo: [https://bitbucket.org/cxstudio/aegon-sass-library](https://bitbucket.org/cxstudio/aegon-sass-library)
-* Scripts repo: [https://bitbucket.org/cxstudio/aegon-scripts-library](https://bitbucket.org/cxstudio/aegon-scripts-library)
+* Assets, styles and scripts, which were previously separated in three different repositories, have been merged into one library repository: [https://swfactory.aegon.com/stash/projects/WEB/repos/aegon-frontend-library]
 
 
 ### Guidelines, Coding standards and Technical notes
@@ -54,7 +52,7 @@ Before the **Step 3** below, remember to setup your global Git user locally. Ple
 Clone the repository in your favorite projects folder:
 
 ```
-git clone git@bitbucket.org:cxstudio/aegon-technical-design-library.git
+git clone ssh://git@swfactory.aegon.com:7999/web/aegon-technical-style-guide.git
 ```
 
 
@@ -63,7 +61,7 @@ git clone git@bitbucket.org:cxstudio/aegon-technical-design-library.git
 Run first setup script from command line as below:
 
 ```
-$ cd aegon-technical-design-library
+$ cd aegon-technical-style-guide
 $ npm run setup
 ```
 

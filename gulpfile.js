@@ -38,9 +38,9 @@ var
 var config = {
   dev: gutil.env.dev,
   src: {
-    libAssetsPath: './lib/aegon-assets-library',
-    libSassPath: './lib/aegon-sass-library',
-    libScriptsPath: './lib/aegon-scripts-library',
+    libAssetsPath: './lib/aegon-frontend-library/aegon-assets-library',
+    libSassPath: './lib/aegon-frontend-library/aegon-sass-library',
+    libScriptsPath: './lib/aegon-frontend-library/aegon-scripts-library',
     libStaticStyles: './lib/drupalcore-omega-static-styles',
     scripts: {
       fabricator: [

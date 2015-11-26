@@ -71,7 +71,7 @@
                         <span class="help" title="some more or less helpful text"></span>
                       </li>
                       <li class="value span8">
-                        <input type="text" name="ra_NL_zip" id="ra_NL_zip"  placeholder="Postcode" required data-validate="zip.nl"/>
+                        <input type="text" name="ra_NL_zip" id="ra_NL_zip"  placeholder="Postcode" required data-validate="zip.nl" rel="address-lookup"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
@@ -81,7 +81,7 @@
                         <span class="help" title="some more or less helpful text"></span>
                       </li>
                       <li class="value span8">
-                        <input type="text" name="ra_NL_number" id="ra_NL_number" placeholder="Huisnummer" required data-validate-restrained="integer"/>
+                        <input type="text" name="ra_NL_number" id="ra_NL_number" placeholder="Huisnummer" required data-validate-restrained="integer" rel="address-lookup"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
@@ -91,7 +91,7 @@
                         <span class="help" title="some more or less helpful text"></span>
                       </li>
                       <li class="value span8">
-                        <input type="text" name="ra_NL_addition" id="ra_NL_addition" data-validate-restrained="['house-nr']" placeholder="Huisnummertoevoeging"/>
+                        <input type="text" name="ra_NL_addition" id="ra_NL_addition" data-validate-restrained="['house-nr']" placeholder="Huisnummertoevoeging" rel="address-lookup"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
@@ -203,7 +203,7 @@
                         <span class="help" title="some more or less helpful text"></span>
                       </li>
                       <li class="value span8">
-                        <input type="text" name="ca_NL_zip" id="ca_NL_zip" pattern="\w*" placeholder="Postcode"required/>
+                        <input type="text" name="ca_NL_zip" id="ca_NL_zip" pattern="\w*" placeholder="Postcode"required rel="ca-address-lookup"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>
@@ -213,7 +213,7 @@
                         <span class="help" title="some more or less helpful text"></span>
                       </li>
                       <li class="value span8">
-                        <input type="text" name="ca_NL_number" id="ca_NL_number" pattern="\d*" placeholder="Huisnummer" required/>
+                        <input type="text" name="ca_NL_number" id="ca_NL_number" pattern="\d*" placeholder="Huisnummer" required rel="ca-address-lookup-"/>
                         <span class="errorText">some error message visible</span>
                       </li>
                     </ul>

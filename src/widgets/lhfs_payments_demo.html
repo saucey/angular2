@@ -15,36 +15,37 @@
 	</div>
 
 	<div class="frame inline_alert">
-		<h3>Inline alert error title</h3>
-		<span>Whatever text the CMs reckon should appear in this place. And we just repeat it.
-			Whatever text the CMs reckon should appear in this place. And we just repeat it.
-		</span>
+		<div class="top">
+			<div class="euro">
+				<div>€</div>
+			</div>
+			<div class="message">
+				<h3>Let op! U heeft een betaalachterstand.</h3>
+				<span>Dit heeft gevolgen voor uw product</span>
+			</div>	
+		 </div>
 		<ul class="payments">
 			<li class="products">
+				<!-- Start iteration -->
 				<ul class="horizontal visible product">
 					<li>
-						<label class="checkbox">
-							<input type="checkbox" name="checkbox1" value="value1"/>
-							<span class="product checkbox hidden"></span>product name
-						</label>
+						<a href="#"><span>Product name</span></a>
+					</li>
+					<li>
+						<span>A1234567890</span>
 					</li>
 					<li>
 						<span class="debit">123,45</span>
 					</li>
-					<li>
+					<li class="pay">
 						<button type="button" class="white arrow">Bekijk</button>
 					</li>
-					<li class="pay">
-						<button type="button" class="arrow red">
-							Betaal direct
-						</button>
-					</li>
 				</ul>
-
+				<!-- end iteration -->
 				<ul class="horizontal visible">
 					<li>
-						Kunt u niet betalen?
-						<button type="button" class="white arrow">Neem contact op!</button>
+						<strong>Kunt u niet betalen?</strong>
+						<a href="#" class="contact">Neem contact op!</a>
 					</li>
 				</ul>
 			</li>

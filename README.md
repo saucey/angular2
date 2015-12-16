@@ -14,7 +14,7 @@ It has additionals GIT submodules that will be setup extra libraries under ./lib
 
 Extra components repository are listed below:
 
-* Assets, styles and scripts, which were previously separated in three different repositories, have been merged into one library repository: [https://swfactory.aegon.com/stash/projects/WEB/repos/aegon-frontend-library]
+* Assets, styles and scripts, which were previously separated in three different repositories, have been merged into one library repository: [https://swfactory.aegon.com/bitbucket/projects/WEB/repos/aegon-frontend-library]
 
 
 ### Guidelines, Coding standards and Technical notes

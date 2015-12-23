@@ -37,7 +37,10 @@
 
         <!-- Content layout -->
         <section class="content">
-          <div style="margin: 0 7%;">
+
+          <div class="row-fluid">
+            <div class="span1 gutter"></div>
+            <div class="span12 container_12">
 
             <!--
             ADD BELOWtemplate YOUR ELEMENT:
@@ -55,7 +58,10 @@
                 console.dir(Drupal.behaviors.userDetails);
               });
             </script>
+
           </div>
+          <div class="span1 gutter"></div>
+        </div>
         </section>
         <!-- END Content layout -->
 
@@ -64,13 +70,8 @@
 
   </div>
 
-  <div class="region region-navigation">
-    <aside class="desktop">
-      <div class="logo clearfix">
-        <a href="/particulier" title="Homepage">Aegon</a>
-      </div>
-    </aside>
-  </div>
+  <!-- menu from structures-->
+  {{drupal-sidebar-aegon-menu}}
 
 </div>
 

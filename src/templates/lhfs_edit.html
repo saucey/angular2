@@ -5,39 +5,14 @@
     <section id="scroll" class="scroll st-content">
       <div class="st-content-inner">
 
-        <!-- Header layout -->
-        <header class="header clearfix">
-
-          <div class="left tap-menu">
-            <a href="javascript:void(0)" id="" title="AEGON">AEGON menu</a>
-          </div>
-
-          <div class="middle mobile-logo">
-            <a href="/particulier" title="Home" rel="home">Aegon</a>
-          </div>
-
-          <div class="region region-header-left">
-            <div class="block block-easy-breadcrumb">
-              <div class="easy-breadcrumb breadcrumb">
-                <ul>
-                  <li class="first"><span itemprop="title"><a href="/particulier" class="easy-breadcrumb_segment easy-breadcrumb_segment-1" itemprop="url">Particulier</a></span></li>
-                  <li class="segment"><span itemprop="title"><a href="/particulier/klantenservice" class="easy-breadcrumb_segment easy-breadcrumb_segment-2" itemprop="url">Service &amp; contact</a></span></li>
-                  <li class="segment"><span itemprop="title" class="easy-breadcrumb_segment easy-breadcrumb_segment-title">Schade melden </span></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="right">
-            {{button-login}}
-          </div>
-
-        </header>
-        <!-- END Header layout -->
+        {{_drupal-header}}
 
         <!-- Content layout -->
         <section class="content">
-          <div style="margin: 0 7%;">
+
+          <div class="row-fluid">
+            <div class="span1 gutter"></div>
+            <div class="span12 container_12">
 
             <!--
             ADD BELOWtemplate YOUR ELEMENT:
@@ -51,6 +26,8 @@
             {{lhfs_edit_demo}}
 
           </div>
+          <div class="span1 gutter"></div>
+        </div>
         </section>
         <!-- END Content layout -->
 
@@ -59,13 +36,8 @@
 
   </div>
 
-  <div class="region region-navigation">
-    <aside class="desktop">
-      <div class="logo clearfix">
-        <a href="/particulier" title="Homepage">Aegon</a>
-      </div>
-    </aside>
-  </div>
+  <!-- menu from structures-->
+  {{_drupal-sidebar-aegon-menu}}
 
 </div>
 

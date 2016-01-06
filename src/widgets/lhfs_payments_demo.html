@@ -56,11 +56,11 @@
 	<h2>Product Name</h2>
 	<div class="payments container_12">
 		<ul class="row-fluid">
-
-		<span class="table_title">
-			Table Title
+		<span class="table-title">Table title</span>
+		<span class="table-desc">
+			Table description
 		</span>
-	    <table id="paymentoverview" class="display stripe no-wrap lhfsPayments">
+	    <table id="paymentoverview" class="display stripe no-wrap lhfsPaymentDemo">
 	    	<thead>
 		    	<tr>
 		    		<th class="all">Datum</th>
@@ -75,9 +75,10 @@
 		    		<td>&euro; 648,51</td>
 		    		<td class="date-nl">
 		    			<li class="status">
-							<span class="open">Staat nog open</span>
-						</li>
-					</td>
+		    				<span class="icon icon-open"></span>
+								<span class="open">Staat nog open</span>
+							</li>
+						</td>
 		    		<td>
 		    			<li class="method">
 							<button type="button" class="arrow red">Betaal direct</button>
@@ -89,6 +90,7 @@
 		    		<td>&euro; 648,51</td>
 		    		<td class="date-nl">
 		    			<li class="status">
+		    				  <span class="icon icon-paid"></span>
 							  <span class="paid">betaald</span>
 							</li>
 						</td>
@@ -99,6 +101,7 @@
 		    		<td>&euro; 648,51</td>
 		    		<td class="date-nl">
 		    			<li class="status">
+		    				<span class="icon icon-paid"></span>
 								<span class="paid">betaald</span>
 							</li>
 						</td>
@@ -109,6 +112,7 @@
 		    		<td>&euro; 648,51</td>
 		    		<td class="date-nl">
 		    			<li class="status">
+		    				<span class="icon icon-open"></span>
 								<span class="info">Staat nog open</span>
 							</li>
 						</td>
@@ -123,6 +127,7 @@
 		    		<td>&euro; 648,51</td>
 		    		<td class="date-nl">
 		    			<li class="status">
+		    				<span class="icon icon-paid"></span>
 								<span class="paid">betaald</span>
 							</li>
 						</td>
@@ -133,6 +138,7 @@
 		    		<td>&euro; 648,51</td>
 		    		<td class="date-nl">
 		    			<li class="status">
+		    				<span class="icon icon-info"></span>
 								<span class="info">Te veel betaald</span>
 							</li>
 						</td>
@@ -140,10 +146,6 @@
 		    	</tr>
 	    	</tbody>
 	    </table>
-	  
-	    <div class="payments-show-all">
-	    </div>	
-
 
 		</ul>
 	</div>

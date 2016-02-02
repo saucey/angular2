@@ -1,4 +1,4 @@
-<div class="quickquote lijfrente">
+<div class="quickquote lijfrente" data-interests="1.8,1.9,2,2.1,2.1,2.2,2.25,2.3,2.4,2.5,2.6,2.65,2.7,2.8,2.9,2.9,2.9,2.9,2.9,2.9,3,3.2,3.2,3.2,3.2,3.2">
   <div class="triangle"></div>
   <div class="calculation">
     <h3>Bereken wat uw lijfrente uitkeert per maand</h3>
@@ -6,37 +6,39 @@
       <div class="input-header">
         <label for="amount-input">Hoeveel geld legt u in ?</label>
         <div class="input-container">
-          <input type="text" id="amount-input">
+          <input type="text" id="amount-input" value="30000">
         </div>
         <span class="help" title="Dit is de help tekst voor in de tooltip"></span>
       </div>
       <div class="slider-container">
-        <div id="amount-slider"></div>
+        <div id="amount-slider" data-steps="0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 7500, 10000, 20000, 30000, 50000, 100000, 200000, 300000, 400000, 500000, 750000, 1000000"></div>
+        <span id="amount-error"></span>
       </div>
     </div>
     <div class="time slider">
       <div class="input-header">
         <label for="time-input">Voor hoelang wilt u de lijfrente vastzetten?</label>
         <div class="input-container">
-          <input type="text" id="time-input">
+          <input type="text" id="time-input" value="6">
           <span class="year">jaar</span>
         </div>
         <span class="help" title="Ook de 2e tooltip heeft echt een hele interessante doch iets langer tekst."></span>
       </div>
       <div class="slider-container">
         <div id="time-slider"></div>
+        <span id="time-error"></span>
       </div>
     </div>
   </div>
   <div class="result">
     <div class="payment-result">
-      <div class="title">Uitkering per maand</div>
+      <div class="title">Uitkering per maand:</div>
       <div id="payment-calculated" class="calculated"> &euro; 0</div>
     </div>
-    <div class="footer-result"> 
-      <div class="disclaimer">Indicatie, geen exacte berekening</div>
-      <span class="help" title="Ook de 2e tooltip heeft echt een hele interessante doch iets langer tekst."></span>
-      <button class="button orange-gradient icon-right arrow">Direct regelen</button>
+    <div class="footer-result">
+      <div class="interest">Rente: <span id="interest-amount">0,00</span>%</div>
+      <p><button class="button orange-gradient icon-right arrow">Direct regelen</button></p>
     </div>
+    <div class="disclaimer">Indicatie, geen exacte berekening</div>
   </div>
 </div>

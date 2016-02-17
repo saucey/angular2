@@ -18,6 +18,7 @@ var
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
   order = require('gulp-order'),
+  notify = require('gulp-notify'),
   plumber = require('gulp-plumber'),
   Q = require('q'),
   rename = require('gulp-rename'),
@@ -114,12 +115,24 @@ gulp.task('scripts:fabricator', function () {
 
 gulp.task('styles:library', function () {
 
+  var onError = function(err) {
+    notify.onError({
+      title:    "Gulp",
+      subtitle: "Failure!",
+      message:  "Error: <%= error.message %>",
+      sound:    "Beep"
+    })(err);
+
+    this.emit('end');
+  };
+
+
   // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs 
   // dependencies mentioned in main toolkit.scss are skipped from watch task.
   gulp.start('styles:toolkit');
 
   return gulp.src(config.src.libSassPath + '/*.scss')
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: onError}))
     .pipe(gulpif(config.dev, sourcemaps.init()))
     .pipe(sass({
       errLogToConsole: true,
@@ -207,6 +220,7 @@ gulp.task('jshint:toolkit', function () {
  */
 
 gulp.task('styles:toolkit', function () {
+
   return gulp.src(config.src.styles.toolkit)
     .pipe(plumber())
     .pipe(gulpif(config.dev, sourcemaps.init()))

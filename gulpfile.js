@@ -29,7 +29,8 @@ var
   sftp = require('gulp-sftp'),
   sourcemaps = require('gulp-sourcemaps'),
   uglify = require('gulp-uglify'),
-  watch = require('gulp-watch');
+  watch = require('gulp-watch'),
+  jasmine = require('gulp-jasmine');
 
 
 /**
@@ -63,6 +64,9 @@ var config = {
       'structures',
       'templates',
       'documentation'
+    ],
+    tests: [
+      './lib/aegon-frontend-library/aegon-scripts-library/**/test/*.js'
     ]
   },
   dest: './dist'
@@ -127,7 +131,7 @@ gulp.task('styles:library', function () {
   };
 
 
-  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs 
+  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs
   // dependencies mentioned in main toolkit.scss are skipped from watch task.
   gulp.start('styles:toolkit');
 
@@ -367,6 +371,12 @@ gulp.task('browser-sync', function () {
   });
 });
 
+gulp.task('tests:run', function () {
+  gulp.src(config.src.tests)
+    // gulp-jasmine works on filepaths so you can't have any plugins before it
+    .pipe(jasmine());
+});
+
 // Watch
 gulp.task('watch', ['browser-sync'], function () {
 
@@ -414,6 +424,10 @@ gulp.task('watch', ['browser-sync'], function () {
   watch(config.src.libAssetsPath + '/fonts/**', function () {
     gulp.start('assets:library:fonts');
   });
+
+  watch(config.src.libScriptsPath + '/**/*.js', function () {
+    gulp.start('tests:run');
+  });
 });
 
 // Default build task
@@ -425,7 +439,8 @@ gulp.task('default', ['clean'], function () {
     'scripts',
     'assets',
     'images',
-    'assemble'
+    'assemble',
+    'tests:run'
   ];
 
   // run build

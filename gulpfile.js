@@ -17,6 +17,7 @@ var
   header = require('gulp-header'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
+  karma = require('karma').Server,
   order = require('gulp-order'),
   notify = require('gulp-notify'),
   plumber = require('gulp-plumber'),
@@ -29,8 +30,7 @@ var
   sftp = require('gulp-sftp'),
   sourcemaps = require('gulp-sourcemaps'),
   uglify = require('gulp-uglify'),
-  watch = require('gulp-watch'),
-  jasmine = require('gulp-jasmine');
+  watch = require('gulp-watch');
 
 
 /**
@@ -64,9 +64,6 @@ var config = {
       'structures',
       'templates',
       'documentation'
-    ],
-    tests: [
-      './lib/aegon-frontend-library/aegon-scripts-library/**/test/*.js'
     ]
   },
   dest: './dist'
@@ -371,10 +368,11 @@ gulp.task('browser-sync', function () {
   });
 });
 
-gulp.task('tests:run', function () {
-  gulp.src(config.src.tests)
-    // gulp-jasmine works on filepaths so you can't have any plugins before it
-    .pipe(jasmine());
+gulp.task('tests:run', function (done) {
+  return new karma({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 // Watch

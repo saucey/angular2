@@ -17,8 +17,21 @@
     "undef": true,
     "unused": true,
     "predef": [
-        "Prism",
-        "Drupal",
-        "jQuery"
+      "Prism",
+      "Drupal",
+      "jQuery",
+      "jasmine",
+      "describe",
+      "xdescribe",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "xit",
+      "it",
+      "inject",
+      "expect",
+      "spyOn"
     ]
 }

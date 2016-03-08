@@ -17,6 +17,7 @@ var
   header = require('gulp-header'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
+  karma = require('karma').Server,
   order = require('gulp-order'),
   notify = require('gulp-notify'),
   plumber = require('gulp-plumber'),
@@ -127,7 +128,7 @@ gulp.task('styles:library', function () {
   };
 
 
-  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs 
+  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs
   // dependencies mentioned in main toolkit.scss are skipped from watch task.
   gulp.start('styles:toolkit');
 
@@ -153,7 +154,9 @@ gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
   return gulp.src([
       config.src.libScriptsPath + '/**/*.js',
-      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js'
+      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js',
+      '!' + config.src.libScriptsPath + '/test/**/*.js'
+
     ])
     .pipe(plumber())
     .pipe(order([
@@ -365,6 +368,13 @@ gulp.task('browser-sync', function () {
     // tunnel: "my-private-site"
     notify: false
   });
+});
+
+gulp.task('tests:run', function (done) {
+  return new karma({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 // Watch

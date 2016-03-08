@@ -154,7 +154,9 @@ gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
   return gulp.src([
       config.src.libScriptsPath + '/**/*.js',
-      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js'
+      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js',
+      '!' + config.src.libScriptsPath + '/test/**/*.js'
+
     ])
     .pipe(plumber())
     .pipe(order([
@@ -422,10 +424,6 @@ gulp.task('watch', ['browser-sync'], function () {
   watch(config.src.libAssetsPath + '/fonts/**', function () {
     gulp.start('assets:library:fonts');
   });
-
-  watch(config.src.libScriptsPath + '/**/*.js', function () {
-    gulp.start('tests:run');
-  });
 });
 
 // Default build task
@@ -437,8 +435,7 @@ gulp.task('default', ['clean'], function () {
     'scripts',
     'assets',
     'images',
-    'assemble',
-    'tests:run'
+    'assemble'
   ];
 
   // run build

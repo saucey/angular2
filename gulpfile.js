@@ -154,7 +154,8 @@ gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
   return gulp.src([
       config.src.libScriptsPath + '/**/*.js',
-      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js'
+      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js',
+      '!' + config.src.libScriptsPath + '/test/**/*.js'
     ])
     .pipe(plumber())
     .pipe(order([

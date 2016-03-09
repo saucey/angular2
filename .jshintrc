@@ -32,6 +32,8 @@
       "it",
       "inject",
       "expect",
-      "spyOn"
+      "spyOn",
+      "noUiSlider",
+      "wNumb"
     ]
 }

@@ -8,6 +8,7 @@ module.exports = function(config) {
       'lib/aegon-frontend-library/aegon-scripts-library/vendor/drupal_misc/drupal.js',
       'lib/aegon-frontend-library/aegon-scripts-library/vendor/drupal_misc/**/*.js',
       'lib/aegon-frontend-library/aegon-scripts-library/components/quickquote-lijfrente.js',
+      'lib/aegon-frontend-library/aegon-scripts-library/components/quickquote-lijfrente-sparen.js',
       'lib/aegon-frontend-library/aegon-scripts-library/test/**/*.js'
     ]
   });

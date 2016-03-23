@@ -18,7 +18,9 @@ var
   header = require('gulp-header'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
+  karma = require('karma').Server,
   order = require('gulp-order'),
+  notify = require('gulp-notify'),
   plumber = require('gulp-plumber'),
   Q = require('q'),
   rename = require('gulp-rename'),
@@ -116,12 +118,24 @@ gulp.task('scripts:fabricator', function () {
 
 gulp.task('styles:library', function () {
 
-  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs 
+  var onError = function(err) {
+    notify.onError({
+      title:    "Gulp",
+      subtitle: "Failure!",
+      message:  "Error: <%= error.message %>",
+      sound:    "Beep"
+    })(err);
+
+    this.emit('end');
+  };
+
+
+  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs
   // dependencies mentioned in main toolkit.scss are skipped from watch task.
   gulp.start('styles:toolkit');
 
   return gulp.src(config.src.libSassPath + '/*.scss')
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: onError}))
     .pipe(gulpif(config.dev, sourcemaps.init()))
     .pipe(sass({
       errLogToConsole: true,
@@ -183,7 +197,7 @@ gulp.task('scripts:library', ['jshint:library'], function () {
   gulp.src([
     '**/*.js',
     '!test/**/*.js',
-    '!node_modules/**/*.js',
+    '!node_modules/**/',
     '!vendor/ie/**/*.js'
   ], {cwd: config.src.libScriptsPath})
   .pipe(plumber())
@@ -252,6 +266,7 @@ gulp.task('jshint:toolkit', function () {
  */
 
 gulp.task('styles:toolkit', function () {
+
   return gulp.src(config.src.styles.toolkit)
     .pipe(plumber())
     .pipe(gulpif(config.dev, sourcemaps.init()))
@@ -388,13 +403,25 @@ gulp.task('browser-sync', function () {
       middleware: [compress()],
       routes: {
         "/assets": config.src.libAssetsPath
-      },
-      tunnel: true,
-      notify: true
+      }//,
+      //tunnel: true,
+      //notify: true
     },
-    port: 8082
     // Tunnel the BrowserSync server through a random Public URL
+    // -> http://randomstring23232.localtunnel.me
+    // tunnel: true
+    // Attempt to use the URL "http://my-private-site.localtunnel.me"
+    // tunnel: "my-private-site"
+    notify: false,
+    port: 8082
   });
+});
+
+gulp.task('tests:run', function (done) {
+  return new karma({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 // Watch

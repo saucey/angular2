@@ -1,0 +1,3 @@
+[submodule "lib/aegon-frontend-library"]
+	path = lib/aegon-frontend-library
+	url = ssh://git@bitbucket.org:mrTooT/styleguide.git

@@ -1,0 +1,35 @@
+
+  {{#if fabricator}}<!-- fabricator scripts -->
+  <script src="fabricator/f.js"></script>
+  <!-- /fabricator scripts -->{{/if}}
+
+  <!-- aegon-library scripts -->
+  <script src="scripts/aegon-library.js"></script>
+  <!-- /aegon-library scripts -->
+
+  <!-- toolkit scripts -->
+  <script src="scripts/toolkit.js"></script>
+  <!-- /toolkit scripts -->
+
+  <!-- Drupal fake settings object -->
+  <script>
+    jQuery.extend(Drupal.settings, {
+      "basePath": "\/",
+      "pathPrefix": "",
+      "pathToTheme": "",
+      "ajaxPageState": {
+        "theme": "aegon_theme",
+        "theme_token": "JL2OhJveh8bIGphnf9XaI4XVICQOTDjxMqZfAQzvyKI",
+        "jquery_version": "1.9"
+      },
+      "onlineAegonNl": {
+        "hostname": "local"
+      },
+      "websphere": {
+        "hostname": "https:\/\/www.aegon.loc\/webapps"
+      }
+    });
+  </script>
+
+</body>
+</html>

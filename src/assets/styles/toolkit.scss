@@ -1,0 +1,38 @@
+
+//
+// Main file for Toolkit
+// Syntax is in SCSS, project using lib-sass to compile the styles.
+// --------------------------------------------------
+
+/* Force the charset
+================================================== */
+
+@charset "UTF-8";
+
+
+/* Bower Components
+================================================== */
+
+/* Compass Mixins */
+@import "aegon-frontend-library/aegon-sass-library/vendors/compass-mixins/lib/compass";
+
+/* Breakpoint SASS */
+@import "aegon-frontend-library/aegon-sass-library/vendors/breakpoint-sass/stylesheets/breakpoint";
+
+
+/* EXTRA sub libs dependencies
+================================================== */
+
+/* SASS variables, functions, mixins, class and placeholders helpers */
+@import "aegon-frontend-library/aegon-sass-library/helpers/all";
+
+/* All library widgets and specific modules */
+@import "aegon-frontend-library/aegon-sass-library/widgets/all";
+
+/* All library widgets and specific modules */
+@import "aegon-frontend-library/aegon-sass-library/structures/all";
+
+/* Groups of toolkit core files
+================================================== */
+
+@import "partials/base";

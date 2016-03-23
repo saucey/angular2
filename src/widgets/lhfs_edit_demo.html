@@ -1,0 +1,100 @@
+  <section id="lhfs_widget" class="lhfs_widget container_12">
+    <div id="" class=""><!--faceless widget container with unique id, used for Drupal ajax loading-->
+      <form name="modifyBetaalGegevensForm" id="lhfs">
+        <h3>Betaalgegevens</h3>
+
+        <a name="feedback_anchor"></a>
+        <!--for various error messages, iterate over the .error-Div; adding the "visible" class shows the error DOM element, so you can either leave it hidden in the code, or eliminate it outright by templating-->
+        <div class="error visible">
+          <div class="header">error header of some sort</div>
+          <!--button class="button bottom right blue arrow">detail link</button-->
+          some generic error message as a placeholder for real error messages, to be filled in and activated by the back end
+          <!--button class="button blue arrow">detail link</button-->
+        </div>
+        <!--end error iteration-->
+
+        <ul class="products row-fluid">
+          <!--if iterations are taking place, iterate over the elements between this comment-->
+
+
+          <li class="product data span12">
+            <div class="title">Product title comes here&nbsp;<span class="police-number">police number</span></div>
+            <div class="description">This is a product description that appears instead of the actual product data. To switch it on and off, the "data" class needs to be removed or added from the li.product element.</div>
+            <div class="details edit container_12">
+
+              <ul class="xhorizontal type row-fluid">
+                <li class="label required span5">
+                  <span class="middle-enforcer"></span>Payment type label
+                </li>
+                <li class="span1"></li>
+                
+                <li class="value span6">
+                  <span class="middle-enforcer"></span>
+                  <select name="paymentTypeValue" class="" required>
+           <!--          <option value="">empty option</option> -->
+                    <option value="p">payment type option 1</option>
+                    <option value="d">payment type option 2</option>
+                    <option value="i">payment type option 3</option>
+                    <option value="f">payment type option 4</option>
+                  </select>
+                  <span class="errorText">some error message visible</span>
+                </li>
+              </ul>
+
+              <ul class="horizontal interval row-fluid">
+                <li class="label span5"><span class="middle-enforcer"></span>Payment interval label</li>
+                <li class="span1"></li>
+                <li class="value sxpan6">
+                  <span class="middle-enforcer"></span>payment interval value
+                </li>
+              </ul>
+
+              <ul class="horizontal account row-fluid">
+                <li class="label required span5">
+                  <span class="middle-enforcer"></span>Account number label
+                  
+                </li>
+                <li class="span1">
+                  <span class="help" title="some more or less helpful text"></span>
+                </li>
+
+                <li id="accountNumberField" class="value sxpan6">
+                  <input type="text" name="accountNumberValue" id="accountNumberValue" value="BLA" data-validate="iban.nl" required/>
+                  <span class="errorText">some error message visible</span>
+                </li>
+              </ul>
+
+            </div>
+          </li>
+          <!--end iteration comment-->
+        </ul>
+
+
+              <ul class="horizontal visible edit incasso row-fluid">
+                <li class="label span6">
+                  <span class="middle-enforcer"></span>&nbsp;
+                </li>
+                <li class="value sxpan6">
+                  <span class="middle-enforcer"></span>
+                  <label class="checkbox required">
+                    <input type="checkbox" name="colCheckInput" id="colCheckInput" value="lorem" required/>
+                    <span class="checkbox"></span>
+                    <span class="label">Payment incasso text</span>
+                    <span class="errorText">some error message visible</span>
+                  </label>
+                </li>
+              </ul>
+
+        <ul class="actions edit">
+          <li class="view span6">
+            &nbsp;
+          </li>
+          <li class="edit span6">
+            <button class="arrow" type="button">save button text</button>
+            <button class="white cancel" type="button">cancel button text</button>
+            <div class="disabler"></div>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </section>

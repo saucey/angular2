@@ -1,0 +1,1 @@
+Work also with tag Anchor: <a href="#" class="login-link">Log in</a>

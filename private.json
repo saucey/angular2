@@ -1,0 +1,9 @@
+{
+  "deploy": {
+    "host": "10.120.32.22",
+    "port": "22",
+    "path": "/var/www/aegon-technical-design-library",
+    "user": "linux user for SSH",
+    "pass": "*****"
+  } 
+}

@@ -1,1 +1,60 @@
 <aegon-quickquote-dip>Bezig met laden...</aegon-quickquote-dip>
+<textarea id="quickQuoteDipTemplate" style="display: none;">
+<div class="quickquote lijfrente dip">
+  <div class="triangle"></div>
+  <div class="calculation">
+    <h3>Bereken direct uw pensioenuitkering: </h3>
+    <label class="field">
+      <span class="label">Beschikbaar pensioenkapitaal</span>
+      <aegon-help>Helptekst hier</aegon-help>
+      <aegon-input-money #amountInput currency="€" [(ngModel)]="pensionAmount"
+                         (focus)="amountInput.select()" (blur)="isValidAmount()" (enter)="submitAmount()">
+      </aegon-input-money>
+    </label>
+    <p class="error" *ngIf="amountTooSmall">
+      U moet minimaal €25.000 inleggen. Deze rekentool is vooral bedoeld voor klanten die hun pensioen buiten Aegon
+      hebben opgebouwd. Heeft u uw pensioen opgebouwd bij Aegon? Dan krijgt u van ons automatisch een offerte
+      toegestuurd. Hierbij hanteren we een lager minimum bedrag.
+    </p>
+    <button class="button arrow" *ngIf="step === 1" [disabled]="!pensionAmount" (click)="submitAmount()">
+      Volgende
+    </button>
+
+    <div *ngIf="step > 1">
+      <div>
+        Pensioenkapitaal is opgebouwd bij
+        <aegon-checkbox [(ngModel)]="storedInAegon">Aegon</aegon-checkbox>
+        <aegon-checkbox [(ngModel)]="storedElsewhere">Andere verzekeraar/pensioenfonds</aegon-checkbox>
+      </div>
+      <div>
+        <label>
+          Uw geboortedatum
+          <aegon-input-date [(ngModel)]="birthDate"></aegon-input-date>
+        </label>
+      </div>
+      <div>
+        Uitkering bij overlijden
+        <aegon-checkbox [(ngModel)]="deathBenefit">
+          Ja, ik wil een partneruitkering bij overlijden (70% van de oorspronkelijke pensioenuitkering)
+        </aegon-checkbox>
+      </div>
+      <div *ngIf="deathBenefit">
+        <label>
+          Geboortedatum partner
+          <aegon-input-date [(ngModel)]="partnerBirthDate"></aegon-input-date>
+        </label>
+      </div>
+      <div>
+        Ingangsdatum pensioenuitkering
+        <select [(ngModel)]="startingDate">
+          <option *ngFor="#date of startingDateChoices" [value]="date.value">{{date.label}}</option>
+        </select>
+      </div>
+
+      <button class="button icon-right icon-calculator" [disabled]="!readyForSubmit()" (click)="submit()">
+        Bereken
+      </button>
+    </div>
+  </div>
+</div>
+</textarea>

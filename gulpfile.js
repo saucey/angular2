@@ -412,8 +412,7 @@ gulp.task('browser-sync', function () {
     // tunnel: true
     // Attempt to use the URL "http://my-private-site.localtunnel.me"
     // tunnel: "my-private-site"
-    notify: false,
-    port: 8082
+    notify: false
   });
 });
 
@@ -447,7 +446,7 @@ gulp.task('watch', ['browser-sync'], function () {
   watch('lib/fabricator/scripts/**/*.js', function () {
     gulp.start('scripts:fabricator');
   });
-  
+
   watch(config.src.libScriptsPath + '/**/*.ts', function () {
     gulp.start('scripts:typescript');
   });

@@ -8,7 +8,7 @@
       <span class="label">Beschikbaar pensioenkapitaal</span>
       <aegon-help>Helptekst hier</aegon-help>
       <aegon-input-money #amountInput currency="€" [(ngModel)]="pensionAmount"
-                         (focus)="amountInput.select()" (blur)="isValidAmount()" (enter)="submitAmount()">
+                         (focus)="amountTooSmall = false; amountInput.select()" (blur)="isValidAmount()" (enter)="submitAmount()">
       </aegon-input-money>
     </label>
     <p class="error" *ngIf="amountTooSmall">
@@ -21,35 +21,36 @@
     </button>
 
     <div *ngIf="step > 1">
-      <div>
-        Pensioenkapitaal is opgebouwd bij
-        <aegon-checkbox [(ngModel)]="storedInAegon">Aegon</aegon-checkbox>
-        <aegon-checkbox [(ngModel)]="storedElsewhere">Andere verzekeraar/pensioenfonds</aegon-checkbox>
+      <div class="field">
+        <span class="label">Pensioenkapitaal is opgebouwd bij</span>
+        <aegon-help>Helptekst hier</aegon-help>
+        <div class="inputs">
+          <aegon-checkbox [(ngModel)]="storedInAegon">Aegon</aegon-checkbox>
+          <aegon-checkbox [(ngModel)]="storedElsewhere">Andere verzekeraar/pensioenfonds</aegon-checkbox>
+        </div>
       </div>
-      <div>
-        <label>
-          Uw geboortedatum
-          <aegon-input-date [(ngModel)]="birthDate"></aegon-input-date>
-        </label>
-      </div>
-      <div>
-        Uitkering bij overlijden
+      <label class="field">
+        <span class="label">Uw geboortedatum</span>
+        <aegon-input-date [(ngModel)]="birthDate"></aegon-input-date>
+      </label>
+      <label class="field">
+        <span class="label">Uitkering bij overlijden</span>
         <aegon-checkbox [(ngModel)]="deathBenefit">
           Ja, ik wil een partneruitkering bij overlijden (70% van de oorspronkelijke pensioenuitkering)
         </aegon-checkbox>
-      </div>
-      <div *ngIf="deathBenefit">
-        <label>
-          Geboortedatum partner
-          <aegon-input-date [(ngModel)]="partnerBirthDate"></aegon-input-date>
-        </label>
-      </div>
-      <div>
-        Ingangsdatum pensioenuitkering
+      </label>
+      <label class="field" *ngIf="deathBenefit">
+        <span class="label">Geboortedatum partner</span>
+        <aegon-input-date [(ngModel)]="partnerBirthDate"></aegon-input-date>
+      </label>
+      <label class="field">
+        <span class="label">Ingangsdatum pensioenuitkering</span>
+        <aegon-help>Helptekst hier</aegon-help>
         <select [(ngModel)]="startingDate">
-          <option *ngFor="#date of startingDateChoices" [value]="date.value">{{date.label}}</option>
+          <option value="" disabled selected>Maak uw keuze</option>
+          <option *ngFor="#date of startingDateChoices" [value]="date.value">\{{date.label}}</option>
         </select>
-      </div>
+      </label>
 
       <button class="button icon-right icon-calculator" [disabled]="!readyForSubmit()" (click)="submit()">
         Bereken

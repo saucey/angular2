@@ -1,4 +1,4 @@
-<aegon-quickquote-dip serviceUrl="http://ail.intra.aegon.nl/US_RestGatewayWeb/rest/requestResponse/BS_PENSIOENOVEREENKOMST_ROA/calculate">
+<aegon-quickquote-dip>
     Bezig met laden...
 </aegon-quickquote-dip>
 <textarea id="quickQuoteDipTemplate" style="display: none;">
@@ -14,9 +14,11 @@
           Heeft u meerdere pensioenbedragen uit verschillende beschikbare premieregelingen? Dan kunt u die bij elkaar
           optellen.
       </aegon-help>
-      <aegon-input-money #amountInput currency="€" [(ngModel)]="pensionAmount"
-                         (focus)="amountTooSmall = false; amountInput.select()" (blur)="isValidAmount()" (enter)="submitAmount()">
-      </aegon-input-money>
+      <div class="inputs">
+        <aegon-input-money #amountInput currency="€" [(ngModel)]="pensionAmount"
+                           (focus)="amountTooSmall = false; amountInput.select()" (blur)="isValidAmount()" (enter)="submitAmount()">
+        </aegon-input-money>
+      </div>
     </label>
     <p class="error" *ngIf="amountTooSmall">
       U moet minimaal €25.000 inleggen. Deze rekentool is vooral bedoeld voor klanten die hun pensioen buiten Aegon
@@ -44,7 +46,9 @@
       </p>
       <label class="field">
         <span class="label">Uw geboortedatum</span>
-        <aegon-input-date [(ngModel)]="birthDate"></aegon-input-date>
+        <div class="inputs">
+          <aegon-input-date [(ngModel)]="birthDate"></aegon-input-date>
+        </div>
       </label>
       <p class="error" *ngIf="storedError">
         Voer een geldige geboortedatum in.
@@ -59,7 +63,9 @@
       </label>
       <label class="field" *ngIf="deathBenefit">
         <span class="label">Geboortedatum partner</span>
-        <aegon-input-date [(ngModel)]="partnerBirthDate"></aegon-input-date>
+        <div class="inputs">
+          <aegon-input-date [(ngModel)]="partnerBirthDate"></aegon-input-date>
+        </div>
       </label>
       <p class="error" *ngIf="partnerBirthDateError">
         U heeft gekozen voor een partneruitkering bij overlijden. Voer een geldige geboortedatum in voor uw partner.
@@ -80,7 +86,7 @@
         U moet een ingangsdatum kiezen.
       </p>
 
-      <button class="button icon-right icon-calculator" (click)="submit()">
+      <button class="button icon-right icon-calculator" (click)="submit('http://ail.uat.intra.aegon.nl/US_RestGatewayWeb/rest/requestResponse/BS_PENSIOENOVEREENKOMST_ROA/calculate')">
         Bereken
       </button>
     </div>

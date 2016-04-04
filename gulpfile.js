@@ -181,7 +181,8 @@ gulp.task('scripts:angular2', function () {
     'angular2/bundles/angular2-polyfills.js',
     'systemjs/dist/system.src.js',
     'rxjs/bundles/Rx.js',
-    'angular2/bundles/angular2.dev.js',
+    'angular2/bundles/angular2.js',
+    'angular2/bundles/http.js'
   ], {cwd: config.src.libScriptsPath + '/node_modules'})
   .pipe(plumber())
   .pipe(concat('angular2-deps.js'))

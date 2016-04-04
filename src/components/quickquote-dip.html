@@ -1,4 +1,6 @@
-<aegon-quickquote-dip>Bezig met laden...</aegon-quickquote-dip>
+<aegon-quickquote-dip serviceUrl="http://ail.intra.aegon.nl/US_RestGatewayWeb/rest/requestResponse/BS_PENSIOENOVEREENKOMST_ROA/calculate">
+    Bezig met laden...
+</aegon-quickquote-dip>
 <textarea id="quickQuoteDipTemplate" style="display: none;">
 <div class="quickquote lijfrente dip">
   <div class="triangle"></div>
@@ -6,7 +8,12 @@
     <h3>Bereken direct uw pensioenuitkering: </h3>
     <label class="field">
       <span class="label">Beschikbaar pensioenkapitaal</span>
-      <aegon-help>Helptekst hier</aegon-help>
+      <aegon-help>
+          Vul het totale bedrag in waarmee u wilt rekenen. Het gaat hierbij alleen om pensioenkapitaal uit een
+          beschikbare premieregeling. Wij helpen u bij het herkennen van deze regeling <strong style="color:red;">(link naar situatiepagina)</strong>.
+          Heeft u meerdere pensioenbedragen uit verschillende beschikbare premieregelingen? Dan kunt u die bij elkaar
+          optellen.
+      </aegon-help>
       <aegon-input-money #amountInput currency="€" [(ngModel)]="pensionAmount"
                          (focus)="amountTooSmall = false; amountInput.select()" (blur)="isValidAmount()" (enter)="submitAmount()">
       </aegon-input-money>
@@ -23,36 +30,57 @@
     <div *ngIf="step > 1">
       <div class="field">
         <span class="label">Pensioenkapitaal is opgebouwd bij</span>
-        <aegon-help>Helptekst hier</aegon-help>
+        <aegon-help>
+            Heeft u pensioen opgebouwd bij verschillende verzekeraars/pensioenfondsen en wilt u deze samenvoegen?
+            Kies dan voor ‘Een andere verzekeraar of pensioenfonds.’
+        </aegon-help>
         <div class="inputs">
           <aegon-checkbox [(ngModel)]="storedInAegon">Aegon</aegon-checkbox>
           <aegon-checkbox [(ngModel)]="storedElsewhere">Andere verzekeraar/pensioenfonds</aegon-checkbox>
         </div>
       </div>
+      <p class="error" *ngIf="storedError">
+        U moet kiezen waar uw pensioenkapitaal is opgebouwd.
+      </p>
       <label class="field">
         <span class="label">Uw geboortedatum</span>
         <aegon-input-date [(ngModel)]="birthDate"></aegon-input-date>
       </label>
+      <p class="error" *ngIf="storedError">
+        Voer een geldige geboortedatum in.
+      </p>
       <label class="field">
         <span class="label">Uitkering bij overlijden</span>
-        <aegon-checkbox [(ngModel)]="deathBenefit">
-          Ja, ik wil een partneruitkering bij overlijden (70% van de oorspronkelijke pensioenuitkering)
-        </aegon-checkbox>
+        <span class="inputs">
+          <aegon-checkbox [(ngModel)]="deathBenefit">
+            Ja, ik wil een partneruitkering bij overlijden (70% van de oorspronkelijke pensioenuitkering)
+          </aegon-checkbox>
+        </span>
       </label>
       <label class="field" *ngIf="deathBenefit">
         <span class="label">Geboortedatum partner</span>
         <aegon-input-date [(ngModel)]="partnerBirthDate"></aegon-input-date>
       </label>
+      <p class="error" *ngIf="partnerBirthDateError">
+        U heeft gekozen voor een partneruitkering bij overlijden. Voer een geldige geboortedatum in voor uw partner.
+      </p>
       <label class="field">
         <span class="label">Ingangsdatum pensioenuitkering</span>
-        <aegon-help>Helptekst hier</aegon-help>
-        <select [(ngModel)]="startingDate">
-          <option value="" disabled selected>Maak uw keuze</option>
-          <option *ngFor="#date of startingDateChoices" [value]="date.value">\{{date.label}}</option>
-        </select>
+        <aegon-help>
+            U ontvangt de pensoenuitkering altijd achteraf, aan het einde van de maand.
+        </aegon-help>
+        <div class="inputs">
+          <select [(ngModel)]="startingDate">
+            <option value="" disabled selected>Maak uw keuze</option>
+            <option *ngFor="#date of startingDateChoices" [value]="date.value">\{{date.label}}</option>
+          </select>
+        </div>
       </label>
+      <p class="error" *ngIf="startingDateError">
+        U moet een ingangsdatum kiezen.
+      </p>
 
-      <button class="button icon-right icon-calculator" [disabled]="!readyForSubmit()" (click)="submit()">
+      <button class="button icon-right icon-calculator" (click)="submit()">
         Bereken
       </button>
     </div>

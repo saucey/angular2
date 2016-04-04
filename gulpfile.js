@@ -155,8 +155,8 @@ gulp.task('scripts:library', ['jshint:library'], function () {
   return gulp.src([
       config.src.libScriptsPath + '/**/*.js',
       '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js',
-      '!' + config.src.libScriptsPath + '/test/**/*.js'
-
+      '!' + config.src.libScriptsPath + '/test/**/*.js',
+      '!' + config.src.libScriptsPath + '/node_modules/**/*.js'
     ])
     .pipe(plumber())
     .pipe(order([
@@ -201,7 +201,8 @@ gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
 gulp.task('jshint:library', function () {
   return gulp.src([
       config.src.libScriptsPath + '/**/*.js',
-      '!' + config.src.libScriptsPath + '/vendor/**/*'
+      '!' + config.src.libScriptsPath + '/vendor/**/*',
+      '!' + config.src.libScriptsPath + '/node_modules/**/*'
     ])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))

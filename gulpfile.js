@@ -152,28 +152,6 @@ gulp.task('styles:library', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-gulp.task('scripts:typescript', function () {
-  gulp.src([
-    '**/*.ts',
-    '!vendor/**/*.ts',
-    '!node_modules/**/*.ts',
-    '!typings/main.d.ts',
-    '!typings/main/**/*.ts'
-  ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
-  .pipe(plumber())
-  .pipe(ts({
-    outFile: 'ts-compiled.js',
-    target: 'es5',
-    module: 'system',
-    moduleResolution: 'node',
-    emitDecoratorMetadata: true,
-    experimentalDecorators: true,
-    removeComments: false,
-    noImplicitAny: false
-  }))
-  .pipe(gulp.dest(config.dest + '/scripts'))
-});
-
 gulp.task('scripts:angular2', function () {
   return merge2(
     gulp.src([
@@ -350,7 +328,7 @@ gulp.task('assets', ['assets:library']);
 
 gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
 
-gulp.task('scripts', ['scripts:fabricator', 'scripts:angular2', 'scripts:typescript', 'scripts:library', 'scripts:toolkit', 'data']);
+gulp.task('scripts', ['scripts:fabricator', 'scripts:angular2', 'scripts:library', 'scripts:toolkit', 'data']);
 
 
 /**

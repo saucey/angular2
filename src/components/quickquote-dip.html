@@ -1,0 +1,133 @@
+<div id="aegon-quickquote-dip">
+<aegon-quickquote-dip>Bezig met laden...</aegon-quickquote-dip>
+<textarea id="quickQuoteDipTemplate" style="display: none;">
+<div class="quickquote lijfrente dip">
+  <div class="triangle"></div>
+  <div class="calculation">
+    <h3>Bereken direct uw pensioenuitkering: </h3>
+    <label class="field">
+      <span class="label">Beschikbaar pensioenkapitaal</span>
+      <aegon-help>
+          Vul het totale bedrag in waarmee u wilt rekenen. Het gaat hierbij alleen om pensioenkapitaal uit een
+          beschikbare premieregeling. Wij helpen u bij het herkennen van deze regeling <strong style="color:red;">(link naar situatiepagina)</strong>.
+          Heeft u meerdere pensioenbedragen uit verschillende beschikbare premieregelingen? Dan kunt u die bij elkaar
+          optellen.
+      </aegon-help>
+      <div class="inputs">
+        <aegon-input-money #amountInput currency="€" [(ngModel)]="pensionAmount" [max]="99999999"
+                           (focus)="amountTooSmall = false; amountInput.select()" (blur)="isValidAmount()"
+                           (enter)="submitAmount()">
+        </aegon-input-money>
+      </div>
+    </label>
+    <p class="error" *ngIf="amountTooSmall">
+      U moet minimaal €25.000 inleggen. Deze rekentool is vooral bedoeld voor klanten die hun pensioen buiten Aegon
+      hebben opgebouwd. Heeft u uw pensioen opgebouwd bij Aegon? Dan krijgt u van ons automatisch een offerte
+      toegestuurd. Hierbij hanteren we een lager minimum bedrag.
+    </p>
+    <button class="button arrow" *ngIf="step === 1" [disabled]="!pensionAmount" (click)="submitAmount()">
+      Volgende
+    </button>
+
+    <div *ngIf="step > 1">
+      <div class="field">
+        <span class="label">Pensioenkapitaal is opgebouwd bij</span>
+        <aegon-help>
+            Heeft u pensioen opgebouwd bij verschillende verzekeraars/pensioenfondsen en wilt u deze samenvoegen?
+            Kies dan voor ‘Een andere verzekeraar of pensioenfonds.’
+        </aegon-help>
+        <div class="inputs">
+          <aegon-checkbox [(ngModel)]="storedInAegon">Aegon</aegon-checkbox>
+          <aegon-checkbox [(ngModel)]="storedElsewhere">Andere verzekeraar/pensioenfonds</aegon-checkbox>
+        </div>
+      </div>
+      <p class="error" *ngIf="storedError">
+        U moet kiezen waar uw pensioenkapitaal is opgebouwd.
+      </p>
+      <label class="field">
+        <span class="label">Uw geboortedatum</span>
+        <div class="inputs">
+          <aegon-input-date [(ngModel)]="birthDate"></aegon-input-date>
+        </div>
+      </label>
+      <p class="error" *ngIf="storedError">
+        Voer een geldige geboortedatum in.
+      </p>
+      <label class="field">
+        <span class="label">Uitkering bij overlijden</span>
+        <span class="inputs">
+          <aegon-checkbox [(ngModel)]="deathBenefit">
+            Ja, ik wil een partneruitkering bij overlijden (70% van de oorspronkelijke pensioenuitkering)
+          </aegon-checkbox>
+        </span>
+      </label>
+      <label class="field" *ngIf="deathBenefit">
+        <span class="label">Geboortedatum partner</span>
+        <div class="inputs">
+          <aegon-input-date [(ngModel)]="partnerBirthDate"></aegon-input-date>
+        </div>
+      </label>
+      <p class="error" *ngIf="partnerBirthDateError">
+        U heeft gekozen voor een partneruitkering bij overlijden. Voer een geldige geboortedatum in voor uw partner.
+      </p>
+      <label class="field">
+        <span class="label">Ingangsdatum pensioenuitkering</span>
+        <aegon-help>
+            U ontvangt de pensoenuitkering altijd achteraf, aan het einde van de maand.
+        </aegon-help>
+        <div class="inputs">
+          <select [(ngModel)]="startingDate">
+            <option value="" disabled selected>Maak uw keuze</option>
+            <option *ngFor="#date of startingDateChoices" [value]="date.value">\{{date.label}}</option>
+          </select>
+        </div>
+      </label>
+      <p class="error" *ngIf="startingDateError">
+        U moet een ingangsdatum kiezen.
+      </p>
+
+      <button class="button icon-right icon-calculator" [disabled]="pendingCount > 0" [ngClass]="{pending: pendingCount > 0}" (click)="submit('MockURL', '')">
+        Bereken
+      </button>
+    </div>
+  </div>
+  <div class="result" *ngIf="linearAmount && highLowFirstAmount">
+    <div class="linear">
+      <div class="row">
+        <span class="label">Pensioenuitkering</span>
+        <span class="value"><span class="currency">€</span> <span class="amount">\{{linearAmount}}</span> bruto p/mnd</span>
+      </div>
+      <div *ngIf="deathBenefitAmount" class="row">
+        <span class="label">Uitkering bij overlijden</span>
+        <span class="value"><span class="currency">€</span> <span class="amount">\{{deathBenefitAmount}}</span> bruto p/mnd</span>
+      </div>
+    </div>
+    <div class="high-low">
+      <div class="row">
+        <span class="label">Hoog-laag-uitkering*</span>
+        <span class="value">
+          <span class="currency">€</span> <span class="amount">\{{highLowFirstAmount}}</span> eerste 5 jaar<br>
+          <span class="currency">€</span> <span class="amount">\{{highLowSecondAmount}}</span> na 5 jaar
+        </span>
+      </div>
+      <div *ngIf="deathBenefitAmount" class="row">
+        <span class="label">Hoog-laag-uitkering bij overlijden*</span>
+        <span class="value">
+          <span class="currency">€</span> <span class="amount">\{{highLowDeathBenefitAmount}}</span> eerste 5 jaar<!--TODO shouldn't this be bruto p/mnd?-->
+        </span>
+      </div>
+    </div>
+    <div *ngIf="storedInAegon" class="footer">
+      Uw pensioen komt vrij <strong>bij Aegon</strong>.<br>
+      U krijgt binnen [periode]<!-- TODO --> automatisch per brief van ons een offerte.
+    </div>
+    <div *ngIf="!storedInAegon" class="footer">
+        <ul class="arrow">
+            <li><a href="#TODO">Vraag een adviesgesprek aan</a></li>
+        </ul>
+        <button class="button orange icon-right arrow">Vrijblijvende offerte</button>
+    </div>
+  </div>
+</div>
+</textarea>
+</div>

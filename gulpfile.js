@@ -9,6 +9,7 @@ var
   browserSync = require('browser-sync'),
   collate = require('./lib/fabricator/tasks/collate'),
   compile = require('./lib/fabricator/tasks/compile'),
+  compress = require('compression'),
   concat = require('gulp-concat'),
   del = require('del'),
   gulp = require('gulp'),
@@ -19,6 +20,7 @@ var
   jshint = require('gulp-jshint'),
   karma = require('karma').Server,
   order = require('gulp-order'),
+  merge2 = require('merge2'),
   notify = require('gulp-notify'),
   plumber = require('gulp-plumber'),
   Q = require('q'),
@@ -29,6 +31,7 @@ var
   streamify = require('gulp-streamify'),
   sftp = require('gulp-sftp'),
   sourcemaps = require('gulp-sourcemaps'),
+  ts = require('gulp-typescript'),
   uglify = require('gulp-uglify'),
   watch = require('gulp-watch');
 
@@ -149,29 +152,89 @@ gulp.task('styles:library', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
+gulp.task('scripts:typescript', function () {
+  gulp.src([
+    '**/*.ts',
+    '!vendor/**/*.ts',
+    '!node_modules/**/*.ts',
+    '!typings/main.d.ts',
+    '!typings/main/**/*.ts'
+  ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+  .pipe(plumber())
+  .pipe(ts({
+    outFile: 'ts-compiled.js',
+    target: 'es5',
+    module: 'system',
+    moduleResolution: 'node',
+    emitDecoratorMetadata: true,
+    experimentalDecorators: true,
+    removeComments: false,
+    noImplicitAny: false
+  }))
+  .pipe(gulp.dest(config.dest + '/scripts'))
+});
+
+gulp.task('scripts:angular2', function () {
+  return merge2(
+    gulp.src([
+      'es6-shim/es6-shim.min.js',
+      'systemjs/dist/system-polyfills.js',
+      'angular2/es6/dev/src/testing/shims_for_IE.js',
+      'angular2/bundles/angular2-polyfills.min.js',
+      'systemjs/dist/system.js',
+      'rxjs/bundles/Rx.min.js',
+      'angular2/bundles/angular2.js',
+      'angular2/bundles/http.min.js'
+    ], {cwd: config.src.libScriptsPath + '/node_modules'}),
+
+    gulp.src([
+      '**/*.ts',
+      '!vendor/**/*.ts',
+      '!node_modules/**/*.ts',
+      '!typings/main.d.ts',
+      '!typings/main/**/*.ts'
+    ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+    .pipe(plumber())
+    .pipe(ts({
+      outFile: 'ts-compiled.js',
+      target: 'es5',
+      module: 'system',
+      moduleResolution: 'node',
+      emitDecoratorMetadata: true,
+      experimentalDecorators: true,
+      removeComments: false,
+      noImplicitAny: false
+    }))
+  )
+  .pipe(concat('aegon-angular2.js'))
+  .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
+  .pipe(gulp.dest(config.dest + '/scripts'))
+  .pipe(gulpif(config.dev, reload({stream:true})));
+});
+
 gulp.task('scripts:library', ['jshint:library'], function () {
 
   // Main scripts
-  return gulp.src([
-      config.src.libScriptsPath + '/**/*.js',
-      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js',
-      '!' + config.src.libScriptsPath + '/test/**/*.js',
-      '!' + config.src.libScriptsPath + '/node_modules/**/*.js'
-    ])
-    .pipe(plumber())
-    .pipe(order([
-      'vendor/drupal_misc/jquery.js',
-      'vendor/drupal_misc/jquery.once.js',
-      'vendor/drupal_misc/drupal.js',
-      'vendor/drupal_misc/**/*.js',
-      'vendor/drupal_modules/**/*.js',
-      'vendor/**/*.js',
-    ], { base: config.src.libScriptsPath }))
-    .pipe(concat('aegon-library.js'))
-    .pipe(gulpif(!config.dev, streamify(uglify())))
-    .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
-    .pipe(gulp.dest(config.dest + '/scripts'))
-    .pipe(gulpif(config.dev, reload({stream:true})));
+  gulp.src([
+    '**/*.js',
+    '!test/**/*.js',
+    '!node_modules/**/',
+    '!vendor/ie/**/*.js'
+  ], {cwd: config.src.libScriptsPath})
+  .pipe(plumber())
+  .pipe(order([
+    'vendor/drupal_misc/jquery.js',
+    'vendor/drupal_misc/jquery.once.js',
+    'vendor/drupal_misc/drupal.js',
+    'vendor/drupal_misc/**/*.js',
+    'vendor/drupal_modules/**/*.js',
+    'vendor/**/*.js'
+  ], { base: config.src.libScriptsPath }))
+  .pipe(concat('aegon-library.js'))
+  .pipe(gulpif(!config.dev, streamify(uglify())))
+  .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
+  .pipe(gulp.dest(config.dest + '/scripts'))
+  .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('assets:library:fonts', function () {
@@ -287,7 +350,7 @@ gulp.task('assets', ['assets:library']);
 
 gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
 
-gulp.task('scripts', ['scripts:fabricator', 'scripts:library', 'scripts:toolkit', 'data']);
+gulp.task('scripts', ['scripts:fabricator', 'scripts:angular2', 'scripts:typescript', 'scripts:library', 'scripts:toolkit', 'data']);
 
 
 /**
@@ -358,9 +421,12 @@ gulp.task('browser-sync', function () {
   browserSync({
     server: {
       baseDir: config.dest,
+      middleware: [compress()],
       routes: {
         "/assets": config.src.libAssetsPath
-      }
+      }//,
+      //tunnel: true,
+      //notify: true
     },
     // Tunnel the BrowserSync server through a random Public URL
     // -> http://randomstring23232.localtunnel.me
@@ -400,6 +466,10 @@ gulp.task('watch', ['browser-sync'], function () {
 
   watch('lib/fabricator/scripts/**/*.js', function () {
     gulp.start('scripts:fabricator');
+  });
+
+  watch(config.src.libScriptsPath + '/**/*.ts', function () {
+    gulp.start('scripts:typescript');
   });
 
   watch(config.src.libScriptsPath + '/**/*.js', function () {

@@ -20,6 +20,7 @@ var
   jshint = require('gulp-jshint'),
   karma = require('karma').Server,
   order = require('gulp-order'),
+  merge2 = require('merge2'),
   notify = require('gulp-notify'),
   plumber = require('gulp-plumber'),
   Q = require('q'),
@@ -174,19 +175,38 @@ gulp.task('scripts:typescript', function () {
 });
 
 gulp.task('scripts:angular2', function () {
-  gulp.src([
-    'es6-shim/es6-shim.min.js',
-    'systemjs/dist/system-polyfills.js',
-    'angular2/es6/dev/src/testing/shims_for_IE.js',
-    'angular2/bundles/angular2-polyfills.js',
-    'systemjs/dist/system.src.js',
-    'rxjs/bundles/Rx.js',
-    'angular2/bundles/angular2.js',
-    'angular2/bundles/http.js'
-  ], {cwd: config.src.libScriptsPath + '/node_modules'})
-  .pipe(plumber())
-  .pipe(concat('angular2-deps.js'))
-  .pipe(gulpif(!config.dev, streamify(uglify())))
+  return merge2(
+    gulp.src([
+      'es6-shim/es6-shim.min.js',
+      'systemjs/dist/system-polyfills.js',
+      'angular2/es6/dev/src/testing/shims_for_IE.js',
+      'angular2/bundles/angular2-polyfills.min.js',
+      'systemjs/dist/system.js',
+      'rxjs/bundles/Rx.min.js',
+      'angular2/bundles/angular2.js',
+      'angular2/bundles/http.min.js'
+    ], {cwd: config.src.libScriptsPath + '/node_modules'}),
+
+    gulp.src([
+      '**/*.ts',
+      '!vendor/**/*.ts',
+      '!node_modules/**/*.ts',
+      '!typings/main.d.ts',
+      '!typings/main/**/*.ts'
+    ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+    .pipe(plumber())
+    .pipe(ts({
+      outFile: 'ts-compiled.js',
+      target: 'es5',
+      module: 'system',
+      moduleResolution: 'node',
+      emitDecoratorMetadata: true,
+      experimentalDecorators: true,
+      removeComments: false,
+      noImplicitAny: false
+    }))
+  )
+  .pipe(concat('aegon-angular2.js'))
   .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
   .pipe(gulp.dest(config.dest + '/scripts'))
   .pipe(gulpif(config.dev, reload({stream:true})));

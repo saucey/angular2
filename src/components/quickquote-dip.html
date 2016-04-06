@@ -76,7 +76,7 @@
             U ontvangt de pensoenuitkering altijd achteraf, aan het einde van de maand.
         </aegon-help>
         <div class="inputs">
-          <select [(ngModel)]="startingDate">
+          <select [ngModel]="startingDate" (ngModelChange)="startingDate = $event">
             <option value="" disabled selected>Maak uw keuze</option>
             <option *ngFor="#date of startingDateChoices" [value]="date.value">\{{date.label}}</option>
           </select>

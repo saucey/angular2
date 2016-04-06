@@ -14,8 +14,9 @@
           optellen.
       </aegon-help>
       <div class="inputs">
-        <aegon-input-money #amountInput currency="€" [(ngModel)]="pensionAmount"
-                           (focus)="amountTooSmall = false; amountInput.select()" (blur)="isValidAmount()" (enter)="submitAmount()">
+        <aegon-input-money #amountInput currency="€" [(ngModel)]="pensionAmount" [max]="99999999"
+                           (focus)="amountTooSmall = false; amountInput.select()" (blur)="isValidAmount()"
+                           (enter)="submitAmount()">
         </aegon-input-money>
       </div>
     </label>
@@ -85,35 +86,47 @@
         U moet een ingangsdatum kiezen.
       </p>
 
-      <button class="button icon-right icon-calculator" [disabled]="pendingCount > 0" [ngClass]="{pending: pendingCount > 0}" (click)="submit('MockURL')">
+      <button class="button icon-right icon-calculator" [disabled]="pendingCount > 0" [ngClass]="{pending: pendingCount > 0}" (click)="submit('MockURL', '')">
         Bereken
       </button>
     </div>
   </div>
   <div class="result" *ngIf="linearAmount && highLowFirstAmount">
     <div class="linear">
-      <span class="label">Pensioenuitkering</span> <span class="value">€ \{{linearAmount}} bruto p/mnd</span>
-      <div *ngIf="deathBenefitAmount">
-          <span class="label">Uitkering bij overlijden</span> <span class="value">€ \{{deathBenefitAmount}} bruto p/mnd</span>
+      <div class="row">
+        <span class="label">Pensioenuitkering</span>
+        <span class="value"><span class="currency">€</span> <span class="amount">\{{linearAmount}}</span> bruto p/mnd</span>
+      </div>
+      <div *ngIf="deathBenefitAmount" class="row">
+        <span class="label">Uitkering bij overlijden</span>
+        <span class="value"><span class="currency">€</span> <span class="amount">\{{deathBenefitAmount}}</span> bruto p/mnd</span>
       </div>
     </div>
     <div class="high-low">
-      <span class="label">Hoog-laag-uitkering*</span>
-      <span class="value">
-          € \{{highLowFirstAmount}} eerste 5 jaar<br>
-          € \{{highLowSecondAmount}} na 5 jaar
-      </span>
-      <div *ngIf="deathBenefitAmount">
-          <span class="label">Hoog-laag-uitkering bij overlijden*</span>
-          <span class="value">
-              € \{{highLowDeathBenefitAmount}} eerste 5 jaar<!--TODO shouldn't this be bruto p/mnd?-->
-          </span>
+      <div class="row">
+        <span class="label">Hoog-laag-uitkering*</span>
+        <span class="value">
+          <span class="currency">€</span> <span class="amount">\{{highLowFirstAmount}}</span> eerste 5 jaar<br>
+          <span class="currency">€</span> <span class="amount">\{{highLowSecondAmount}}</span> na 5 jaar
+        </span>
+      </div>
+      <div *ngIf="deathBenefitAmount" class="row">
+        <span class="label">Hoog-laag-uitkering bij overlijden*</span>
+        <span class="value">
+          <span class="currency">€</span> <span class="amount">\{{highLowDeathBenefitAmount}}</span> eerste 5 jaar<!--TODO shouldn't this be bruto p/mnd?-->
+        </span>
       </div>
     </div>
-    <p>
+    <div *ngIf="storedInAegon" class="footer">
       Uw pensioen komt vrij <strong>bij Aegon</strong>.<br>
       U krijgt binnen [periode]<!-- TODO --> automatisch per brief van ons een offerte.
-    </p>
+    </div>
+    <div *ngIf="!storedInAegon" class="footer">
+        <ul class="arrow">
+            <li><a href="#TODO">Vraag een adviesgesprek aan</a></li>
+        </ul>
+        <button class="button orange icon-right arrow">Vrijblijvende offerte</button>
+    </div>
   </div>
 </div>
 </textarea>

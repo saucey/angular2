@@ -447,7 +447,7 @@ gulp.task('watch', ['browser-sync'], function () {
   });
 
   watch(config.src.libScriptsPath + '/**/*.ts', function () {
-    gulp.start('scripts:typescript');
+    gulp.start('scripts:angular2');
   });
 
   watch(config.src.libScriptsPath + '/**/*.js', function () {

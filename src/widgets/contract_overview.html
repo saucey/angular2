@@ -162,3 +162,16 @@
   </ul>
 
 </div>
+<script>
+  function openAdvModal() {
+    var callback = function() {
+      jQuery.ajax({
+        url: '/file/example/aegon_modal.json',
+        dataType: 'json'
+      }).done(function(data){
+        Drupal.aegonModal('update', data);
+      });
+    }
+    Drupal.aegonModal({ajax: true, timeOut: 3000, timeOutMessage: "Contactgegevens ophalen duurt langer dan verwacht. Probeer het later nog eens."}, callback);
+  }
+</script>

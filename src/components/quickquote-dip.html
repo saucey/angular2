@@ -1,7 +1,9 @@
-<div id="aegon-quickquote-dip">
 <aegon-quickquote-dip><div class="loading">Bezig met laden...</div></aegon-quickquote-dip>
 <textarea id="XXXquickQuoteDipTemplate" style="display: none;">
     Put Angular 2 template code here and remove XXX from id above to let component use this template. Example code can
     be found in the component TypeScript code.
 </textarea>
-</div>
+<script src="/scripts/aegon-angular2.js"></script>
+<script>
+    System.import('components/quickquote-dip/main').then(null, console.error.bind(console));
+</script>

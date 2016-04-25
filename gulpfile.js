@@ -155,8 +155,8 @@ gulp.task('styles:library', function () {
 gulp.task('scripts:angular2', function () {
   gulp.src([
     'es6-shim/es6-shim.min.js'
-  ], {cwd: conf.src.libScripts + '/node_modules'})
-    .pipe(gulp.dest(conf.dest + '/js'));
+  ], {cwd: config.src.libScripts + '/node_modules'})
+    .pipe(gulp.dest(config.dest + '/js'));
 
   return merge2(
     gulp.src([

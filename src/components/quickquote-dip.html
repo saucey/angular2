@@ -5,5 +5,7 @@
 </textarea>
 <script src="/scripts/aegon-angular2.js"></script>
 <script>
-    System.import('components/quickquote-dip/main').then(null, console.error.bind(console));
+    document.addEventListener("DOMContentLoaded", function () {
+        System.import('components/quickquote-dip/main').then(null, console.error.bind(console));
+    });
 </script>

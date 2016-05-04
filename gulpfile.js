@@ -112,7 +112,6 @@ gulp.task('scripts:fabricator', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-
 /**
  * Library tasks
  */

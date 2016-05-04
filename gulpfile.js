@@ -201,7 +201,6 @@ gulp.task('scripts:angular2core', function() {
 });
 
 gulp.task('scripts:library', ['jshint:library'], function () {
-
   // Main scripts
   gulp.src([
     '**/*.js',

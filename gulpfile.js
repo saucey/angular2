@@ -130,7 +130,6 @@ gulp.task('styles:library', function () {
     this.emit('end');
   };
 
-
   // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs
   // dependencies mentioned in main toolkit.scss are skipped from watch task.
   gulp.start('styles:toolkit');

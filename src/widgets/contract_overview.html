@@ -153,6 +153,30 @@
 
     <li class="category clearfix container_12">
       <h2 class="icon-uniE60A">Pensioen</h2>
+      <div class="messages messages--generic pension123 big visible">
+        <span class="icon"></span>
+        <div class="header">
+          Bekijk in vogelvlucht uw nieuwe pensioenregeling
+        </div>
+        <div class="content">
+          Ga direct naar het Pensioen 1-2-3 voor uw pensioenregeling bij Koninklijke Philips N.V.
+        </div>
+        <div class="horizontal row-fluid">
+          <div class="arrow span6"><button class="button arrow">Naar pensioenregeling</button></div>
+          <div class="arrow span6"><img src="https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/logo_laag1_blauw.png" alt="Pensioen123 Logo" class="logo"></div>
+        </div>
+        
+      </div>      
+      <div class="messages messages--generic pension big visible">
+        <span class="icon"></span>
+        <div class="header">
+          Maak uw eigen beleggingskeuze voor uw pensioen
+        </div>
+        <div class="content">
+          Wij hebben een standaard beleggingskeuze voor u gemaakt. Maak nu uw eigen keuze.
+        </div>
+        <button class="button arrow" onclick="openInstructions();">Beleggingskeuze aanpassen</button>
+      </div>
       <ul class="horizontal row-fluid">
         <li class="arrow span6"><a href="#" class="label">Mijn Pensioen</a></li>
       </ul>
@@ -160,9 +184,23 @@
 
     <!--end iteration comment-->
   </ul>
-
+  <div class="container_12 hidden-tablet hidden-desktop hidden-mobile" id="instructions">
+    <h2>Beleggingskeuze voor uw pensioen</h2>
+    <div class="horizontal row-fluid">
+      <div class="span6"><img src="/images/pension123-guide.png" style="width:90%;display: block;margin:0 auto;"></div>
+      <div class="span6">Kies het beleggingsprofiel dat het beste bij u past. Uw beleggingsprofiel staat standaard op "Neutraal".<br> Pass uw beleggingsprofiel aan:
+        <ol>
+          <li> onder de tab <b>Beleggingen</b></li>
+          <li> met <b>Beleggingskeuze formulier</b></li>
+        </ol>
+        <br><br>
+        <a href="#" class="button arrow">Beleggingskeuze aanpassen</a>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
+  /* Sample function for advisor */
   function openAdvModal() {
     var callback = function() {
       jQuery.ajax({
@@ -173,5 +211,13 @@
       });
     }
     Drupal.aegonModal({ajax: true, timeOut: 3000, timeOutMessage: "Contactgegevens ophalen duurt langer dan verwacht. Probeer het later nog eens."}, callback);
+  }
+  /* Sample function for beleggingskeuze */
+  function openInstructions() {
+    var html = jQuery('#instructions').html();
+    Drupal.aegonModal('open', {
+      body: '<div class="container_12">' + html + '</div>',
+      width: 690
+    });
   }
 </script>

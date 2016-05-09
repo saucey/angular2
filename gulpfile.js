@@ -171,7 +171,6 @@ gulp.task('scripts:angular2components', function () {
     removeComments: false,
     noImplicitAny: false
   }))
-
   .pipe(concat('aegon-angular2.js'))
   .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
   .pipe(gulp.dest(config.dest + '/scripts'))

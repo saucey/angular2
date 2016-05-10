@@ -201,7 +201,7 @@ gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
   gulp.src([
     '**/*.js',
-    '!test/**/*.js',
+    '!**/test/**/*.js',
     '!node_modules/**/',
     '!vendor/ie/**/*.js'
   ], {cwd: config.src.libScriptsPath})

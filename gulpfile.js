@@ -42,6 +42,7 @@ var
 
 var config = {
   dev: gutil.env.dev,
+  notest: gutil.env.notest,
   src: {
     libAssetsPath: './lib/aegon-frontend-library/aegon-assets-library',
     libSassPath: './lib/aegon-frontend-library/aegon-sass-library',
@@ -112,11 +113,9 @@ gulp.task('scripts:fabricator', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-
 /**
  * Library tasks
  */
-
 gulp.task('styles:library', function () {
 
   var onError = function(err) {
@@ -240,7 +239,6 @@ gulp.task('assets:library:images', function () {
 });
 
 gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
-
 
 /**
  * Jshint task
@@ -480,6 +478,12 @@ gulp.task('watch', ['browser-sync'], function () {
   watch(config.src.libAssetsPath + '/fonts/**', function () {
     gulp.start('assets:library:fonts');
   });
+
+  watch(config.src.libScriptsPath + '/**/*.js', function () {
+    if (!config.notest) {
+      gulp.start('tests:run');
+    }
+  });
 });
 
 // Default build task
@@ -491,7 +495,8 @@ gulp.task('default', ['clean'], function () {
     'scripts',
     'assets',
     'images',
-    'assemble'
+    'assemble',
+    'tests:run'
   ];
 
   // run build

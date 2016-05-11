@@ -452,7 +452,11 @@ gulp.task('watch', ['browser-sync'], function () {
   });
 
   watch(config.src.libScriptsPath + '/**/*.ts', function () {
-    gulp.start('scripts:angular2');
+    gulp.start('scripts:angular2core');
+  });
+
+  watch(config.src.libScriptsPath + '/**/*.ts', function () {
+    gulp.start('scripts:angular2components');
   });
 
   watch(config.src.libScriptsPath + '/**/*.js', function () {

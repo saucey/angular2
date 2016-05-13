@@ -201,7 +201,7 @@ gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
   gulp.src([
     '**/*.js',
-    '!test/**/*.js',
+    '!**/test/**/*.js',
     '!node_modules/**/',
     '!vendor/ie/**/*.js'
   ], {cwd: config.src.libScriptsPath})
@@ -452,7 +452,11 @@ gulp.task('watch', ['browser-sync'], function () {
   });
 
   watch(config.src.libScriptsPath + '/**/*.ts', function () {
-    gulp.start('scripts:angular2');
+    gulp.start('scripts:angular2core');
+  });
+
+  watch(config.src.libScriptsPath + '/**/*.ts', function () {
+    gulp.start('scripts:angular2components');
   });
 
   watch(config.src.libScriptsPath + '/**/*.js', function () {

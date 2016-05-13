@@ -42,6 +42,7 @@ var
 
 var config = {
   dev: gutil.env.dev,
+  notest: gutil.env.notest,
   src: {
     libAssetsPath: './lib/aegon-frontend-library/aegon-assets-library',
     libSassPath: './lib/aegon-frontend-library/aegon-sass-library',
@@ -112,11 +113,9 @@ gulp.task('scripts:fabricator', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-
 /**
  * Library tasks
  */
-
 gulp.task('styles:library', function () {
 
   var onError = function(err) {
@@ -129,7 +128,6 @@ gulp.task('styles:library', function () {
 
     this.emit('end');
   };
-
 
   // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs
   // dependencies mentioned in main toolkit.scss are skipped from watch task.
@@ -152,7 +150,8 @@ gulp.task('styles:library', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-gulp.task('scripts:typescript', function () {
+gulp.task('scripts:angular2components', function () {
+
   gulp.src([
     '**/*.ts',
     '!vendor/**/*.ts',
@@ -171,49 +170,34 @@ gulp.task('scripts:typescript', function () {
     removeComments: false,
     noImplicitAny: false
   }))
-  .pipe(gulp.dest(config.dest + '/scripts'))
-});
-
-gulp.task('scripts:angular2', function () {
-  return merge2(
-    gulp.src([
-      'es6-shim/es6-shim.min.js',
-      'systemjs/dist/system-polyfills.js',
-      'angular2/es6/dev/src/testing/shims_for_IE.js',
-      'angular2/bundles/angular2-polyfills.min.js',
-      'systemjs/dist/system.js',
-      'rxjs/bundles/Rx.min.js',
-      'angular2/bundles/angular2.js',
-      'angular2/bundles/http.min.js'
-    ], {cwd: config.src.libScriptsPath + '/node_modules'}),
-
-    gulp.src([
-      '**/*.ts',
-      '!vendor/**/*.ts',
-      '!node_modules/**/*.ts',
-      '!typings/main.d.ts',
-      '!typings/main/**/*.ts'
-    ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
-    .pipe(plumber())
-    .pipe(ts({
-      outFile: 'ts-compiled.js',
-      target: 'es5',
-      module: 'system',
-      moduleResolution: 'node',
-      emitDecoratorMetadata: true,
-      experimentalDecorators: true,
-      removeComments: false,
-      noImplicitAny: false
-    }))
-  )
   .pipe(concat('aegon-angular2.js'))
   .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
   .pipe(gulp.dest(config.dest + '/scripts'))
   .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-gulp.task('scripts:library', ['jshint:library'], function () {
+gulp.task('scripts:angular2core', function() {
+  gulp.src([
+      'es6-shim/es6-shim.min.js'
+    ], {cwd: config.src.libScripts + '/node_modules'})
+    .pipe(gulp.dest(config.dest + '/js'));
 
+  gulp.src([
+    'systemjs/dist/system-polyfills.js',
+    'angular2/es6/dev/src/testing/shims_for_IE.js',
+    'angular2/bundles/angular2-polyfills.min.js',
+    'systemjs/dist/system.js',
+    'rxjs/bundles/Rx.min.js',
+    'angular2/bundles/angular2.js',
+    'angular2/bundles/http.min.js'
+  ], {cwd: config.src.libScriptsPath + '/node_modules'})
+    .pipe(concat('angular2core.js'))
+    .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
+    .pipe(gulp.dest(config.dest + '/scripts'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
+});
+
+gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
   gulp.src([
     '**/*.js',
@@ -255,7 +239,6 @@ gulp.task('assets:library:images', function () {
 });
 
 gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
-
 
 /**
  * Jshint task
@@ -350,7 +333,7 @@ gulp.task('assets', ['assets:library']);
 
 gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
 
-gulp.task('scripts', ['scripts:fabricator', 'scripts:angular2', 'scripts:typescript', 'scripts:library', 'scripts:toolkit', 'data']);
+gulp.task('scripts', ['scripts:fabricator', 'scripts:angular2core', 'scripts:angular2components', 'scripts:library', 'scripts:toolkit', 'data']);
 
 
 /**
@@ -469,7 +452,7 @@ gulp.task('watch', ['browser-sync'], function () {
   });
 
   watch(config.src.libScriptsPath + '/**/*.ts', function () {
-    gulp.start('scripts:typescript');
+    gulp.start('scripts:angular2');
   });
 
   watch(config.src.libScriptsPath + '/**/*.js', function () {
@@ -495,6 +478,12 @@ gulp.task('watch', ['browser-sync'], function () {
   watch(config.src.libAssetsPath + '/fonts/**', function () {
     gulp.start('assets:library:fonts');
   });
+
+  watch(config.src.libScriptsPath + '/**/*.js', function () {
+    if (!config.notest) {
+      gulp.start('tests:run');
+    }
+  });
 });
 
 // Default build task
@@ -506,7 +495,8 @@ gulp.task('default', ['clean'], function () {
     'scripts',
     'assets',
     'images',
-    'assemble'
+    'assemble',
+    'tests:run'
   ];
 
   // run build

@@ -4,7 +4,7 @@
   "description": "The library will host the HTML CSS & JS resources required for cXstudio and third parties to implement in projects.",
   "main": "README.md",
   "author": "Rocco R. <rocco.russo@hcl.com>",
-  "license": "no license",
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "https://bitbucket.org/cxstudio/aegon-technical-design-library.git"
@@ -17,7 +17,8 @@
     "update": "git pull && npm run subs",
     "build": "gulp",
     "serve": "gulp --dev",
-    "pull": "git pull && git submodule foreach 'echo \">> force git pull in submodules: Done\" `git checkout master && git pull`'"
+    "pull": "git pull && git submodule foreach 'echo \">> force git pull in submodules: Done\" `git checkout master && git pull`'",
+    "postinstall": "cd lib/aegon-frontend-library/aegon-scripts-library && npm install"
   },
   "keywords": [
     "toolkit",
@@ -66,7 +67,7 @@
     "gulp-sftp": "~0.1.4",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-streamify": "0.0.5",
-    "gulp-typescript": "^2.12.1",
+    "gulp-typescript": "^2.13.0",
     "gulp-uglify": "^1.0.1",
     "gulp-util": "^3.0.6",
     "gulp-watch": "~4.2.0",

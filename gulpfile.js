@@ -157,7 +157,8 @@ gulp.task('scripts:angular2components', function () {
     '!vendor/**/*.ts',
     '!node_modules/**/*.ts',
     '!typings/main.d.ts',
-    '!typings/main/**/*.ts'
+    '!typings/main/**/*.ts',
+    '!**/test/**/*.ts'
   ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(ts({
@@ -196,6 +197,39 @@ gulp.task('scripts:angular2core', function() {
     .pipe(gulp.dest(config.dest + '/scripts'))
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
+
+gulp.task('tests:compile', ['scripts:angular2core', 'scripts:angular2components'], function() {
+  gulp.src([
+    'typings/**/*.ts',
+    '**/test/**/*.ts',
+    '!vendor/**/*.ts',
+    '!node_modules/**/*.ts',
+    '!typings/main.d.ts',
+    '!typings/main/**/*.ts'
+  ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+      .pipe(plumber())
+      .pipe(ts({
+        outFile: config.src.libScriptsPath + '/test/tmp/tests-compiled.js',
+        target: 'es5',
+        module: 'system',
+        moduleResolution: 'node',
+        emitDecoratorMetadata: true,
+        experimentalDecorators: true,
+        noImplicitAny: false
+      }))
+      .pipe(concat('aegon-tests.js'))
+      .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
+      .pipe(gulp.dest(config.dest + '/scripts/test'))
+});
+
+//gulp.task('tests', ['tests:compile', 'tests:run']);
+
+
+gulp.task('tests', ['tests:compile'], function() {
+  gulp.start('tests:run');
+});
+
+
 
 gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
@@ -483,6 +517,13 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.start('assets:library:fonts');
   });
 
+  watch(config.src.libScriptsPath + '**/test/**/*.ts', function () {
+    if (!config.notest) {
+      gulp.start('tests:compile');
+      gulp.start('tests:run');
+    }
+  });
+
   watch(config.src.libScriptsPath + '/**/*.js', function () {
     if (!config.notest) {
       gulp.start('tests:run');
@@ -500,7 +541,7 @@ gulp.task('default', ['clean'], function () {
     'assets',
     'images',
     'assemble',
-    'tests:run'
+    'tests'
   ];
 
   // run build

@@ -158,7 +158,7 @@ gulp.task('scripts:angular2components', function () {
     '!node_modules/**/*.ts',
     '!typings/main.d.ts',
     '!typings/main/**/*.ts',
-    '!**/test/**/*.ts'
+    '!**/test/**/*.spec.ts'
   ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(ts({
@@ -201,7 +201,7 @@ gulp.task('scripts:angular2core', function() {
 gulp.task('tests:compile', function() {
   gulp.src([
     'typings/**/*.ts',
-    '**/test/**/*.ts',
+    '**/test/**/*.spec.ts',
     '!vendor/**/*.ts',
     '!node_modules/**/*.ts',
     '!typings/main.d.ts',
@@ -227,7 +227,7 @@ gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
   gulp.src([
     '**/*.js',
-    '!**/test/**/*.js',
+    '!**/test/**/*.spec.js',
     '!node_modules/**/',
     '!vendor/ie/**/*.js'
   ], {cwd: config.src.libScriptsPath})

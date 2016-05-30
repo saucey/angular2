@@ -181,7 +181,7 @@ gulp.task('scripts:angular2core', function() {
   gulp.src([
       'es6-shim/es6-shim.min.js'
     ], {cwd: config.src.libScripts + '/node_modules'})
-    .pipe(gulp.dest(config.dest + '/js'));
+    .pipe(gulp.dest(config.dest + '/scripts'));
 
   gulp.src([
     'systemjs/dist/system-polyfills.js',
@@ -198,7 +198,7 @@ gulp.task('scripts:angular2core', function() {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-gulp.task('tests:compile', ['scripts:angular2core', 'scripts:angular2components'], function() {
+gulp.task('tests:compile', function() {
   gulp.src([
     'typings/**/*.ts',
     '**/test/**/*.ts',
@@ -209,7 +209,6 @@ gulp.task('tests:compile', ['scripts:angular2core', 'scripts:angular2components'
   ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
       .pipe(plumber())
       .pipe(ts({
-        outFile: config.src.libScriptsPath + '/test/tmp/tests-compiled.js',
         target: 'es5',
         module: 'system',
         moduleResolution: 'node',
@@ -217,19 +216,12 @@ gulp.task('tests:compile', ['scripts:angular2core', 'scripts:angular2components'
         experimentalDecorators: true,
         noImplicitAny: false
       }))
-      .pipe(concat('aegon-tests.js'))
-      .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
       .pipe(gulp.dest(config.dest + '/scripts/test'))
 });
 
-//gulp.task('tests', ['tests:compile', 'tests:run']);
-
-
-gulp.task('tests', ['tests:compile'], function() {
+gulp.task('tests', ['tests:compile', 'scripts:angular2core', 'scripts:angular2components'], function() {
   gulp.start('tests:run');
 });
-
-
 
 gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
@@ -517,16 +509,12 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.start('assets:library:fonts');
   });
 
-  watch(config.src.libScriptsPath + '**/test/**/*.ts', function () {
+  watch([
+    config.src.libScriptsPath + '/**/*.ts',
+    config.src.libScriptsPath + '/**/*.js'
+    ], function () {
     if (!config.notest) {
-      gulp.start('tests:compile');
-      gulp.start('tests:run');
-    }
-  });
-
-  watch(config.src.libScriptsPath + '/**/*.js', function () {
-    if (!config.notest) {
-      gulp.start('tests:run');
+      gulp.start('tests');
     }
   });
 });

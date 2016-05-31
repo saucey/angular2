@@ -152,14 +152,20 @@ gulp.task('styles:library', function () {
 
 gulp.task('scripts:angular2components', function () {
 
-  gulp.src([
+  var scripts = [
     '**/*.ts',
     '!vendor/**/*.ts',
     '!node_modules/**/*.ts',
     '!typings/main.d.ts',
     '!typings/main/**/*.ts',
     '!**/test/**/*.spec.ts'
-  ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+  ];
+
+  if (config.dev) {
+    //scripts.push('!components/angular-bootstrap/enable-prodmode.ts');
+  }
+
+  gulp.src(scripts, {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(ts({
     outFile: 'ts-compiled.js',
@@ -180,7 +186,7 @@ gulp.task('scripts:angular2components', function () {
 gulp.task('scripts:angular2core', function() {
   gulp.src([
       'es6-shim/es6-shim.min.js'
-    ], {cwd: config.src.libScripts + '/node_modules'})
+    ], {cwd: config.src.libScriptsPath + '/node_modules'})
     .pipe(gulp.dest(config.dest + '/scripts'));
 
   gulp.src([
@@ -229,7 +235,8 @@ gulp.task('scripts:library', ['jshint:library'], function () {
     '**/*.js',
     '!**/test/**/*.spec.js',
     '!node_modules/**/',
-    '!vendor/ie/**/*.js'
+    '!vendor/ie/**/*.js',
+    '!system.config.js'
   ], {cwd: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(order([

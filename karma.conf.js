@@ -14,7 +14,7 @@ module.exports = function(config) {
       'dist/scripts/angular2core.js',
       'lib/aegon-frontend-library/aegon-scripts-library/node_modules/angular2/bundles/testing.dev.js',
       'dist/scripts/aegon-angular2.js',
-      'lib/aegon-frontend-library/aegon-scripts-library/test/system.config.js',
+      'lib/aegon-frontend-library/aegon-scripts-library/system.config.js',
       {
         pattern: '**/test/**/*.spec.js', included: false, watched: true
       }

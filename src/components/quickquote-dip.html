@@ -3,10 +3,11 @@
     Put Angular 2 template code here and remove XXX from id above to let component use this template. Example code can
     be found in the component TypeScript code.
 </textarea>
-<script src="scripts/angular2core.js"></script>
-<script src="scripts/aegon-angular2.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        System.import('components/quickquote-dip/main').then(null, console.error.bind(console));
+        System.import('components/angular-bootstrap/main').then(function() {
+            System.import('components/quickquote-dip/main');
+        }, console.error.bind(console));
     });
 </script>

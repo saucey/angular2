@@ -6,8 +6,6 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        System.import('components/angular-bootstrap/main').then(function() {
-            System.import('components/quickquote-dip/main');
-        }, console.error.bind(console));
+        System.import('components/quickquote-dip/main').then(null, console.error.bind(console));
     });
 </script>

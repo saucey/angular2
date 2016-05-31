@@ -479,9 +479,6 @@ gulp.task('watch', ['browser-sync'], function () {
 
   watch(config.src.libScriptsPath + '/**/*.ts', function () {
     gulp.start('scripts:angular2core');
-  });
-
-  watch(config.src.libScriptsPath + '/**/*.ts', function () {
     gulp.start('scripts:angular2components');
   });
 
@@ -510,8 +507,9 @@ gulp.task('watch', ['browser-sync'], function () {
   });
 
   watch([
-    config.src.libScriptsPath + '/**/*.ts',
-    config.src.libScriptsPath + '/**/*.js'
+    config.src.libScriptsPath + '/components/**/*.ts',
+    config.src.libScriptsPath + '/**/*.js',
+      '!' + config.src.libScriptsPath + '/node_modules/**/'
     ], function () {
     if (!config.notest) {
       gulp.start('tests');
@@ -528,12 +526,14 @@ gulp.task('default', ['clean'], function () {
     'scripts',
     'assets',
     'images',
-    'assemble',
-    'tests'
+    'assemble'
   ];
 
   // run build
   runSequence(tasks, function () {
+    // "tests" task should not be run parallel with other tasks, because it needs the built scripts
+    gulp.start('tests');
+
     if (config.dev) {
       gulp.start('watch');
     }

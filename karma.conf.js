@@ -10,7 +10,14 @@ module.exports = function(config) {
       'lib/aegon-frontend-library/aegon-scripts-library/vendor/drupal_misc/**/*.js',
       'lib/aegon-frontend-library/aegon-scripts-library/components/quickquote-lijfrente.js',
       'lib/aegon-frontend-library/aegon-scripts-library/components/quickquote-lijfrente-sparen.js',
-      'lib/aegon-frontend-library/aegon-scripts-library/test/**/*.js'
+      'lib/aegon-frontend-library/aegon-scripts-library/node_modules/es6-shim/es6-shim.min.js',
+      'dist/scripts/angular2core.js',
+      'lib/aegon-frontend-library/aegon-scripts-library/node_modules/angular2/bundles/testing.dev.js',
+      'dist/scripts/aegon-angular2.js',
+      'lib/aegon-frontend-library/aegon-scripts-library/system.config.js',
+      {
+        pattern: '**/test/**/*.spec.js', included: false, watched: true
+      }
     ]
   });
 };

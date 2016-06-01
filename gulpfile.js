@@ -152,13 +152,20 @@ gulp.task('styles:library', function () {
 
 gulp.task('scripts:angular2components', function () {
 
-  gulp.src([
+  var scripts = [
     '**/*.ts',
     '!vendor/**/*.ts',
     '!node_modules/**/*.ts',
     '!typings/main.d.ts',
-    '!typings/main/**/*.ts'
-  ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+    '!typings/main/**/*.ts',
+    '!**/test/**/*.spec.ts'
+  ];
+
+  if (config.dev) {
+    //scripts.push('!components/angular-bootstrap/enable-prodmode.ts');
+  }
+
+  gulp.src(scripts, {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(ts({
     outFile: 'ts-compiled.js',
@@ -179,8 +186,8 @@ gulp.task('scripts:angular2components', function () {
 gulp.task('scripts:angular2core', function() {
   gulp.src([
       'es6-shim/es6-shim.min.js'
-    ], {cwd: config.src.libScripts + '/node_modules'})
-    .pipe(gulp.dest(config.dest + '/js'));
+    ], {cwd: config.src.libScriptsPath + '/node_modules'})
+    .pipe(gulp.dest(config.dest + '/scripts'));
 
   gulp.src([
     'systemjs/dist/system-polyfills.js',
@@ -197,13 +204,39 @@ gulp.task('scripts:angular2core', function() {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
+gulp.task('tests:compile', function() {
+  gulp.src([
+    'typings/**/*.ts',
+    '**/test/**/*.spec.ts',
+    '!vendor/**/*.ts',
+    '!node_modules/**/*.ts',
+    '!typings/main.d.ts',
+    '!typings/main/**/*.ts'
+  ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+      .pipe(plumber())
+      .pipe(ts({
+        target: 'es5',
+        module: 'system',
+        moduleResolution: 'node',
+        emitDecoratorMetadata: true,
+        experimentalDecorators: true,
+        noImplicitAny: false
+      }))
+      .pipe(gulp.dest(config.dest + '/scripts/test'))
+});
+
+gulp.task('tests', ['tests:compile', 'scripts:angular2core', 'scripts:angular2components'], function() {
+  gulp.start('tests:run');
+});
+
 gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
   gulp.src([
     '**/*.js',
-    '!**/test/**/*.js',
+    '!**/test/**/*.spec.js',
     '!node_modules/**/',
-    '!vendor/ie/**/*.js'
+    '!vendor/ie/**/*.js',
+    '!system.config.js'
   ], {cwd: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(order([
@@ -453,9 +486,6 @@ gulp.task('watch', ['browser-sync'], function () {
 
   watch(config.src.libScriptsPath + '/**/*.ts', function () {
     gulp.start('scripts:angular2core');
-  });
-
-  watch(config.src.libScriptsPath + '/**/*.ts', function () {
     gulp.start('scripts:angular2components');
   });
 
@@ -483,9 +513,13 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.start('assets:library:fonts');
   });
 
-  watch(config.src.libScriptsPath + '/**/*.js', function () {
+  watch([
+    config.src.libScriptsPath + '/components/**/*.ts',
+    config.src.libScriptsPath + '/**/*.js',
+      '!' + config.src.libScriptsPath + '/node_modules/**/'
+    ], function () {
     if (!config.notest) {
-      gulp.start('tests:run');
+      gulp.start('tests');
     }
   });
 });
@@ -499,12 +533,14 @@ gulp.task('default', ['clean'], function () {
     'scripts',
     'assets',
     'images',
-    'assemble',
-    'tests:run'
+    'assemble'
   ];
 
   // run build
   runSequence(tasks, function () {
+    // "tests" task should not be run parallel with other tasks, because it needs the built scripts
+    gulp.start('tests');
+
     if (config.dev) {
       gulp.start('watch');
     }

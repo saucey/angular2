@@ -39,7 +39,9 @@
                       <span class="help" title="Vul een bedrag in tussen de &euro;0,- en &euro;5000,-"></span>
                     </div>
                     <div class="slider-container">
-                      <div id="one-off-slider" class="noUi-extended"></div>
+                      <div id="one-off-slider" class="noUi-extended"
+                           data-value="0" data-min="0" data-max="5000"
+                           data-quarter="1250" data-half="2500" data-three-quarter="3750"></div>
                       <span id="one-off-error" class="errorMessage">Vul een bedrag in tussen de &euro;0,- en &euro;5000,-</span>
                     </div>
                   </div>
@@ -52,7 +54,9 @@
                       <span class="help" title="Vul een bedrag in tussen de &euro;0,- en &euro;250,-"></span>
                     </div>
                     <div class="slider-container">
-                      <div id="periodic-slider" class="noUi-extended"></div>
+                      <div id="periodic-slider" class="noUi-extended"
+                           data-value="50" data-min="10" data-max="250"
+                           data-quarter="37" data-half="75" data-three-quarter="125"></div>
                       <span id="periodic-error" class="errorMessage">Vul een bedrag in tussen de &euro;0,- en &euro;250,-</span>
                     </div>
                   </div>
@@ -64,11 +68,13 @@
                       <div class="input-container">
                         <input type="text" id="duration-input">
                       </div>
-                      <span class="help" title="Vul een bedrag in tussen de 5 en 30 jaar."></span>
+                      <span class="help" title="Vul een doorlooptijd in tussen de 10 en 30 jaar."></span>
                     </div>
                     <div class="slider-container">
-                      <div id="duration-slider" class="noUi-extended"></div>
-                      <span id="duration-error" class="errorMessage">Vul een bedrag in tussen de 5 en 30 jaar.</span>
+                      <div id="duration-slider" class="noUi-extended"
+                           data-value="10" data-min="10" data-max="30"
+                           data-quarter="7" data-half="15" data-three-quarter="22"></div>
+                      <span id="duration-error" class="errorMessage">Vul een doorlooptijd in tussen de 10 en 30 jaar.</span>
                     </div>
                   </div>
                 </div>

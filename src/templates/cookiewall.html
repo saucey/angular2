@@ -1,14 +1,32 @@
 
-<link rel=""></link>
+<script>
+    testCookieWall = {};
+
+    testCookieWall.show = function (num) {
+
+        if (num === 1) {
+            document.getElementById("remove-this-id-tag-1").className = "popup-content basic";
+            document.getElementById("remove-this-id-tag-2").className = "popup-content advanced show";
+        }
+
+        if (num === 2) {
+            document.getElementById("remove-this-id-tag-1").className = "popup-content basic show";
+            document.getElementById("remove-this-id-tag-2").className = "popup-content advanced";
+        }
+    }
+
+</script>
+
+
 
 <div class="cookie-wall blocking-popup">
     <div class="popup-container">
-        <div class="popup-content basic show">
+        <div class="popup-content basic show" id="remove-this-id-tag-1">
             <h1>Cookies op Aegon.nl</h1>
             <h4>Om u zo goed mogelijk van dienst te zijn maakt onze website gebruik van cookies</h4>
             <p class="popup-action">
                 <button id="accept-cookie-choice" class="button orange icon-right arrow">Akkoord en doorgaan</button>
-                <button id="open-cookies-advanced" class="button transparent arrow">Nee, cookie instellingen wijzigen</button>
+                <button id="open-cookies-advanced" class="button transparent arrow" onclick="testCookieWall.show(1)">Nee, cookie instellingen wijzigen</button>
             </p>
             <p>Als u akkoord gaat, plaatsen wij cookies voor een optimale gebruikservaring op Aegon.nl.
                 De website wordt relevanter en persoonlijker en we kunnen u relevante informatie en aanbiedingen
@@ -18,10 +36,10 @@
                 <a href="#">cookiebeleid</a>.
             </p>
             <p>Wilt u wel verder op de website maar niet alle cookies accepteren, dan kunt u
-               <a href="#">uw cookie instellingen wijzigen</a>.
+               <a href="#" id="open-cookies-advanced-link" onclick="testCookieWall.show(2);">uw cookie instellingen wijzigen</a>.
             </p>
         </div>
-        <div class="popup-content advanced">
+        <div class="popup-content advanced" id="remove-this-id-tag-2">
             <h1>Cookie instelling</h1>
             <div class="cookie-settings">
                 <div id="cookie-choice-optimal" class="cookie-option">

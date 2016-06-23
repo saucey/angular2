@@ -271,7 +271,8 @@ gulp.task('scripts:library', ['jshint:library'], function () {
     '!**/test/**/*.spec.js',
     '!node_modules/**/',
     '!vendor/ie/**/*.js',
-    '!system.config.js'
+    '!system.config.js',
+    '!modules/cookieWall.js'
   ], {cwd: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(order([

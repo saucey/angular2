@@ -150,6 +150,41 @@ gulp.task('styles:library', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
+
+/**
+ * Cookiewall tasks
+ */
+gulp.task('styles:cookiewall', function () {
+
+  var onError = function(err) {
+    notify.onError({
+      title:    "Gulp",
+      subtitle: "Failure!",
+      message:  "Error: <%= error.message %>",
+      sound:    "Beep"
+    })(err);
+
+    this.emit('end');
+  };
+
+  return gulp.src(config.src.libSassPath + '/cookiewall/*.scss')
+    .pipe(plumber({errorHandler: onError}))
+    .pipe(gulpif(config.dev, sourcemaps.init()))
+    .pipe(sass({
+      errLogToConsole: true,
+      includePaths: ['./lib'],
+      outputStyle: gulpif(!config.dev, 'compressed')
+    }))
+    .pipe(autoprefixer({
+      browsers: ['last 2 version', 'ie 9'],
+      cascade: false
+    }))
+    .pipe(gulpif(config.dev, sourcemaps.write()))
+    .pipe(gulp.dest(config.dest + '/styles'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
+});
+
+
 gulp.task('scripts:angular2components', function () {
 
   var scripts = [
@@ -236,7 +271,8 @@ gulp.task('scripts:library', ['jshint:library'], function () {
     '!**/test/**/*.spec.js',
     '!node_modules/**/',
     '!vendor/ie/**/*.js',
-    '!system.config.js'
+    '!system.config.js',
+    '!modules/cookiewall.js'
   ], {cwd: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(order([
@@ -364,7 +400,7 @@ gulp.task('data', function () {
 
 gulp.task('assets', ['assets:library']);
 
-gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
+gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:cookiewall', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
 
 gulp.task('scripts', ['scripts:fabricator', 'scripts:angular2core', 'scripts:angular2components', 'scripts:library', 'scripts:toolkit', 'data']);
 
@@ -474,6 +510,10 @@ gulp.task('watch', ['browser-sync'], function () {
 
   watch(config.src.libSassPath + '/**/*.scss', function () {
     gulp.start('styles:library');
+  });
+
+  watch(config.src.libSassPath + '/cookiewall/*.scss', function () {
+    gulp.start('styles:cookiewall');
   });
 
   watch('src/assets/styles/**/*.scss', function () {

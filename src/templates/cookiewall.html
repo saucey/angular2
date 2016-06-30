@@ -8,17 +8,22 @@
 
         if (num === 1) {
             document.getElementById("remove-this-id-tag-1").className = "popup-content basic";
-            document.getElementById("remove-this-id-tag-2").className = "popup-content advanced show";
+            document.getElementById("remove-this-id-tag-2").className = "popup-content advanced popup-show";
         }
 
         if (num === 2) {
-            document.getElementById("remove-this-id-tag-1").className = "popup-content basic show";
+            document.getElementById("remove-this-id-tag-1").className = "popup-content basic popup-show";
             document.getElementById("remove-this-id-tag-2").className = "popup-content advanced";
         }
-    }
-
+    };
 </script>
 
+<style>
+    html, body {
+        overflow: hidden;
+        height: 100%;
+    }
+</style>
 
 
 <div class="cookie-wall blocking-popup">

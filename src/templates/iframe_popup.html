@@ -1,0 +1,58 @@
+<!-- background filling -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        // Use a timeout, normally drupal will take care of showing the iframe popup.
+        setTimeout(function () {
+            Drupal.behaviors.iframePopup.showIframePopup("http://localhost:3000/template-webfonts.html");
+        }, 1000);
+    });
+</script>
+
+ <div id="st-container" class="wrapper ui-panel-animate">
+    <div class="container">
+      <section id="scroll" class="scroll st-content">
+        <div class="st-content-inner">
+          {{_drupal-header}}
+          <section class="content">
+            <div class="goTop-wrapper">
+              <div id="back-top" class="goTop"><a href="#top" style="display: none;">Back to Top</a></div>
+            </div>
+
+
+            <!-- Messages -->
+            <!-- END Messages -->
+
+
+            <div class="row-fluid">
+              <div class="span1 gutter"></div>
+              <div class="span12">
+                <div itemprop="name">
+                  <h1 class="title" id="page-title">Open iframe popup</h1>
+                  <button class="button" onclick="javascript:Drupal.behaviors.iframePopup.showIframePopup('http://localhost:3000/template-webfonts.html');">OPEN POPUP</button>
+                </div>
+              </div>
+              <div class="span1 gutter"></div>
+            </div>
+
+          </section>
+          <!-- END Blog layout -->
+
+        </div>
+        {{footer}}
+      </section>
+    </div>
+
+    <!-- menu from structures-->
+    {{_drupal-sidebar-aegon-menu}}
+
+  </div>
+
+<style type="text/css">
+  /* Force to don't show style associated to body.mobile-tap */
+  section.content:after {
+    display: none !important;
+  }
+</style>
+
+

@@ -9,6 +9,7 @@ var
   browserSync = require('browser-sync'),
   collate = require('./lib/fabricator/tasks/collate'),
   compile = require('./lib/fabricator/tasks/compile'),
+  compress = require('compression'),
   concat = require('gulp-concat'),
   del = require('del'),
   gulp = require('gulp'),
@@ -17,7 +18,10 @@ var
   header = require('gulp-header'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
+  karma = require('karma').Server,
   order = require('gulp-order'),
+  merge2 = require('merge2'),
+  notify = require('gulp-notify'),
   plumber = require('gulp-plumber'),
   Q = require('q'),
   rename = require('gulp-rename'),
@@ -27,6 +31,7 @@ var
   streamify = require('gulp-streamify'),
   sftp = require('gulp-sftp'),
   sourcemaps = require('gulp-sourcemaps'),
+  ts = require('gulp-typescript'),
   uglify = require('gulp-uglify'),
   watch = require('gulp-watch');
 
@@ -37,6 +42,7 @@ var
 
 var config = {
   dev: gutil.env.dev,
+  notest: gutil.env.notest,
   src: {
     libAssetsPath: './lib/aegon-frontend-library/aegon-assets-library',
     libSassPath: './lib/aegon-frontend-library/aegon-sass-library',
@@ -107,19 +113,28 @@ gulp.task('scripts:fabricator', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-
 /**
  * Library tasks
  */
-
 gulp.task('styles:library', function () {
 
-  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs 
+  var onError = function(err) {
+    notify.onError({
+      title:    "Gulp",
+      subtitle: "Failure!",
+      message:  "Error: <%= error.message %>",
+      sound:    "Beep"
+    })(err);
+
+    this.emit('end');
+  };
+
+  // TEMP: Start also the styles in toolkit, otherwise EXTRA sub libs
   // dependencies mentioned in main toolkit.scss are skipped from watch task.
   gulp.start('styles:toolkit');
 
   return gulp.src(config.src.libSassPath + '/*.scss')
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: onError}))
     .pipe(gulpif(config.dev, sourcemaps.init()))
     .pipe(sass({
       errLogToConsole: true,
@@ -135,27 +150,144 @@ gulp.task('styles:library', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
-gulp.task('scripts:library', ['jshint:library'], function () {
 
-  // Main scripts
-  return gulp.src([
-      config.src.libScriptsPath + '/**/*.js',
-      '!' + config.src.libScriptsPath + '/vendor/ie/**/*.js'
-    ])
-    .pipe(plumber())
-    .pipe(order([
-      'vendor/drupal_misc/jquery.js',
-      'vendor/drupal_misc/jquery.once.js',
-      'vendor/drupal_misc/drupal.js',
-      'vendor/drupal_misc/**/*.js',
-      'vendor/drupal_modules/**/*.js',
-      'vendor/**/*.js',
-    ], { base: config.src.libScriptsPath }))
-    .pipe(concat('aegon-library.js'))
-    .pipe(gulpif(!config.dev, streamify(uglify())))
+/**
+ * Cookiewall tasks
+ */
+gulp.task('styles:cookiewall', function () {
+
+  var onError = function(err) {
+    notify.onError({
+      title:    "Gulp",
+      subtitle: "Failure!",
+      message:  "Error: <%= error.message %>",
+      sound:    "Beep"
+    })(err);
+
+    this.emit('end');
+  };
+
+  return gulp.src(config.src.libSassPath + '/cookiewall/*.scss')
+    .pipe(plumber({errorHandler: onError}))
+    .pipe(gulpif(config.dev, sourcemaps.init()))
+    .pipe(sass({
+      errLogToConsole: true,
+      includePaths: ['./lib'],
+      outputStyle: gulpif(!config.dev, 'compressed')
+    }))
+    .pipe(autoprefixer({
+      browsers: ['last 2 version', 'ie 9'],
+      cascade: false
+    }))
+    .pipe(gulpif(config.dev, sourcemaps.write()))
+    .pipe(gulp.dest(config.dest + '/styles'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
+});
+
+
+gulp.task('scripts:angular2components', function () {
+
+  var scripts = [
+    '**/*.ts',
+    '!vendor/**/*.ts',
+    '!node_modules/**/*.ts',
+    '!typings/main.d.ts',
+    '!typings/main/**/*.ts',
+    '!**/test/**/*.spec.ts'
+  ];
+
+  if (config.dev) {
+    //scripts.push('!components/angular-bootstrap/enable-prodmode.ts');
+  }
+
+  gulp.src(scripts, {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+  .pipe(plumber())
+  .pipe(ts({
+    outFile: 'ts-compiled.js',
+    target: 'es5',
+    module: 'system',
+    moduleResolution: 'node',
+    emitDecoratorMetadata: true,
+    experimentalDecorators: true,
+    removeComments: false,
+    noImplicitAny: false
+  }))
+  .pipe(concat('aegon-angular2.js'))
+  .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
+  .pipe(gulp.dest(config.dest + '/scripts'))
+  .pipe(gulpif(config.dev, reload({stream:true})));
+});
+
+gulp.task('scripts:angular2core', function() {
+  gulp.src([
+      'es6-shim/es6-shim.min.js'
+    ], {cwd: config.src.libScriptsPath + '/node_modules'})
+    .pipe(gulp.dest(config.dest + '/scripts'));
+
+  gulp.src([
+    'systemjs/dist/system-polyfills.js',
+    'angular2/es6/dev/src/testing/shims_for_IE.js',
+    'angular2/bundles/angular2-polyfills.min.js',
+    'systemjs/dist/system.js',
+    'rxjs/bundles/Rx.min.js',
+    'angular2/bundles/angular2.js',
+    'angular2/bundles/http.min.js'
+  ], {cwd: config.src.libScriptsPath + '/node_modules'})
+    .pipe(concat('angular2core.js'))
     .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
     .pipe(gulp.dest(config.dest + '/scripts'))
     .pipe(gulpif(config.dev, reload({stream:true})));
+});
+
+gulp.task('tests:compile', function() {
+  gulp.src([
+    'typings/**/*.ts',
+    '**/test/**/*.spec.ts',
+    '!vendor/**/*.ts',
+    '!node_modules/**/*.ts',
+    '!typings/main.d.ts',
+    '!typings/main/**/*.ts'
+  ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+      .pipe(plumber())
+      .pipe(ts({
+        target: 'es5',
+        module: 'system',
+        moduleResolution: 'node',
+        emitDecoratorMetadata: true,
+        experimentalDecorators: true,
+        noImplicitAny: false
+      }))
+      .pipe(gulp.dest(config.dest + '/scripts/test'))
+});
+
+gulp.task('tests', ['tests:compile', 'scripts:angular2core', 'scripts:angular2components'], function() {
+  gulp.start('tests:run');
+});
+
+gulp.task('scripts:library', ['jshint:library'], function () {
+  // Main scripts
+  gulp.src([
+    '**/*.js',
+    '!**/test/**/*.spec.js',
+    '!node_modules/**/',
+    '!vendor/ie/**/*.js',
+    '!system.config.js',
+    '!modules/cookiewall.js'
+  ], {cwd: config.src.libScriptsPath})
+  .pipe(plumber())
+  .pipe(order([
+    'vendor/drupal_misc/jquery.js',
+    'vendor/drupal_misc/jquery.once.js',
+    'vendor/drupal_misc/drupal.js',
+    'vendor/drupal_misc/**/*.js',
+    'vendor/drupal_modules/**/*.js',
+    'vendor/**/*.js'
+  ], { base: config.src.libScriptsPath }))
+  .pipe(concat('aegon-library.js'))
+  .pipe(gulpif(!config.dev, streamify(uglify())))
+  .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
+  .pipe(gulp.dest(config.dest + '/scripts'))
+  .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
 gulp.task('assets:library:fonts', function () {
@@ -177,7 +309,6 @@ gulp.task('assets:library:images', function () {
 
 gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
 
-
 /**
  * Jshint task
  */
@@ -185,7 +316,8 @@ gulp.task('assets:library', ['assets:library:fonts', 'assets:library:images']);
 gulp.task('jshint:library', function () {
   return gulp.src([
       config.src.libScriptsPath + '/**/*.js',
-      '!' + config.src.libScriptsPath + '/vendor/**/*'
+      '!' + config.src.libScriptsPath + '/vendor/**/*',
+      '!' + config.src.libScriptsPath + '/node_modules/**/*'
     ])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
@@ -207,6 +339,7 @@ gulp.task('jshint:toolkit', function () {
  */
 
 gulp.task('styles:toolkit', function () {
+
   return gulp.src(config.src.styles.toolkit)
     .pipe(plumber())
     .pipe(gulpif(config.dev, sourcemaps.init()))
@@ -267,9 +400,9 @@ gulp.task('data', function () {
 
 gulp.task('assets', ['assets:library']);
 
-gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
+gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:cookiewall', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
 
-gulp.task('scripts', ['scripts:fabricator', 'scripts:library', 'scripts:toolkit', 'data']);
+gulp.task('scripts', ['scripts:fabricator', 'scripts:angular2core', 'scripts:angular2components', 'scripts:library', 'scripts:toolkit', 'data']);
 
 
 /**
@@ -340,9 +473,12 @@ gulp.task('browser-sync', function () {
   browserSync({
     server: {
       baseDir: config.dest,
+      middleware: [compress()],
       routes: {
         "/assets": config.src.libAssetsPath
-      }
+      }//,
+      //tunnel: true,
+      //notify: true
     },
     // Tunnel the BrowserSync server through a random Public URL
     // -> http://randomstring23232.localtunnel.me
@@ -351,6 +487,13 @@ gulp.task('browser-sync', function () {
     // tunnel: "my-private-site"
     notify: false
   });
+});
+
+gulp.task('tests:run', function (done) {
+  return new karma({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
 });
 
 // Watch
@@ -369,12 +512,21 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.start('styles:library');
   });
 
+  watch(config.src.libSassPath + '/cookiewall/*.scss', function () {
+    gulp.start('styles:cookiewall');
+  });
+
   watch('src/assets/styles/**/*.scss', function () {
     gulp.start('styles:toolkit');
   });
 
   watch('lib/fabricator/scripts/**/*.js', function () {
     gulp.start('scripts:fabricator');
+  });
+
+  watch(config.src.libScriptsPath + '/**/*.ts', function () {
+    gulp.start('scripts:angular2core');
+    gulp.start('scripts:angular2components');
   });
 
   watch(config.src.libScriptsPath + '/**/*.js', function () {
@@ -400,6 +552,16 @@ gulp.task('watch', ['browser-sync'], function () {
   watch(config.src.libAssetsPath + '/fonts/**', function () {
     gulp.start('assets:library:fonts');
   });
+
+  watch([
+    config.src.libScriptsPath + '/components/**/*.ts',
+    config.src.libScriptsPath + '/**/*.js',
+      '!' + config.src.libScriptsPath + '/node_modules/**/'
+    ], function () {
+    if (!config.notest) {
+      gulp.start('tests');
+    }
+  });
 });
 
 // Default build task
@@ -416,6 +578,9 @@ gulp.task('default', ['clean'], function () {
 
   // run build
   runSequence(tasks, function () {
+    // "tests" task should not be run parallel with other tasks, because it needs the built scripts
+    gulp.start('tests');
+
     if (config.dev) {
       gulp.start('watch');
     }

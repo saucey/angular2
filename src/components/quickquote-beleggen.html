@@ -1,0 +1,79 @@
+<div class="quickquote lijfrente sparen beleggen" id="qqBeleggen"
+     data-interestSavings="1"
+     data-interestInvest="4">
+  <div class="triangle"></div>
+  <div class="calculation">
+    <h3>Sparen of beleggen: wat levert meer op?</h3>
+    <div class="one-off slider">
+      <div class="input-header">
+        <label for="one-off-input">Eerste eenmalige inleg</label>
+
+        <div class="input-container">
+          <input type="text" id="one-off-input">
+        </div>
+        <span class="help" title="Vul een bedrag in tussen de &euro;0,- en &euro;5000,-"></span>
+      </div>
+      <div class="slider-container">
+        <div id="one-off-slider" class="noUi-extended"
+             data-value="0" data-min="0" data-max="5000"
+             data-quarter="1250" data-half="2500" data-three-quarter="3750"></div>
+        <span id="one-off-error" class="errorMessage">Vul een bedrag in tussen de &euro;0,- en &euro;5000,-</span>
+      </div>
+    </div>
+    <div class="periodic slider">
+      <div class="input-header">
+        <label for="periodic-input">Periodieke inleg per maand</label>
+        <div class="input-container">
+          <input type="text" id="periodic-input">
+        </div>
+        <span class="help" title="Vul een bedrag in tussen de &euro;0,- en &euro;250,-"></span>
+      </div>
+      <div class="slider-container">
+        <div id="periodic-slider" class="noUi-extended"
+             data-value="50" data-min="10" data-max="250"
+             data-quarter="37" data-half="75" data-three-quarter="125"></div>
+        <span id="periodic-error" class="errorMessage">Vul een bedrag in tussen de &euro;0,- en &euro;250,-</span>
+      </div>
+    </div>
+
+    <div class="duration slider">
+      <div class="input-header">
+        <label for="duration-input">Toon verwacht resultaat na</label>
+
+        <div class="input-container">
+          <input type="text" id="duration-input">
+        </div>
+        <span class="help" title="Vul een doorlooptijd in tussen de 10 en 30 jaar."></span>
+      </div>
+      <div class="slider-container">
+        <div id="duration-slider" class="noUi-extended"
+             data-value="10" data-min="10" data-max="30"
+             data-quarter="15" data-half="20" data-three-quarter="25"></div>
+        <span id="duration-error" class="errorMessage">Vul een doorlooptijd in tussen de 10 en 30 jaar.</span>
+      </div>
+    </div>
+  </div>
+  <div class="result">
+    <div class="payment-result">
+      <div class="result3 expected-result">
+        <div class="title">Verwacht resultaat beleggen*</div>
+        <div id="investment-calculated" class="calculated"> &euro; 0</div>
+      </div>
+      <div class="result2">
+        <div class="title">Resultaat uit sparen <div>(<span id="interestSavings">0</span>%)</div> </div>
+        <div id="savings-calculated" class="calculated"> &euro; 0</div>
+      </div>
+      <div class="result1">
+        <div class="title">Totale inleg</div>
+        <div id="inlay-calculated" class="calculated"> &euro; 0</div>
+      </div>
+    </div>
+    <a href="#" class="result-button">
+      <button class="button orange-gradient icon-right arrow">Direct regelen</button>
+    </a>
+    <div class="footer-result">
+      <a class="conversate" href="">Gratis orientatiegesprek aanvragen</a>
+    </div>
+  </div>
+</div>
+<div class="disclaimer">* Gebaseerd op een gemiddeld rendement van <span id="interestInvest">0</span>% per jaar </div>

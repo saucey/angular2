@@ -1,0 +1,500 @@
+
+<script>
+    // This is just a script to switch between the cookiewall pages. Don't use this on test or production.
+
+    testCookieWall = {};
+
+    testCookieWall.show = function (num) {
+
+        if (num === 1) {
+            document.getElementById("remove-this-id-tag-1").className = "popup-content basic";
+            document.getElementById("remove-this-id-tag-2").className = "popup-content advanced popup-show";
+        }
+
+        if (num === 2) {
+            document.getElementById("remove-this-id-tag-1").className = "popup-content basic popup-show";
+            document.getElementById("remove-this-id-tag-2").className = "popup-content advanced";
+        }
+    };
+</script>
+
+<style>
+    html, body {
+        overflow: hidden;
+        height: 100%;
+    }
+</style>
+
+
+<div class="cookie-wall blocking-popup">
+    <div class="popup-container">
+        <div class="popup-content cookiewall-basic popup-show" id="remove-this-id-tag-1">
+            <h1>Cookies op Aegon.nl</h1>
+            <h4>Om u zo goed mogelijk van dienst te zijn maakt onze website gebruik van cookies</h4>
+            <p class="popup-action">
+                <button id="accept-cookie-choice" class="button orange icon-right arrow">Akkoord en doorgaan</button>
+                <button id="open-cookies-advanced" class="button transparent arrow" onclick="testCookieWall.show(1)">Nee, cookie instellingen wijzigen</button>
+            </p>
+            <p>Als u akkoord gaat, plaatsen wij cookies voor een optimale gebruikservaring op Aegon.nl.
+                De website wordt relevanter en persoonlijker en we kunnen u relevante informatie en aanbiedingen
+                tonen op Aegon.nl en andere websites. Wij analyseren doorvoor uw online gedrag en combineren die
+                informatie met persoonsgegevens die u online achterlaat en gegevens die wij van u hebben omdat u
+                klant van ons bent. Lees meer over het gebruik van cookies in ons <a href="#">privacybeleid</a> en
+                <a href="#">cookiebeleid</a>.
+            </p>
+            <p>Wilt u wel verder op de website maar niet alle cookies accepteren, dan kunt u
+               <a href="#" id="open-cookies-advanced-link" onclick="testCookieWall.show(2);">uw cookie instellingen wijzigen</a>.
+            </p>
+        </div>
+        <div class="popup-content cookiewall-advanced" id="remove-this-id-tag-2">
+            <h1>Cookie instelling</h1>
+            <div class="cookie-settings">
+                <div id="cookie-choice-optimal" class="cookie-option">
+                    <label class="radio">
+                        <input type="radio" name="radio" value="optimal-choice" checked>
+                        <span class="radio"></span>
+                        Optimaal
+                    </label>
+                    <ul>
+                        <li class="green-check">Noodzakelijke cookies</li>
+                        <li class="green-check">Meten van online bezoekgedrag</li>
+                        <li class="green-check">Online contact met Aegon en feedback geven</li>
+                        <li class="green-check">Nieuws en overige zaken delen via social media</li>
+                        <li class="green-check">Gepersonaliseerde advertenties tegenkomen op Aegon.nl en andere
+                                                websites op basis van analyse en combinatie van online data
+                                                en (persoons-)gegevens</li>
+                    </ul>
+                </div>
+                <div id="cookie-choice-basic" class="cookie-option">
+                    <label class="radio">
+                        <input type="radio" name="radio" value="basic-choice">
+                        <span class="radio"></span>
+                        Basis
+                    </label>
+                    <ul>
+                        <li class="green-check">Noodzakelijke cookies</li>
+                        <li class="green-check">Meten van online bezoekgedrag</li>
+                        <li class="green-check">Online contact met Aegon en feedback geven</li>
+                        <li class="red-cross">Nieuws en overige zaken delen via social media</li>
+                        <li class="red-cross">Gepersonaliseerde advertenties tegenkomen op Aegon.nl en andere
+                                                websites op basis van analyse en combinatie van online data
+                                                en (persoons-)gegevens</li>
+                    </ul>
+                </div>
+                <p class="popup-action">
+                    <button id="accept-custom-cookie-choice" class="button orange icon-right arrow">Akkoord en doorgaan</button>
+                </p>
+                <p>Als u Aegon.nl bezoekt wordt er een aantal geplaatst. Via bovenstaande instellingen kunt aangeven
+                   welke cookies u wilt accepteren. Voor meer informatie verwijzen we u naar het
+                   <a href="#">privacybeleid</a> en <a href="#">cookiebeleid</a>. Door op opslaan te klikken geeft u
+                   toestemming voor het plaatsen van de door u ingestelde cookies. Deze instelling kunt u achteraf
+                   wijzigen via het <a href="#">cookiebeleid</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- background filling -->
+
+ <div id="st-container" class="wrapper ui-panel-animate">
+    <div class="container">
+      <section id="scroll" class="scroll st-content">
+        <div class="st-content-inner">
+          {{_drupal-header}}
+          <section class="content">
+            <div class="goTop-wrapper">
+              <div id="back-top" class="goTop"><a href="#top" style="display: none;">Back to Top</a></div>
+            </div>
+
+
+            <!-- Messages -->
+            <!-- END Messages -->
+
+
+            <div class="row-fluid">
+              <div class="span1 gutter"></div>
+              <div class="span12">
+                <div itemprop="name">
+                  <h1 class="title" id="page-title">Sparen</h1>
+                </div>
+              </div>
+              <div class="span1 gutter"></div>
+            </div>
+
+
+            <div class="cm-tabs"></div>
+
+
+
+            <!-- Content layout -->
+            <div class="region region-content">
+              <div class="block block-system">
+                <div>
+                  <article class="ds-1col node node-subhome view-mode-full  clearfix">
+                    <div class="content mopinion">
+
+                      <div class="node__content">
+                        <div class="row-fluid"><div class="span14"><div class="banner"><div class="field field--name-field-image-banner field--type-image field--label-hidden">
+                          <div class="field-items" id="md47">
+                          </div>
+                        </div>
+                        </div></div></div><div class="row-fluid"><div class="span1 gutter"></div><div class="span12"><div class="container_12"> <div class="row-fluid divider-line"><div class="element-wrapper node--situation-element"><div class="row-fluid"><h2>Wat past bij mij?</h2><div class="print_link_icon show-desktop"><ul class="links links--inline"><li class="print_html first last"><a href="/print/28924" title="Display a printer-friendly version of this page." class="print-page" onclick="window.open(this.href); return false" rel="nofollow"><img class="print-icon" typeof="foaf:Image" src="http://aegon.nl.local/sites/all/modules/contrib/print/icons/print_icon.png" width="16px" height="16px" alt="Print this page" title="Print this page"></a></li>
+                      </ul></div><div class="field-collection-container clearfix">
+
+                        <div class="situation-container">
+                          <div class="field field--name-field-title-type1 field--type-text field--label-hidden">
+                            <div class="field-items" id="md27">
+                              <div class="field-item even">Uw spaargeld langer vastzetten</div>
+                            </div>
+                          </div>
+                          <div class="situations-desktop" id="situa-desktop-15113">
+                            <div class="field field--name-field-description-type1 field--type-text-long field--label-hidden">
+                              <div class="field-items" id="md26">
+                                <div class="field-item even">Heeft u uw spaargeld voor een langere&nbsp;periode niet nodig? U kunt uw <a href="/particulier/sparen/ik-wil-mijn-spaargeld-langer-vastzetten">spaargeld langer vastzetten</a> en een vaste hoge rente ontvangen.&nbsp;Bekijk de <a href="/particulier/sparen/internetsparen/actuele-spaarrente">actuele spaarrente</a>.</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="situations-mobile">
+                          </div>
+
+                          <div class="more-situations" id="more-content-15113" style="display:none">
+                          </div>
+                        </div>
+
+                        <div class="situation-container">
+                          <div class="field field--name-field-title-type1 field--type-text field--label-hidden">
+                            <div class="field-items" id="md29">
+                              <div class="field-item even">Altijd storten en opnemen</div>
+                            </div>
+                          </div>
+                          <div class="situations-desktop" id="situa-desktop-17183">
+                            <div class="field field--name-field-description-type1 field--type-text-long field--label-hidden">
+                              <div class="field-items" id="md28">
+                                <div class="field-item even"><span>Weet u nu nog niet wanneer u uw spaargeld precies wilt opnemen, kies dan voor meer vrijheid. U kunt dan&nbsp;</span><a href="/particulier/sparen/ik-wil-altijd-kunnen-storten-en-opnemen">storten en opnemen</a><span>&nbsp;wanneer het u uitkomt.&nbsp;Bekijk de&nbsp;</span><a href="/particulier/sparen/internetsparen/actuele-spaarrente">actuele spaarrente</a><span>.</span></div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="situations-mobile">
+                          </div>
+
+                          <div class="more-situations" id="more-content-17183" style="display:none">
+                          </div>
+                        </div>
+
+                        <div class="situation-container">
+                          <div class="field field--name-field-title-type1 field--type-text field--label-hidden">
+                            <div class="field-items" id="md31">
+                              <div class="field-item even">Sparen met belastingvoordeel</div>
+                            </div>
+                          </div>
+                          <div class="situations-desktop" id="situa-desktop-17147">
+                            <div class="field field--name-field-description-type1 field--type-text-long field--label-hidden">
+                              <div class="field-items" id="md30">
+                                <div class="field-item even">Wilt u sparen voor een aanvulling op uw pensioen? Dat kan, zelfs met <a href="/particulier/sparen/ik-wil-sparen-met-belastingvoordeel">belastingvoordeel</a>.&nbsp;</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="situations-mobile">
+                          </div>
+
+                          <div class="more-situations" id="more-content-17147" style="display:none">
+                          </div>
+                        </div>
+
+                        <div class="situation-container">
+                          <div class="field field--name-field-title-type1 field--type-text field--label-hidden">
+                            <div class="field-items" id="md33">
+                              <div class="field-item even">Staat uw situatie er niet bij?</div>
+                            </div>
+                          </div>
+                          <div class="situations-desktop" id="situa-desktop-16937">
+                            <div class="field field--name-field-description-type1 field--type-text-long field--label-hidden">
+                              <div class="field-items" id="md32">
+                                <div class="field-item even">Bekijk de <a href="/particulier/sparen/internetsparen/veelgestelde-vragen-over-aegon-sparen">veelgestelde vragen</a> voor meer informatie over sparen. Staat daar niet bij wat u zoekt? <a href="/particulier/klantenservice/bel-met-aegon">Neem dan contact op met onze klantenservice</a>.&nbsp; Zijn uw geldzaken op orde? Krijg in een paar stappen inzicht in uw situatie. <a href="/particulier/geldzaken">Doe de check</a>.</div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="situations-mobile">
+                          </div>
+
+                          <div class="more-situations" id="more-content-16937" style="display:none">
+                          </div>
+                        </div>
+                      </div></div></div></div><div class="row-fluid divider-line"><div class="element-wrapper"><h2><div class="field field--name-field-title-type2 field--type-text field--label-hidden">
+                        <div class="field-items" id="md51">
+                          <div class="field-item even">Aegon Spaarproducten</div>
+                        </div>
+                      </div>
+                      </h2><div class="subhome-wrapper"><div class="content-wrapper"><div class="field-collection-container clearfix"><div class="field field--name-field-subhome-product-list field--type-field-collection field--label-hidden">
+                        <div class="field-items">
+                          <div class="field-item even"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-subhome-product-list clearfix" about="/field-collection/field-subhome-product-list/15118" typeof="">
+                            <div class="content">
+                              <div class="field-collection-container clearfix"><div class="field field--name-field-subhome-product-list-data field--type-field-collection field--label-hidden">
+                                <div class="field-items">
+                                  <div class="field-item even"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-subhome-product-list-data clearfix" about="/field-collection/field-subhome-product-list-data/15116" typeof="">
+                                    <div class="content">
+                                      <div class="field field--name-field-subhome-product-attribute field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md34">
+                                          <div class="field-item even"><a href="/particulier/sparen/internetsparen">Aegon Sparen</a></div>
+                                        </div>
+                                      </div>
+                                      <div class="field field--name-field-description-type1 field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md35">
+                                          <div class="field-item even">Uw geld opnemen en storten wanneer u wilt. Zonder minimumsaldo of verplichte stortingen.</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div></div>
+                                  <div class="field-item odd"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-subhome-product-list-data clearfix" about="/field-collection/field-subhome-product-list-data/15117" typeof="">
+                                    <div class="content">
+                                      <div class="field field--name-field-subhome-product-attribute field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md36">
+                                          <div class="field-item even"><a href="/particulier/sparen/deposito-sparen">Aegon Deposito Sparen</a></div>
+                                        </div>
+                                      </div>
+                                      <div class="field field--name-field-description-type1 field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md37">
+                                          <div class="field-item even">Heeft u uw spaargeld even niet nodig? Zet het dan tijdelijk vast op een deposito. U ontvangt elk jaar een vaste rente op uw geld.</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div></div>
+                                  <div class="field-item even"><div class="field-collection-view clearfix view-mode-full field-collection-view-final"><div class="entity entity-field-collection-item field-collection-item-field-subhome-product-list-data clearfix" about="/field-collection/field-subhome-product-list-data/17146" typeof="">
+                                    <div class="content">
+                                      <div class="field field--name-field-subhome-product-attribute field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md38">
+                                          <div class="field-item even"><a href="https://www.aegon.nl/particulier/pensioen/lijfrente-sparen?int_source=sh-sparen-als">Aegon Lijfrente Sparen</a></div>
+                                        </div>
+                                      </div>
+                                      <div class="field field--name-field-description-type1 field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md39">
+                                          <div class="field-item even">Sparen voor later met belastingvoordeel.</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div></div>
+                                </div>
+                              </div>
+                              </div>  </div>
+                          </div>
+                          </div></div>
+                          <div class="field-item odd"><div class="field-collection-view clearfix view-mode-full field-collection-view-final"><div class="entity entity-field-collection-item field-collection-item-field-subhome-product-list clearfix" about="/field-collection/field-subhome-product-list/16172" typeof="">
+                            <div class="content">
+                              <div class="field field--name-field-title-type1 field--type-text field--label-hidden">
+                                <div class="field-items" id="md44">
+                                  <div class="field-item even">Oude spaarproducten</div>
+                                </div>
+                              </div>
+                              <div class="field-collection-container clearfix"><div class="field field--name-field-subhome-product-list-data field--type-field-collection field--label-hidden">
+                                <div class="field-items">
+                                  <div class="field-item even"><div class="field-collection-view clearfix view-mode-full field-collection-view-final"><div class="entity entity-field-collection-item field-collection-item-field-subhome-product-list-data clearfix" about="/field-collection/field-subhome-product-list-data/16173" typeof="">
+                                    <div class="content">
+                                      <div class="field field--name-field-subhome-product-attribute field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md41">
+                                          <div class="field-item even"><a href="/particulier/sparen/overige-spaarproducten">Overige spaarproducten</a></div>
+                                        </div>
+                                      </div>
+                                      <div class="field field--name-field-description-type1 field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md42">
+                                          <div class="field-item even">Lees meer over de spaarproducten die niet meer verkocht worden.</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div></div>
+                                </div>
+                              </div>
+                              </div>  </div>
+                          </div>
+                          </div></div>
+                        </div>
+                      </div>
+                      </div></div></div></div></div><div class="row-fluid divider-line"><div class="call-chat-element element-wrapper"><div class="field field--name-field-call-exec-ref field--type-entityreference field--label-hidden">
+                        <div class="field-items">
+                          <div class="field-item even"><article class="node node-text-button-element">
+                            <div class="print_link_icon show-desktop"></div>
+
+                            <h2>De Mijn Aegon app: Altijd en overal geld overboeken en uw saldo inzien</h2>
+
+
+                            <div>
+                              <div class="field field--name-body field--type-text-with-summary field--label-hidden">
+                                <div class="field-items" id="md3">
+                                  <div class="field-item even"><p>Met de Mijn Aegon app regelt u uw geldzaken makkelijk, veilig en snel. U kunt altijd en overal uw saldo, af- en bijschrijvingen bekijken en geld overmaken.</p>
+                                    <p>&nbsp;</p>
+                                    <p><span class="btn btn-orange-icon-square-arrow-right"><a href="/particulier/klantenservice/snel-toegang-tot-mijn-aegon-de-mijn-aegon-app">Download de Mijn Aegon app</a></span></p>
+                                    <p class="title-h4">&nbsp;</p>
+                                    <p class="title-h4"><span class="linkarrow"><a href="/particulier/klantenservice/snel-toegang-tot-mijn-aegon-de-mijn-aegon-app">Lees wat u nog meer met de Mijn Aegon app kunt doen</a></span></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </article>
+                          </div>
+                          <div class="field-item odd"><article class="node node-title">
+                            <div itemprop="name">
+                              <h2>Nog een vraag? Wij helpen u graag.</h2>
+                            </div>
+                          </article>
+                          </div>
+                          <div class="field-item even"><article class="node node-text-button-element">
+                            <div class="print_link_icon show-desktop"></div>
+
+                            <h2>Afsluiten via een onafhankelijk adviseur</h2>
+
+
+                            <div>
+                              <div class="field field--name-body field--type-text-with-summary field--label-hidden">
+                                <div class="field-items" id="md4">
+                                  <div class="field-item even"><p>Uw adviseur kan u ook persoonlijk en professioneel financieel advies geven, passend bij uw situatie. De kosten voor advies en/of het openen van het product kunnen per adviseur verschillen. Heeft u nog geen adviseur? Zoek dan een adviseur bij u in de buurt.</p>
+                                    <p>&nbsp;</p>
+                                    <p><span class="btn btn-orange-icon-square-arrow-right"><a href="/particulier/zoek-een-adviseur" target="_blank">Vind een adviseur</a></span></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </article>
+                          </div>
+                        </div>
+                      </div>
+                      </div></div><div class="row-fluid divider-line"><div class="element-wrapper"><div class="field field--name-field-top-tasks-ref field--type-entityreference field--label-hidden">
+                        <div class="field-items">
+                          <div class="field-item even"><article class="node node-link-block">
+                            <div class="print_link_icon show-desktop"></div>
+
+                            <h2>Direct regelen</h2>
+
+
+                            <div>
+                              <div class="field-collection-container clearfix"><div class="field field--name-field-links-fc field--type-field-collection field--label-hidden">
+                                <div class="field-items">
+                                  <div class="field-item even"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-links-fc clearfix" about="/field-collection/field-links-fc/15702" typeof="">
+                                    <div class="content">
+                                      <div class="field field--name-field-usp-image field--type-image field--label-hidden">
+                                        <div class="field-items" id="md18">
+                                          <div class="field-item even"><img itemprop="" typeof="foaf:Image" src="http://aegon.nl.local/sites/aegonnl/public_files/styles/link_block/public/afbeeldingen/Icons/email-met-aegon_0.png?itok=Vvbyoj9p"></div>
+                                        </div>
+                                      </div>
+                                      <div class="field field--name-field-url-type1 field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md17">
+                                          <div class="field-item even"><a href="/particulier/klantenservice/e-mail-sturen">E-mail sturen</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div></div>
+                                  <div class="field-item odd"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-links-fc clearfix" about="/field-collection/field-links-fc/15703" typeof="">
+                                    <div class="content">
+                                      <div class="field field--name-field-usp-image field--type-image field--label-hidden">
+                                        <div class="field-items" id="md20">
+                                          <div class="field-item even"><img itemprop="" typeof="foaf:Image" src="http://aegon.nl.local/sites/aegonnl/public_files/styles/link_block/public/afbeeldingen/sparen_1.png?itok=cPs-tOhu"></div>
+                                        </div>
+                                      </div>
+                                      <div class="field field--name-field-url-type1 field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md19">
+                                          <div class="field-item even"><a href="/particulier/klantenservice/inloggen-mijn-aegon">Mijn Sparen bekijken</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div></div>
+                                  <div class="field-item even"><div class="field-collection-view clearfix view-mode-full"><div class="entity entity-field-collection-item field-collection-item-field-links-fc clearfix" about="/field-collection/field-links-fc/15704" typeof="">
+                                    <div class="content">
+                                      <div class="field field--name-field-usp-image field--type-image field--label-hidden">
+                                        <div class="field-items" id="md22">
+                                          <div class="field-item even"><img itemprop="" typeof="foaf:Image" src="http://aegon.nl.local/sites/aegonnl/public_files/styles/link_block/public/afbeeldingen/Icons/actueel_0.png?itok=hC0nDtaO"></div>
+                                        </div>
+                                      </div>
+                                      <div class="field field--name-field-url-type1 field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md21">
+                                          <div class="field-item even"><a href="/particulier/klantenservice/snel-toegang-tot-mijn-aegon-de-mijn-aegon-app">Mijn Aegon app downloaden</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div></div>
+                                  <div class="field-item odd"><div class="field-collection-view clearfix view-mode-full field-collection-view-final"><div class="entity entity-field-collection-item field-collection-item-field-links-fc clearfix" about="/field-collection/field-links-fc/15705" typeof="">
+                                    <div class="content">
+                                      <div class="field field--name-field-usp-image field--type-image field--label-hidden">
+                                        <div class="field-items" id="md24">
+                                          <div class="field-item even"></div>
+                                        </div>
+                                      </div>
+                                      <div class="field field--name-field-url-type1 field--type-text-long field--label-hidden">
+                                        <div class="field-items" id="md23">
+                                          <div class="field-item even"><a href="/particulier/sparen/internetsparen/actuele-spaarrente">Renteoverzicht bekijken</a></div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div></div>
+                                </div>
+                              </div>
+                              </div>      </div>
+
+                          </article>
+                          </div>
+                        </div>
+                      </div>
+                      </div></div>
+
+                      </div></div><div class="span1 gutter"></div></div>    <div>
+                        <input type="hidden" id="portraitwidth" value="">
+                      </div>
+                      </div>
+
+                    </div>
+                  </article>
+
+                </div>
+              </div>
+              <meta itemscope="" itemref="md1 md2"><meta itemscope="" itemref="md52 md53 md58 md59"><meta itemscope="" itemref="md54 md55 md60 md61"><meta itemscope="" itemref="md56 md57"><meta itemscope="" itemref="md3"><meta itemscope="" itemref="md4"><meta itemscope="" itemref="md8 md9 md10"><meta itemscope="" itemref="md14 md15 md16"><meta itemscope="" itemref="md25"><meta itemscope="" itemref="md45 md46 md47 md48 md49 md50 md51"><meta itemscope="" itemref="md62 md63"><meta itemscope="" itemref="md64 md65"><meta itemscope="" itemref="md66 md67"><meta itemscope="" itemref="md68 md69"><meta itemscope="" itemref="md70 md71"><meta itemscope="" itemref="md5 md6 md7"><meta itemscope="" itemref="md11 md12 md13"><meta itemscope="" itemref="md17 md18"><meta itemscope="" itemref="md19 md20"><meta itemscope="" itemref="md21 md22"><meta itemscope="" itemref="md23 md24"><meta itemscope="" itemref="md26 md27"><meta itemscope="" itemref="md28 md29"><meta itemscope="" itemref="md30 md31"><meta itemscope="" itemref="md32 md33"><meta itemscope="" itemref="md34 md35"><meta itemscope="" itemref="md36 md37"><meta itemscope="" itemref="md38 md39"><meta itemscope="" itemref="md40"><meta itemscope="" itemref="md41 md42"><meta itemscope="" itemref="md43 md44">  </div>
+            <!-- END Content layout -->
+
+            <!-- Inpage chat -->
+            <div class="row-fluid" id="inpage-chat">
+              <div class="span12">
+                <div class="container_12">
+                  <div class="row-fluid">
+                    <div class="span8"></div>
+                    <div class="span4">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- END Blog layout -->
+
+        </div>
+        {{footer}}
+      </section>
+    </div>
+
+    <!-- menu from structures-->
+    {{_drupal-sidebar-aegon-menu}}
+
+  </div>
+
+<style type="text/css">
+  /* Force to don't show style associated to body.mobile-tap */
+  section.content:after {
+    display: none !important;
+  }
+</style>
+
+

@@ -58,13 +58,26 @@
                   <span class="checkbox"></span>Checkbox 2
                 </label>
                 <label class="checkbox">
-                  <input type="checkbox" name="checkbox3" value="value1" checked="checked" />
-                  <span class="checkbox"></span>Checkbox 3
+                  <input checked="checked" type="checkbox" name="alerts" id="alerts">
+                  <span class="checkbox"></span>Interessante alerts
                 </label>
+                <ul class="horizontal visible row-fluid alerts-opt">
+                  <li class="value span12">
+                    <label class="radio">
+                      <input type="radio" name="alert" value="email" checked="checked" />
+                      <span class="radio"></span>via E-mail
+                    </label>
+                  </li>
+                  <li class="value span12">
+                    <label class="radio disabled">
+                      <input type="radio" name="alert" value="sms" disabled="disabled" />
+                      <span class="radio"></span>via SMS (mobiel telefoonnummer onbekend)
+                    </label>
+                  </li>
+                </ul>
 
               </li>
             </ul>
-
           </div>
         </li>
 

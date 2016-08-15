@@ -23,6 +23,555 @@
             IMPORTANT: (with no backslash).
             -->
 
+
+            <script>
+                var dummyProfessions = {
+                  "retrieveProfessionsResponse": {
+                    "PROCES": {
+                      "STATUS": "MS000",
+                      "VOLGNUM": "1",
+                      "STATUST": "Success"
+                    },
+                    "AILHEADER": {
+                      "CLIENTID": "A2T1 HappyFlow",
+                      "CORRELATIONID": "##BS_AE_POLIS_AOV_02##Mon Aug 08 12:49:39 BST 2016##"
+                    },
+                    "_AE_BEROEPENLIJST_AOV": [
+                      {
+                        "_AE_BRPNAAM": "Aannemer",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "1",
+                        "_AE_BRPSUBNM": "Aannemer",
+                        "BKLASSE": "4",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Aannemer",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "723",
+                        "_AE_BRPSUBNM": "Aannemer commercieel, leidinggevend",
+                        "BKLASSE": "2"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Kweker",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "387",
+                        "_AE_BRPSUBNM": "Aardbeienkweker (kassen)",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Kweker",
+                        "_AE_BKLSMIN": "3.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "401",
+                        "_AE_BRPSUBNM": "Aardbeienkweker (koude grond)",
+                        "BKLASSE": "4",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Aardewerkdecorateur",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "2",
+                        "_AE_BRPSUBNM": "Aardewerkdecorateur",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Accountmanager",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "5",
+                        "_AE_BRPSUBNM": "Account-manager",
+                        "BKLASSE": "1",
+                        "_AE_BKLSMAX": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Accountant",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "3",
+                        "_AE_BRPSUBNM": "Accountant",
+                        "BKLASSE": "1"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Accountant",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "4",
+                        "_AE_BRPSUBNM": "Accountant - Administratie consultant",
+                        "BKLASSE": "1"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Acquisiteur",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "6",
+                        "_AE_BRPSUBNM": "Acquisiteur",
+                        "BKLASSE": "2",
+                        "_AE_BKLSMAX": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Acrobaat",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "7",
+                        "_AE_BRPSUBNM": "Acrobaat",
+                        "BKLASSE": "0",
+                        "_AE_BRPOPM": "Niet acceptabel"
+                      },
+                      {
+                        "_AE_BRPSUBNM": "Acteur",
+                        "_AE_BRPNAAM": "Acteur",
+                        "_AE_BKLSMAX": "4.0",
+                        "_AE_MINWTTD": "90",
+                        "_AE_BRPOPM": "Acceptatie in overleg met maatschappij",
+                        "BKLASSE": "3",
+                        "_AE_BRPCODE": "8",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BKLSMIN": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Actuarieel medewerker",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "9",
+                        "_AE_BRPSUBNM": "Actuarieel medewerker",
+                        "BKLASSE": "1"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Actuarieel rekenaar",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "10",
+                        "_AE_BRPSUBNM": "Actuarieel rekenaar",
+                        "BKLASSE": "1"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Actuaris",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "11",
+                        "_AE_BRPSUBNM": "Actuaris",
+                        "BKLASSE": "1"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Acupuncturist",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "12",
+                        "_AE_BRPSUBNM": "Acupuncturist (geen arts)",
+                        "BKLASSE": "0",
+                        "_AE_BRPOPM": "Niet acceptabel"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Acupuncturist",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "13",
+                        "_AE_BRPSUBNM": "Acupuncturist (tevens arts)",
+                        "BKLASSE": "1"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Administrateur",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "14",
+                        "_AE_BRPSUBNM": "Administrateur",
+                        "BKLASSE": "1"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Winkelier",
+                        "_AE_BKLSMIN": "2.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "695",
+                        "_AE_BRPSUBNM": "Winkelier slijterij",
+                        "BKLASSE": "2",
+                        "_AE_BKLSMAX": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Winkelier",
+                        "_AE_BKLSMIN": "3.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "703",
+                        "_AE_BRPSUBNM": "Winkelier wild en gevogelte",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Winkelier",
+                        "_AE_BKLSMIN": "2.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "704",
+                        "_AE_BRPSUBNM": "Winkelier witgoed",
+                        "BKLASSE": "2"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Woninginrichter",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "709",
+                        "_AE_BRPSUBNM": "Woninginrichter",
+                        "BKLASSE": "4",
+                        "_AE_MAXENDLF": "60",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Stoffeerder",
+                        "_AE_BKLSMIN": "3.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "588",
+                        "_AE_BRPSUBNM": "Woningstoffeerder",
+                        "BKLASSE": "5",
+                        "_AE_MAXENDLF": "60"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Leraar",
+                        "_AE_BKLSMIN": "2.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "424",
+                        "_AE_BRPSUBNM": "Yogaleraar",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Teler",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "606",
+                        "_AE_BRPSUBNM": "Zaadteler (kassen)",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Zadelmaker",
+                        "_AE_BKLSMIN": "2.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "712",
+                        "_AE_BRPSUBNM": "Zadelmaker",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Zanger",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "713",
+                        "_AE_BRPSUBNM": "Zanger",
+                        "BKLASSE": "3",
+                        "_AE_BRPOPM": "Acceptatie in overleg met maatschappij",
+                        "_AE_BKLSMAX": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Leraar",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "423",
+                        "_AE_BRPSUBNM": "Zangleraar",
+                        "BKLASSE": "2",
+                        "_AE_BKLSMAX": "2.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Zangpedagoog",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "715",
+                        "_AE_BRPSUBNM": "Zangpedagoog",
+                        "BKLASSE": "2",
+                        "_AE_BKLSMAX": "2.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Visser",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "716",
+                        "_AE_BRPSUBNM": "Zeevisser",
+                        "_AE_MINWTTD": "90",
+                        "BKLASSE": "4",
+                        "_AE_MAXENDLF": "60",
+                        "_AE_BRPOPM": "Alleen acceptabel voor exploitant of mede-exploitant"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Zeilmaker",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "717",
+                        "_AE_BRPSUBNM": "Zeilmaker",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Zenuwarts",
+                        "_AE_BKLSVAST": "J",
+                        "_AE_BRPCODE": "718",
+                        "_AE_BRPSUBNM": "Zenuwarts",
+                        "BKLASSE": "1"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Beveiligingsbeambte",
+                        "_AE_BKLSMIN": "3.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "98",
+                        "_AE_BRPSUBNM": "beveiligingsbeambte",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Bromfiets- en rijwielhersteller",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "125",
+                        "_AE_BRPSUBNM": "bromfiets- en rijwielhersteller",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Bakker",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "66",
+                        "_AE_BRPSUBNM": "broodbakker",
+                        "BKLASSE": "3",
+                        "_AE_MAXENDLF": "60",
+                        "_AE_BKLSMAX": "4.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Handelaar",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "247",
+                        "_AE_BRPSUBNM": "fruithandelaar (detailhandel)",
+                        "BKLASSE": "3",
+                        "_AE_BKLSMAX": "3.0"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Winkelier",
+                        "_AE_BKLSMIN": "2.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "659",
+                        "_AE_BRPSUBNM": "winkelier in banket/brood",
+                        "BKLASSE": "2"
+                      },
+                      {
+                        "_AE_BRPNAAM": "Winkelier",
+                        "_AE_BKLSMIN": "2.0",
+                        "_AE_BKLSVAST": "N",
+                        "_AE_BRPCODE": "700",
+                        "_AE_BRPSUBNM": "winkelier in videos",
+                        "BKLASSE": "2",
+                        "_AE_BKLSMAX": "3.0"
+                      }
+                    ]
+                  }
+                };
+
+                var dummyRiskFactor = {
+                  "calculateRiskFactorResponse": {
+                    "_AE_RISICOKLASSE_AOV": {
+                      "_AE_RISKKLASSE": "3.5"
+                    },
+                    "PROCES": {
+                      "STATUS": "MS000",
+                      "VOLGNUM": "1",
+                      "STATUST": "Success"
+                    },
+                    "AILHEADER": {
+                      "CLIENTID": "RCAL",
+                      "CORRELATIONID": "## batch 7 ##"
+                    }
+                  }
+                };
+
+                var dummyCalculateSpecification = {
+                  "calculateSpecificationResponse": {
+                    "CONTRACT_POLIS": {
+                      "INGDAT": "2011-09-05",
+                      "DPRC": "0.0",
+                      "DEKKING": [
+                        {
+                          "INGDAT": "2011-09-05",
+                          "VOLGNUM": "1",
+                          "HVVDAT": "2012-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "522.96",
+                            "_AE_JRFISCDBEDR": "522.96"
+                          },
+                          "BTP": "130.74"
+                        },
+                        {
+                          "INGDAT": "2012-09-05",
+                          "VOLGNUM": "2",
+                          "HVVDAT": "2013-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "815.92",
+                            "_AE_JRFISCDBEDR": "815.92"
+                          },
+                          "BTP": "203.98"
+                        },
+                        {
+                          "INGDAT": "2013-09-05",
+                          "VOLGNUM": "3",
+                          "HVVDAT": "2014-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "889.6",
+                            "_AE_JRFISCDBEDR": "889.6"
+                          },
+                          "BTP": "222.4"
+                        },
+                        {
+                          "INGDAT": "2014-09-05",
+                          "VOLGNUM": "4",
+                          "HVVDAT": "2015-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "968.28",
+                            "_AE_JRFISCDBEDR": "968.28"
+                          },
+                          "BTP": "242.07"
+                        },
+                        {
+                          "INGDAT": "2015-09-05",
+                          "VOLGNUM": "5",
+                          "HVVDAT": "2016-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1057.16",
+                            "_AE_JRFISCDBEDR": "1057.16"
+                          },
+                          "BTP": "264.29"
+                        },
+                        {
+                          "INGDAT": "2016-09-05",
+                          "VOLGNUM": "6",
+                          "HVVDAT": "2017-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1154.2",
+                            "_AE_JRFISCDBEDR": "1154.2"
+                          },
+                          "BTP": "288.55"
+                        },
+                        {
+                          "INGDAT": "2017-09-05",
+                          "VOLGNUM": "7",
+                          "HVVDAT": "2018-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1249.64",
+                            "_AE_JRFISCDBEDR": "1249.64"
+                          },
+                          "BTP": "312.41"
+                        },
+                        {
+                          "INGDAT": "2018-09-05",
+                          "VOLGNUM": "8",
+                          "HVVDAT": "2019-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1351.04",
+                            "_AE_JRFISCDBEDR": "1351.04"
+                          },
+                          "BTP": "337.76"
+                        },
+                        {
+                          "INGDAT": "2019-09-05",
+                          "VOLGNUM": "9",
+                          "HVVDAT": "2020-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1456.04",
+                            "_AE_JRFISCDBEDR": "1456.04"
+                          },
+                          "BTP": "364.01"
+                        },
+                        {
+                          "INGDAT": "2020-09-05",
+                          "VOLGNUM": "10",
+                          "HVVDAT": "2021-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1513.48",
+                            "_AE_JRFISCDBEDR": "1513.48"
+                          },
+                          "BTP": "378.37"
+                        },
+                        {
+                          "INGDAT": "2021-09-05",
+                          "VOLGNUM": "11",
+                          "HVVDAT": "2022-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1542.44",
+                            "_AE_JRFISCDBEDR": "1542.44"
+                          },
+                          "BTP": "385.61"
+                        },
+                        {
+                          "INGDAT": "2022-09-05",
+                          "VOLGNUM": "12",
+                          "HVVDAT": "2023-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1572.0",
+                            "_AE_JRFISCDBEDR": "1572.0"
+                          },
+                          "BTP": "393.0"
+                        },
+                        {
+                          "INGDAT": "2023-09-05",
+                          "VOLGNUM": "13",
+                          "HVVDAT": "2024-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1602.12",
+                            "_AE_JRFISCDBEDR": "1602.12"
+                          },
+                          "BTP": "400.53"
+                        },
+                        {
+                          "INGDAT": "2024-09-05",
+                          "VOLGNUM": "14",
+                          "HVVDAT": "2025-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1632.84",
+                            "_AE_JRFISCDBEDR": "1632.84"
+                          },
+                          "BTP": "408.21"
+                        },
+                        {
+                          "INGDAT": "2025-09-05",
+                          "VOLGNUM": "15",
+                          "HVVDAT": "2026-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1664.16",
+                            "_AE_JRFISCDBEDR": "1664.16"
+                          },
+                          "BTP": "416.04"
+                        },
+                        {
+                          "INGDAT": "2026-09-05",
+                          "VOLGNUM": "16",
+                          "HVVDAT": "2027-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1696.12",
+                            "_AE_JRFISCDBEDR": "1696.12"
+                          },
+                          "BTP": "424.03"
+                        },
+                        {
+                          "INGDAT": "2027-09-05",
+                          "VOLGNUM": "17",
+                          "HVVDAT": "2028-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1728.72",
+                            "_AE_JRFISCDBEDR": "1728.72"
+                          },
+                          "BTP": "432.18"
+                        },
+                        {
+                          "INGDAT": "2028-09-05",
+                          "VOLGNUM": "18",
+                          "HVVDAT": "2029-09-05",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1761.96",
+                            "_AE_JRFISCDBEDR": "1761.96"
+                          },
+                          "BTP": "440.49"
+                        },
+                        {
+                          "INGDAT": "2029-09-05",
+                          "VOLGNUM": "19",
+                          "HVVDAT": "2030-08-01",
+                          "DEKKING_AOV": {
+                            "_AE_JAARPREM": "1626.27",
+                            "_AE_JRFISCDBEDR": "1626.27"
+                          },
+                          "BTP": "448.97"
+                        }
+                      ]
+                    },
+                    "PROCES": {
+                      "STATUS": "MS000",
+                      "VOLGNUM": "1",
+                      "STATUST": "Success"
+                    },
+                    "AILHEADER": {
+                      "CLIENTID": "RCAL",
+                      "CORRELATIONID": "## batch 7 ##"
+                    }
+                  }
+                };
+            </script>
+
             {{aov-quote}}
 
           </div>

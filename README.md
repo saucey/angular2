@@ -52,7 +52,7 @@ Before the **Step 3** below, remember to setup your global Git user locally. Ple
 Clone the repository in your favorite projects folder:
 
 ```
-git clone ssh://git@swfactory.aegon.com:7999/web/aegon-technical-style-guide.git
+git clone ssh://git@swfactory.aegon.com:7999/web/aegon-frontend-styleguide.git
 ```
 
 
@@ -61,7 +61,7 @@ git clone ssh://git@swfactory.aegon.com:7999/web/aegon-technical-style-guide.git
 Run first setup script from command line as below:
 
 ```
-$ cd aegon-technical-style-guide
+$ cd aegon-frontend-styleguide
 $ npm run setup
 ```
 

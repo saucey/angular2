@@ -200,7 +200,7 @@ gulp.task('scripts:angular2components', function () {
     //scripts.push('!components/angular-bootstrap/enable-prodmode.ts');
   }
 
-  gulp.src(scripts, {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+  return gulp.src(scripts, {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
   .pipe(plumber())
   .pipe(ts({
     outFile: 'ts-compiled.js',
@@ -214,8 +214,7 @@ gulp.task('scripts:angular2components', function () {
   }))
   .pipe(concat('aegon-angular2.js'))
   .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
-  .pipe(gulp.dest(config.dest + '/scripts'))
-  .pipe(gulpif(config.dev, reload({stream:true})));
+  .pipe(gulp.dest(config.dest + '/scripts'));
 });
 
 gulp.task('scripts:angular2core', function() {
@@ -224,7 +223,7 @@ gulp.task('scripts:angular2core', function() {
     ], {cwd: config.src.libScriptsPath + '/node_modules'})
     .pipe(gulp.dest(config.dest + '/scripts'));
 
-  gulp.src([
+  return gulp.src([
     'systemjs/dist/system-polyfills.js',
     'angular2/es6/dev/src/testing/shims_for_IE.js',
     'angular2/bundles/angular2-polyfills.min.js',
@@ -235,8 +234,7 @@ gulp.task('scripts:angular2core', function() {
   ], {cwd: config.src.libScriptsPath + '/node_modules'})
     .pipe(concat('angular2core.js'))
     .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
-    .pipe(gulp.dest(config.dest + '/scripts'))
-    .pipe(gulpif(config.dev, reload({stream:true})));
+    .pipe(gulp.dest(config.dest + '/scripts'));
 });
 
 gulp.task('tests:compile', function() {
@@ -525,8 +523,9 @@ gulp.task('watch', ['browser-sync'], function () {
   });
 
   watch(config.src.libScriptsPath + '/**/*.ts', function () {
-    gulp.start('scripts:angular2core');
-    gulp.start('scripts:angular2components');
+
+    runSequence(['scripts:angular2core', 'scripts:angular2components'], reload);
+
   });
 
   watch(config.src.libScriptsPath + '/**/*.js', function () {

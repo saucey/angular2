@@ -1,4 +1,11 @@
 <aa-template>
-  <aa-qq-aov>
-  </aa-qq-aov>
+<aa-data [data]="data" type="keyvalue" path="options">
+
+mockProfessions = true;
+mockRiskFactor = true;
+mockSpecification = true;
+summaryPath = /template-qq-summary.html;
+
+</aa-data>
+<aa-qq-aov [options]="data.options"></aa-qq-aov>
 </aa-template>

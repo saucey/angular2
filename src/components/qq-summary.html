@@ -1,4 +1,7 @@
 <aa-template>
-  <aa-qq-summary>
-  </aa-qq-summary>
+<aa-data [data]="data" type="keyvalue" path="options">
+
+</aa-data>
+<aa-qq-summary [options]="data.options">
+</aa-qq-summary>
 </aa-template>

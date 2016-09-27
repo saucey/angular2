@@ -1,0 +1,26 @@
+<section id="personal_details_widget2" class="personal_details_widget container_12">
+    <div id="" class="">
+        <!--faceless widget container with unique id, used for ajax loading-->
+        <form name="personal_details_form">
+            <h3>Naam en contact gegevens</h3>
+            <ul class="row-fluid">
+                <!--if iterations are taking place, iterate over the elements between this comment-->
+                <li class="details edit span12">
+                    <div class="description">This is an optional description that gives the opportunity for an introduction. Just delete if not required.</div>
+                    <div class="container_12">
+                        <ul class="horizontal mobile row-fluid">
+                            <li class="label span4">Mobiel</li>
+                            <li class="value span8">
+                                <input type="text" name="mobile" id="mobile" data-validate="mobile.nl" placeholder="Mobiel" />
+                                <span class="errorText">some error message visible</span>
+                                <span class="help" title="some more or less helpful text"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="email-info">This is an optional description that gives the opportunity for an introduction. Just delete if not required.</div>
+            {{button-save}}
+        </form>
+    </div>
+</section>

@@ -12,6 +12,7 @@ var
   compress = require('compression'),
   concat = require('gulp-concat'),
   del = require('del'),
+  through2 = require('through2'),
   gulp = require('gulp'),
   gutil = require('gulp-util'),
   gulpif = require('gulp-if'),
@@ -33,8 +34,8 @@ var
   sourcemaps = require('gulp-sourcemaps'),
   ts = require('gulp-typescript'),
   uglify = require('gulp-uglify'),
+  webpack = require('gulp-webpack'),
   watch = require('gulp-watch');
-
 
 /**
  * Configuration
@@ -184,83 +185,41 @@ gulp.task('styles:cookiewall', function () {
     .pipe(gulpif(config.dev, reload({stream:true})));
 });
 
+var webpackTask = function (watch) {
 
-gulp.task('scripts:angular2components', function () {
+  var configFile = config.dev ? 'webpack.dev.js' : 'webpack.prod.js';
+  var webpackConfig = require('./lib/aegon-frontend-library/aegon-scripts-library/' + configFile);
 
-  var scripts = [
-    '**/*.ts',
-    '!vendor/**/*.ts',
-    '!node_modules/**/*.ts',
-    '!typings/main.d.ts',
-    '!typings/main/**/*.ts',
-    '!**/test/**/*.spec.ts'
-  ];
+  return function () {
 
-  if (config.dev) {
-    //scripts.push('!components/angular-bootstrap/enable-prodmode.ts');
-  }
+    webpackConfig.watch = watch;
+    delete webpackConfig.entry;
 
-  return gulp.src(scripts, {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
-  .pipe(plumber())
-  .pipe(ts({
-    outFile: 'ts-compiled.js',
-    target: 'es5',
-    module: 'system',
-    moduleResolution: 'node',
-    emitDecoratorMetadata: true,
-    experimentalDecorators: true,
-    removeComments: false,
-    noImplicitAny: false
-  }))
-  .pipe(concat('aegon-angular2.js'))
-  .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
-  .pipe(gulp.dest(config.dest + '/scripts'));
-});
-
-gulp.task('scripts:angular2core', function() {
-  gulp.src([
-      'es6-shim/es6-shim.min.js'
-    ], {cwd: config.src.libScriptsPath + '/node_modules'})
-    .pipe(gulp.dest(config.dest + '/scripts'));
-
-  return gulp.src([
-    'systemjs/dist/system-polyfills.js',
-    'angular2/es6/dev/src/testing/shims_for_IE.js',
-    'angular2/bundles/angular2-polyfills.min.js',
-    'systemjs/dist/system.js',
-    'rxjs/bundles/Rx.min.js',
-    'angular2/bundles/angular2.js',
-    'angular2/bundles/http.min.js'
-  ], {cwd: config.src.libScriptsPath + '/node_modules'})
-    .pipe(concat('angular2core.js'))
-    .pipe(gulpif(!config.dev, header(banner, { pkg : pkg } )))
-    .pipe(gulp.dest(config.dest + '/scripts'));
-});
-
-gulp.task('tests:compile', function() {
-  gulp.src([
-    'typings/**/*.ts',
-    '**/test/**/*.spec.ts',
-    '!vendor/**/*.ts',
-    '!node_modules/**/*.ts',
-    '!typings/main.d.ts',
-    '!typings/main/**/*.ts'
-  ], {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
-      .pipe(plumber())
-      .pipe(ts({
-        target: 'es5',
-        module: 'system',
-        moduleResolution: 'node',
-        emitDecoratorMetadata: true,
-        experimentalDecorators: true,
-        noImplicitAny: false
+    return gulp.src('./entry.ts', {cwd: config.src.libScriptsPath, base: config.src.libScriptsPath})
+      .pipe(webpack(webpackConfig))
+      .pipe(rename({
+        basename: 'bundle'
       }))
-      .pipe(gulp.dest(config.dest + '/scripts/test'))
-});
+      .pipe(gulp.dest('./dist/scripts'))
+      .pipe(through2.obj(function (chunk, enc, cb) {
 
-gulp.task('tests', ['tests:compile', 'scripts:angular2core', 'scripts:angular2components'], function() {
-  gulp.start('tests:run');
-});
+        //prevent from running tests twice
+        //we have .js and .js.map files in this pipe
+        if (chunk.path.substr(-3) === '.js') {
+
+          if (config.dev && watch) {
+            reload();
+          }
+          // run tests here in the future
+        }
+
+        cb(null, chunk);
+      }));
+  }
+};
+
+gulp.task('webpack', webpackTask(false));
+gulp.task('webpack:watch', webpackTask(true));
 
 gulp.task('scripts:library', ['jshint:library'], function () {
   // Main scripts
@@ -269,7 +228,8 @@ gulp.task('scripts:library', ['jshint:library'], function () {
     '!**/test/**/*.spec.js',
     '!node_modules/**/',
     '!vendor/ie/**/*.js',
-    '!system.config.js',
+    '!karma*.js',
+    '!webpack*.js',
     '!modules/cookiewall.js'
   ], {cwd: config.src.libScriptsPath})
   .pipe(plumber())
@@ -315,6 +275,7 @@ gulp.task('jshint:library', function () {
   return gulp.src([
       config.src.libScriptsPath + '/**/*.js',
       '!' + config.src.libScriptsPath + '/vendor/**/*',
+      '!' + config.src.libScriptsPath + '/coverage/**/*',
       '!' + config.src.libScriptsPath + '/node_modules/**/*'
     ])
     .pipe(jshint())
@@ -400,7 +361,7 @@ gulp.task('assets', ['assets:library']);
 
 gulp.task('styles', ['styles:fabricator', 'styles:library', 'styles:cookiewall', 'styles:toolkit', 'styles:drupalcore-omega-static-styles']);
 
-gulp.task('scripts', ['scripts:fabricator', 'scripts:angular2core', 'scripts:angular2components', 'scripts:library', 'scripts:toolkit', 'data']);
+gulp.task('scripts', ['scripts:fabricator', 'scripts:library', 'webpack', 'scripts:toolkit', 'data']);
 
 
 /**
@@ -522,14 +483,9 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.start('scripts:fabricator');
   });
 
-  watch(config.src.libScriptsPath + '/**/*.ts', function () {
-
-    runSequence(['scripts:angular2core', 'scripts:angular2components'], reload);
-
-  });
-
   watch(config.src.libScriptsPath + '/**/*.js', function () {
     gulp.start('scripts:library');
+    gulp.start('tests:run');
   });
 
   watch('src/assets/scripts/**/*.js', function () {
@@ -552,15 +508,6 @@ gulp.task('watch', ['browser-sync'], function () {
     gulp.start('assets:library:fonts');
   });
 
-  watch([
-    config.src.libScriptsPath + '/components/**/*.ts',
-    config.src.libScriptsPath + '/**/*.js',
-      '!' + config.src.libScriptsPath + '/node_modules/**/'
-    ], function () {
-    if (!config.notest) {
-      gulp.start('tests');
-    }
-  });
 });
 
 // Default build task
@@ -578,9 +525,8 @@ gulp.task('default', ['clean'], function () {
   // run build
   runSequence(tasks, function () {
     // "tests" task should not be run parallel with other tasks, because it needs the built scripts
-    gulp.start('tests');
-
     if (config.dev) {
+      gulp.start('webpack:watch');
       gulp.start('watch');
     }
   });

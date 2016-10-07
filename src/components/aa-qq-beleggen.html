@@ -1,0 +1,14 @@
+<aa-template class="aa-template--loading">
+<aa-data [data]="data" type="keyvalue" path="options">
+title = Sparen of beleggen, bereken het zelf!;
+interest.savings = 0.25;
+interest.optimistic = 10;
+interest.pessimistic = 5;
+interest.neutral = 8;
+inlay.slider.start = 10000;
+periodic.slider.start = 500;
+duration.slider.range.max = 20;
+</aa-data>
+<aa-qq-beleggen [options]="data.options">
+</aa-qq-beleggen>
+</aa-template>

@@ -447,7 +447,6 @@ gulp.task('browser-sync', function () {
       middleware: [
         compress(),
         function (req, res, next) {
-              console.log("YOU ARE CALLING THIS: ", req.url);
               if (mocks[req.url]) {
                 res.setHeader("Content-Type", "application/json");
                 res.end(JSON.stringify(

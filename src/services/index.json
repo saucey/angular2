@@ -1,0 +1,12 @@
+{
+	"/api/test" : {
+		"GET" : {
+			"test" : "prova"
+		}
+	},
+	"/api/test2" : {
+		"POST" : {
+			"test" : "prova post"
+		}
+	}
+}

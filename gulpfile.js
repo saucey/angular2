@@ -69,7 +69,8 @@ var config = {
       'structures',
       'templates',
       'documentation'
-    ]
+    ],
+    mockServices: './src/services/**/*',
   },
   dest: './dist'
 };
@@ -86,6 +87,7 @@ var banner = ['/**',
   ' */',
   ''].join('\n');
 
+  var mocks = require('./src/services/index.json');
 
 /**
  * Fabricator tasks
@@ -398,6 +400,16 @@ gulp.task('assemble', ['collate'], function () {
   gulp.start('assemble:fabricator', 'assemble:templates');
 });
 
+/*
+ * Mock Services 
+ */
+gulp.task('mockServices', function () {
+  return gulp.src(config.src.mockServices)
+    .pipe(gulpif(!config.dev, uglify()))
+    .pipe(gulp.dest(config.dest + '/services'))
+    .pipe(gulpif(config.dev, reload({stream:true})));
+});
+
 
 /**
  * Server, Watch and other tasks
@@ -432,7 +444,19 @@ gulp.task('browser-sync', function () {
   browserSync({
     server: {
       baseDir: config.dest,
-      middleware: [compress()],
+      middleware: [
+        compress(),
+        function (req, res, next) {
+              console.log("YOU ARE CALLING THIS: ", req.url);
+              if (mocks[req.url]) {
+                res.setHeader("Content-Type", "application/json");
+                res.end(JSON.stringify(
+                    mocks[req.url][req.method] || {Error: "response for this method not found!"}
+                  )
+                );
+            }
+            next();
+        }],
       routes: {
         "/assets": config.src.libAssetsPath
       }//,

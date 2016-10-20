@@ -1,0 +1,23 @@
+<aa-template>  
+  <aa-data [data]="data" type="keyvalue" path="options">
+    left.service = dip;
+    left.title = Title left;
+    left.intro = Intro left;  
+    left.cta.text = Button left;
+    left.cta.url = http://left.url;
+
+    right.service = vpu;
+    right.title = Title right;
+    right.intro = Intro right;  
+    right.cta.text = Button right;
+    right.cta.url = http://right.url;    
+
+    otherServiceLink.text = Check other service
+    otherServiceLink.url = http://other.url
+  </aa-data>
+
+  <aa-blue-block-page [options]="data.options">
+    <div blue-block-left>Blue block</div>
+    <div blue-block-right>Blue block</div>             
+  </aa-blue-block-page>
+</aa-template>

@@ -8,5 +8,47 @@
 		"POST" : {
 			"test" : "prova post"
 		}
+	},
+	"/api/dipFixed" : {
+		"GET" : {
+		   "BScalculateRequest": {
+		      "AILHEADER": {
+		         "CLIENTID": "AEGONNL",
+		         "CORRELATIONID": "##DIP SS ##"
+		      },
+		      "DOSSIER": {
+		         "REKENFACTOREN": {
+		            "OVERGANG_OP_PP": "0.70",
+		            "VERHOUDING_HOOG_LAAG": "0.75"
+		         },
+		         "PENSIOENOVEREENKOMST": {
+		            "STORTING_INLEG": {
+		               "KOOPSOM": "100000", 
+		               "IND_VREEMDGELD": "false",
+		               "IND_HERKOMST_OVL": "false"
+		            },
+		            "PENSIOENAANSPRAAK": {
+		               "IND_OUDERDOMSPENSIOEN": "true",
+		               "IND_NABESTAANDENPENSIOEN": "false",
+		               "IND_HOOG_LAAGPENSIOEN": "false",
+		               "IND_PREPENSIOEN": "false",
+		               "BEGIN_DATUM_UITKERING": "2017-01-01",
+		               "DUUR_UITKERING_JAREN": "5",
+		               "STIJGING_PERC": "0.0",
+		               "TERMIJN_UITKERING": "1"
+		            }
+		         },
+		          "PARTIJ": [
+		            {
+		               "_AE_PERSOON": {
+		                  "VOLGNUM": "1",
+		                  "GESLACH": "M",
+		                  "GEBDAT": "1955-12-12"
+		               }
+		            }
+		         ]
+		      }
+		   }
+		}
 	}
 }

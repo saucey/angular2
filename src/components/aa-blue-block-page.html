@@ -1,23 +1,35 @@
 <aa-template>  
-  <aa-data [data]="data" type="keyvalue" path="options">
-    left.service = dip;
+  <aa-data [data]="data" type="keyvalue" path="page">
+    hidden = true;
+    
     left.title = Title left;
-    left.intro = Intro left;  
-    left.cta.text = Button left;
-    left.cta.url = http://left.url;
+    left.text = Intro left; 
 
-    right.service = vpu;
     right.title = Title right;
-    right.intro = Intro right;  
-    right.cta.text = Button right;
-    right.cta.url = http://right.url;    
+    right.text = Intro right;     
 
-    otherServiceLink.text = Check other service
-    otherServiceLink.url = http://other.url
+    link.text = This is a link;
+    link.url = http://go.to.here;
+    
+    bottom.title = Offerte aanvragen;
+    bottom.text = Tekst voor het aanvragen van de offerte;
   </aa-data>
 
-  <aa-blue-block-page [options]="data.options">
-    <div blue-block-left>Blue block</div>
-    <div blue-block-right>Blue block</div>             
+  <aa-data [data]="data" type="keyvalue" path="blueBlockLeft">
+    title = Left part;
+  </aa-data>  
+
+  <aa-data [data]="data" type="keyvalue" path="blueBlockRight">
+    title = Right part;
+  </aa-data>    
+
+  <aa-blue-block-page [options]="data.page">    
+    <div blue-block-left>
+      <aa-blue-block [options]="data.blueBlockLeft"></aa-blue-block>
+    </div>
+    
+    <div blue-block-right>
+      <aa-blue-block [options]="data.blueBlockRight"></aa-blue-block>
+    </div>            
   </aa-blue-block-page>
 </aa-template>

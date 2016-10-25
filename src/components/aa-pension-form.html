@@ -1,4 +1,13 @@
 <aa-template>
-<aa-pension-form>
-</aa-pension-form>
+  <aa-pension-form [bbpage]="bbpage"></aa-pension-form>
+
+  <aa-blue-block-page #bbpage>    
+    <div blue-block-left>
+      <aa-blue-block></aa-blue-block>
+    </div>
+    
+    <div blue-block-right>
+      <aa-blue-block></aa-blue-block>
+    </div>            
+  </aa-blue-block-page>  
 </aa-template>

@@ -129,6 +129,9 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/arbeidsongeschiktheidspensioen.png",
             "shortDescription": [
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": false,
                 "text": "<p>Uw werkgever sloot voor u de:</p>"
               },
@@ -172,7 +175,7 @@
                 "filter": [
                   "WIA_35MIN_BODEM"
                 ],
-                "text": "<p>Met de WIA-Bodemverzekering krijgt u een uitkering als u volgens het UWV 15% of meer arbeidsongeschikt bent, maar minder dan 35%.</p>"
+                "text": "<p>WIA-Bodemverzekering. Met de WIA-Bodemverzekering krijgt u een uitkering als u volgens het UWV 15% of meer arbeidsongeschikt bent, maar minder dan 35%.</p>"
               }
             ],
             "longDescription": [
@@ -354,6 +357,9 @@
                 "text": "<p>Ondanks deze wettelijke uitkeringen, kan u er in inkomen op achteruit gaan als u arbeidsongeschikt bent.</p>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "WGA_EXCED",
                   "WGA_AANV_STANDARD"
@@ -361,12 +367,18 @@
                 "text": "Deze regeling geeft een aanvulling op uw WGA-uitkering. Uw uitkering stopt als u de AOW-leeftijd bereikt of nog daarvoor <code>%END_AGE%</code> jaar wordt."
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "WGA_EXCED"
                 ],
                 "text": "De aanvulling vanuit uw WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>."
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "IVA_EXCED",
                   "WGA_AANV_STANDARD"
@@ -374,6 +386,9 @@
                 "text": "<p>Deze regeling geeft een aanvulling op uw IVA-uitkering. De aanvulling vanuit uw IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>. Uw uitkering stopt als u de AOW-leeftijd bereikt of nog daarvoor <code>%END_AGE%</code> jaar wordt.</p>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "IVA_EXCED",
                   "WGA_EXCED",
@@ -382,24 +397,36 @@
                 "text": "<p>Deze regeling geeft een aanvulling op uw IVA- en WGA-uitkering. Uw uitkering stopt als u de AOW-leeftijd bereikt of nog daarvoor <code>%END_AGE%</code> jaar wordt.</p>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "WGA_EXCED"
                 ],
                 "text": "De aanvulling vanuit uw WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>."
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "IVA_EXCED"
                 ],
                 "text": "De aanvulling vanuit uw IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>.</p>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "WIA_35MIN"
                 ],
                 "text": "<p>Bent u na twee jaar ziekte volgens het UWV minder dan 35% arbeidsongeschikt? Dan krijgt u geen WIA-uitkering. U zoekt dan in overleg met uw werkgever passend werk. Met dit passend werk verdient u mogelijk minder. Deze regeling geeft dan <code>%BENEFIT_PERIOD%</code> jaar een aanvulling op uw nieuwe loon. Uw uitkering stopt als u de AOW-leeftijd bereikt of nog daarvoor 70 jaar wordt.</p>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "WIA_35MIN_BODEM"
                 ],
@@ -452,10 +479,17 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-static-content/content/pensioen123/test/indexatie.png",
             "shortDescription": [
               {
+                "useCase": [
+                  "DEFAULT",
+                  "USER"
+                ],
                 "filter": false,
                 "text": "<p>Uw werkgever kan gekozen hebben om uw uitkering elk jaar op 1 januari te laten verhogen. Dit om uw uitkering waardevast te houden.</p>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "IVA_EXCED",
                   "WGA_EXCED",
@@ -464,6 +498,9 @@
                 "text": "<p>IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code>, en WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%</code> en WGA-Aanvullingsverzekering (light/upgrade). Uw uitkering wordt elk jaar op 1 januari <code>%BENEFIT_INDEX%</code> verhoogd. Hieronder ziet u wat de afgelopen drie jaar de gemiddelde jaarlijkse prijsstijging voor consumenten was. Zo kunt u vaststellen in hoeverre de uitkering waardevast was.</p>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "IVA_EXCED",
                   "WGA_EXCED",
@@ -472,6 +509,9 @@
                 "text": "<table><thead><tr><th>Jaar</th><th>Prijsstijging</th><th>Stijging uitkering</th></tr></thead><tbody><tr><th>t-1</th><th><span class=\"phld\">CBS-prijsindex t-1</span></th><th>Klim_srt t-1</th></tr><tr><th>t-2</th><th><span class=\"phld\">CBS-prijsindex t-2</span></th><th>Klim_srt t-2</th></tr><tr><th>t-3</th><th><span class=\"phld\">CBS-prijsindex t-3</span></th><th>Klim_srt t-3</th></tr></tbody></table>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "WIA_35MIN_BODEM",
                   "WIA_35MIN"
@@ -479,6 +519,9 @@
                 "text": "<p>Uw uitkering wordt elk jaar op 1 januari met de CBS-loonindex verhoogd. Hieronder ziet u wat de afgelopen drie jaar de gemiddelde jaarlijkse prijsstijging voor consumenten was. Zo kunt u vaststellen in hoeverre de uitkering waardevast was.</p>"
               },
               {
+                "useCase": [
+                  "PARTICIPANT"
+                ],
                 "filter": [
                   "WIA_35MIN_BODEM",
                   "WIA_35MIN"

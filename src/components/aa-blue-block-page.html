@@ -1,6 +1,6 @@
 <aa-template>  
   <aa-data [data]="data" type="keyvalue" path="page">    
-    start.url = http://localhost:3000/template-pension-form.html;
+    start.url = /template-pension-form.html;
     start.redirect = false;
     
     left.title = Title left;
@@ -26,9 +26,12 @@
     template = dipFixed;
   </aa-data>
 
-  <aa-pension-form [bbpage]="bbpage"></aa-pension-form>    
+  <aa-pension-form 
+    [bbpagecomponent]="bbpagecomponent" 
+    [bbcomponent]="bbcomponent">
+  </aa-pension-form>    
 
-  <aa-blue-block-page #bbpage [bbcomponent]="bbcomponent" [options]="data.page">    
+  <aa-blue-block-page #bbpagecomponent [options]="data.page">    
     <div blue-block-left>
       <aa-blue-block #bbcomponent [options]="data.blueBlockLeft"></aa-blue-block>
     </div>

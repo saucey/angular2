@@ -1,16 +1,85 @@
 {
-	"/api/test" : {
-		"GET" : {
-			"test" : "prova"
-		}
+	"/services/US_RestGatewayWeb/rest/requestResponse/BS_PENSIOENOVEREENKOMST_ROA/calculate" : {
+		"POST" : {"BScalculateResponse":{"PROCES":{"STATUS":"00000","VOLGNUM":"1","STATUST":"Success"},"AILHEADER":{"CLIENTID":"AEGONNL","CORRELATIONID":"##DIPSS##"},"PENSIOENOVEREENKOMST":{"PENSIOENAANSPRAAK":[{"EIND_DATUM_UITKERING":"2137-01-01","PENSIOENVORM":"OPLL","BEDRAG":"3256.67"},{"EIND_DATUM_UITKERING":"2137-01-01","PENSIOENVORM":"PPLL","BEDRAG":"2279.67"}]}}}
 	},
-	"/api/test2" : {
+	"/services/US_RestGatewayWeb/rest/requestResponse/BS_PENSIOENOVEREENKOMST_ROA/calculate" : {
 		"POST" : {
-			"test" : "prova post"
+		  "BScalculateResponse": {
+		    "PROCES": {
+		      "STATUS": "00000",
+		      "VOLGNUM": "1",
+		      "STATUST": "Success"
+		    },
+		    "AILHEADER": {
+		      "CLIENTID": "AEGONNL",
+		      "CORRELATIONID": "##DIP SS##"
+		    },
+		    "PENSIOENOVEREENKOMST": {
+		      "PENSIOENAANSPRAAK": [
+		        {
+		          "EIND_DATUM_UITKERING": "2137-01-01",
+		          "PENSIOENVORM": "OPLL",
+		          "BEDRAG": "3059.73"
+		        },
+		        {
+		          "EIND_DATUM_UITKERING": "2022-01-01",
+		          "PENSIOENVORM": "OPT",
+		          "BEDRAG": "1019.91"
+		        },
+		        {
+		          "EIND_DATUM_UITKERING": "2137-01-01",
+		          "PENSIOENVORM": "PPLL",
+		          "BEDRAG": "2279.67"
+		        }
+		      ]
+		    }
+		  }
 		}
 	},
-	"/api/dipFixed" : {
-		"GET" : {
+	"/api/vpuVariable" : {
+		"POST" : {
+		   "BScalculateRequest": {
+		      "AILHEADER": {
+		         "CLIENTID": "AEGONNL",
+		         "CORRELATIONID": "##DIP SS ##"
+		      },
+		      "DOSSIER": {
+		         "REKENFACTOREN": {
+		            "OVERGANG_OP_PP": "0.70",
+		            "VERHOUDING_HOOG_LAAG": "0.75"
+		         },
+		         "PENSIOENOVEREENKOMST": {
+		            "STORTING_INLEG": {
+		               "KOOPSOM": "100000", 
+		               "IND_VREEMDGELD": "false",
+		               "IND_HERKOMST_OVL": "false"
+		            },
+		            "PENSIOENAANSPRAAK": {
+		               "IND_OUDERDOMSPENSIOEN": "true",
+		               "IND_NABESTAANDENPENSIOEN": "false",
+		               "IND_HOOG_LAAGPENSIOEN": "false",
+		               "IND_PREPENSIOEN": "false",
+		               "BEGIN_DATUM_UITKERING": "2017-01-01",
+		               "DUUR_UITKERING_JAREN": "5",
+		               "STIJGING_PERC": "0.0",
+		               "TERMIJN_UITKERING": "1"
+		            }
+		         },
+		          "PARTIJ": [
+		            {
+		               "_AE_PERSOON": {
+		                  "VOLGNUM": "1",
+		                  "GESLACH": "M",
+		                  "GEBDAT": "1955-12-12"
+		               }
+		            }
+		         ]
+		      }
+		   }
+		}
+	},
+	"/api/vpuFixed" : {
+		"POST" : {
 		   "BScalculateRequest": {
 		      "AILHEADER": {
 		         "CLIENTID": "AEGONNL",

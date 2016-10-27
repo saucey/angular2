@@ -2,18 +2,17 @@
   <aa-data [data]="data" type="keyvalue" path="page">    
     start.url = /template-pension-form.html;
     start.redirect = false;
-    
-    left.title = Title left;
-    left.text = Intro left; 
 
-    right.title = Title right;
-    right.text = Intro right;     
-
-    link.text = This is a link;
-    link.url = http://go.to.here;
+    top.title = Uw pensioensmogelijkheden;
     
-    bottom.title = Offerte aanvragen;
-    bottom.text = Tekst voor het aanvragen van de offerte;
+    left.title = Direct Ingaand Pensioen;
+    left.text = Een pensioensuitkering met de zekerheid van een vaste uitkering per maand; 
+
+    right.title = Uitkerend Beleggingspensioen;
+    right.text = Uw pensioenkapitaal wordt belegd waarbij u kans heeft op een hogere pensioensuitkering;
+
+    bottom.title = Offerte aanvragen?;
+    bottom.text = U heeft aangegeven datuw uw pensioen vrijkomt bij Aegon. U krijgt dan binnen 3 maanden voorafgaan aan uw pensioen automatisch per brief van ons een offerte;         
   </aa-data>
 
   <aa-data [data]="data" type="keyvalue" path="blueBlockLeft">
@@ -27,17 +26,18 @@
   </aa-data>
 
   <aa-pension-form 
-    [bbpagecomponent]="bbpagecomponent" 
-    [bbcomponent]="bbcomponent">
+    [bbpage]="bbpage" 
+    [bbleft]="bbleft"
+    [bbright]="bbright">
   </aa-pension-form>    
 
-  <aa-blue-block-page #bbpagecomponent [options]="data.page">    
+  <aa-blue-block-page #bbpage [options]="data.page">    
     <div blue-block-left>
-      <aa-blue-block #bbcomponent [options]="data.blueBlockLeft"></aa-blue-block>
+      <aa-blue-block #bbleft [options]="data.blueBlockLeft"></aa-blue-block>
     </div>
     
     <div blue-block-right>
-      <aa-blue-block #bbcomponent [options]="data.blueBlockRight"></aa-blue-block>
+      <aa-blue-block #bbright [options]="data.blueBlockRight"></aa-blue-block>
     </div>            
   </aa-blue-block-page>
 </aa-template>

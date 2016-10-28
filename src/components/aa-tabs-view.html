@@ -1,17 +1,16 @@
 <aa-template>
-  <aa-tabs-view>
+  <aa-tabs-view theme="grey">
 
-    <aa-tabs-view-item title="Simple content" icon="hypotheek" [active]="true" description="Hypothek description">
-       Just some text
+    <aa-tabs-view-item id="first" title="0% - 30%">
+       first
     </aa-tabs-view-item>
 
-    <aa-tabs-view-item title="QuickQuote Bellegen" icon="klantenservice" description="I am the description">
-      Component is here:
-      <aa-qq-boeterente></aa-qq-boeterente>
+    <aa-tabs-view-item id="second" title="30% - 80%">
+      second
     </aa-tabs-view-item>
 
-    <aa-tabs-view-item title="Different text" icon="sparen" description="Beware the description">
-      Another text
+    <aa-tabs-view-item id="third" title="80% - 100%">
+      third
     </aa-tabs-view-item>
 
   </aa-tabs-view>

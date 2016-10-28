@@ -1,0 +1,40 @@
+<div id="st-container" class="wrapper ui-panel-animate">
+
+  <div class="container">
+
+    <section id="scroll" class="scroll st-content">
+      <div class="st-content-inner">
+
+        {{_drupal-header}}
+
+        <!-- Content layout -->
+        <section class="content">
+
+          <div class="row-fluid">
+            <div class="span1 gutter"></div>
+            <div class="span12 container_12">
+
+            {{fnol}}
+
+          </div>
+          <div class="span1 gutter"></div>
+        </div>
+        </section>
+        <!-- END Content layout -->
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- menu from structures-->
+  {{_drupal-sidebar-aegon-menu}}
+
+</div>
+
+<style type="text/css">
+  /* Force to don't show style associated to body.mobile-tap */
+  section.content:after {
+    display: none !important;
+  }
+</style>

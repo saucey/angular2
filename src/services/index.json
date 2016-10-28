@@ -132,7 +132,7 @@
                 "useCase": [
                   "PARTICIPANT"
                 ],
-                "filter": false,
+                "filter": [],
                 "text": "<p>Uw werkgever sloot voor u de:</p>"
               },
               {
@@ -222,17 +222,17 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/reglement.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Wilt u precies weten wat deze regeling u biedt? Kijk op <a href=\"www.aegon.nl/pensioenwet\">www.aegon.nl/pensioenwet</a> of vraag de polisvoorwaarden bij ons op.</p>"
               }
             ],
             "longDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Wilt u precies weten wat deze regeling u biedt? Kijk dan in de polisvoorwaarden. U vindt deze op <a href=\"www.aegon.nl/pensioenwet\">www.aegon.nl/pensioenwet</a> onderaan de pagina onder de downloads of vraag de polisvoorwaarden bij ons op.</p>"
               },
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Let op: <br />Neemt u via uw werkgever ook deel in een pensioenregeling met een uitkering bij uw pensionering en/of een uitkering aan uw eventuele partner en/of kinderen als u overlijdt? Dan ontvangt u hiervan een apart overzicht van het pensioenfonds of de verzekeraar. U kunt ook kijken op www.mijnpensioenoverzicht.nl voor informatie over uw andere pensioenregelingen en uw AOW.</p>"
               }
             ]
@@ -246,7 +246,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-static-content/content/pensioen123/test/ouderdomspensioen_geen.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>In deze regeling krijgt u geen ouderdomspensioen. Het kan zijn dat u ouderdomspensioen opbouwt in een andere pensioenregeling.</p>"
               }
             ],
@@ -256,7 +256,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-static-content/content/pensioen123/test/partner_en_wezenpensioen_geen.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Komt u te overlijden? In deze regeling krijgt uw eventuele partner dan geen partnerpensioen en krijgen uw eventuele kinderen dan geen wezenpensioen. Het kan zijn dat u partner- en/of wezenpensioen in een andere pensioenregeling heeft.</p>"
               }
             ],
@@ -266,7 +266,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/arbeidsongeschiktheidspensioen_geen.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Wordt u ziek nadat u uit dienst bent gegaan bij deze werkgever? Dan krijgt u geen arbeidsongeschiktheidspensioen van ons.</p>"
               }
             ],
@@ -281,25 +281,25 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/drie_pijlers.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>U bent op drie manieren verzekerd bij arbeidsongeschiktheid:</p><p>A. De Wet werk en inkomen naar arbeidsvermogen (WIA). De WIA-uitkering is een arbeidsongeschiktheidsuitkering van de overheid als u in Nederland werkt. Op <a href=\"www.uwv.nl\">www.uwv.nl</a> leest u meer over de WIA-uitkering.</p><p>B. Uw arbeidsongeschiktheidspensioen bij Aegon. U bent hiervoor verzekerd via uw werkgever. Hierover gaat dit Pensioen 1-2-3.</p><p>C. Een uitkering bij arbeidsongeschiktheid die u zelf misschien regelde.</p>"
               }
             ],
             "longDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>U bent op drie manieren verzekerd bij arbeidsongeschiktheid: <br />A. De Wet werk en inkomen naar arbeidsvermogen (WIA). <br />Als u (gedeeltelijk) arbeidsongeschikt wordt, ontvangt u eerst twee jaar lang een inkomen van uw werkgever. Dat is de loondoorbetaling door uw werkgever. Bent u na twee jaar nog steeds ziek? Dan kijkt het UWV of uw werkgever en u wel voldoende hun best hebben gedaan om u aan het werk te krijgen. Is dat zo? Dan keurt het UWV u. Het UWV bepaalt welk werk u nog kunt doen. En wat u daarmee kunt verdienen. Dit heet uw restverdiencapaciteit. <br />Uw arbeidsongeschiktheidspercentage is de verhouding tussen uw restverdiencapaciteit en uw salaris dat u had voordat u ziek werd. Het arbeidsongeschiktheidspercentage bepaalt welke regeling voor u geldt:</p>"
               },
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>1. U krijgt geen uitkering <br/>U bent minder dan 35% arbeidsongeschikt. U krijgt geen uitkering.</p><p>2. U krijgt een WGA-uitkering <br />U bent minimaal 35% arbeidsongeschikt. Of u bent minimaal 80% arbeidsongeschikt en het UWV denkt dat u in de komende 5 jaar weer meer kunt gaan werken. Dan krijgt u een uitkering vanuit de regeling Werkhervatting Gedeeltelijk Arbeidsgeschikten (WGA). Deze regeling maakt onderdeel uit van de WIA.</p>"
               },
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>3. U krijgt een IVA-uitkering <br />U bent minimaal 80% arbeidsongeschikt. En het UWV denkt dat u in de komende 5 jaar niet meer kunt gaan werken. Dan krijgt u een uitkering vanuit de regeling Inkomensvoorziening Volledig Arbeidsongeschikten (IVA). Deze regeling maakt onderdeel uit van de WIA. <br />Op <a href=\"www.uwv.nl\">www.uwv.nl</a> leest u meer over de WIA-uitkering.</p>"
               },
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>B. Uw arbeidsongeschiktheidspensioen bij Aegon. U bent hiervoor verzekerd via uw werkgever. Hierover gaat dit Pensioen 1-2-3.</p>"
               },
               {
@@ -340,7 +340,7 @@
                 "text": "<p>Met de WIA-Bodemverzekering krijgt u een uitkering als u volgens het UWV 15% of meer arbeidsongeschikt bent, maar minder dan 35%.</p>"
               },
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>C. Een uitkering bij arbeidsongeschiktheid die u zelf misschien regelde. Bijvoorbeeld een arbeidsongeschiktheids- of woonlastenverzekering.</p>"
               }
             ]
@@ -349,11 +349,11 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/arbeidsongeschiktheidspensioen.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Bent u na twee jaar ziekte volgens het UWV 35% of meer arbeidsongeschikt? Dan komt u in de WIA. De WIA is de Wet werk en inkomen naar arbeidsvermogen. Via die wet krijgt u een uitkering. De WIA is een ingewikkelde wet en is onder te verdelen in twee regelingen:</p><p>U bent minimaal 35% arbeidsongeschikt, maar niet minimaal 80% duurzaam. U krijgt dan een WGA-uitkering.</p><p>U bent minimaal 80% duurzaam arbeidsongeschikt. U krijgt dan een IVA-uitkering.</p>"
               },
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Ondanks deze wettelijke uitkeringen, kan u er in inkomen op achteruit gaan als u arbeidsongeschikt bent.</p>"
               },
               {
@@ -439,7 +439,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-static-content/content/pensioen123/test/premieverdeling_beide.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Uw werkgever betaalt de premie voor uw regeling. Uw werkgever kan met u afgesproken hebben dat u de premie helemaal of voor een deel aan hem terugbetalen. Deze premie vindt u dan terug op uw loonstrook. Omdat de premie wordt afgetrokken van uw brutoloon, betaalt u hierover geen loonbelasting en premies sociale verzekeringen.</p>"
               }
             ],
@@ -454,7 +454,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/keuze.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>U kunt stoppen met deelname aan deze regeling.</p>"
               }
             ],
@@ -464,7 +464,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/pensioenvergelijker.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Wilt u uw pensioenregeling vergelijken? U vindt de pensioenvergelijker op <a href=\"www.aegon.nl/pensioenwet\">www.aegon.nl/pensioenwet</a> onderaan de pagina onder de downloads of u kunt deze bij ons opvragen.</p>"
               }
             ],
@@ -483,7 +483,7 @@
                   "DEFAULT",
                   "USER"
                 ],
-                "filter": false,
+                "filter": [],
                 "text": "<p>Uw werkgever kan gekozen hebben om uw uitkering elk jaar op 1 januari te laten verhogen. Dit om uw uitkering waardevast te houden.</p>"
               },
               {
@@ -535,7 +535,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/uitkeringszekerheid_risico.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>De hoogte van uw uitkering is afhankelijk van hoeveel u nog wel kunt werken en hoeveel u daarmee verdient.</p>"
               }
             ],
@@ -550,7 +550,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/kosten.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Aegon maakt kosten om de regeling uit te voeren.</p>"
               }
             ],
@@ -565,13 +565,13 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/arbeidsongeschiktheidspensioen.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Als u arbeidsongeschikt wordt.</p>"
               }
             ],
             "longDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Als u arbeidsongeschikt wordt. Als u (gedeeltelijk) arbeidsongeschikt wordt, ontvangt u eerst twee jaar lang een inkomen van uw werkgever. U krijgt minimaal 70% van uw loon. Dit loon kan gemaximeerd zijn. Kijk daarvoor in uw arbeidsovereenkomst of CAO.</p>"
               }
             ]
@@ -580,7 +580,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/mijnpensioenoverzicht.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Bekijk eens per jaar hoeveel pensioen u heeft opgebouwd op <a href=\"www.mijnpensioenoverzicht.nl\">www.mijnpensioenoverzicht.nl</a>. <br />Let op: Deze arbeidsongeschiktheidspensioenregeling staat daar niet.</p>"
               }
             ],
@@ -590,7 +590,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/keuze.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Als u gebruik wilt maken van de mogelijkheid om te stoppen met deelname aan deze regeling.</p>"
               }
             ],
@@ -600,7 +600,7 @@
             "image": "https://s3-eu-west-1.amazonaws.com/anl-ma-staticcontent/content/pensioen123/test/vragen.png",
             "shortDescription": [
               {
-                "filter": false,
+                "filter": [],
                 "text": "<p>Heeft u vragen of bent u arbeidsongeschikt? Neem dan contact op met uw werkgever. Op <a href=\"www.aegon.nl/pensioenwet\">www.aegon.nl/pensioenwet</a> kunt u ook terecht voor meer informatie.</p>"
               }
             ],

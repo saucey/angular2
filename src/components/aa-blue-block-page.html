@@ -1,28 +1,38 @@
-<aa-template>  
+<aa-template> 
+  <aa-data  [data]="data" type="keyvalue" path="pensionForm">
+    initializeBlueBlocks = true
+  </aa-data>
   <aa-data [data]="data" type="keyvalue" path="page">    
-    start.url = /template-pension-form.html;
-    start.redirect = false;
-
-    top.title = Uw pensioensmogelijkheden;
-    
-    left.title = Direct Ingaand Pensioen;
-    left.text = Een pensioensuitkering met de zekerheid van een vaste uitkering per maand; 
-
-    right.title = Uitkerend Beleggingspensioen;
-    right.text = Uw pensioenkapitaal wordt belegd waarbij u kans heeft op een hogere pensioensuitkering;
+    start.url = /page-to-redirect-when-no-session-storage;
+   start.redirect = false;
+   top.title = Uw pensioensmogelijkheden;
+   left.title = Direct Ingaand Pensioen;
+   left.text = Een pensioensuitkering met de zekerheid van een vaste uitkering per maand; 
+   right.title = Uitkerend Beleggingspensioen;
+   right.text = Uw pensioenkapitaal wordt belegd waarbij u kans heeft op een hogere pensioensuitkering;   
+   right.hide = noInsurablePartner;
+   link.text = Link to switch service;
+   link.url = /link-to-other-service;
+   uw pensioen automatisch per brief van ons een offerte;
   </aa-data>
 
   <aa-data [data]="data" type="keyvalue" path="blueBlockLeft">
-    callServiceOnInit = false;
     template = dipFixed;
+    serviceUrl = /services/US_RestGatewayWeb/rest/requestResponse/BS_PENSIOENOVEREENKOMST_ROA/calculate;
+    button.forceShow = true;
+    dipFixed.0.fixedRowsHeight = 5;
+    dipFixed.1.fixedRowsHeight = 6;
   </aa-data>  
 
   <aa-data [data]="data" type="keyvalue" path="blueBlockRight">
-    callServiceOnInit = false;
-    template = dipFixed;
+    template = vpuVariable;
+    serviceUrl = /api/vpuVariable;
+    button.forceShow = true;
+    vpuVariable.0.fixedRowsHeight = 5;
+    vpuVariable.1.fixedRowsHeight = 6;
   </aa-data>
 
-  <aa-pension-form 
+  <aa-pension-form  [options]="data.pensionForm"
     [bbpage]="bbpage" 
     [bbleft]="bbleft"
     [bbright]="bbright">

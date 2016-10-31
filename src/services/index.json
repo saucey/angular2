@@ -179,7 +179,7 @@
 	  }
 	}
 },
-  "/api/income123/content": {
+  "/sites/aegonnl/public_files/wia.json": {
     "GET": [
       {
         "title": "Wat krijgt u in deze regeling?",
@@ -670,3 +670,4 @@
     ]
   }
 }
+

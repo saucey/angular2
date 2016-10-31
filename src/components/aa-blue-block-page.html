@@ -1,40 +1,39 @@
 <aa-template>  
-  <aa-data [data]="data" type="keyvalue" path="page">    
-    start.url = /template-pension-form.html;
-    start.redirect = false;
+<aa-data [data]="data" type="keyvalue" path="page">    
+  page = pensionForm || dip || vpu;
+  start.url = /page-to-redirect-when-no-session-storage; 
+  start.redirect = false; 
+  top.title = Top title;
+  left.title = Left title;
+  left.text = Left text; 
+  right.title = Right title;
+  right.text = Right text;   
+  link.text = Link to switch service;
+  link.url = /link-to-other-service;
+  bottom.title = Bottom title;
+  bottom.text = Bottom text; 
+</aa-data>
 
-    top.title = Uw pensioensmogelijkheden;
-    
-    left.title = Direct Ingaand Pensioen;
-    left.text = Een pensioensuitkering met de zekerheid van een vaste uitkering per maand; 
+<aa-data [data]="data" type="keyvalue" path="blueBlockLeft">
+  template = dipFixed;
+</aa-data>  
 
-    right.title = Uitkerend Beleggingspensioen;
-    right.text = Uw pensioenkapitaal wordt belegd waarbij u kans heeft op een hogere pensioensuitkering;
-  </aa-data>
+<aa-data [data]="data" type="keyvalue" path="blueBlockRight">
+  template = dipHighLow;
+</aa-data>
 
-  <aa-data [data]="data" type="keyvalue" path="blueBlockLeft">
-    callServiceOnInit = false;
-    template = dipFixed;
-  </aa-data>  
+<aa-pension-form 
+  [bbpage]="bbpage" 
+  [bbleft]="bbleft"
+  [bbright]="bbright">
+</aa-pension-form>    
 
-  <aa-data [data]="data" type="keyvalue" path="blueBlockRight">
-    callServiceOnInit = false;
-    template = dipFixed;
-  </aa-data>
-
-  <aa-pension-form 
-    [bbpage]="bbpage" 
-    [bbleft]="bbleft"
-    [bbright]="bbright">
-  </aa-pension-form>    
-
-  <aa-blue-block-page #bbpage [options]="data.page">    
-    <div blue-block-left>
-      <aa-blue-block #bbleft [options]="data.blueBlockLeft"></aa-blue-block>
-    </div>
-    
-    <div blue-block-right>
-      <aa-blue-block #bbright [options]="data.blueBlockRight"></aa-blue-block>
-    </div>            
-  </aa-blue-block-page>
+<aa-blue-block-page #bbpage [options]="data.page">    
+  <div blue-block-left>
+    <aa-blue-block #bbleft [options]="data.blueBlockLeft"></aa-blue-block>
+  </div>  
+  <div blue-block-right>
+    <aa-blue-block #bbright [options]="data.blueBlockRight"></aa-blue-block>
+  </div>            
+</aa-blue-block-page>
 </aa-template>

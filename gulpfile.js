@@ -542,7 +542,8 @@ gulp.task('default', ['clean'], function () {
     'scripts',
     'assets',
     'images',
-    'assemble'
+    'assemble',
+    'tests:run'
   ];
 
   // run build

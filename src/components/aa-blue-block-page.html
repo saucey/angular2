@@ -1,50 +1,45 @@
 <aa-template> 
-  <aa-data  [data]="data" type="keyvalue" path="pensionForm">
-    initializeBlueBlocks = true
-  </aa-data>
-  <aa-data [data]="data" type="keyvalue" path="page">    
-    start.url = /page-to-redirect-when-no-session-storage;
-   start.redirect = false;
-   top.title = Uw pensioensmogelijkheden;
-   left.title = Direct Ingaand Pensioen;
-   left.text = Een pensioensuitkering met de zekerheid van een vaste uitkering per maand; 
-   right.title = Uitkerend Beleggingspensioen;
-   right.text = Uw pensioenkapitaal wordt belegd waarbij u kans heeft op een hogere pensioensuitkering;   
-   right.hide = noInsurablePartner;
-   link.text = Link to switch service;
-   link.url = /link-to-other-service;
-   uw pensioen automatisch per brief van ons een offerte;
-  </aa-data>
+<aa-data  [data]="data" type="keyvalue" path="pensionForm">
+  initializeBlueBlocks = true
+</aa-data>
 
-  <aa-data [data]="data" type="keyvalue" path="blueBlockLeft">
-    template = dipFixed;
-    serviceUrl = /services/US_RestGatewayWeb/rest/requestResponse/BS_PENSIOENOVEREENKOMST_ROA/calculate;
-    button.forceShow = true;
-    dipFixed.0.fixedRowsHeight = 5;
-    dipFixed.1.fixedRowsHeight = 6;
-  </aa-data>  
+<aa-data [data]="data" type="keyvalue" path="page">    
+  page = pensionForm;
+  start.url = /page-to-redirect-when-no-session-storage;
+  start.redirect = false;
+  top.title = Uw pensioensmogelijkheden;
+  left.title = Direct Ingaand Pensioen;
+  left.text = Een pensioensuitkering met de zekerheid van een vaste uitkering per maand; 
+  right.title = Uitkerend Beleggingspensioen;
+  right.text = Uw pensioenkapitaal wordt belegd waarbij u kans heeft op een hogere pensioensuitkering;   
+</aa-data>
 
-  <aa-data [data]="data" type="keyvalue" path="blueBlockRight">
-    template = vpuVariable;
-    serviceUrl = /api/vpuVariable;
-    button.forceShow = true;
-    vpuVariable.0.fixedRowsHeight = 5;
-    vpuVariable.1.fixedRowsHeight = 6;
-  </aa-data>
+<aa-data [data]="data" type="keyvalue" path="blueBlockLeft">
+  template = dipFixed;
+  serviceUrl = /services/US_RestGatewayWeb/rest/requestResponse/BS_PENSIOENOVEREENKOMST_ROA/calculate;
+  button.forceShow = true;
+  dipFixed.0.fixedRowsHeight = 5;
+  dipFixed.1.fixedRowsHeight = 6;
+</aa-data>  
 
-  <aa-pension-form  [options]="data.pensionForm"
-    [bbpage]="bbpage" 
-    [bbleft]="bbleft"
-    [bbright]="bbright">
-  </aa-pension-form>    
+<aa-data [data]="data" type="keyvalue" path="blueBlockRight">
+  template = vpuVariable;
+  serviceUrl = /api/vpuVariable;
+  button.forceShow = true;
+  vpuVariable.0.fixedRowsHeight = 5;
+  vpuVariable.1.fixedRowsHeight = 6;
+</aa-data>
 
-  <aa-blue-block-page #bbpage [options]="data.page">    
-    <div blue-block-left>
-      <aa-blue-block #bbleft [options]="data.blueBlockLeft"></aa-blue-block>
-    </div>
-    
-    <div blue-block-right>
-      <aa-blue-block #bbright [options]="data.blueBlockRight"></aa-blue-block>
-    </div>            
-  </aa-blue-block-page>
+<aa-pension-form [options]="data.pensionForm" [bbpage]="bbpage" [bbleft]="bbleft" [bbright]="bbright">
+</aa-pension-form>    
+
+<aa-blue-block-page #bbpage [options]="data.page">    
+  <div blue-block-left>
+    <aa-blue-block #bbleft [options]="data.blueBlockLeft"></aa-blue-block>
+  </div>
+  
+  <div blue-block-right>
+    <aa-blue-block #bbright [options]="data.blueBlockRight"></aa-blue-block>
+  </div>            
+</aa-blue-block-page>
 </aa-template>

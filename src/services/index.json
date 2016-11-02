@@ -439,8 +439,7 @@
                   "PARTICIPANT"
                 ],
                 "filter": [
-                  "IVA_EXCED",
-                  "WGA_AANV_STANDARD"
+                  "IVA_EXCED"
                 ],
                 "text": "<p>Deze regeling geeft een aanvulling op uw IVA-uitkering. De aanvulling vanuit uw IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>. Uw uitkering stopt als u de AOW-leeftijd bereikt of nog daarvoor <code>%END_AGE%</code> jaar wordt.</p>"
               },
@@ -449,8 +448,10 @@
                   "PARTICIPANT"
                 ],
                 "filter": [
-                  "IVA_EXCED",
-                  "WGA_EXCED",
+                  [
+                    "IVA_EXCED",
+                    "WGA_EXCED"
+                  ],
                   "WGA_AANV_STANDARD"
                 ],
                 "text": "<p>Deze regeling geeft een aanvulling op uw IVA- en WGA-uitkering. Uw uitkering stopt als u de AOW-leeftijd bereikt of nog daarvoor <code>%END_AGE%</code> jaar wordt.</p>"

@@ -198,13 +198,13 @@
                 "filter": [
                   "IVA_EXCED"
                 ],
-                "text": "<p>IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code>. Met de IVA-Excedentverzekering krijgt u een uitkering als u volgens het UWV minimaal 80% duurzaam arbeidsongeschikt bent.</p>"
+                "text": "<p>IVA-Excedentverzekering<code> %COVERAGE_RATE_IVA%%</code>. Met de IVA-Excedentverzekering krijgt u een uitkering als u volgens het UWV minimaal 80% duurzaam arbeidsongeschikt bent.</p>"
               },
               {
                 "filter": [
                   "WGA_EXCED"
                 ],
-                "text": "<p>WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%</code>. Met de WGA-Excedentverzekering krijgt u een uitkering als u volgens het UWV minimaal 35% arbeidsongeschikt bent, maar niet minimaal 80% duurzaam.</p>"
+                "text": "<p>WGA-Excedentverzekering<code> %COVERAGE_RATE_WGA%%</code>. Met de WGA-Excedentverzekering krijgt u een uitkering als u volgens het UWV minimaal 35% arbeidsongeschikt bent, maar niet minimaal 80% duurzaam.</p>"
               },
               {
                 "filter": [
@@ -242,13 +242,13 @@
                 "filter": [
                   "IVA_EXCED"
                 ],
-                "text": "<p>IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code>.<br /> U kan niet meer werken. Volgens het UWV bent u 80% of meer arbeidsongeschikt. Verder denkt het UWV niet dat u in de komende vijf jaar weer kan gaan werken. U krijgt daarom een IVA-uitkering. De hoogte van de IVA-uitkering van het UWV is 75% van uw salaris voordat u arbeidsongeschikt werd. Verdiende u voordat u arbeidsongeschikt werd meer dan de loongrens voor de sociale verzekeringen (2016: € 52.766,37)? Dan krijgt u voor het loon boven die loongrens geen uitkering van het UWV. Met de IVA-Excedentverzekering krijgt u dan wel een uitkering voor het loon boven die loongrens.</p>"
+                "text": "<p>IVA-Excedentverzekering<code> %COVERAGE_RATE_IVA%%</code>.<br /> U kan niet meer werken. Volgens het UWV bent u 80% of meer arbeidsongeschikt. Verder denkt het UWV niet dat u in de komende vijf jaar weer kan gaan werken. U krijgt daarom een IVA-uitkering. De hoogte van de IVA-uitkering van het UWV is 75% van uw salaris voordat u arbeidsongeschikt werd. Verdiende u voordat u arbeidsongeschikt werd meer dan de loongrens voor de sociale verzekeringen (2016: € 52.766,37)? Dan krijgt u voor het loon boven die loongrens geen uitkering van het UWV. Met de IVA-Excedentverzekering krijgt u dan wel een uitkering voor het loon boven die loongrens.</p>"
               },
               {
                 "filter": [
                   "WGA_EXCED"
                 ],
-                "text": "<p>WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%</code>.<br /> U kan langere tijd niet of minder werken. U krijgt daarom een WGA-uitkering van het UWV. Verdiende u voordat u arbeidsongeschikt werd meer dan de loongrens voor de sociale verzekeringen (2016: € 52.766,37)? Dan krijgt u voor het loon boven die loongrens geen uitkering van het UWV. Met de WGA-Excedentverzekering krijgt u dan wel een uitkering voor het loon boven die loongrens.</p>"
+                "text": "<p>WGA-Excedentverzekering<code> %COVERAGE_RATE_WGA%%</code>.<br /> U kan langere tijd niet of minder werken. U krijgt daarom een WGA-uitkering van het UWV. Verdiende u voordat u arbeidsongeschikt werd meer dan de loongrens voor de sociale verzekeringen (2016: € 52.766,37)? Dan krijgt u voor het loon boven die loongrens geen uitkering van het UWV. Met de WGA-Excedentverzekering krijgt u dan wel een uitkering voor het loon boven die loongrens.</p>"
               },
               {
                 "filter": [
@@ -432,7 +432,7 @@
                 "filter": [
                   "WGA_EXCED"
                 ],
-                "text": "De aanvulling vanuit uw WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>."
+                "text": "De aanvulling vanuit uw WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%,-</code>."
               },
               {
                 "useCase": [
@@ -441,7 +441,7 @@
                 "filter": [
                   "IVA_EXCED"
                 ],
-                "text": "<p>Deze regeling geeft een aanvulling op uw IVA-uitkering. De aanvulling vanuit uw IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>. Uw uitkering stopt als u de AOW-leeftijd bereikt of nog daarvoor <code>%END_AGE%</code> jaar wordt.</p>"
+                "text": "<p>Deze regeling geeft een aanvulling op uw IVA-uitkering. De aanvulling vanuit uw IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%,-</code>. Uw uitkering stopt als u de AOW-leeftijd bereikt of nog daarvoor <code>%END_AGE%</code> jaar wordt.</p>"
               },
               {
                 "useCase": [
@@ -463,7 +463,7 @@
                 "filter": [
                   "WGA_EXCED"
                 ],
-                "text": "De aanvulling vanuit uw WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>."
+                "text": "De aanvulling vanuit uw WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%,-</code>."
               },
               {
                 "useCase": [
@@ -472,7 +472,7 @@
                 "filter": [
                   "IVA_EXCED"
                 ],
-                "text": "De aanvulling vanuit uw IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%</code>.</p>"
+                "text": "De aanvulling vanuit uw IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%%</code> berekenen wij over uw <code>%WAGE_DEFINITION%</code> tot en met € <code>%DEVIATED_MAXIMUM_WAGE%,-</code>.</p>"
               },
               {
                 "useCase": [
@@ -555,7 +555,7 @@
                   "WGA_EXCED",
                   "WGA_AANV_STANDARD"
                 ],
-                "text": "<p>IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%</code>, en WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%</code> en WGA-Aanvullingsverzekering (light/upgrade). Uw uitkering wordt elk jaar op 1 januari <code>%BENEFIT_INDEX%</code> verhoogd. Hieronder ziet u wat de afgelopen drie jaar de gemiddelde jaarlijkse prijsstijging voor consumenten was. Zo kunt u vaststellen in hoeverre de uitkering waardevast was.</p>"
+                "text": "<p>IVA-Excedentverzekering <code>%COVERAGE_RATE_IVA%%</code>, en WGA-Excedentverzekering <code>%COVERAGE_RATE_WGA%%</code> en WGA-Aanvullingsverzekering (light/upgrade). Uw uitkering wordt elk jaar op 1 januari <code>%BENEFIT_INDEX%</code> verhoogd. Hieronder ziet u wat de afgelopen drie jaar de gemiddelde jaarlijkse prijsstijging voor consumenten was. Zo kunt u vaststellen in hoeverre de uitkering waardevast was.</p>"
               },
               {
                 "useCase": [
